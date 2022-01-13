@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial: Measuring Group Fairness in Pre-Trial Risk Assessment &#8212; An Introduction to Responsible Data Science</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Explainable Artificial Intelligence" href="../../../explainability/introduction.html" />
+    <link rel="prev" title="COMPAS" href="introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../intro.html">
+   An Introduction to Responsible Data Science
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../introduction/introduction.html">
+   Responsible Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../introduction/machinelearning.html">
+   Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Fairness
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../introduction.html">
+   Algorithmic Fairness
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../groupfairness/introduction.html">
+   Group Fairness
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../groupfairness/metrics.html">
+     Metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../groupfairness/mitigation.html">
+     Mitigation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../individualfairness/introduction.html">
+   Individual Fairness
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../individualfairness/metrics.html">
+     Individual Fairness Metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../individualfairness/mitigation.html">
+     Mitigation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../counterfactualfairness/introduction.html">
+   Counterfactual Fairness
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../counterfactualfairness/metrics.html">
+     Metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../counterfactualfairness/mitigation.html">
+     Mitigation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../introduction.html">
+   Case Studies
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction.html">
+     COMPAS
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Tutorial: Measuring Group Fairness in Pre-Trial Risk Assessment
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../explainability/introduction.html">
+   Explainable Artificial Intelligence
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Accountability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../accountability/introduction.html">
+   Algorithmic Accountability and Auditing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/fairness/casestudies/compas/groupfairness.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ffairness/casestudies/compas/groupfairness.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/fairness/casestudies/compas/groupfairness.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compas-a-pre-trial-risk-assessment-tool">
+   COMPAS: A Pre-Trial Risk Assessment Tool
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-pre-trial-risk-assessment-in-the-us-judicial-system">
+     What is pre-trial risk assessment in the US judicial system?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#propublica-s-analysis-of-compas">
+     Propublica’s Analysis of COMPAS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-dataset">
+   Load Dataset
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intermezzo-measuring-sensitive-characteristics">
+     Intermezzo: Measuring Sensitive Characteristics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demographic-parity">
+   Demographic Parity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#measuring-demographic-parity-using-fairlearn">
+     Measuring Demographic Parity using Fairlearn
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-use-metricframe-to-compute-difference-in-selection-rate">
+     Exercise: use
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       MetricFrame
+      </span>
+     </code>
+     to compute difference in selection rate
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#intermezzo-construct-validity-and-fairness">
+       Intermezzo: Construct Validity and Fairness
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#equalized-odds">
+   Equalized Odds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#equal-calibration">
+   Equal Calibration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#impossibilities">
+   Impossibilities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenges-and-limitations-of-group-fairness-metrics">
+   Challenges and Limitations of Group Fairness Metrics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practical-challenges">
+     Practical Challenges
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limitations">
+     Limitations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concluding-remarks">
+   Concluding Remarks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-points">
+     Discussion Points
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-resources">
+   Further Resources
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="tutorial-measuring-group-fairness-in-pre-trial-risk-assessment">
+<h1>Tutorial: Measuring Group Fairness in Pre-Trial Risk Assessment<a class="headerlink" href="#tutorial-measuring-group-fairness-in-pre-trial-risk-assessment" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial we will explore how we can measure notions of group fairness in Python using <a class="reference external" href="https://fairlearn.org">Fairlearn</a>. As a running example, we consider pre-trial risk assessment scores produced by the COMPAS recidivism risk assessment tool.</p>
+<hr class="docutils" />
+<p><strong>Learning Objectives</strong>. After this tutorial you are able to:</p>
+<ul class="simple">
+<li><p>apply group fairness metrics in Python;</p></li>
+<li><p>understand trade-offs between diferent group fairness criteria;</p></li>
+</ul>
+<hr class="docutils" />
+<div class="section" id="compas-a-pre-trial-risk-assessment-tool">
+<h2>COMPAS: A Pre-Trial Risk Assessment Tool<a class="headerlink" href="#compas-a-pre-trial-risk-assessment-tool" title="Permalink to this headline">¶</a></h2>
+<p>COMPAS is a decision support tool used by courts in the United States to assess the likelihood of a defendant becoming a recidivist; i.e., relapses into criminal behavior. In particular, COMPAS risk scores are used in <strong>pre-trial risk assessment</strong>.</p>
+<div class="section" id="what-is-pre-trial-risk-assessment-in-the-us-judicial-system">
+<h3>What is pre-trial risk assessment in the US judicial system?<a class="headerlink" href="#what-is-pre-trial-risk-assessment-in-the-us-judicial-system" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>After somebody has been arrested, it will take some time before they go to trial. The primary goal of pre-trial risk assessment is to determine the likelihood that the defendant will re-appear in court at their trial. Based on the assessment, a judge decides whether a defendent will be detained or released while awaiting trial. In case of release, the judge also decides whether bail is set and for which amount. Bail usually takes the form of either a cash payment or a bond. If the defendant can’t afford to pay the bail amount in cash - which can be as high as $50,000 - they can contract a bondsmen. For a fee, typically around 10% of the bail, the bondsmen will post the defendant’s bail.</p>
+<blockquote>
+<div><p>If the defendant cannot afford bail nor a bail bond, they have to prepare for their trial while in jail. <a class="reference external" href="https://eu.clarionledger.com/story/opinion/columnists/2020/05/28/cant-afford-bail-woman-describes-experience-mississippi-bail-fund-collective/5257295002/">This</a> <a class="reference external" href="https://medium.com/dose/bail-is-so-expensive-it-forces-innocent-people-to-plead-guilty-72a3097a2ebe">is</a> <a class="reference external" href="https://facctconference.org/2018/livestream_vh210.html">difficult</a>. The time between getting arrested and a bail hearing can take days, weeks, months, or even years. In some cases, the decision is between pleading guilty and going home. Consequently, people who cannot afford bail are much more likely to plead guilty to a crime they did not commit. If the judge’s decision is a <strong>false positive</strong>, this has a big impact on the defendant’s prospects.</p>
+</div></blockquote>
+<blockquote>
+<div><p>On the other extreme, <strong>false negatives</strong> could mean that dangerous individuals are released into society.</p>
+</div></blockquote>
+<p>Proponents of risk assessment tools argue that they can lead to more efficient, less biased, and more consistent decisions compared to human decision makers. However, concerns have been raised that the scores can replicate historical inequalities.</p>
+<div class="section" id="propublica-s-analysis-of-compas">
+<h3>Propublica’s Analysis of COMPAS<a class="headerlink" href="#propublica-s-analysis-of-compas" title="Permalink to this headline">¶</a></h3>
+<p>In May 2016, investigative journalists of Propublica released a critical analysis of COMPAS. <strong>Propublica’s assessment: COMPAS wrongly labeled black defendants as future criminals at almost twice the rate as white defendants</strong>, while white defendants were mislabeled as low risk more often than black defendants (<a class="reference external" href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">Propublica, 2016</a>).</p>
+<p>The analysis of COMPAS is likely one of the most well-known examples of algorithmic bias assessments. Within the machine learning research community, the incident sparked a renewed interest in fairness of machine learning models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data wrangling</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># visualization</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># measuring fairness</span>
+<span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MetricFrame</span><span class="p">,</span>
+    <span class="n">make_derived_metric</span><span class="p">,</span>
+    <span class="n">selection_rate</span><span class="p">,</span>
+    <span class="n">false_positive_rate</span><span class="p">,</span>
+    <span class="n">false_negative_rate</span><span class="p">,</span>
+    <span class="n">demographic_parity_difference</span><span class="p">,</span>
+    <span class="n">equalized_odds_difference</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.calibration</span> <span class="kn">import</span> <span class="n">calibration_curve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">gm</span><span class="o">/</span><span class="mi">3</span><span class="n">mj2p8yj7r3_gvrx0j6yz0tm0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_55768</span><span class="o">/</span><span class="mf">2327387754.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># data wrangling</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># visualization</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="load-dataset">
+<h2>Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this headline">¶</a></h2>
+<p>For this tutorial we will use the <a class="reference external" href="https://github.com/propublica/compas-analysis/blob/master/compas-scores-two-years.csv">data</a> that was collected by ProPublica through public records requests in Broward County, Florida. We will pre-process the data similar to Propublica’s analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;compas-scores-two-years.csv&quot;</span><span class="p">)</span>
+<span class="c1"># filter similar to propublica</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;is_recid&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;c_charge_degree&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;O&quot;</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;score_text&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="c1"># select columns</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;race&quot;</span><span class="p">,</span> <span class="s2">&quot;priors_count&quot;</span><span class="p">,</span> <span class="s2">&quot;decile_score&quot;</span><span class="p">,</span> <span class="s2">&quot;two_year_recid&quot;</span><span class="p">]]</span>
+<span class="c1"># cut-off score 5</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;decile_score_cutoff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;decile_score&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+<span class="c1"># inspect</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sex</th>
+      <th>age</th>
+      <th>race</th>
+      <th>priors_count</th>
+      <th>decile_score</th>
+      <th>two_year_recid</th>
+      <th>decile_score_cutoff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Male</td>
+      <td>69</td>
+      <td>Other</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Male</td>
+      <td>34</td>
+      <td>African-American</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Male</td>
+      <td>24</td>
+      <td>African-American</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Male</td>
+      <td>44</td>
+      <td>Other</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Male</td>
+      <td>41</td>
+      <td>Caucasian</td>
+      <td>14</td>
+      <td>6</td>
+      <td>1</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The data now contains the following features:</p>
+<ul class="simple">
+<li><p><em>sex</em>. The defendant’s sex, measured as US census sex categories (either <em>Male</em> or <em>Female</em>).</p></li>
+<li><p><em>race</em>. The defendant’s race, measured as US census race categories (we selected <em>African-American</em> and <em>Caucasian</em>).</p></li>
+<li><p><em>age</em>. The defendant’s age on the COMPAS screening date.</p></li>
+<li><p><em>decile_score</em>. The COMPAS score expressed in deciles of the raw risk score. The deciles are obtained by ranking scale scores of a normative group and dividing these scores into ten equal-sized groups. Normative groupss are gender-specific. For example, females are scored against a female normative group. According to <a class="reference external" href="http://www.northpointeinc.com/files/technical_documents/FieldGuide2_081412.pdf">the documentation</a>, a decile score of 1-4 is low, 5-7 medium, and 8-10 high.</p></li>
+<li><p><em>priors_count</em>. The number of prior charges up to but not including the current offense.</p></li>
+<li><p><em>two_year_recid</em>. Recidivism, defined as any offense that occurred within two years of the COMPAS screening date.</p></li>
+<li><p><em>decile_score_cutoff</em>. The binarized COMPAS score based on a cut-off score of 5.</p></li>
+</ul>
+<hr class="docutils" />
+<p>Let’s have a look at the distribution of the demographics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Male      4247
+Female    1031
+Name: sex, dtype: int64
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>African-American    3175
+Caucasian           2103
+Name: race, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>The number of Asian and Native Americans in the data set is extremely small, making it difficult to make good estimates of the proportions. Therefore, similar to Propublica, we limit our analysis to the two largest groups: African-Americans and Caucasians.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="section" id="intermezzo-measuring-sensitive-characteristics">
+<h3>Intermezzo: Measuring Sensitive Characteristics<a class="headerlink" href="#intermezzo-measuring-sensitive-characteristics" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>Many sensitive characteristics, such as race and gender, are <strong>social constructs</strong>, which are multidimensional and dynamic. For example, dimensions of race include self-reported racial identity, observed appearance-based race, observed interaction-based race, etc. This is important, because <strong>how you measure sensitive group membership changes the conclusions you can draw!</strong> The racial categories in the COMPAS dataset are based on those that are used by Broward County Sheriff’s Office. This is not necessarily a valid measurement of race. For example, Hispanic is redefined as a racial category (rather than an ethnicity) and each individual is labeled with just a single category. Moreover, it is unclear whether the measurements are the result of self-identification or observed by police officers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select two largest groups</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;African-American&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Caucasian&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="demographic-parity">
+<h2>Demographic Parity<a class="headerlink" href="#demographic-parity" title="Permalink to this headline">¶</a></h2>
+<p>In a classification scenario, the <strong>selection rate</strong> is the proportion of positive predictions. If selection rates differ across groups, there is a risk of <strong>allocation harm</strong>.</p>
+<blockquote>
+<div><p><strong>Allocation Harm</strong>: the system extends or witholds opportunities, resources or information to some groups.</p>
+</div></blockquote>
+<p>For example, in a hiring scenario, the selection rate of male applicants may be higher than that of female or non-binary applicants. The risk of allocation harm is particularly prevalent in cases where historical discrimination has resulted in disparities in the observed data, which are subsequently replicated by the machine learning model.</p>
+<blockquote>
+<div><p><strong>Demographic Parity</strong> holds if, for all values of y and a, $<span class="math notranslate nohighlight">\(P(\hat{Y} = y | A = a) = P(\hat{Y} = y | A = a')\)</span><span class="math notranslate nohighlight">\( where \)</span>\hat{Y}<span class="math notranslate nohighlight">\( is the output of our model and \)</span>A$ the set of sensitive characteristics.</p>
+</div></blockquote>
+<p>In other words, the output of the model should be <strong>independent</strong> of the sensitive characteristic. We can quantify the extent to which demographic parity is violated through a fairness metric.</p>
+<p><strong>When should we use demographic parity as a fairness metric?</strong> The underlying assumption about fairness of demographic parity is  that, <strong>regardless of what the measured target variable says</strong>, either:</p>
+<ol class="simple">
+<li><p><em>Everybody <strong>is</strong> equal</em>. For example, we may believe that traits relevant for a job are independent of somebody’s gender. However, due to social biases in historical hiring decisions, this may not be represented as such in the data.</p></li>
+<li><p><em>Everybody <strong>should be</strong> equal</em>. For example, we may believe that different genders are not equally suitable for the job, but this is due to factors outside of the individual’s control, such as lacking opportunities due to social gender norms.</p></li>
+</ol>
+<p>Enforcing demographic parity might lead to differences in treatment across sensitive groups, causing otherwise similar people to be treated differently. For example, two people with the exact same features, apart from race, would get a different score prediction. This can be seen a form of <em>procedural harm</em>. Consequently, demographic parity is only a suitable metric if one of the two underlying assumptions (everybody <em>is</em> or <em>should be</em> equal) holds.</p>
+<p>A limitation of demographic parity is that it does not put any constraints on the scores. For example, to fulfill demographic parity, you do not have to select the most risky people from different racial groups as long as you pick the same proportion for each group.</p>
+<hr class="docutils" />
+<div class="section" id="measuring-demographic-parity-using-fairlearn">
+<h3>Measuring Demographic Parity using Fairlearn<a class="headerlink" href="#measuring-demographic-parity-using-fairlearn" title="Permalink to this headline">¶</a></h3>
+<p>We can use Fairlearn’s <code class="docutils literal notranslate"><span class="pre">MetricFrame</span></code> class to investigate the selection rate across groups.</p>
+<p>The class has the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">metric</span></code>: a callable metric (e.g., <code class="docutils literal notranslate"><span class="pre">selection_rate</span></code>, or <code class="docutils literal notranslate"><span class="pre">false_positive_rate</span></code>) or a dictionary of callables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_true</span></code> : the ground-truth labels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code> : the predicted labels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensitive_features</span></code>: the sensitive features. Note that there can be multiple sensitive features.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">control_features</span></code>: the control features. Control features are features for which you’d like to investigate disparaties separately (i.e., “control for”). For example, because you expect the feature can explain some of the observed disparities between sensitive groups.</p></li>
+</ul>
+<p>At initialization, the <code class="docutils literal notranslate"><span class="pre">MetricFrame</span></code> object computes the input metric(s) for each group defined by sensitive features.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MetricFrame.bygroup</span></code>: a pandas dataframe with the metric value for each group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MetricFrame.overall</span></code>: a float (or dataframe, if <code class="docutils literal notranslate"><span class="pre">control_features</span></code> are used) with the metric value as computed over the entire dataset</p></li>
+</ul>
+<p>We can also summarize the results of the <code class="docutils literal notranslate"><span class="pre">MetricFrame</span></code> using one of the following methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MetricFrame.difference()</span></code> : return the maximum absolute difference between groups for each metric</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MetricFrame.ratio()</span></code> : return the minimum ratio between groups for each metric.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MetricFrame.group_max()</span></code> : return the maximum value of the metric over the sensitive features.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MetricFrame.group_min()</span></code> : return the minimum value of the metric over the sensitive features.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">MetricFrame</span></code> object is useful to do a thorough investigation of disparities. When we have (already) identified a definition of fairness that is relevant in our scenario, we may want to optimize for it during model selection. For this, it can be useful to have a single value that summarizes the disparity in a fairness metric.</p>
+<p>We can directly summarize the extent to which demographic parity is violated using <code class="docutils literal notranslate"><span class="pre">demographic_parity_difference()</span></code> metric. This metric can also be used in, for example, a grid search. All fairness metrics in Fairlearn have the following arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">y_true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensitive_features</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span></code>: the method that is used to summarize the difference or ratio across groups.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'between_groups'</span></code>: aggregate the difference as the max difference between any two groups</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'to_overall'</span></code>: aggregate the difference as the max difference between any group and the metric value as computed over the entire dataset.</p></li>
+</ul>
+</li>
+</ul>
+<p>There are several predefined metrics, such as <code class="docutils literal notranslate"><span class="pre">fairlearn.metrics.demographic_parity_difference()</span></code> and <code class="docutils literal notranslate"><span class="pre">fairlearn.metrics.equalized_odds_ratio()</span></code>. It is also possible to define your own fairness metric, based on e.g., a scikit-learn performance metric, using <code class="docutils literal notranslate"><span class="pre">fairlearn.metrics.make_derived_metric()</span></code>.</p>
+<hr class="docutils" />
+<p>In the pre-trial risk assessment scenario, unequal selection rates mean that we predict, on average, recidivism more often for one group than the other. Let’s investigate the selection rate of COMPAS.</p>
+</div>
+<div class="section" id="exercise-use-metricframe-to-compute-difference-in-selection-rate">
+<h3>Exercise: use <code class="docutils literal notranslate"><span class="pre">MetricFrame</span></code> to compute difference in selection rate<a class="headerlink" href="#exercise-use-metricframe-to-compute-difference-in-selection-rate" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute metrics by group</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;selection rate (COMPAS)&quot;</span><span class="p">:</span> <span class="n">selection_rate</span><span class="p">},</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>  <span class="c1"># is ignored</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;decile_score_cutoff&quot;</span><span class="p">],</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># print results</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Overall selection rate: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mf</span><span class="o">.</span><span class="n">overall</span><span class="p">)</span>
+
+<span class="c1"># compute demographic parity as the max difference between groups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;demographic parity difference: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mf</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;between_groups&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>selection rate (COMPAS)</th>
+    </tr>
+    <tr>
+      <th>race</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>African-American</th>
+      <td>0.576063</td>
+    </tr>
+    <tr>
+      <th>Caucasian</th>
+      <td>0.330956</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overall selection rate: 0.48
+demographic parity difference: 0.25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># summarize demographic parity using the metric (this gives the exact same result as mf.difference())</span>
+<span class="n">dpd</span> <span class="o">=</span> <span class="n">demographic_parity_difference</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>  <span class="c1"># y_true is ignored</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;decile_score_cutoff&quot;</span><span class="p">],</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;between_groups&quot;</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># summarize as the max difference between any of the groups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;demographic parity difference: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">dpd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>demographic parity difference: 0.25
+</pre></div>
+</div>
+</div>
+</div>
+<p>Clearly, <strong>COMPAS’ selection rate is higher for African-Americans</strong>.</p>
+<p>At this point we may wonder whether this disparity is introduced by COMPAS, or whether can we see a similar pattern in the original data. The selection rate observed in the data is also referred to as <strong>base rate</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># by choosing y_pred to be ground truth instead of predictions, we can easily compute the base rate in the data</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;base rate&quot;</span><span class="p">:</span> <span class="n">selection_rate</span><span class="p">},</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>  <span class="c1"># y_true is ignored</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+
+<span class="c1"># summarize demographic parity as the max difference between groups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;base rate diff: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mf</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;between_groups&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>base rate</th>
+    </tr>
+    <tr>
+      <th>race</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>African-American</th>
+      <td>0.52315</td>
+    </tr>
+    <tr>
+      <th>Caucasian</th>
+      <td>0.39087</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>base rate diff: 0.13
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although the difference is substantially smaller compared to COMPAS’ selection rates, the base rates do differ across groups. There are several possible explantions of why these disparities arise in the data:</p>
+<ul class="simple">
+<li><p><strong>The observed recidivism rates may not represent the actual recidivism rates.</strong> Our target variable considers <em>re-arrests</em>, which is only a subset of the true cases of recidivism. It could be the case that the observed disparities reflect racist policing practices, rather than the true crime rate.</p></li>
+<li><p><strong>Social deprivations may have caused the true underlying recidivism rate to be different across groups.</strong> In other words, African-American defendants may truely be more likely to fall back into criminal behavior, due to dire personal circumstances.</p></li>
+</ul>
+<p><strong>Note that we cannot know which explanation holds from the data alone!</strong> For this, we need a deeper understanding of the social context and data collection practices.</p>
+<div class="section" id="intermezzo-construct-validity-and-fairness">
+<h4>Intermezzo: Construct Validity and Fairness<a class="headerlink" href="#intermezzo-construct-validity-and-fairness" title="Permalink to this headline">¶</a></h4>
+</div>
+<p><strong>Construct validity</strong> is a concept from the social sciences that refers to <em>the extent to which a measurement actually measures the phenomenon we are trying to measure</em>. For example, to what extent do standardized test scores and student feedback reflect actual teacher effectiveness? In the context of fairness, a lack of construct validity in the target variable can be a source of downstream model unfairness. For example, healthcare costs may be a biased measurement of healthcare needs, as costs may reflect patients’ economic circumstances. Similarly, historical hiring decisions are not necessarily equal to historical employee quality, due to systemic or (unconscious) social biases.</p>
+</div>
+</div>
+<div class="section" id="equalized-odds">
+<h2>Equalized Odds<a class="headerlink" href="#equalized-odds" title="Permalink to this headline">¶</a></h2>
+<p>If error rates differ across groups, there is a risk of <strong>quality-of-service harm</strong>: the algorithm makes more mistakes for some groups than for others. For example, in a hiring scenario, we may mistakingly reject strong female candidates more often than strong male candidates.</p>
+<p>The risk of quality-of-service harm is particularly prevalent if the relationship between the features and target variable is different across groups. The risk is further amplified if less data is available for some groups.  For example, strong candidates for a data science job may have either a quantitative social science background or a computer science background. Now imagine that in the past, hiring managers have mostly hired people with a computer science degree but hardly any social scientists. As a result, a machine learning model could mistakingly penalize people who do not have a computer science degree. If relatively more women have a social science background, the error rates will be higher for women compared to men, resulting in a quality-of-service harm.</p>
+<blockquote>
+<div><p><strong>Equalized Odds</strong> holds if, for all values of y and a, $<span class="math notranslate nohighlight">\(P(\hat{Y} = y | A = a, Y = y) = P(\hat{Y} = y | A = a', Y = y)\)</span><span class="math notranslate nohighlight">\( where \)</span>\hat{Y}<span class="math notranslate nohighlight">\( is the output of our model, \)</span>Y<span class="math notranslate nohighlight">\( the observed outcome, and \)</span>A$ the set of sensitive characteristics.</p>
+</div></blockquote>
+<p>In other words, the <strong>false positive rate</strong> and <strong>false negative rate</strong> should be equal across groups.</p>
+<p><strong>When should we use equalized odds as a fairness metric?</strong> Equalized odds quantifies the understanding of fairness that we should not make more mistakes for some groups than for other groups. Similar to demographic parity, the equalized odds criterion acknowledges that the relationship between the features and the target may differ across groups and that this should be accounted for. However, as opposed to the <em>everybody is or should be equal</em> assumptions of demographic parity, equalized odds implicitly assumes that the target variable is a good representation of what we are actually interested in.</p>
+<hr class="docutils" />
+<p>As we have seen in the introduction, a false positive prediction in pre-trial risk assessment can have large consequences for the involved defendant. It may even result in the defendant pleading guilty to a crime they did not commit. Let’s compute the false positive rates and false negative rates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute metrics</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;false positive rate&quot;</span><span class="p">:</span> <span class="n">false_positive_rate</span><span class="p">,</span>
+        <span class="s2">&quot;false negative rate&quot;</span><span class="p">:</span> <span class="n">false_negative_rate</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;decile_score_cutoff&quot;</span><span class="p">],</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">data</span><span class="p">[[</span><span class="s2">&quot;race&quot;</span><span class="p">]],</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+
+<span class="c1"># summarize differences</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mf</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="s2">&quot;between_groups&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> diff: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># alternatively: summarize equalized odds in one metric (which is the max of fpr diff and fnr diff)</span>
+<span class="n">dpd</span> <span class="o">=</span> <span class="n">equalized_odds_difference</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;decile_score_cutoff&quot;</span><span class="p">],</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;between_groups&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;equalized odds diff: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">dpd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>false positive rate</th>
+      <th>false negative rate</th>
+    </tr>
+    <tr>
+      <th>race</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>African-American</th>
+      <td>0.423382</td>
+      <td>0.284768</td>
+    </tr>
+    <tr>
+      <th>Caucasian</th>
+      <td>0.220141</td>
+      <td>0.49635</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false positive rate diff: 0.20
+false negative rate diff: 0.21
+equalized odds diff: 0.21
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to Propublica’s assessment, we find that <strong>the false positive rate is almost twice as high for African Americans compared to Caucasians</strong>. In other words, African Americans are more often falsely predicted to be re-arrested. At the same time, the false negative rate is much higher for Caucasians, indicating that Caucasians are more often released even though they will re-offend.</p>
+</div>
+<div class="section" id="equal-calibration">
+<h2>Equal Calibration<a class="headerlink" href="#equal-calibration" title="Permalink to this headline">¶</a></h2>
+<p>Northpointe, the developers of COMPAS, responded to Propublica’s analysis that COMPAS scores are fair because the scores are <strong>equally calibrated</strong> across racial groups. In other words, for each possible risk score, the probability that you belong to a particular class is the same, regardless of the group to which you belong.</p>
+<blockquote>
+<div><p><strong>Equal Calibration</strong> holds if, for all values of y, a, and r $<span class="math notranslate nohighlight">\(P(Y = y | A = a, \hat{Y} = y) = P(Y = y | A = a', \hat{Y} = y)\)</span><span class="math notranslate nohighlight">\( where \)</span>\hat{Y}<span class="math notranslate nohighlight">\( is the output of our model, \)</span>Y<span class="math notranslate nohighlight">\( the observed outcome, and \)</span>A$ the set of sensitive characteristics.</p>
+</div></blockquote>
+<p>For example, given that an instance is predicted to belong to the negative class, the probability of actually belonging to the negative class is independent of sensitive group membership.  In the binary classification scenario, equal calibration implies that the <strong>positive predictive value</strong> (which is equivalent to <em>precision</em>) and <strong>negative predictive value</strong> are equal across groups.</p>
+<p>As opposed to demographic parity and equalized odds, requiring equal calibration usually does not require an active intervention. That is, we usually get equal calibration “for free” when we use machine learning approaches.</p>
+<p><strong>When should we use equal calibration as a fairness metric?</strong> Equal calibration quantifies an understanding of fairness that a score should have the same <em>meaning</em>, regardless of sensitive group membership. Similar to equalized odds, the underlying assumption is that the target variable is a reasonable representation of what reality looks or should look like. However, as opposed to equalized odds, equal calibration does not acknowledge that the relationship between features and target variable may be different across groups.</p>
+<hr class="docutils" />
+<p>Let’s verify Northpointe’s claim regarding the calibration of COMPAS scores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">negative_predictive_value_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NPV is not in scikit-learn, but is the same as PPV but with 0 and 1 swapped.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="c1"># compute metrics</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;positive predictive value&quot;</span><span class="p">:</span> <span class="n">precision_score</span><span class="p">,</span>
+        <span class="s2">&quot;negative predictive value&quot;</span><span class="p">:</span> <span class="n">negative_predictive_value_score</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;decile_score_cutoff&quot;</span><span class="p">],</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+
+<span class="c1"># summarize differences</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mf</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="s2">&quot;between_groups&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> diff: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># we can also define a custom fairness metric for npv (giving the same results as mf.differnece())</span>
+<span class="n">npv_score_diff</span> <span class="o">=</span> <span class="n">make_derived_metric</span><span class="p">(</span>
+    <span class="n">metric</span><span class="o">=</span><span class="n">negative_predictive_value_score</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s2">&quot;difference&quot;</span>
+<span class="p">)</span>
+<span class="n">npvd</span> <span class="o">=</span> <span class="n">npv_score_diff</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;decile_score_cutoff&quot;</span><span class="p">],</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">],</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;between_groups&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;npv diff: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">npvd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>positive predictive value</th>
+      <th>negative predictive value</th>
+    </tr>
+    <tr>
+      <th>race</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>African-American</th>
+      <td>0.649535</td>
+      <td>0.648588</td>
+    </tr>
+    <tr>
+      <th>Caucasian</th>
+      <td>0.594828</td>
+      <td>0.710021</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>positive predictive value diff: 0.05
+negative predictive value diff: 0.06
+npv diff: 0.06
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can further investigate the calibration of the original COMPAS scores (i.e., before we binarized them using a cut-off value of 5) in more detail by plotting a <strong>calibration curve</strong> for each racial group.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Perfectly calibrated&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">race</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Caucasian&quot;</span><span class="p">,</span> <span class="s2">&quot;African-American&quot;</span><span class="p">]:</span>
+    <span class="n">prob_true</span><span class="p">,</span> <span class="n">prob_pred</span> <span class="o">=</span> <span class="n">calibration_curve</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">race</span><span class="p">][</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">],</span>
+        <span class="n">y_prob</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">race</span><span class="p">][</span><span class="s2">&quot;decile_score&quot;</span><span class="p">],</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prob_pred</span><span class="p">,</span> <span class="n">prob_true</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">race</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Calibration Curves COMPAS scores&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Mean Predicted Value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Proportion of Positives&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/groupfairness_22_0.png" src="../../../_images/groupfairness_22_0.png" />
+</div>
+</div>
+<p>Indeed, we see that the calibration curves are similar for both groups, indicating that COMPAS scores are equally calibrated for African-Americans and Caucasians.</p>
+</div>
+<div class="section" id="impossibilities">
+<h2>Impossibilities<a class="headerlink" href="#impossibilities" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we have seen that some understanding of fairness (equal calibration) holds for COMPAS scores, whereas others (equalized odds and demographic parity) do not. These findings are not specific to the COMPAS case.</p>
+<p>It has been proven mathematically that in cases where <em>sensitive group membership is <strong>not</strong> independent of the target variable</em> and the classifier’s output is well calibrated, <strong>it is impossible for these three fairness criteria to hold at the same time</strong> (see e.g., <a class="reference external" href="https://arxiv.org/pdf/1609.05807.pdf">Kleinberg et al., 2016</a>).</p>
+<ul class="simple">
+<li><p><em>Demographic Parity and Equal Calibration</em>. If group membership is related to the target variable, one group has a higher base rate (i.e., proportion of positives) than the other. If we want to enforce demographic parity in this scenario, we need to select more positives in the disadvantaged group than suggested by the observed target outcome. Consequently, the positive predictive value of our classifier will be different for each group, because the proportion of true positives from all instances we predicted to be positive will be lower in the disadvantaged group.</p></li>
+<li><p><em>Demographic parity and Equalized Odds</em>. As before, the only way to satisfy demographic parity with unequal base rates is to classify some instances of the disadvantaged group as positives, even if they should be negatives according to the observed target variable. Hence, provided that the scores are well-calibrated, we cannot satisfy both demographic parity and equalized odds at the same time. In a binary scenario, calibration corresponds to using the same cut-off score for each group.</p></li>
+<li><p><em>Equal Calibration and Equalized Odds</em>. When a classifier is imperfect, it is impossible to satisfy both equal calibration and equalized odds at the same time. An intuitive explanation of this impossibility is to recall that equal calibration requires equal <em>positive predictive value</em> across groups (a.k.a., precision), whereas equalized odds requires equal false negative rate, which corresponds to equal true positive rate (a.k.a. recall). If we adjust our classifier such that the precision is equal across groups, this will decrease the recall, and vice versa.</p></li>
+</ul>
+<p>It is important to realize that <strong>the impossibilities are not so much a mathematical dispute, but a dispute of the underlying theoretical understanding of what we consider fair</strong>. Which notion of fairness is relevant depends on your assumptions about the context and your underlying moral values. In practice, we encourage you to make your assumptions explicit when discussing fairness with other stakeholders, as this allows for a more meaningful discourse.</p>
+</div>
+<div class="section" id="challenges-and-limitations-of-group-fairness-metrics">
+<h2>Challenges and Limitations of Group Fairness Metrics<a class="headerlink" href="#challenges-and-limitations-of-group-fairness-metrics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="practical-challenges">
+<h3>Practical Challenges<a class="headerlink" href="#practical-challenges" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Identifying sensitive groups</strong>: identifying which groups are at risk for fairness-related harms (and how to measure group membership!) is often non-trivial and require deep understanding of the sociotechnical context.</p></li>
+<li><p><strong>Access to sensitive features</strong>: due to privacy regulations or practical availability, sensitive features may not be available.</p></li>
+<li><p><strong>Imprecize estimations</strong>: small sample sizes and the problem of multiple comparisons can lead to imprecise estimations of group statistics.</p></li>
+</ul>
+</div>
+<div class="section" id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Ignores within-group differences</strong>: Group statistics may disguise differences within groups.</p></li>
+<li><p><strong>Observational</strong>: group fairness metrics are observational; they do not consider <em>how</em> the prediction was achieved (e.g., using which features).</p></li>
+<li><p><strong>Disregard individual experience</strong>: group metrics disregard individual experiences. In practice, some outcomes may not be universally beneficial or harmful.</p></li>
+<li><p><strong>Narrow scope</strong>: Group metrics only consider direct outcomes of the model rather than outcomes of the system. For example, the final outcome of the COMPAS model is determiend by judges; how judges interpret the provided risk scores is important.</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="concluding-remarks">
+<h2>Concluding Remarks<a class="headerlink" href="#concluding-remarks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Different fairness metrics represent different theoretical understandings of fairness.</p></li>
+<li><p>Construct validity of measurement is central to assessing fairness and should be taken into account during data collection, measuring fairness, and measuring sensitive group membership.</p></li>
+</ul>
+<div class="section" id="discussion-points">
+<h3>Discussion Points<a class="headerlink" href="#discussion-points" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>What notion of fairness is most appropriate in the pre-trial risk assessment scenario, in your opinion? Why? If you feel like you don’t have enough information to answer this question, which information would you need to make an informed judgment?</p></li>
+<li><p>A way to account for unequal selection rates is to use a different cut-off score for each group. Note that this policy has the consequence that two defendants with the same risk score but a different race may be classified differently. Under what conditions would you consider such a policy fair, if any? Does your conclusion depend on the underlying source of the bias in the data?</p></li>
+<li><p>How equal is equal enough? How much overall performance would you sacrifice for optimizing for a fairness metric, if any?</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="further-resources">
+<h2>Further Resources<a class="headerlink" href="#further-resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>It’s COMPASlicated</p></li>
+<li><p>Critical race theory algorithmic fairness</p></li>
+<li><p>fairml book</p></li>
+<li><p>my lecture notes</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fairness/casestudies/compas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">COMPAS</a>
+    <a class='right-next' id="next-link" href="../../../explainability/introduction.html" title="next page">Explainable Artificial Intelligence</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Hilde Weerts<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -32,3 +32,6 @@ parts:
   - caption: Accountability
     chapters:
     - file: accountability/introduction
+  - caption: Misc
+    chapters:
+    - file: other/glossary

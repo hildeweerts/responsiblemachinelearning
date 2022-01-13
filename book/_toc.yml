@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: index
 parts:
   - caption: Introduction
     chapters:
@@ -26,7 +26,6 @@ parts:
     - file: fairness/casestudies/introduction
       sections:
       - file: fairness/casestudies/compas/introduction
-      - file: fairness/casestudies/compas/groupfairness
   - caption: Explainability
     chapters:
     - file: explainability/introduction

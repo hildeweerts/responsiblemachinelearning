@@ -30,5 +30,16 @@ html:
   use_repository_button: true
 
 sphinx:
+  extra_extensions: sphinx.ext.intersphinx
   config:
     bibtex_reference_style: super
+    intersphinx_mapping:
+      sklearn:
+        - "https://scikit-learn.org/stable/"
+        - null
+      python3:
+        - "https://docs.python.org/3"
+        - null
+      fairlearn:
+        - "https://fairlearn.org/v0.7.0/"
+        - null

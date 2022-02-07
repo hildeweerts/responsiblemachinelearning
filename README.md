@@ -1,5 +1,6 @@
 # Responsible Data science
-Lecture notes on responsible data science.
+
+This is the Github repository for the online book: [*An Introduction to Responsible Data Science*](https://hildeweerts.github.io/responsibledatascience/).
 
 --- 
 This work is licensed under a

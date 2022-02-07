@@ -97,9 +97,41 @@
    Responsible Data Science
   </a>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="introduction/machinelearning/introduction.html">
+   Machine Learning Preliminaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction/machinelearning/machinelearning.html">
+     Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction/machinelearning/modelevaluation.html">
+     Model Evaluation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction/machinelearning/modelselection.html">
+     Model Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction/machinelearning/costsensitivelearning.html">
+     Cost-Sensitive Learning
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="introduction/machinelearning.html">
-   Machine Learning
+  <a class="reference internal" href="introduction/ethics/introduction.html">
+   Ethics Preliminaries
   </a>
  </li>
 </ul>
@@ -118,8 +150,8 @@
   <a class="reference internal" href="fairness/groupfairness/introduction.html">
    Group Fairness
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -140,8 +172,8 @@
   <a class="reference internal" href="fairness/individualfairness/introduction.html">
    Individual Fairness
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -162,8 +194,8 @@
   <a class="reference internal" href="fairness/counterfactualfairness/introduction.html">
    Counterfactual Fairness
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -184,8 +216,8 @@
   <a class="reference internal" href="fairness/casestudies/introduction.html">
    Case Studies
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -272,7 +304,10 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="_sources/index.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="_sources/index.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
@@ -310,6 +345,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/hildeweerts/responsibledatascience/master?urlpath=tree/index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -325,10 +377,47 @@
                 
   <div class="section" id="an-introduction-to-responsible-data-science">
 <h1>An Introduction to Responsible Data Science<a class="headerlink" href="#an-introduction-to-responsible-data-science" title="Permalink to this headline">¶</a></h1>
-<p><em>Hilde Weerts</em></p>
-<p><strong>version 0.0</strong></p>
+<p>by <em>Hilde Weerts</em></p>
+<p>Last updated: <span class="pasted-text">2022-02-07</span></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This book is still very much under development. If you have suggestions, questions, or comments, please feel free to open an issue on the <a class="reference external" href="https://github.com/hildeweerts/responsibledatascience">Github repository</a>.</p>
+</div>
 <hr class="docutils" />
-<p>This is my book.</p>
+<p>With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of <a class="reference internal" href="other/glossary.html#term-machine-learning"><span class="xref std std-term">machine learning</span></a> algorithms: algorithms that build mathematical models by `learning’ from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.</p>
+<p>A responsible data scientist understands how machine learning models might be harmful and how the risks can be mitigated. This online book provides a practical introduction to the nascent field of responsible data science, structured around three themes.</p>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-xs-1, col-sm-4 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-body docutils">
+<p class="card-text"><strong>Fairness</strong></p>
+<p class="card-text">Data-driven systems can inherit the existing prejudices embedded in society, resulting in systematic discrimination or other harms.</p>
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-outline-primary btn-block stretched-link reference internal" href="fairness/introduction.html#introfairness"><span class="std std-ref">learn more</span></a></p>
+</div>
+</div>
+</div>
+<div class="d-flex col-xs-1, col-sm-4 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-body docutils">
+<p class="card-text"><strong>Transparency</strong></p>
+<p class="card-text">As the complexity of machine learning models increase, it becomes more difficult for humans to understand, assess, and justify their behavior.</p>
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-outline-primary btn-block stretched-link reference internal" href="explainability/introduction.html#introxai"><span class="std std-ref">learn more</span></a></p>
+</div>
+</div>
+</div>
+<div class="d-flex col-xs-1, col-sm-4 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-body docutils">
+<p class="card-text"><strong>Accountability</strong></p>
+<p class="card-text">The increasing power of the organizations who develop and deploy machine learning systems raises questions about accountability.</p>
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-outline-primary btn-block stretched-link reference internal" href="accountability/introduction.html#introaccountability"><span class="std std-ref">learn more</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The goal of this book is to provide a practical approach, building a bridge between philosophical, social, and technical perspectives.</p>
 <hr class="docutils" />
 <p>This work is licensed under a
 <a class="reference external" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>

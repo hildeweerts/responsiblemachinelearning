@@ -7,7 +7,14 @@ parts:
   - caption: Introduction
     chapters:
     - file: introduction/introduction
-    - file: introduction/machinelearning
+    - file: introduction/machinelearning/introduction
+      sections:
+      - file: introduction/machinelearning/machinelearning
+      - file: introduction/machinelearning/modelevaluation
+      - file: introduction/machinelearning/modelselection
+      - file: introduction/machinelearning/costsensitivelearning
+    - file: introduction/ethics/introduction
+    
   - caption: Fairness
     chapters:
     - file: fairness/introduction

@@ -5,54 +5,54 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Machine Learning &#8212; An Introduction to Responsible Data Science</title>
+    <title>Ethics Preliminaries &#8212; An Introduction to Responsible Data Science</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Algorithmic Fairness" href="../fairness/introduction.html" />
-    <link rel="prev" title="Responsible Data Science" href="introduction.html" />
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Algorithmic Fairness" href="../../fairness/introduction.html" />
+    <link rel="prev" title="Cost-Sensitive Learning" href="../machinelearning/costsensitivelearning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -69,20 +69,20 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+    <a class="navbar-brand text-wrap" href="../../index.html">
       
       
       <h1 class="site-logo" id="site-title">An Introduction to Responsible Data Science</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
+  <a class="reference internal" href="../../index.html">
    An Introduction to Responsible Data Science
   </a>
  </li>
@@ -94,13 +94,45 @@
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
+  <a class="reference internal" href="../introduction.html">
    Responsible Data Science
   </a>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../machinelearning/introduction.html">
+   Machine Learning Preliminaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machinelearning/machinelearning.html">
+     Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machinelearning/modelevaluation.html">
+     Model Evaluation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machinelearning/modelselection.html">
+     Model Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machinelearning/costsensitivelearning.html">
+     Cost-Sensitive Learning
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Machine Learning
+   Ethics Preliminaries
   </a>
  </li>
 </ul>
@@ -111,35 +143,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../fairness/introduction.html">
+  <a class="reference internal" href="../../fairness/introduction.html">
    Algorithmic Fairness
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fairness/groupfairness/introduction.html">
+  <a class="reference internal" href="../../fairness/groupfairness/introduction.html">
    Group Fairness
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/groupfairness/metrics.html">
-     Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/groupfairness/mitigation.html">
-     Mitigation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fairness/individualfairness/introduction.html">
-   Individual Fairness
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -148,20 +158,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/individualfairness/metrics.html">
-     Individual Fairness Metrics
+    <a class="reference internal" href="../../fairness/groupfairness/metrics.html">
+     Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/individualfairness/mitigation.html">
+    <a class="reference internal" href="../../fairness/groupfairness/mitigation.html">
      Mitigation
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fairness/counterfactualfairness/introduction.html">
-   Counterfactual Fairness
+  <a class="reference internal" href="../../fairness/individualfairness/introduction.html">
+   Individual Fairness
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -170,20 +180,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/counterfactualfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../fairness/individualfairness/metrics.html">
+     Individual Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/counterfactualfairness/mitigation.html">
+    <a class="reference internal" href="../../fairness/individualfairness/mitigation.html">
      Mitigation
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fairness/casestudies/introduction.html">
-   Case Studies
+  <a class="reference internal" href="../../fairness/counterfactualfairness/introduction.html">
+   Counterfactual Fairness
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -192,7 +202,29 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/casestudies/compas/introduction.html">
+    <a class="reference internal" href="../../fairness/counterfactualfairness/metrics.html">
+     Metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/counterfactualfairness/mitigation.html">
+     Mitigation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../fairness/casestudies/introduction.html">
+   Case Studies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/casestudies/compas/introduction.html">
      COMPAS
     </a>
    </li>
@@ -206,7 +238,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../explainability/introduction.html">
+  <a class="reference internal" href="../../explainability/introduction.html">
    Explainable Artificial Intelligence
   </a>
  </li>
@@ -218,7 +250,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../accountability/introduction.html">
+  <a class="reference internal" href="../../accountability/introduction.html">
    Algorithmic Accountability and Auditing
   </a>
  </li>
@@ -230,7 +262,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../other/glossary.html">
+  <a class="reference internal" href="../../other/glossary.html">
    Glossary
   </a>
  </li>
@@ -275,7 +307,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/introduction/machinelearning.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/introduction/ethics/introduction.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -295,7 +327,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/hildeweerts/responsibledatascience/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/hildeweerts/responsibledatascience/issues/new?title=Issue%20on%20page%20%2Fintroduction/ethics/introduction.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -324,8 +356,18 @@
         
               <div>
                 
-  <div class="section" id="machine-learning">
-<span id="mlpreliminaries"></span><h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="ethics-preliminaries">
+<span id="ethicspreliminaries"></span><h1>Ethics Preliminaries<a class="headerlink" href="#ethics-preliminaries" title="Permalink to this headline">¶</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Summary</p>
+<p>A summary.</p>
+</div>
+<div class="seealso admonition" id="introethicsfurtherreading">
+<p class="admonition-title">Further Reading</p>
+<ul class="simple">
+<li><p>things to read</p></li>
+</ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -341,7 +383,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./introduction"
+            path: "./introduction/ethics"
         },
         predefinedOutput: true
     }
@@ -353,8 +395,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">Responsible Data Science</a>
-    <a class='right-next' id="next-link" href="../fairness/introduction.html" title="next page">Algorithmic Fairness</a>
+    <a class='left-prev' id="prev-link" href="../machinelearning/costsensitivelearning.html" title="previous page">Cost-Sensitive Learning</a>
+    <a class='right-next' id="next-link" href="../../fairness/introduction.html" title="next page">Algorithmic Fairness</a>
 
         </div>
         
@@ -376,7 +418,7 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   
   </body>

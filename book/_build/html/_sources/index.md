@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# An Introduction to Responsible Data Science
+# An Introduction to Responsible Machine Learning
 
 by *Hilde Weerts*
 
@@ -26,52 +26,59 @@ glue("today", date.today().strftime('%Y-%m-%d'))
 Last updated: {glue:text}`today`
 
 ```{note}
-This book is still very much under development. If you have suggestions, questions, or comments, please feel free to open an issue on the [Github repository](https://github.com/hildeweerts/responsibledatascience).
+This book is still very much under development. If you have suggestions, questions, or comments, please feel free to open an issue on the [Github repository](https://github.com/hildeweerts/responsibleml).
 ```
+
 ---
 
-With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of {term}`machine learning` algorithms: algorithms that build mathematical models by `learning' from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.
+With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of {term}`machine learning` algorithms: algorithms that build mathematical models by 'learning' from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.
 
-A responsible data scientist understands how machine learning models might be harmful and how the risks can be mitigated. This online book provides a practical introduction to the nascent field of responsible data science, structured around three themes.
+A responsible data scientist understands the potential harm of machine learning models and how to mitigate the risks. This online book provides a practical introduction to the nascent field of responsible machine learning. The goal of this book is to provide a practical approach, building a bridge between philosophical, social, and technical perspectives.
 
-````{panels}
-:column: col-xs-1, col-sm-4
+`````{grid} 1 2 2 2
+:gutter: 3
 
-**Fairness**
-
+````{grid-item-card} Fairness
 Data-driven systems can inherit the existing prejudices embedded in society, resulting in systematic discrimination or other harms.
 
-```{link-button} introfairness
-:text: learn more
-:type: ref
-:classes: btn-outline-primary btn-block stretched-link
+```{button-ref} intro_fairness
+:expand:
+:color: primary
+:outline:
 
----
-
-**Transparency**
-
-As the complexity of machine learning models increase, it becomes more difficult for humans to understand, assess, and justify their behavior.
-
-```{link-button} introxai
-:text: learn more
-:type: ref
-:classes: btn-outline-primary btn-block stretched-link
-```
----
-
-**Accountability**
-
-The increasing power of the organizations who develop and deploy machine learning systems raises questions about accountability.
-
-```{link-button} introaccountability
-:text: learn more
-:type: ref
-:classes: btn-outline-primary btn-block stretched-link
+learn more
 ```
 
 ````
 
-The goal of this book is to provide a practical approach, building a bridge between philosophical, social, and technical perspectives.
+````{grid-item-card} Transparency
+As the complexity of machine learning models increase, it becomes more difficult for humans to understand, assess, and justify their behavior.
+
+```{button-ref} intro_xai
+:expand:
+:color: primary
+:outline:
+
+learn more
+```
+
+````
+`````
+
+---
+
+**Citing this book**
+
+To cite this book, please use the following bibtex entry:
+
+```{code-block}
+@book{weerts2022,
+  title = {Responsible Machine Learning},
+  author = {Hilde Weerts},
+  year = {2022}
+  url = {https://hildeweerts.github.io/responsiblemachinelearning/}
+}
+```
 
 --- 
 This work is licensed under a

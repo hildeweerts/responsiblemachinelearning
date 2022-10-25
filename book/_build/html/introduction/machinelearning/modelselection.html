@@ -5,10 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Model Selection &#8212; An Introduction to Responsible Data Science</title>
+    <title>Model Selection &#8212; An Introduction to Responsible Machine Learning</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,48 +19,64 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Cost-Sensitive Learning" href="costsensitivelearning.html" />
     <link rel="prev" title="Model Evaluation" href="modelevaluation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -68,28 +85,31 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
       
-      <h1 class="site-logo" id="site-title">An Introduction to Responsible Data Science</h1>
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   An Introduction to Responsible Data Science
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
@@ -97,7 +117,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../introduction.html">
-   Responsible Data Science
+   Responsible Machine Learning
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -110,11 +130,6 @@
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="machinelearning.html">
-     Machine Learning
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="modelevaluation.html">
      Model Evaluation
@@ -132,13 +147,8 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ethics/introduction.html">
-   Ethics Preliminaries
-  </a>
- </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Fairness
  </span>
@@ -160,20 +170,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/groupfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../fairness/groupfairness/groupfairnessmetrics.html">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/groupfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../fairness/groupfairness/impossibilitytheorem.html">
+     The Impossibility Theorem
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/individualfairness/introduction.html">
-   Individual Fairness
+  <a class="reference internal" href="../../fairness/fairml/introduction.html">
+   Fairness-Aware Machine Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -182,20 +192,27 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/individualfairness/metrics.html">
-     Individual Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/individualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../fairness/fairml/randomizedthresholds.html">
+     Randomized Thresholds
     </a>
    </li>
   </ul>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../explainability/introduction.html">
+   Explainable Machine Learning
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/counterfactualfairness/introduction.html">
-   Counterfactual Fairness
+  <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
+   Local Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -204,20 +221,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/counterfactualfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../explainability/localposthoc/shap.html">
+     SHAP
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/counterfactualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../explainability/localposthoc/discussion.html">
+     Feature importance
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/casestudies/introduction.html">
-   Case Studies
+  <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
+   Global Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -226,38 +243,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/casestudies/compas/introduction.html">
-     COMPAS
+    <a class="reference internal" href="../../explainability/globalposthoc/pdp.html">
+     Partial Dependence Plots
     </a>
    </li>
   </ul>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Explainability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../explainability/introduction.html">
-   Explainable Artificial Intelligence
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Accountability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../accountability/introduction.html">
-   Algorithmic Accountability and Auditing
-  </a>
- </li>
-</ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Misc
  </span>
@@ -271,110 +264,226 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../_sources/introduction/machinelearning/modelselection.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/introduction/machinelearning/modelselection.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hildeweerts/responsibledatascience"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hildeweerts/responsibledatascience/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning/modelselection.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hildeweerts/responsibledatascience/master?urlpath=tree/introduction/machinelearning/modelselection.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/hildeweerts/responsiblemachinelearning/master?urlpath=tree/introduction/machinelearning/modelselection.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning/modelselection.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/introduction/machinelearning/modelselection.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../_sources/introduction/machinelearning/modelselection.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#estimating-performance">
    Estimating Performance
@@ -399,65 +508,254 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Model Selection</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimating-performance">
+   Estimating Performance
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#splitting-data">
+     Splitting Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation">
+     Cross-validation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperparameter-tuning">
+   Hyperparameter Tuning
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="model-selection">
-<span id="modelselection"></span><h1>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h1>
-<p>Model selection is the process of choosing among different candidate models. Model selection is often based on the evaluation metrics discussed in the previous section. In practice, however, there are typically many relevant other desiderata and requirements, such as robustness, interpretability, and the available resources.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="model-selection">
+<span id="id1"></span><h1>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">#</a></h1>
+<p>Model selection is the process of choosing among different candidate models. Model selection is often based on the evaluation metrics discussed in chapter <a class="reference internal" href="modelevaluation.html#model-evaluation"><span class="std std-ref">Model Evaluation</span></a>. In practice, however, there are typically many relevant other desiderata and requirements, such as robustness, interpretability, and the available resources.</p>
 <div class="section" id="estimating-performance">
-<h2>Estimating Performance<a class="headerlink" href="#estimating-performance" title="Permalink to this headline">¶</a></h2>
-<p>The goal of model selection is to select the model development procedure that results in the best model. An important (but not the only!) consideration is to identify which approach results in the best predictive performance. Two common approaches to estimate the model’s performance are splitting the data and cross-validation.</p>
+<h2>Estimating Performance<a class="headerlink" href="#estimating-performance" title="Permalink to this headline">#</a></h2>
+<p>The goal of model selection is to select the model development procedure that results in the “best” model. An important (but not the only) consideration is to identify which approach results in the best predictive performance. Two common approaches to estimate the model’s performance are splitting data and cross-validation.</p>
 <div class="section" id="splitting-data">
-<h3>Splitting Data<a class="headerlink" href="#splitting-data" title="Permalink to this headline">¶</a></h3>
+<h3>Splitting Data<a class="headerlink" href="#splitting-data" title="Permalink to this headline">#</a></h3>
 <p>The performance of a model on data that was used to fit the model is not a good estimate of the performance of the model on new, unseen data. For example, consider a model that simply repeats the labels of the instances it has previously seen. Such a model will be able to perfectly predict the instances in the training data, but performs terribly on unseen instances. More generally speaking, <a class="reference internal" href="../../other/glossary.html#term-overfitting"><span class="xref std std-term">overfitting</span></a> occurs when the learned mapping relies on artefacts in the training data that do not generalize beyond the training data. At the other side of the spectrum, <a class="reference internal" href="../../other/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a> occurs when the model class is not able to capture the underlying structure of the data. For example, a linear model will not be able to capture non-linear patterns in the data. In this case, the model will not perform well on neither the data it was trained on, nor new data.</p>
 <p>To identify and prevent these issues, it is best practice to split your data in a training set, validation set, and test set.</p>
 <div class="figure align-default" id="fig-split">
 <div class="cell_output docutils container">
 <img alt="../../_images/modelselection_0_0.png" src="../../_images/modelselection_0_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The dataset is split into a training set, validation set, and test set.<a class="footnote-reference brackets" href="#mglearn" id="id1">1</a></span><a class="headerlink" href="#fig-split" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The dataset is split into a training set, validation set, and test set.<a class="footnote-reference brackets" href="#mglearn" id="id2">1</a></span><a class="headerlink" href="#fig-split" title="Permalink to this image">#</a></p>
 </div>
 <ul class="simple">
 <li><p><strong><a class="reference internal" href="../../other/glossary.html#term-training-set"><span class="xref std std-term">Training set</span></a>.</strong> This data (and this data alone!) is used to fit the machine learning model to.</p></li>
 <li><p><strong><a class="reference internal" href="../../other/glossary.html#term-validation-set"><span class="xref std std-term">Validation set</span></a>.</strong> This set is used to estimate the performance of the trained model on unseen data. These performance estimates are used to select a model.</p></li>
-<li><p><strong><a class="reference internal" href="../../other/glossary.html#term-test-set"><span class="xref std std-term">Test set</span></a>.</strong> The performance estimate based on the validation set is influenced by randomness. In some cases, it will be lower than the actual generalization performance of the model, in other cases it is higher. Because you generally choose the model that performs best on the validation set, this performance estimate is likely to err on the optimistic side. The test set serves as an estimate of how well the chosen model will perform on new data. To prevent a biased estimate, the test set should only be used once to estimate the performance of the final selected model.</p></li>
+<li><p><strong><a class="reference internal" href="../../other/glossary.html#term-test-set"><span class="xref std std-term">Test set</span></a>.</strong> The performance estimate based on the validation set is influenced by randomness. In some cases, it will be lower than the actual generalization performance of the model, in other cases it is higher. <strong>Because you choose the model that performs best on the validation set, validation set performance is likely to err on the optimistic side.</strong> The test set serves as an estimate of how well the chosen model will perform on <em>new</em> data. To prevent a biased estimate, the test set should only be used once to estimate the performance of the final selected model.</p></li>
 </ul>
 <p>Keep in mind that <strong>any data pre-processing steps must solely be based on the training data</strong>. Otherwise, information available only in the validation or test set may ‘leak’ into the model selection procedure. This can result in overly optimistic performance estimates. For example, when you normalize a feature or impute values based on the mean, the mean must be computed solely over the training data. Similarly, feature selection must be performed based on the information in the training set alone.</p>
 <p>Depending on the learning task, the data may be split at random. If patterns within the data are likely to change over time, it may be more suitable to perform time-based splitting. For example, criminals often change tactics which means that patterns of fraud can change over time. In these situations, the oldest data is typically selected for training and the most recent data for testing. In this way, the performance estimates will best represent the performance in production.</p>
+<p>In scikit-learn, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split()</span></code></a> to split the data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># create synthethic data set</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># split into train and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+  <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># further split into train and validation set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+  <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># print </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train set shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation set shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_val</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test set shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train set shape: (60, 20)
+validation set shape: (20, 20)
+test set shape: (20, 20)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the example above, the training set consists of 60 instances, the validation set of 20 instances, and the test set of 20 instances.</p>
 </div>
 <div class="section" id="cross-validation">
-<h3>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h3>
+<h3>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">#</a></h3>
 <p>A disadvantage of splitting data is that you reduce the number of instances that can be used to train the model. Moreover, it may be the case that we are unlucky and, due to randomness, choose a validation set with relatively uncommon patterns. This can result in misleading performance estimates. A solution to this problem is cross-validation. In a <a class="reference internal" href="../../other/glossary.html#term-k-fold-cross-validation"><span class="xref std std-term">k-fold cross-validation</span></a> procedure, the data set is split into <span class="math notranslate nohighlight">\(k\)</span> folds (see <a class="reference internal" href="#fig-kfold"><span class="std std-numref">Fig. 2</span></a>). For each fold, a machine learning algorithm is tested on the current fold and trained on the remaining <span class="math notranslate nohighlight">\(k-1\)</span> folds. The overall performance of the algorithm is then estimated based on the performance on all <span class="math notranslate nohighlight">\(k\)</span> folds.</p>
 <div class="figure align-default" id="fig-kfold">
 <div class="cell_output docutils container">
 <img alt="../../_images/modelselection_0_2.png" src="../../_images/modelselection_0_2.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">A 3-fold cross validation. In each iteration, one of the three splits acts as the test set and the remaining splits act as the training set.<a class="footnote-reference brackets" href="#mglearn" id="id2">1</a></span><a class="headerlink" href="#fig-kfold" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">A 3-fold cross validation. In each iteration, one of the three splits acts as the test set and the remaining splits act as the training set.<a class="footnote-reference brackets" href="#mglearn" id="id3">1</a></span><a class="headerlink" href="#fig-kfold" title="Permalink to this image">#</a></p>
 </div>
-<p>The cross-validation procedure can be repeated multiple times, in which the data is shuffled differently each time. This is referred to as <a class="reference internal" href="../../other/glossary.html#term-repeated-cross-validation"><span class="xref std std-term">repeated cross-validation</span></a>.</p>
-<p>It is also possible to use cross-validation for both the train-test split and the train-validation split. In this case, you require a <a class="reference internal" href="../../other/glossary.html#term-nested-cross-validation"><span class="xref std std-term">nested cross-validation</span></a>. In the outer loop, the data set is split into folds used to determine the training/validation and test set. In the inner loop, the training/validation set of each test fold of the outer loop is further split into folds used for training and validation.</p>
+<p>In scikit-learn, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html#sklearn.model_selection.KFold" title="(in scikit-learn v1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.KFold</span></code></a> to define a cross validation procedure and we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score()</span></code></a> to compute a metric output for each fold.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
+
+<span class="c1"># split data into train and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+  <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># define model</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="c1"># define 3-fold cross validation procedure</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># compute performance for each fold</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kf</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.81481481 0.85185185 0.76923077]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this exapmle, we can immediately see the value of the cross-validation procedure over merely splitting the data: the observed accuracy of the model varies a lot, depending on which fold is evaluated.</p>
+<p>A cross-validation procedure can be repeated multiple times, in which the data is shuffled differently each time. This is referred to as <a class="reference internal" href="../../other/glossary.html#term-repeated-cross-validation"><span class="xref std std-term">repeated cross-validation</span></a> and is implemented in scikit-learn as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RepeatedKFold.html#sklearn.model_selection.RepeatedKFold" title="(in scikit-learn v1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.RepeatedKFold</span></code></a>. It is also possible to use cross-validation for both the train-test split and the train-validation split. In this case, you require a <a class="reference internal" href="../../other/glossary.html#term-nested-cross-validation"><span class="xref std std-term">nested cross-validation</span></a>. In the outer loop, the data set is split into folds used to determine the training/validation and test set. In the inner loop, the training/validation set of each test fold of the outer loop is further split into folds used for training and validation.</p>
 </div>
 </div>
 <div class="section" id="hyperparameter-tuning">
-<h2>Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">¶</a></h2>
+<h2>Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">#</a></h2>
 <p>During model selection, you may want to evaluate different machine learning algorithms. In addition, most modern machine learning algorithms have <a class="reference internal" href="../../other/glossary.html#term-hyperparameter"><span class="xref std std-term">hyperparameter</span></a>s: parameters that control the learning process in some way. In many cases, the performance of a machine learning algorithm on a given learning task depends on these settings. The process of identifying the best settings for your learning task is referred to as <a class="reference internal" href="../../other/glossary.html#term-hyperparameter-tuning"><span class="xref std std-term">hyperparameter tuning</span></a>.</p>
 <p>Two common approaches for tuning hyperparameters are <a class="reference internal" href="../../other/glossary.html#term-grid-search"><span class="xref std std-term">grid search</span></a> and <a class="reference internal" href="../../other/glossary.html#term-random-search"><span class="xref std std-term">random search</span></a>. For both approaches, the first step is to define the search space, i.e., the range of hyperparameter settings you would like to explore. Grid search consists of an exhaustive search over all hyperparameter settings in the search space. In a random search, on the other hand, hyperparameters are randomly sampled from the search space. A random search procedure is particularly useful when hyperparameters can take continuous values, such as the cost parameter of a support vector machine. In these cases, a random search procedure is known to outperform grid search (at least in theory).</p>
 <div class="figure align-default" id="fig-gsoverview">
 <div class="cell_output docutils container">
 <img alt="../../_images/modelselection_0_4.png" src="../../_images/modelselection_0_4.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">An overview of the required components and steps of a grid search procedure.<a class="footnote-reference brackets" href="#mglearn" id="id3">1</a></span><a class="headerlink" href="#fig-gsoverview" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">An overview of the required components and steps of a grid search procedure.<a class="footnote-reference brackets" href="#mglearn" id="id4">1</a></span><a class="headerlink" href="#fig-gsoverview" title="Permalink to this image">#</a></p>
+</div>
+<p>In scikit-learn, grid search and random search are implemented in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="(in scikit-learn v1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.GridSearchCV</span></code></a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html#sklearn.model_selection.RandomizedSearchCV" title="(in scikit-learn v1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.RandomizedSearchCV</span></code></a> respectively. Below you can find an example of a grid search over several values of the regularization parameter <code class="docutils literal notranslate"><span class="pre">C</span></code> of logistic regression, using a 3-fold cross validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># we want to try different values for the regularization parameter C</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># define grid search</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span> 
+  <span class="n">estimator</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span>
+  <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span>
+  <span class="n">scoring</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># use default scorer of LR (accuracy)</span>
+  <span class="n">refit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+  <span class="n">cv</span><span class="o">=</span><span class="n">kf</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># fit model</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># view cross-validation results</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)[[</span><span class="s1">&#39;param_C&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_test_score&#39;</span><span class="p">,</span> <span class="s1">&#39;std_test_score&#39;</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;best parameter: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">best_params_</span><span class="p">))</span>
+
+<span class="c1"># view test set result</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test set accuracy: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>param_C</th>
+      <th>mean_test_score</th>
+      <th>std_test_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.001</td>
+      <td>0.597816</td>
+      <td>0.124481</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.01</td>
+      <td>0.734568</td>
+      <td>0.165865</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.1</td>
+      <td>0.799620</td>
+      <td>0.064185</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0.811966</td>
+      <td>0.033790</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>best parameter: {&#39;C&#39;: 1}
+test set accuracy: 0.75
+</pre></div>
+</div>
+</div>
 </div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="mglearn"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>)</span></dt>
+<dt class="label" id="mglearn"><span class="brackets">1</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>)</span></dt>
 <dd><p>These figures were generated using the <a class="reference external" href="https://github.com/amueller/mglearn"><code class="docutils literal notranslate"><span class="pre">mglearn</span></code></a> package.</p>
 </dd>
 </dl>
@@ -486,34 +784,48 @@
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="modelevaluation.html" title="previous page">Model Evaluation</a>
-    <a class='right-next' id="next-link" href="costsensitivelearning.html" title="next page">Cost-Sensitive Learning</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="modelevaluation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Model Evaluation</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="costsensitivelearning.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cost-Sensitive Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hilde Weerts<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

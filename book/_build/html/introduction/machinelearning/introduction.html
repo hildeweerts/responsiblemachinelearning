@@ -5,10 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Machine Learning Preliminaries &#8212; An Introduction to Responsible Data Science</title>
+    <title>Machine Learning Preliminaries &#8212; An Introduction to Responsible Machine Learning</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,46 +19,62 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Machine Learning" href="machinelearning.html" />
-    <link rel="prev" title="Responsible Data Science" href="../introduction.html" />
+    <link rel="next" title="Model Evaluation" href="modelevaluation.html" />
+    <link rel="prev" title="Responsible Machine Learning" href="../introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -66,28 +83,31 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
       
-      <h1 class="site-logo" id="site-title">An Introduction to Responsible Data Science</h1>
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   An Introduction to Responsible Data Science
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
@@ -95,7 +115,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../introduction.html">
-   Responsible Data Science
+   Responsible Machine Learning
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -108,11 +128,6 @@
    </i>
   </label>
   <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="machinelearning.html">
-     Machine Learning
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="modelevaluation.html">
      Model Evaluation
@@ -130,13 +145,8 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ethics/introduction.html">
-   Ethics Preliminaries
-  </a>
- </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Fairness
  </span>
@@ -158,20 +168,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/groupfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../fairness/groupfairness/groupfairnessmetrics.html">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/groupfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../fairness/groupfairness/impossibilitytheorem.html">
+     The Impossibility Theorem
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/individualfairness/introduction.html">
-   Individual Fairness
+  <a class="reference internal" href="../../fairness/fairml/introduction.html">
+   Fairness-Aware Machine Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -180,20 +190,27 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/individualfairness/metrics.html">
-     Individual Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/individualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../fairness/fairml/randomizedthresholds.html">
+     Randomized Thresholds
     </a>
    </li>
   </ul>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../explainability/introduction.html">
+   Explainable Machine Learning
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/counterfactualfairness/introduction.html">
-   Counterfactual Fairness
+  <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
+   Local Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -202,20 +219,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/counterfactualfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../explainability/localposthoc/shap.html">
+     SHAP
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/counterfactualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../explainability/localposthoc/discussion.html">
+     Feature importance
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/casestudies/introduction.html">
-   Case Studies
+  <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
+   Global Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -224,38 +241,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/casestudies/compas/introduction.html">
-     COMPAS
+    <a class="reference internal" href="../../explainability/globalposthoc/pdp.html">
+     Partial Dependence Plots
     </a>
    </li>
   </ul>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Explainability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../explainability/introduction.html">
-   Explainable Artificial Intelligence
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Accountability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../accountability/introduction.html">
-   Algorithmic Accountability and Auditing
-  </a>
- </li>
-</ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Misc
  </span>
@@ -269,12 +262,17 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -282,96 +280,184 @@
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/introduction/machinelearning/introduction.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning/introduction.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/introduction/machinelearning/introduction.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hildeweerts/responsibledatascience"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hildeweerts/responsibledatascience/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning/introduction.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
 </div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-        </div>
     </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Machine Learning Preliminaries</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="machine-learning-preliminaries">
-<span id="mlpreliminaries"></span><h1>Machine Learning Preliminaries<a class="headerlink" href="#machine-learning-preliminaries" title="Permalink to this headline">¶</a></h1>
-<p>This chapter provides a brief introduction to various machine learning concepts that are required to understand the technical contents in this book.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="machine-learning-preliminaries">
+<span id="ml-preliminaries"></span><h1>Machine Learning Preliminaries<a class="headerlink" href="#machine-learning-preliminaries" title="Permalink to this headline">#</a></h1>
+<p>This chapter provides a brief introduction to various machine learning concepts that are required to understand the technical contents in this book. The focus of this book is on supervised learning, an area of machine learning aimed towards classification or prediction. At an abstract level, a supervised machine learning model can be seen as a function that maps a set of input <a class="reference external" href="https://scikit-learn.org/stable/glossary.html#term-features" title="(in scikit-learn v1.1)"><span class="xref std std-term">features</span></a> to the corresponding <a class="reference internal" href="../../other/glossary.html#term-target-variable"><span class="xref std std-term">target variable</span></a> output. For example, we might want to train a model that is able to predict whether an e-mail (consisting of several features such as whether the e-mail contains certain words) is spam (target variable). The task of the machine learning algorithm is to find the best mapping between the input features and the target variable.</p>
+<p>Supervised learning can be further categorized based on the target variable type. In <a class="reference internal" href="../../other/glossary.html#term-regression"><span class="xref std std-term">regression</span></a> problems, the target variable is continuous. In <a class="reference internal" href="../../other/glossary.html#term-classification"><span class="xref std std-term">classification</span></a> problems, the target variable is a categorical variable. The different categories are referred to as <a class="reference internal" href="../../other/glossary.html#term-class"><span class="xref std std-term">class</span></a>es. The <a class="reference internal" href="../../other/glossary.html#term-binary-classification"><span class="xref std std-term">binary classification</span></a> problem is a particular type of classification problems in which the target variable can take two values. The two classes are usually represented as 0 and 1 and referred to as the <a class="reference internal" href="../../other/glossary.html#term-negative-class"><span class="xref std std-term">negative class</span></a> and <a class="reference internal" href="../../other/glossary.html#term-positive-class"><span class="xref std std-term">positive class</span></a> respectively.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The distinction between the positive and negative class merely indicates what we are trying to detect and does not imply sentiment. For example, in the case of fraud detection, we are interested in detecting fraudulent transactions. A fraudulent transaction is therefore often defined to belong to the positive class - even though fraud is typically not deemed desirable.</p>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Summary</p>
 <p><strong>Machine Learning</strong></p>
-<p><a class="reference internal" href="../../other/glossary.html#term-machine-learning"><span class="xref std std-term">Machine Learning</span></a> is a subfield of the broader field of artificial intelligence. It has three main paradigms: <a class="reference internal" href="../../other/glossary.html#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a>, <a class="reference internal" href="../../other/glossary.html#term-unsupervised-learning"><span class="xref std std-term">unsupervised learning</span></a>, and <a class="reference internal" href="../../other/glossary.html#term-reinforcement-learning"><span class="xref std std-term">reinforcement learning</span></a>.</p>
-<p>The main focus of this book is on <a class="reference internal" href="../../other/glossary.html#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a>, in which the learning tasks consists of predicting a <a class="reference internal" href="../../other/glossary.html#term-target-variable"><span class="xref std std-term">target variable</span></a> from a set of input <a class="reference internal" href="../../other/glossary.html#term-feature"><span class="xref std std-term">feature</span></a>s. We focus on traditional machine learning algorithms (as opposed to deep learning).</p>
-<p><strong>Model Evaluation</strong></p>
-<p>We define predictive performance metrics based on the <a class="reference internal" href="../../other/glossary.html#term-confusion-matrix"><span class="xref std std-term">confusion matrix</span></a>, which visualizes different types of classification errors. We explain the metrics: <a class="reference internal" href="../../other/glossary.html#term-accuracy"><span class="xref std std-term">accuracy</span></a>, <a class="reference internal" href="../../other/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a>, <a class="reference internal" href="../../other/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a>, <a class="reference internal" href="../../other/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a>, <a class="reference internal" href="../../other/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a>, <a class="reference internal" href="../../other/glossary.html#term-recall"><span class="xref std std-term">recall</span></a>, <a class="reference internal" href="../../other/glossary.html#term-precision"><span class="xref std std-term">precision</span></a>, and <a class="reference internal" href="../../other/glossary.html#term-f1-score"><span class="xref std std-term">F1-score</span></a>.</p>
+<p><a class="reference internal" href="../../other/glossary.html#term-machine-learning"><span class="xref std std-term">Machine Learning</span></a> is a subfield of the broader field of artificial intelligence. The main focus of this book is on <a class="reference internal" href="../../other/glossary.html#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a>, in which the learning tasks consists of predicting a <a class="reference internal" href="../../other/glossary.html#term-target-variable"><span class="xref std std-term">target variable</span></a> from a set of input <a class="reference internal" href="../../other/glossary.html#term-feature"><span class="xref std std-term">feature</span></a>s. We focus on traditional machine learning algorithms (as opposed to deep learning).</p>
+<p><a class="reference internal" href="modelevaluation.html#model-evaluation"><span class="std std-ref"><strong>Model Evaluation</strong></span></a></p>
+<p>We define predictive performance metrics based on the <a class="reference internal" href="../../other/glossary.html#term-confusion-matrix"><span class="xref std std-term">confusion matrix</span></a>, which visualizes different types of classification errors. We explain several predictive performance metrics: <a class="reference internal" href="../../other/glossary.html#term-accuracy"><span class="xref std std-term">accuracy</span></a>, <a class="reference internal" href="../../other/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a>, <a class="reference internal" href="../../other/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a>, <a class="reference internal" href="../../other/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a>, <a class="reference internal" href="../../other/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a>, <a class="reference internal" href="../../other/glossary.html#term-recall"><span class="xref std std-term">recall</span></a>, <a class="reference internal" href="../../other/glossary.html#term-precision"><span class="xref std std-term">precision</span></a>, and <a class="reference internal" href="../../other/glossary.html#term-f1-score"><span class="xref std std-term">F1-score</span></a>.</p>
 <p>We discuss ways to evaluate predictive performance based on the model’s conficence score. We introduce the <a class="reference internal" href="../../other/glossary.html#term-ROC-curve"><span class="xref std std-term">ROC curve</span></a>, which sets out the <a class="reference internal" href="../../other/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a> against the <a class="reference internal" href="../../other/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a> and can be summarized using <a class="reference internal" href="../../other/glossary.html#term-AUC"><span class="xref std std-term">AUC</span></a> score. Additionally, we discuss the <a class="reference internal" href="../../other/glossary.html#term-precision-recall-curve"><span class="xref std std-term">precision-recall curve</span></a>, which sets out a model’s <a class="reference internal" href="../../other/glossary.html#term-precision"><span class="xref std std-term">precision</span></a> against <a class="reference internal" href="../../other/glossary.html#term-recall"><span class="xref std std-term">recall</span></a> and can be summarized by computing the <a class="reference internal" href="../../other/glossary.html#term-average-precision"><span class="xref std std-term">average precision</span></a>.</p>
 <p>Model <a class="reference internal" href="../../other/glossary.html#term-calibration"><span class="xref std std-term">calibration</span></a> refers to the extent to which the confidence scores correspond to actual probabilities.</p>
-<p><strong>Model Selection</strong></p>
-<p>We discuss several best practices in model selection: the process of choosing among different candidate models. We discuss how a model’s predictive performance can be estimated more accurately by splitting the data into a <a class="reference internal" href="../../other/glossary.html#term-training-set"><span class="xref std std-term">training set</span></a>, <a class="reference internal" href="../../other/glossary.html#term-validation-set"><span class="xref std std-term">validation set</span></a> and <a class="reference internal" href="../../other/glossary.html#term-test-set"><span class="xref std std-term">test set</span></a>. Moreover, we discussed how this procedure can be further extended to a <a class="reference internal" href="../../other/glossary.html#term-k-fold-cross-validation"><span class="xref std std-term">k-fold cross-validation</span></a>, <a class="reference internal" href="../../other/glossary.html#term-repeated-cross-validation"><span class="xref std std-term">repeated cross-validation</span></a>, and <a class="reference internal" href="../../other/glossary.html#term-nested-cross-validation"><span class="xref std std-term">nested cross-validation</span></a>. Additionally, we briefly discussed two common approaches for <a class="reference internal" href="../../other/glossary.html#term-hyperparameter"><span class="xref std std-term">hyperparameter</span></a> tuning: <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> (an exhaustive search over the search space) and <a class="reference internal" href="../../other/glossary.html#term-random-search"><span class="xref std std-term">random search</span></a> (random sampling of hyperparameter settings from the search space).</p>
-<p><strong>Cost-sensitive Learning</strong></p>
-<p>We explore several approaches to <span class="xref std std-term">cost-sensitive learning</span>, in which different types of mistakes may be associated with different costs. In particular, we show how a classifier’s <a class="reference internal" href="../../other/glossary.html#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a> can be optimized to account for different costs.</p>
+<p><a class="reference internal" href="modelselection.html#model-selection"><span class="std std-ref"><strong>Model Selection</strong></span></a></p>
+<p>We discuss several best practices in model selection: the process of choosing among different candidate models. We discuss how a model’s predictive performance can be estimated more accurately by splitting the data into a <a class="reference internal" href="../../other/glossary.html#term-training-set"><span class="xref std std-term">training set</span></a>, <a class="reference internal" href="../../other/glossary.html#term-validation-set"><span class="xref std std-term">validation set</span></a> and <a class="reference internal" href="../../other/glossary.html#term-test-set"><span class="xref std std-term">test set</span></a>. Moreover, we discuss how this procedure can be further extended to a <a class="reference internal" href="../../other/glossary.html#term-k-fold-cross-validation"><span class="xref std std-term">k-fold cross-validation</span></a>, <a class="reference internal" href="../../other/glossary.html#term-repeated-cross-validation"><span class="xref std std-term">repeated cross-validation</span></a>, and <a class="reference internal" href="../../other/glossary.html#term-nested-cross-validation"><span class="xref std std-term">nested cross-validation</span></a>. Additionally, we briefly discuss two common approaches for <a class="reference internal" href="../../other/glossary.html#term-hyperparameter"><span class="xref std std-term">hyperparameter</span></a> tuning: <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span></code> (an exhaustive search over the search space) and <a class="reference internal" href="../../other/glossary.html#term-random-search"><span class="xref std std-term">random search</span></a> (random sampling of hyperparameter settings from the search space).</p>
+<p><a class="reference internal" href="costsensitivelearning.html#cost-sensitive-learning"><span class="std std-ref"><strong>Cost-sensitive Learning</strong></span></a></p>
+<p>We explore several approaches to <a class="reference internal" href="../../other/glossary.html#term-cost-sensitive-learning"><span class="xref std std-term">cost-sensitive learning</span></a>, in which different types of mistakes may be associated with different costs. In particular, we show how a classifier’s <a class="reference internal" href="../../other/glossary.html#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a> can be optimized to account for different costs.</p>
 </div>
 <div class="seealso admonition" id="intromlfurtherreading">
 <p class="admonition-title">Further Reading</p>
@@ -406,34 +492,48 @@
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../introduction.html" title="previous page">Responsible Data Science</a>
-    <a class='right-next' id="next-link" href="machinelearning.html" title="next page">Machine Learning</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Responsible Machine Learning</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="modelevaluation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Model Evaluation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hilde Weerts<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

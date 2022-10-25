@@ -7,6 +7,9 @@ accountability
 accuracy
    A predictive performance metric defined as the fraction of predictions the model predicted correctly: $\frac{tp + tn}{tp+tn+fp+fn}$.
 
+algorithmic fairness
+   The idea that algorithmic systems should behave and/or treat people fairly.
+
 AUC
    A predictive performance metric defined as the area under the {term}`ROC curve`.
 
@@ -33,6 +36,9 @@ confidence score
 
 confusion matrix
    A matrix that denotes the performance of a machine learning model. The columns denote predicted {term}`class`es, the rows the ground0truth classes, and the cells the number of instances for which the combinatino of prediciton/ground truth class occurs.
+
+cost-sensitive learning
+   A subfield of {term}`machine learning` that explicitly takes into account different valuations (or costs) of mistakes during model training.
 
 decision threshold
    In a binary classification problem, the cut-off value of the model's predicted score at which an instance is classified as belonging to the {term}`positive class`.
@@ -129,6 +135,9 @@ repeated cross-validation
 
 ROC curve
    A curve in which the {term}`true positive rate` of a model is set out against the {term}`false positive rate` of the model at different {term}`decision threshold`s.
+
+sensitive characteristic
+   A characteristic of an individual such that a decision based on this characteristic is considered undesirable from an ethical or legal point of view.
 
 supervised learning
    A subfield of {term}`machine learning` where the goal is learn to predict a {term}`target variable` from input features.

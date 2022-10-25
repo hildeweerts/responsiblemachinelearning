@@ -2,43 +2,38 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: index
+root: index.md
 parts:
   - caption: Introduction
     chapters:
     - file: introduction/introduction
     - file: introduction/machinelearning/introduction
       sections:
-      - file: introduction/machinelearning/machinelearning
       - file: introduction/machinelearning/modelevaluation
       - file: introduction/machinelearning/modelselection
       - file: introduction/machinelearning/costsensitivelearning
-    - file: introduction/ethics/introduction
-    
   - caption: Fairness
     chapters:
     - file: fairness/introduction
     - file: fairness/groupfairness/introduction
       sections:
-      - file: fairness/groupfairness/metrics
-      - file: fairness/groupfairness/mitigation
-    - file: fairness/individualfairness/introduction
+      - file: fairness/groupfairness/groupfairnessmetrics
+      - file: fairness/groupfairness/impossibilitytheorem
+    - file: fairness/fairml/introduction
       sections:
-      - file: fairness/individualfairness/metrics
-      - file: fairness/individualfairness/mitigation
-    - file: fairness/counterfactualfairness/introduction
-      sections:
-      - file: fairness/counterfactualfairness/metrics
-      - file: fairness/counterfactualfairness/mitigation
-    - file: fairness/casestudies/introduction
-      sections:
-      - file: fairness/casestudies/compas/introduction
+      - file: fairness/fairml/groupspecificthresholds
+    # - file: fairness/biases.md
   - caption: Explainability
     chapters:
     - file: explainability/introduction
-  - caption: Accountability
-    chapters:
-    - file: accountability/introduction
+    - file: explainability/localposthoc/introduction
+      sections:
+      # - file: explainability/localposthoc/lime
+      - file: explainability/localposthoc/shap
+      - file: explainability/localposthoc/discussion
+    - file: explainability/globalposthoc/introduction
+      sections:
+      - file: explainability/globalposthoc/pdp
   - caption: Misc
     chapters:
     - file: other/glossary

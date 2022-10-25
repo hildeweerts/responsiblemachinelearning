@@ -1,66 +1,66 @@
 {
-  "index": {
-    "today": {
-      "output_type": "display_data",
-      "metadata": {
-        "scrapbook": {
-          "name": "today",
-          "mime_prefix": ""
-        }
-      },
-      "data": {
-        "text/plain": "'2022-02-07'"
-      }
-    }
-  },
   "introduction/machinelearning/modelselection": {
-    "splitfig": {
-      "output_type": "display_data",
+    "gsoverview": {
+      "data": {
+        "image/png": null,
+        "text/plain": "<Figure size 700x210 with 1 Axes>"
+      },
       "metadata": {
         "scrapbook": {
-          "name": "splitfig",
-          "mime_prefix": ""
+          "mime_prefix": "",
+          "name": "gsoverview"
         },
         "filenames": {
-          "image/png": "/Users/hildeweerts/Projects/responsibledatascience/book/_build/jupyter_execute/introduction/machinelearning/modelselection_0_0.png"
+          "image/png": "/Users/hildeweerts/Projects/responsiblemachinelearning/book/_build/jupyter_execute/introduction/machinelearning/modelselection_0_4.png"
         }
       },
+      "output_type": "display_data"
+    },
+    "splitfig": {
       "data": {
-        "text/plain": "<Figure size 1080x72 with 1 Axes>",
-        "image/png": null
-      }
+        "image/png": null,
+        "text/plain": "<Figure size 1080x72 with 1 Axes>"
+      },
+      "metadata": {
+        "scrapbook": {
+          "mime_prefix": "",
+          "name": "splitfig"
+        },
+        "filenames": {
+          "image/png": "/Users/hildeweerts/Projects/responsiblemachinelearning/book/_build/jupyter_execute/introduction/machinelearning/modelselection_0_0.png"
+        }
+      },
+      "output_type": "display_data"
     },
     "kfoldfig": {
-      "output_type": "display_data",
+      "data": {
+        "image/png": null,
+        "text/plain": "<Figure size 720x144 with 1 Axes>"
+      },
       "metadata": {
         "scrapbook": {
-          "name": "kfoldfig",
-          "mime_prefix": ""
+          "mime_prefix": "",
+          "name": "kfoldfig"
         },
         "filenames": {
-          "image/png": "/Users/hildeweerts/Projects/responsibledatascience/book/_build/jupyter_execute/introduction/machinelearning/modelselection_0_2.png"
+          "image/png": "/Users/hildeweerts/Projects/responsiblemachinelearning/book/_build/jupyter_execute/introduction/machinelearning/modelselection_0_2.png"
         }
       },
+      "output_type": "display_data"
+    }
+  },
+  "index": {
+    "today": {
       "data": {
-        "text/plain": "<Figure size 720x144 with 1 Axes>",
-        "image/png": null
-      }
-    },
-    "gsoverview": {
-      "output_type": "display_data",
+        "text/plain": "'2022-10-25'"
+      },
       "metadata": {
         "scrapbook": {
-          "name": "gsoverview",
-          "mime_prefix": ""
-        },
-        "filenames": {
-          "image/png": "/Users/hildeweerts/Projects/responsibledatascience/book/_build/jupyter_execute/introduction/machinelearning/modelselection_0_4.png"
+          "mime_prefix": "",
+          "name": "today"
         }
       },
-      "data": {
-        "text/plain": "<Figure size 700x210 with 1 Axes>",
-        "image/png": null
-      }
+      "output_type": "display_data"
     }
   }
 }

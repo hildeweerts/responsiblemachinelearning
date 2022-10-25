@@ -5,10 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cost-Sensitive Learning &#8212; An Introduction to Responsible Data Science</title>
+    <title>Cost-Sensitive Learning &#8212; An Introduction to Responsible Machine Learning</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,46 +19,64 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Ethics Preliminaries" href="../ethics/introduction.html" />
+    <link rel="next" title="Algorithmic Fairness" href="../../fairness/introduction.html" />
     <link rel="prev" title="Model Selection" href="modelselection.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -66,28 +85,31 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
       
-      <h1 class="site-logo" id="site-title">An Introduction to Responsible Data Science</h1>
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   An Introduction to Responsible Data Science
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
@@ -95,7 +117,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../introduction.html">
-   Responsible Data Science
+   Responsible Machine Learning
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -108,11 +130,6 @@
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="machinelearning.html">
-     Machine Learning
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="modelevaluation.html">
      Model Evaluation
@@ -130,13 +147,8 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ethics/introduction.html">
-   Ethics Preliminaries
-  </a>
- </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Fairness
  </span>
@@ -158,20 +170,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/groupfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../fairness/groupfairness/groupfairnessmetrics.html">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/groupfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../fairness/groupfairness/impossibilitytheorem.html">
+     The Impossibility Theorem
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/individualfairness/introduction.html">
-   Individual Fairness
+  <a class="reference internal" href="../../fairness/fairml/introduction.html">
+   Fairness-Aware Machine Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -180,20 +192,27 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/individualfairness/metrics.html">
-     Individual Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/individualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../fairness/fairml/randomizedthresholds.html">
+     Randomized Thresholds
     </a>
    </li>
   </ul>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../explainability/introduction.html">
+   Explainable Machine Learning
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/counterfactualfairness/introduction.html">
-   Counterfactual Fairness
+  <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
+   Local Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -202,20 +221,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/counterfactualfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../explainability/localposthoc/shap.html">
+     SHAP
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/counterfactualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../explainability/localposthoc/discussion.html">
+     Feature importance
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/casestudies/introduction.html">
-   Case Studies
+  <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
+   Global Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -224,38 +243,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/casestudies/compas/introduction.html">
-     COMPAS
+    <a class="reference internal" href="../../explainability/globalposthoc/pdp.html">
+     Partial Dependence Plots
     </a>
    </li>
   </ul>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Explainability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../explainability/introduction.html">
-   Explainable Artificial Intelligence
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Accountability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../accountability/introduction.html">
-   Algorithmic Accountability and Auditing
-  </a>
- </li>
-</ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Misc
  </span>
@@ -269,12 +264,17 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -282,92 +282,369 @@
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/introduction/machinelearning/costsensitivelearning.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/hildeweerts/responsiblemachinelearning/master?urlpath=tree/introduction/machinelearning/costsensitivelearning.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning/costsensitivelearning.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/introduction/machinelearning/costsensitivelearning.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../_sources/introduction/machinelearning/costsensitivelearning.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hildeweerts/responsibledatascience"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hildeweerts/responsibledatascience/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning/costsensitivelearning.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
     </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimizing-the-decision-threshold">
+   Optimizing the Decision Threshold
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-sensitive-learning-algorithms">
+   Cost-Sensitive Learning Algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sampling-approaches">
+   Sampling Approaches
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-        </div>
     </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Cost-Sensitive Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimizing-the-decision-threshold">
+   Optimizing the Decision Threshold
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-sensitive-learning-algorithms">
+   Cost-Sensitive Learning Algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sampling-approaches">
+   Sampling Approaches
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="cost-sensitive-learning">
-<h1>Cost-Sensitive Learning<a class="headerlink" href="#cost-sensitive-learning" title="Permalink to this headline">¶</a></h1>
-<p>In practice, we often associate different costs with different types of mistakes. Cost-sensitive learning is a way to explicitly take into account different valuations of mistakes in learning and model selection.</p>
-<!-- ## Optimizing the Decision Threshold
-Based on the ROC curve, we can choose the decision threshold that is likely to give us the true positive rate and false positive rate that are useful for your use case. As with any optimization, you can determine the expected performance on new data by evaluating the performance of the chosen threshold on the test set. It is also possible to tune decisionthreshold using, for example, grid search.
+  <div class="tex2jax_ignore mathjax_ignore section" id="cost-sensitive-learning">
+<span id="id1"></span><h1>Cost-Sensitive Learning<a class="headerlink" href="#cost-sensitive-learning" title="Permalink to this headline">#</a></h1>
+<p>In practice, we often associate different costs with different types of mistakes. <a class="reference internal" href="../../other/glossary.html#term-cost-sensitive-learning"><span class="xref std std-term">cost-sensitive learning</span></a> is a way to explicitly take into account different valuations of mistakes during model training and selection.</p>
+<div class="section" id="optimizing-the-decision-threshold">
+<h2>Optimizing the Decision Threshold<a class="headerlink" href="#optimizing-the-decision-threshold" title="Permalink to this headline">#</a></h2>
+<p>In binary classification, the decision threshold is the cut-off value of the model’s confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives. Let’s see how varying the decision threshold affects the model’s accuracy, true positive rate, and true negative rate on the test data.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="n">true_positive_rate</span><span class="p">,</span> <span class="n">true_negative_rate</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-*Coming soon*: example of how we can choose the decision threshold based on a validation set.
+<span class="c1"># create synthethic data set</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-## Cost-Sensitive Learning Algorithms
-It is often also possible to directly take into account misclassification cost during learning. In particular, it may be possible to weigh instances of a particular class differently in the algorithm's loss function. For example, {py:func}`sklearn.linear_model.LogisticRegression` has a `class_weight` parameter that allows to adjust the weights for different classes.
+<span class="c1"># split into train and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+  <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># further split into train and validation set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+  <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-*Coming soon*: example of algorithm that allows to specificy different costs --></div>
+<span class="c1"># train logistic regression classifier on training data</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># compute and plot validation set performance at different decision thresholds</span>
+<span class="n">y_score</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_val</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">thresholds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;accuracy&#39;</span> <span class="p">:</span> <span class="n">accuracy_score</span><span class="p">,</span>
+           <span class="s1">&#39;true positive rate&#39;</span> <span class="p">:</span> <span class="n">true_positive_rate</span><span class="p">,</span>
+           <span class="s1">&#39;true negative rate&#39;</span> <span class="p">:</span> <span class="n">true_negative_rate</span><span class="p">,</span>
+           <span class="p">}</span>
+<span class="k">for</span> <span class="n">metric_name</span><span class="p">,</span> <span class="n">metric_function</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+  <span class="n">metric_output</span> <span class="o">=</span> <span class="p">[</span><span class="n">metric_function</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_score</span><span class="o">&gt;=</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">thresholds</span><span class="p">]</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">metric_output</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">metric_name</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;metric outputs over varying decision thresholds (validation set)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;decision threshold&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;metric output&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/costsensitivelearning_1_0.png" src="../../_images/costsensitivelearning_1_0.png" />
+</div>
+</div>
+<p>In the example above, we clearly see a trade-off between the true positive rate and the true negative rate. At lower decision thresholds, more instances are classified as positives. As such, we are also able to correctly identify more <em>true</em> positives. At the extreme <span class="math notranslate nohighlight">\(t=0\)</span>, <em>all</em> instances are classified as positive, resulting in <span class="math notranslate nohighlight">\(tpr=1\)</span>. At higher decision thresholds, more instances are classified as negatives. As a result, the number of true negatives increases, but the number of true positives decreases. Again, at the extreme <span class="math notranslate nohighlight">\(t=1\)</span>, all instances are classified as negatives, resulting in <span class="math notranslate nohighlight">\(tnr=1\)</span>.</p>
+<p>In our example, it seems that the default decision threshold in scikit-learn, <span class="math notranslate nohighlight">\(t=0.5\)</span>, provides a good balance between the number of false positives and false negatives. In practice, however, the default decision threshold may not represent an adequate trade-off. For example, the predicted scores may be skewed towards lower or higher values, making <span class="math notranslate nohighlight">\(t=0.5\)</span> a suboptimal choice. In other cases, we may not value false positives and false negatives equally and, as such, prefer to trade off one for the other by decreasing or increasing the decision threshold.</p>
+<div class="seealso admonition note">
+<p class="admonition-title">Note</p>
+<p>The decision threshold should always be selected based on a <em>validation</em> data, not <em>training</em> data. Why this is an essential part of a proper machine learning pipeline will be explained in more detail in chapter <a class="reference internal" href="modelselection.html#model-selection"><span class="std std-ref">Model Selection</span></a>.</p>
+</div>
+<div class="seealso admonition note">
+<p class="admonition-title">Note</p>
+<p>The Python library <em>scikit-lego</em> provides a useful wrapper class, <a class="reference external" href="https://scikit-lego.netlify.app/api/meta.html#sklego.meta.Thresholder" title="(in scikit-lego)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklego.meta.Thresholder</span></code></a>, that can be used to optimize a model’s decision threshold within a scikit-learn cross-validation pipeline.</p>
+</div>
+</div>
+<div class="section" id="cost-sensitive-learning-algorithms">
+<h2>Cost-Sensitive Learning Algorithms<a class="headerlink" href="#cost-sensitive-learning-algorithms" title="Permalink to this headline">#</a></h2>
+<p>It is often also possible to directly take into account misclassification cost during learning. In particular, it may be possible to weigh instances of a particular class differently in the algorithm’s loss function. For example, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="(in scikit-learn v1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegression</span></code></a> has a <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> parameter that allows to adjust the weight for each class.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">class_weight</span> <span class="ow">in</span> <span class="p">[{</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">}]:</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="n">class_weight</span><span class="p">)</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;class_weight </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">class_weight</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  tpr : </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">true_positive_rate</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  tnr : </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">true_negative_rate</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class_weight {0: 10, 1: 1}
+  tpr : 0.91
+  tnr : 1.00
+class_weight {0: 1, 1: 10}
+  tpr : 1.00
+  tnr : 0.78
+class_weight {0: 1, 1: 1}
+  tpr : 1.00
+  tnr : 1.00
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sampling-approaches">
+<h2>Sampling Approaches<a class="headerlink" href="#sampling-approaches" title="Permalink to this headline">#</a></h2>
+<p>Similar to cost-sensitive learning, oversampling and undersampling techniques serve to emphasize one class over another. Oversampling techniques increase the number of samples in the data set of the minority class, whereas undersampling techniques decrease the number of samples in the majority calss.</p>
+<p>The most naive sampling approaches use <em>random resampling</em>, in which instances in the original training data set are randomly selected. In case of random oversampling, instances of the minority class are randomly selected and duplicated. <em>Random undersampling</em>, on the other hand, randomly deletes instances of the majority class from the data set. More sophisticasted approaches, such as SMOTE or prototypes, generate synthetic examples to achieve a more ‘balanced’ data set.</p>
+<div class="seealso admonition note">
+<p class="admonition-title">Note</p>
+<p>The Python library <a class="reference external" href="https://imbalanced-learn.org/stable/"><code class="docutils literal notranslate"><span class="pre">imbalanced-learn</span></code></a> implements various oversampling and undersampling approaches.</p>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -391,34 +668,48 @@ It is often also possible to directly take into account misclassification cost d
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="modelselection.html" title="previous page">Model Selection</a>
-    <a class='right-next' id="next-link" href="../ethics/introduction.html" title="next page">Ethics Preliminaries</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="modelselection.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Model Selection</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="../../fairness/introduction.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Algorithmic Fairness</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hilde Weerts<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

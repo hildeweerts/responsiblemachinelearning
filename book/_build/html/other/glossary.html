@@ -5,10 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Glossary &#8212; An Introduction to Responsible Data Science</title>
+    <title>Glossary &#8212; An Introduction to Responsible Machine Learning</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,47 +19,63 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Algorithmic Accountability and Auditing" href="../accountability/introduction.html" />
+    <link rel="prev" title="Partial Dependence Plots" href="../explainability/globalposthoc/pdp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -67,28 +84,31 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
-      <h1 class="site-logo" id="site-title">An Introduction to Responsible Data Science</h1>
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   An Introduction to Responsible Data Science
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
@@ -96,7 +116,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../introduction/introduction.html">
-   Responsible Data Science
+   Responsible Machine Learning
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -109,11 +129,6 @@
    </i>
   </label>
   <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../introduction/machinelearning/machinelearning.html">
-     Machine Learning
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../introduction/machinelearning/modelevaluation.html">
      Model Evaluation
@@ -131,13 +146,8 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../introduction/ethics/introduction.html">
-   Ethics Preliminaries
-  </a>
- </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Fairness
  </span>
@@ -159,20 +169,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/groupfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../fairness/groupfairness/groupfairnessmetrics.html">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/groupfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../fairness/groupfairness/impossibilitytheorem.html">
+     The Impossibility Theorem
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fairness/individualfairness/introduction.html">
-   Individual Fairness
+  <a class="reference internal" href="../fairness/fairml/introduction.html">
+   Fairness-Aware Machine Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -181,20 +191,27 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/individualfairness/metrics.html">
-     Individual Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/individualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../fairness/fairml/randomizedthresholds.html">
+     Randomized Thresholds
     </a>
    </li>
   </ul>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../explainability/introduction.html">
+   Explainable Machine Learning
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fairness/counterfactualfairness/introduction.html">
-   Counterfactual Fairness
+  <a class="reference internal" href="../explainability/localposthoc/introduction.html">
+   Local Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -203,20 +220,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/counterfactualfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../explainability/localposthoc/shap.html">
+     SHAP
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/counterfactualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../explainability/localposthoc/discussion.html">
+     Feature importance
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fairness/casestudies/introduction.html">
-   Case Studies
+  <a class="reference internal" href="../explainability/globalposthoc/introduction.html">
+   Global Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -225,38 +242,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/casestudies/compas/introduction.html">
-     COMPAS
+    <a class="reference internal" href="../explainability/globalposthoc/pdp.html">
+     Partial Dependence Plots
     </a>
    </li>
   </ul>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Explainability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../explainability/introduction.html">
-   Explainable Artificial Intelligence
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Accountability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../accountability/introduction.html">
-   Algorithmic Accountability and Auditing
-  </a>
- </li>
-</ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Misc
  </span>
@@ -270,12 +263,17 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -283,192 +281,282 @@
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/other/glossary.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Fother/glossary.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/other/glossary.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hildeweerts/responsibledatascience"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hildeweerts/responsibledatascience/issues/new?title=Issue%20on%20page%20%2Fother/glossary.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
 </div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-        </div>
     </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Glossary</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="glossary">
-<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="glossary">
+<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">#</a></h1>
 <dl class="glossary simple">
-<dt id="term-accountability">accountability<a class="headerlink" href="#term-accountability" title="Permalink to this term">¶</a></dt><dd><p><em>(as a moral value)</em> Holding one responsible for one’s actions, typically after harmful consequences have occurred.</p>
+<dt id="term-accountability">accountability<a class="headerlink" href="#term-accountability" title="Permalink to this term">#</a></dt><dd><p><em>(as a moral value)</em> Holding one responsible for one’s actions, typically after harmful consequences have occurred.</p>
 </dd>
-<dt id="term-accuracy">accuracy<a class="headerlink" href="#term-accuracy" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric defined as the fraction of predictions the model predicted correctly: <span class="math notranslate nohighlight">\(\frac{tp + tn}{tp+tn+fp+fn}\)</span>.</p>
+<dt id="term-accuracy">accuracy<a class="headerlink" href="#term-accuracy" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric defined as the fraction of predictions the model predicted correctly: <span class="math notranslate nohighlight">\(\frac{tp + tn}{tp+tn+fp+fn}\)</span>.</p>
 </dd>
-<dt id="term-AUC">AUC<a class="headerlink" href="#term-AUC" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric defined as the area under the <a class="reference internal" href="#term-ROC-curve"><span class="xref std std-term">ROC curve</span></a>.</p>
+<dt id="term-algorithmic-fairness">algorithmic fairness<a class="headerlink" href="#term-algorithmic-fairness" title="Permalink to this term">#</a></dt><dd><p>The idea that algorithmic systems should behave and/or treat people fairly.</p>
 </dd>
-<dt id="term-average-precision">average precision<a class="headerlink" href="#term-average-precision" title="Permalink to this term">¶</a></dt><dd><p>The average <a class="reference internal" href="#term-precision"><span class="xref std std-term">precision</span></a> score over all <a class="reference internal" href="#term-recall"><span class="xref std std-term">recall</span></a> values in a <a class="reference internal" href="#term-precision-recall-curve"><span class="xref std std-term">precision-recall curve</span></a>.</p>
+<dt id="term-AUC">AUC<a class="headerlink" href="#term-AUC" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric defined as the area under the <a class="reference internal" href="#term-ROC-curve"><span class="xref std std-term">ROC curve</span></a>.</p>
 </dd>
-<dt id="term-binary-classification">binary classification<a class="headerlink" href="#term-binary-classification" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-classification"><span class="xref std std-term">classification</span></a> problem with exactly two <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a>es.</p>
+<dt id="term-average-precision">average precision<a class="headerlink" href="#term-average-precision" title="Permalink to this term">#</a></dt><dd><p>The average <a class="reference internal" href="#term-precision"><span class="xref std std-term">precision</span></a> score over all <a class="reference internal" href="#term-recall"><span class="xref std std-term">recall</span></a> values in a <a class="reference internal" href="#term-precision-recall-curve"><span class="xref std std-term">precision-recall curve</span></a>.</p>
 </dd>
-<dt id="term-calibration">calibration<a class="headerlink" href="#term-calibration" title="Permalink to this term">¶</a></dt><dd><p>The extent to which a predicted value corresponds to the actual probability that an instance belongs to the predicted class.</p>
+<dt id="term-binary-classification">binary classification<a class="headerlink" href="#term-binary-classification" title="Permalink to this term">#</a></dt><dd><p>A <a class="reference internal" href="#term-classification"><span class="xref std std-term">classification</span></a> problem with exactly two <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a>es.</p>
 </dd>
-<dt id="term-calibration-curve">calibration curve<a class="headerlink" href="#term-calibration-curve" title="Permalink to this term">¶</a></dt><dd><p>A curve that sets out the mean predicted probability of a model against the fraction of positives.</p>
+<dt id="term-calibration">calibration<a class="headerlink" href="#term-calibration" title="Permalink to this term">#</a></dt><dd><p>The extent to which a predicted value corresponds to the actual probability that an instance belongs to the predicted class.</p>
 </dd>
-<dt id="term-class">class<a class="headerlink" href="#term-class" title="Permalink to this term">¶</a></dt><dd><p>A category of the categorical <a class="reference internal" href="#term-target-variable"><span class="xref std std-term">target variable</span></a> in a <a class="reference internal" href="#term-classification"><span class="xref std std-term">classification</span></a> problem.</p>
+<dt id="term-calibration-curve">calibration curve<a class="headerlink" href="#term-calibration-curve" title="Permalink to this term">#</a></dt><dd><p>A curve that sets out the mean predicted probability of a model against the fraction of positives.</p>
 </dd>
-<dt id="term-classification">classification<a class="headerlink" href="#term-classification" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a> problem where the target variable is categorical.</p>
+<dt id="term-class">class<a class="headerlink" href="#term-class" title="Permalink to this term">#</a></dt><dd><p>A category of the categorical <a class="reference internal" href="#term-target-variable"><span class="xref std std-term">target variable</span></a> in a <a class="reference internal" href="#term-classification"><span class="xref std std-term">classification</span></a> problem.</p>
 </dd>
-<dt id="term-confidence-score">confidence score<a class="headerlink" href="#term-confidence-score" title="Permalink to this term">¶</a></dt><dd><p>The confidence of the model that an <a class="reference internal" href="#term-instance"><span class="xref std std-term">instance</span></a> belongs to a certain <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a>.</p>
+<dt id="term-classification">classification<a class="headerlink" href="#term-classification" title="Permalink to this term">#</a></dt><dd><p>A <a class="reference internal" href="#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a> problem where the target variable is categorical.</p>
 </dd>
-<dt id="term-confusion-matrix">confusion matrix<a class="headerlink" href="#term-confusion-matrix" title="Permalink to this term">¶</a></dt><dd><p>A matrix that denotes the performance of a machine learning model. The columns denote predicted <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a>es, the rows the ground0truth classes, and the cells the number of instances for which the combinatino of prediciton/ground truth class occurs.</p>
+<dt id="term-confidence-score">confidence score<a class="headerlink" href="#term-confidence-score" title="Permalink to this term">#</a></dt><dd><p>The confidence of the model that an <a class="reference internal" href="#term-instance"><span class="xref std std-term">instance</span></a> belongs to a certain <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a>.</p>
 </dd>
-<dt id="term-decision-threshold">decision threshold<a class="headerlink" href="#term-decision-threshold" title="Permalink to this term">¶</a></dt><dd><p>In a binary classification problem, the cut-off value of the model’s predicted score at which an instance is classified as belonging to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a>.</p>
+<dt id="term-confusion-matrix">confusion matrix<a class="headerlink" href="#term-confusion-matrix" title="Permalink to this term">#</a></dt><dd><p>A matrix that denotes the performance of a machine learning model. The columns denote predicted <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a>es, the rows the ground0truth classes, and the cells the number of instances for which the combinatino of prediciton/ground truth class occurs.</p>
 </dd>
-<dt id="term-explainable-machine-learning">explainable machine learning<a class="headerlink" href="#term-explainable-machine-learning" title="Permalink to this term">¶</a></dt><dd><p>A branch of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> that studies explaining machine learning models’ inner workings or predictions in a way that is understandable to humans, typically concerns complex black-box models. Sometimes used interchangeably with <a class="reference internal" href="#term-interpretable-machine-learning"><span class="xref std std-term">interpretable machine learning</span></a>.</p>
+<dt id="term-cost-sensitive-learning">cost-sensitive learning<a class="headerlink" href="#term-cost-sensitive-learning" title="Permalink to this term">#</a></dt><dd><p>A subfield of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> that explicitly takes into account different valuations (or costs) of mistakes during model training.</p>
 </dd>
-<dt id="term-f1-score">f1-score<a class="headerlink" href="#term-f1-score" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric that is equal to the harmonic mean of <a class="reference internal" href="#term-precision"><span class="xref std std-term">precision</span></a> and <a class="reference internal" href="#term-recall"><span class="xref std std-term">recall</span></a>: <span class="math notranslate nohighlight">\(\frac{tp}{tp + \frac{1}{2}(fp+tn)}\)</span>.</p>
+<dt id="term-decision-threshold">decision threshold<a class="headerlink" href="#term-decision-threshold" title="Permalink to this term">#</a></dt><dd><p>In a binary classification problem, the cut-off value of the model’s predicted score at which an instance is classified as belonging to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a>.</p>
 </dd>
-<dt id="term-fairness">fairness<a class="headerlink" href="#term-fairness" title="Permalink to this term">¶</a></dt><dd><p><em>(as a moral value)</em> Treatment of behavior that is just and free from discrimination.</p>
+<dt id="term-explainable-machine-learning">explainable machine learning<a class="headerlink" href="#term-explainable-machine-learning" title="Permalink to this term">#</a></dt><dd><p>A branch of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> that studies explaining machine learning models’ inner workings or predictions in a way that is understandable to humans, typically concerns complex black-box models. Sometimes used interchangeably with <a class="reference internal" href="#term-interpretable-machine-learning"><span class="xref std std-term">interpretable machine learning</span></a>.</p>
 </dd>
-<dt id="term-false-negative">false negative<a class="headerlink" href="#term-false-negative" title="Permalink to this term">¶</a></dt><dd><p>A positive instance that the model incorrectly predicted to be negative.</p>
+<dt id="term-f1-score">f1-score<a class="headerlink" href="#term-f1-score" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric that is equal to the harmonic mean of <a class="reference internal" href="#term-precision"><span class="xref std std-term">precision</span></a> and <a class="reference internal" href="#term-recall"><span class="xref std std-term">recall</span></a>: <span class="math notranslate nohighlight">\(\frac{tp}{tp + \frac{1}{2}(fp+tn)}\)</span>.</p>
 </dd>
-<dt id="term-false-negative-rate">false negative rate<a class="headerlink" href="#term-false-negative-rate" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric defined as the fraction of <a class="reference internal" href="#term-false-negative"><span class="xref std std-term">false negative</span></a>s out of all instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a>: <span class="math notranslate nohighlight">\(\frac{fn}{fn+tp}\)</span>.</p>
+<dt id="term-fairness">fairness<a class="headerlink" href="#term-fairness" title="Permalink to this term">#</a></dt><dd><p><em>(as a moral value)</em> Treatment of behavior that is just and free from discrimination.</p>
 </dd>
-<dt id="term-false-positive">false positive<a class="headerlink" href="#term-false-positive" title="Permalink to this term">¶</a></dt><dd><p>A negative instance that the model incorrectly predicted to be positive.</p>
+<dt id="term-false-negative">false negative<a class="headerlink" href="#term-false-negative" title="Permalink to this term">#</a></dt><dd><p>A positive instance that the model incorrectly predicted to be negative.</p>
 </dd>
-<dt id="term-false-positive-rate">false positive rate<a class="headerlink" href="#term-false-positive-rate" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric defined as the fraction of <a class="reference internal" href="#term-false-positive"><span class="xref std std-term">false positive</span></a>s out of all instances that belong to the <a class="reference internal" href="#term-negative-class"><span class="xref std std-term">negative class</span></a>: <span class="math notranslate nohighlight">\(\frac{fp}{fp+tn}\)</span>.</p>
+<dt id="term-false-negative-rate">false negative rate<a class="headerlink" href="#term-false-negative-rate" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric defined as the fraction of <a class="reference internal" href="#term-false-negative"><span class="xref std std-term">false negative</span></a>s out of all instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a>: <span class="math notranslate nohighlight">\(\frac{fn}{fn+tp}\)</span>.</p>
 </dd>
-<dt id="term-feature">feature<a class="headerlink" href="#term-feature" title="Permalink to this term">¶</a></dt><dd><p>A variable in a data set that is used to predict the <a class="reference internal" href="#term-target-variable"><span class="xref std std-term">target variable</span></a>.</p>
+<dt id="term-false-positive">false positive<a class="headerlink" href="#term-false-positive" title="Permalink to this term">#</a></dt><dd><p>A negative instance that the model incorrectly predicted to be positive.</p>
 </dd>
-<dt id="term-grid-search">grid search<a class="headerlink" href="#term-grid-search" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-hyperparameter-tuning"><span class="xref std std-term">hyperparameter tuning</span></a> procedure that consists of an exhaustive search over all hyperparameter settings in the search space.</p>
+<dt id="term-false-positive-rate">false positive rate<a class="headerlink" href="#term-false-positive-rate" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric defined as the fraction of <a class="reference internal" href="#term-false-positive"><span class="xref std std-term">false positive</span></a>s out of all instances that belong to the <a class="reference internal" href="#term-negative-class"><span class="xref std std-term">negative class</span></a>: <span class="math notranslate nohighlight">\(\frac{fp}{fp+tn}\)</span>.</p>
 </dd>
-<dt id="term-hyperparameter">hyperparameter<a class="headerlink" href="#term-hyperparameter" title="Permalink to this term">¶</a></dt><dd><p>A parameter of a machine learning algorithm that controls the learning process in some way and is set by the user.</p>
+<dt id="term-feature">feature<a class="headerlink" href="#term-feature" title="Permalink to this term">#</a></dt><dd><p>A variable in a data set that is used to predict the <a class="reference internal" href="#term-target-variable"><span class="xref std std-term">target variable</span></a>.</p>
 </dd>
-<dt id="term-hyperparameter-tuning">hyperparameter tuning<a class="headerlink" href="#term-hyperparameter-tuning" title="Permalink to this term">¶</a></dt><dd><p>The process of identifying the best <a class="reference internal" href="#term-hyperparameter"><span class="xref std std-term">hyperparameter</span></a> settings for a learning task.</p>
+<dt id="term-grid-search">grid search<a class="headerlink" href="#term-grid-search" title="Permalink to this term">#</a></dt><dd><p>A <a class="reference internal" href="#term-hyperparameter-tuning"><span class="xref std std-term">hyperparameter tuning</span></a> procedure that consists of an exhaustive search over all hyperparameter settings in the search space.</p>
 </dd>
-<dt id="term-imbalanced-data">imbalanced data<a class="headerlink" href="#term-imbalanced-data" title="Permalink to this term">¶</a></dt><dd><p>A dataset with skewed class proportions, i.e., the number of instances per class differs across classes.</p>
+<dt id="term-hyperparameter">hyperparameter<a class="headerlink" href="#term-hyperparameter" title="Permalink to this term">#</a></dt><dd><p>A parameter of a machine learning algorithm that controls the learning process in some way and is set by the user.</p>
 </dd>
-<dt id="term-instance">instance<a class="headerlink" href="#term-instance" title="Permalink to this term">¶</a></dt><dd><p>A record in a data set.</p>
+<dt id="term-hyperparameter-tuning">hyperparameter tuning<a class="headerlink" href="#term-hyperparameter-tuning" title="Permalink to this term">#</a></dt><dd><p>The process of identifying the best <a class="reference internal" href="#term-hyperparameter"><span class="xref std std-term">hyperparameter</span></a> settings for a learning task.</p>
 </dd>
-<dt id="term-interpretable-machine-learning">interpretable machine learning<a class="headerlink" href="#term-interpretable-machine-learning" title="Permalink to this term">¶</a></dt><dd><p>A branch of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> that studies explaining machine learning models’ inner workings or predictions in a way that is understandable to humans, typically concerns intrinsically interpretable models. Sometimes used interchangeably with <a class="reference internal" href="#term-explainable-machine-learning"><span class="xref std std-term">explainable machine learning</span></a>.</p>
+<dt id="term-imbalanced-data">imbalanced data<a class="headerlink" href="#term-imbalanced-data" title="Permalink to this term">#</a></dt><dd><p>A dataset with skewed class proportions, i.e., the number of instances per class differs across classes.</p>
 </dd>
-<dt id="term-k-fold-cross-validation">k-fold cross-validation<a class="headerlink" href="#term-k-fold-cross-validation" title="Permalink to this term">¶</a></dt><dd><p>A model selection procedure in which the data set is split into <span class="math notranslate nohighlight">\(k\)</span> folds. For each fold, a machine learning model is tested on the current fold and trained on the remaining <span class="math notranslate nohighlight">\(k-1\)</span> folds. The overall performance of an algorithm is then estimated based on the performance on all <span class="math notranslate nohighlight">\(k\)</span> folds.</p>
+<dt id="term-instance">instance<a class="headerlink" href="#term-instance" title="Permalink to this term">#</a></dt><dd><p>A record in a data set.</p>
 </dd>
-<dt id="term-loss-function">loss function<a class="headerlink" href="#term-loss-function" title="Permalink to this term">¶</a></dt><dd><p>A function that formalizes the costs of different types of errors in an optimization algorithm.</p>
+<dt id="term-interpretable-machine-learning">interpretable machine learning<a class="headerlink" href="#term-interpretable-machine-learning" title="Permalink to this term">#</a></dt><dd><p>A branch of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> that studies explaining machine learning models’ inner workings or predictions in a way that is understandable to humans, typically concerns intrinsically interpretable models. Sometimes used interchangeably with <a class="reference internal" href="#term-explainable-machine-learning"><span class="xref std std-term">explainable machine learning</span></a>.</p>
 </dd>
-<dt id="term-machine-learning">machine learning<a class="headerlink" href="#term-machine-learning" title="Permalink to this term">¶</a></dt><dd><p>A research field that studies the use and development of algorithms that build mathematical models by `learning’ from experience or data.</p>
+<dt id="term-k-fold-cross-validation">k-fold cross-validation<a class="headerlink" href="#term-k-fold-cross-validation" title="Permalink to this term">#</a></dt><dd><p>A model selection procedure in which the data set is split into <span class="math notranslate nohighlight">\(k\)</span> folds. For each fold, a machine learning model is tested on the current fold and trained on the remaining <span class="math notranslate nohighlight">\(k-1\)</span> folds. The overall performance of an algorithm is then estimated based on the performance on all <span class="math notranslate nohighlight">\(k\)</span> folds.</p>
 </dd>
-<dt id="term-negative-class">negative class<a class="headerlink" href="#term-negative-class" title="Permalink to this term">¶</a></dt><dd><p>The <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a> in a <a class="reference internal" href="#term-binary-classification"><span class="xref std std-term">binary classification</span></a> problem we are not the most interested in, e.g., not fraud in fraud detection.</p>
+<dt id="term-loss-function">loss function<a class="headerlink" href="#term-loss-function" title="Permalink to this term">#</a></dt><dd><p>A function that formalizes the costs of different types of errors in an optimization algorithm.</p>
 </dd>
-<dt id="term-negative-predictive-value">negative predictive value<a class="headerlink" href="#term-negative-predictive-value" title="Permalink to this term">¶</a></dt><dd><p>A predictive perforance metric defined as the fraction of instances that belong to the <a class="reference internal" href="#term-negative-class"><span class="xref std std-term">negative class</span></a> among the predicted negative instances: <span class="math notranslate nohighlight">\(\frac{tn}{tn+fn}\)</span>.</p>
+<dt id="term-machine-learning">machine learning<a class="headerlink" href="#term-machine-learning" title="Permalink to this term">#</a></dt><dd><p>A research field that studies the use and development of algorithms that build mathematical models by `learning’ from experience or data.</p>
 </dd>
-<dt id="term-nested-cross-validation">nested cross-validation<a class="headerlink" href="#term-nested-cross-validation" title="Permalink to this term">¶</a></dt><dd><p>A model selection procedure in which <a class="reference internal" href="#term-k-fold-cross-validation"><span class="xref std std-term">k-fold cross-validation</span></a> is performed for both the split between <a class="reference internal" href="#term-training-set"><span class="xref std std-term">training set</span></a> and <a class="reference internal" href="#term-test-set"><span class="xref std std-term">test set</span></a> and the split between <a class="reference internal" href="#term-training-set"><span class="xref std std-term">training set</span></a> and <a class="reference internal" href="#term-validation-set"><span class="xref std std-term">validation set</span></a>.</p>
+<dt id="term-negative-class">negative class<a class="headerlink" href="#term-negative-class" title="Permalink to this term">#</a></dt><dd><p>The <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a> in a <a class="reference internal" href="#term-binary-classification"><span class="xref std std-term">binary classification</span></a> problem we are not the most interested in, e.g., not fraud in fraud detection.</p>
 </dd>
-<dt id="term-overfitting">overfitting<a class="headerlink" href="#term-overfitting" title="Permalink to this term">¶</a></dt><dd><p>A scenario where the model relies on artefacts in the <a class="reference internal" href="#term-training-set"><span class="xref std std-term">training set</span></a> that do not generalize beyond the training data.</p>
+<dt id="term-negative-predictive-value">negative predictive value<a class="headerlink" href="#term-negative-predictive-value" title="Permalink to this term">#</a></dt><dd><p>A predictive perforance metric defined as the fraction of instances that belong to the <a class="reference internal" href="#term-negative-class"><span class="xref std std-term">negative class</span></a> among the predicted negative instances: <span class="math notranslate nohighlight">\(\frac{tn}{tn+fn}\)</span>.</p>
 </dd>
-<dt id="term-positive-class">positive class<a class="headerlink" href="#term-positive-class" title="Permalink to this term">¶</a></dt><dd><p>The <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a> in a <a class="reference internal" href="#term-binary-classification"><span class="xref std std-term">binary classification</span></a> problem we are trying to detect, e.g., fraud in fraud detection.</p>
+<dt id="term-nested-cross-validation">nested cross-validation<a class="headerlink" href="#term-nested-cross-validation" title="Permalink to this term">#</a></dt><dd><p>A model selection procedure in which <a class="reference internal" href="#term-k-fold-cross-validation"><span class="xref std std-term">k-fold cross-validation</span></a> is performed for both the split between <a class="reference internal" href="#term-training-set"><span class="xref std std-term">training set</span></a> and <a class="reference internal" href="#term-test-set"><span class="xref std std-term">test set</span></a> and the split between <a class="reference internal" href="#term-training-set"><span class="xref std std-term">training set</span></a> and <a class="reference internal" href="#term-validation-set"><span class="xref std std-term">validation set</span></a>.</p>
 </dd>
-<dt id="term-positive-predictive-value">positive predictive value<a class="headerlink" href="#term-positive-predictive-value" title="Permalink to this term">¶</a></dt><dd><p>A predictive perforance metric defined as the fraction of instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a> among the predicted positive instances: <span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span>. Equivalent to precision.</p>
+<dt id="term-overfitting">overfitting<a class="headerlink" href="#term-overfitting" title="Permalink to this term">#</a></dt><dd><p>A scenario where the model relies on artefacts in the <a class="reference internal" href="#term-training-set"><span class="xref std std-term">training set</span></a> that do not generalize beyond the training data.</p>
 </dd>
-<dt id="term-precision">precision<a class="headerlink" href="#term-precision" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric defined as the fraction of instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a> among the predicted positive instances: <span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span>.</p>
+<dt id="term-positive-class">positive class<a class="headerlink" href="#term-positive-class" title="Permalink to this term">#</a></dt><dd><p>The <a class="reference internal" href="#term-class"><span class="xref std std-term">class</span></a> in a <a class="reference internal" href="#term-binary-classification"><span class="xref std std-term">binary classification</span></a> problem we are trying to detect, e.g., fraud in fraud detection.</p>
 </dd>
-<dt id="term-precision-recall-curve">precision-recall curve<a class="headerlink" href="#term-precision-recall-curve" title="Permalink to this term">¶</a></dt><dd><p>A curve in which the <a class="reference internal" href="#term-precision"><span class="xref std std-term">precision</span></a> of a model is set out against the <a class="reference internal" href="#term-recall"><span class="xref std std-term">recall</span></a> of the model at different <a class="reference internal" href="#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a>s.</p>
+<dt id="term-positive-predictive-value">positive predictive value<a class="headerlink" href="#term-positive-predictive-value" title="Permalink to this term">#</a></dt><dd><p>A predictive perforance metric defined as the fraction of instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a> among the predicted positive instances: <span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span>. Equivalent to precision.</p>
 </dd>
-<dt id="term-random-search">random search<a class="headerlink" href="#term-random-search" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-hyperparameter-tuning"><span class="xref std std-term">hyperparameter tuning</span></a> procedure that consists of a search of a predefined number of randomly sampled hyperparameter settings from the search space.</p>
+<dt id="term-precision">precision<a class="headerlink" href="#term-precision" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric defined as the fraction of instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a> among the predicted positive instances: <span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span>.</p>
 </dd>
-<dt id="term-recall">recall<a class="headerlink" href="#term-recall" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric defined as the fraction of instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a> from all positive instances in the data set. Equivalent to the <a class="reference internal" href="#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a>: <span class="math notranslate nohighlight">\(\frac{tp}{tp+fn}\)</span>.</p>
+<dt id="term-precision-recall-curve">precision-recall curve<a class="headerlink" href="#term-precision-recall-curve" title="Permalink to this term">#</a></dt><dd><p>A curve in which the <a class="reference internal" href="#term-precision"><span class="xref std std-term">precision</span></a> of a model is set out against the <a class="reference internal" href="#term-recall"><span class="xref std std-term">recall</span></a> of the model at different <a class="reference internal" href="#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a>s.</p>
 </dd>
-<dt id="term-regression">regression<a class="headerlink" href="#term-regression" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a> problem where the target variable is continuous.</p>
+<dt id="term-random-search">random search<a class="headerlink" href="#term-random-search" title="Permalink to this term">#</a></dt><dd><p>A <a class="reference internal" href="#term-hyperparameter-tuning"><span class="xref std std-term">hyperparameter tuning</span></a> procedure that consists of a search of a predefined number of randomly sampled hyperparameter settings from the search space.</p>
 </dd>
-<dt id="term-reinforcement-learning">reinforcement learning<a class="headerlink" href="#term-reinforcement-learning" title="Permalink to this term">¶</a></dt><dd><p>A subfield of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> where the goal is to learn which actions to take in order to maximize a particular reward.</p>
+<dt id="term-recall">recall<a class="headerlink" href="#term-recall" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric defined as the fraction of instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a> from all positive instances in the data set. Equivalent to the <a class="reference internal" href="#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a>: <span class="math notranslate nohighlight">\(\frac{tp}{tp+fn}\)</span>.</p>
 </dd>
-<dt id="term-repeated-cross-validation">repeated cross-validation<a class="headerlink" href="#term-repeated-cross-validation" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-k-fold-cross-validation"><span class="xref std std-term">k-fold cross-validation</span></a> procedure that is repeated multiple times, shuffling the data differently each time.</p>
+<dt id="term-regression">regression<a class="headerlink" href="#term-regression" title="Permalink to this term">#</a></dt><dd><p>A <a class="reference internal" href="#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a> problem where the target variable is continuous.</p>
 </dd>
-<dt id="term-ROC-curve">ROC curve<a class="headerlink" href="#term-ROC-curve" title="Permalink to this term">¶</a></dt><dd><p>A curve in which the <a class="reference internal" href="#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a> of a model is set out against the <a class="reference internal" href="#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a> of the model at different <a class="reference internal" href="#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a>s.</p>
+<dt id="term-reinforcement-learning">reinforcement learning<a class="headerlink" href="#term-reinforcement-learning" title="Permalink to this term">#</a></dt><dd><p>A subfield of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> where the goal is to learn which actions to take in order to maximize a particular reward.</p>
 </dd>
-<dt id="term-supervised-learning">supervised learning<a class="headerlink" href="#term-supervised-learning" title="Permalink to this term">¶</a></dt><dd><p>A subfield of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> where the goal is learn to predict a <a class="reference internal" href="#term-target-variable"><span class="xref std std-term">target variable</span></a> from input features.</p>
+<dt id="term-repeated-cross-validation">repeated cross-validation<a class="headerlink" href="#term-repeated-cross-validation" title="Permalink to this term">#</a></dt><dd><p>A <a class="reference internal" href="#term-k-fold-cross-validation"><span class="xref std std-term">k-fold cross-validation</span></a> procedure that is repeated multiple times, shuffling the data differently each time.</p>
 </dd>
-<dt id="term-target-variable">target variable<a class="headerlink" href="#term-target-variable" title="Permalink to this term">¶</a></dt><dd><p>The variable that is to be predicted in <a class="reference internal" href="#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a>.</p>
+<dt id="term-ROC-curve">ROC curve<a class="headerlink" href="#term-ROC-curve" title="Permalink to this term">#</a></dt><dd><p>A curve in which the <a class="reference internal" href="#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a> of a model is set out against the <a class="reference internal" href="#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a> of the model at different <a class="reference internal" href="#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a>s.</p>
 </dd>
-<dt id="term-test-set">test set<a class="headerlink" href="#term-test-set" title="Permalink to this term">¶</a></dt><dd><p>The data that is used to estimate the performance of the machine learning model on new data <em>after</em> model selection.</p>
+<dt id="term-sensitive-characteristic">sensitive characteristic<a class="headerlink" href="#term-sensitive-characteristic" title="Permalink to this term">#</a></dt><dd><p>A characteristic of an individual such that a decision based on this characteristic is considered undesirable from an ethical or legal point of view.</p>
 </dd>
-<dt id="term-training-set">training set<a class="headerlink" href="#term-training-set" title="Permalink to this term">¶</a></dt><dd><p>The data that is used to fit the model to.</p>
+<dt id="term-supervised-learning">supervised learning<a class="headerlink" href="#term-supervised-learning" title="Permalink to this term">#</a></dt><dd><p>A subfield of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> where the goal is learn to predict a <a class="reference internal" href="#term-target-variable"><span class="xref std std-term">target variable</span></a> from input features.</p>
 </dd>
-<dt id="term-transparency">transparency<a class="headerlink" href="#term-transparency" title="Permalink to this term">¶</a></dt><dd><p><em>(as a moral value)</em> The degree of openness that allows others to understand what actions are performed.</p>
+<dt id="term-target-variable">target variable<a class="headerlink" href="#term-target-variable" title="Permalink to this term">#</a></dt><dd><p>The variable that is to be predicted in <a class="reference internal" href="#term-supervised-learning"><span class="xref std std-term">supervised learning</span></a>.</p>
 </dd>
-<dt id="term-true-negative">true negative<a class="headerlink" href="#term-true-negative" title="Permalink to this term">¶</a></dt><dd><p>A negative instance that the model correctly predicted to be negative.</p>
+<dt id="term-test-set">test set<a class="headerlink" href="#term-test-set" title="Permalink to this term">#</a></dt><dd><p>The data that is used to estimate the performance of the machine learning model on new data <em>after</em> model selection.</p>
 </dd>
-<dt id="term-true-negative-rate">true negative rate<a class="headerlink" href="#term-true-negative-rate" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric defined as the fraction of <a class="reference internal" href="#term-true-negative"><span class="xref std std-term">true negative</span></a>s out of all instances that belong to the <a class="reference internal" href="#term-negative-class"><span class="xref std std-term">negative class</span></a>: <span class="math notranslate nohighlight">\(\frac{tn}{fp+tn}\)</span>.</p>
+<dt id="term-training-set">training set<a class="headerlink" href="#term-training-set" title="Permalink to this term">#</a></dt><dd><p>The data that is used to fit the model to.</p>
 </dd>
-<dt id="term-true-positive">true positive<a class="headerlink" href="#term-true-positive" title="Permalink to this term">¶</a></dt><dd><p>A positive instance that the model correctly predicted to be positive.</p>
+<dt id="term-transparency">transparency<a class="headerlink" href="#term-transparency" title="Permalink to this term">#</a></dt><dd><p><em>(as a moral value)</em> The degree of openness that allows others to understand what actions are performed.</p>
 </dd>
-<dt id="term-true-positive-rate">true positive rate<a class="headerlink" href="#term-true-positive-rate" title="Permalink to this term">¶</a></dt><dd><p>A predictive performance metric defined as the fraction of <a class="reference internal" href="#term-true-positive"><span class="xref std std-term">true positive</span></a>s out of all instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a>: <span class="math notranslate nohighlight">\(\frac{tp}{fn+tp}\)</span>.</p>
+<dt id="term-true-negative">true negative<a class="headerlink" href="#term-true-negative" title="Permalink to this term">#</a></dt><dd><p>A negative instance that the model correctly predicted to be negative.</p>
 </dd>
-<dt id="term-underfitting">underfitting<a class="headerlink" href="#term-underfitting" title="Permalink to this term">¶</a></dt><dd><p>A scenario where the model is not able to capture the underlying structure of the data.</p>
+<dt id="term-true-negative-rate">true negative rate<a class="headerlink" href="#term-true-negative-rate" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric defined as the fraction of <a class="reference internal" href="#term-true-negative"><span class="xref std std-term">true negative</span></a>s out of all instances that belong to the <a class="reference internal" href="#term-negative-class"><span class="xref std std-term">negative class</span></a>: <span class="math notranslate nohighlight">\(\frac{tn}{fp+tn}\)</span>.</p>
 </dd>
-<dt id="term-unsupervised-learning">unsupervised learning<a class="headerlink" href="#term-unsupervised-learning" title="Permalink to this term">¶</a></dt><dd><p>A subfield of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> where the goal is to identify patterns in the data in absence of an explicit target variable, such as clusters of similar instances or topics of texts.</p>
+<dt id="term-true-positive">true positive<a class="headerlink" href="#term-true-positive" title="Permalink to this term">#</a></dt><dd><p>A positive instance that the model correctly predicted to be positive.</p>
 </dd>
-<dt id="term-validation-set">validation set<a class="headerlink" href="#term-validation-set" title="Permalink to this term">¶</a></dt><dd><p>The data that is used to estimate the performance of a machine learning for model selection.</p>
+<dt id="term-true-positive-rate">true positive rate<a class="headerlink" href="#term-true-positive-rate" title="Permalink to this term">#</a></dt><dd><p>A predictive performance metric defined as the fraction of <a class="reference internal" href="#term-true-positive"><span class="xref std std-term">true positive</span></a>s out of all instances that belong to the <a class="reference internal" href="#term-positive-class"><span class="xref std std-term">positive class</span></a>: <span class="math notranslate nohighlight">\(\frac{tp}{fn+tp}\)</span>.</p>
+</dd>
+<dt id="term-underfitting">underfitting<a class="headerlink" href="#term-underfitting" title="Permalink to this term">#</a></dt><dd><p>A scenario where the model is not able to capture the underlying structure of the data.</p>
+</dd>
+<dt id="term-unsupervised-learning">unsupervised learning<a class="headerlink" href="#term-unsupervised-learning" title="Permalink to this term">#</a></dt><dd><p>A subfield of <a class="reference internal" href="#term-machine-learning"><span class="xref std std-term">machine learning</span></a> where the goal is to identify patterns in the data in absence of an explicit target variable, such as clusters of similar instances or topics of texts.</p>
+</dd>
+<dt id="term-validation-set">validation set<a class="headerlink" href="#term-validation-set" title="Permalink to this term">#</a></dt><dd><p>The data that is used to estimate the performance of a machine learning for model selection.</p>
 </dd>
 </dl>
 </div>
@@ -495,33 +583,41 @@
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../accountability/introduction.html" title="previous page">Algorithmic Accountability and Auditing</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../explainability/globalposthoc/pdp.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Partial Dependence Plots</p>
         </div>
-        
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hilde Weerts<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

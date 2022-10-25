@@ -1,6 +1,6 @@
-# Responsible Data science
+# Responsible Machine Learning
 
-This is the Github repository for the online book: [*An Introduction to Responsible Data Science*](https://hildeweerts.github.io/responsibledatascience/).
+This is the Github repository for the online book: [*An Introduction to Responsible Machine learning*](https://hildeweerts.github.io/responsiblemachinelearning/).
 
 --- 
 This work is licensed under a

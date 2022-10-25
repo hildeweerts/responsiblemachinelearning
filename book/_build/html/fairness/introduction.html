@@ -5,10 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Algorithmic Fairness &#8212; An Introduction to Responsible Data Science</title>
+    <title>Algorithmic Fairness &#8212; An Introduction to Responsible Machine Learning</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,46 +19,62 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Group Fairness" href="groupfairness/introduction.html" />
-    <link rel="prev" title="Ethics Preliminaries" href="../introduction/ethics/introduction.html" />
+    <link rel="prev" title="Cost-Sensitive Learning" href="../introduction/machinelearning/costsensitivelearning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -66,28 +83,31 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
-      <h1 class="site-logo" id="site-title">An Introduction to Responsible Data Science</h1>
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   An Introduction to Responsible Data Science
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
@@ -95,7 +115,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../introduction/introduction.html">
-   Responsible Data Science
+   Responsible Machine Learning
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -108,11 +128,6 @@
    </i>
   </label>
   <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../introduction/machinelearning/machinelearning.html">
-     Machine Learning
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../introduction/machinelearning/modelevaluation.html">
      Model Evaluation
@@ -130,13 +145,8 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../introduction/ethics/introduction.html">
-   Ethics Preliminaries
-  </a>
- </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Fairness
  </span>
@@ -158,20 +168,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="groupfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="groupfairness/groupfairnessmetrics.html">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="groupfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="groupfairness/impossibilitytheorem.html">
+     The Impossibility Theorem
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="individualfairness/introduction.html">
-   Individual Fairness
+  <a class="reference internal" href="fairml/introduction.html">
+   Fairness-Aware Machine Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -180,20 +190,27 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="individualfairness/metrics.html">
-     Individual Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="individualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="fairml/groupspecificthresholds.html">
+     Group-Specific Decision Thresholds
     </a>
    </li>
   </ul>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../explainability/introduction.html">
+   Explainable Machine Learning
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="counterfactualfairness/introduction.html">
-   Counterfactual Fairness
+  <a class="reference internal" href="../explainability/localposthoc/introduction.html">
+   Local Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -202,20 +219,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="counterfactualfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../explainability/localposthoc/shap.html">
+     SHAP
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="counterfactualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../explainability/localposthoc/discussion.html">
+     Feature importance
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="casestudies/introduction.html">
-   Case Studies
+  <a class="reference internal" href="../explainability/globalposthoc/introduction.html">
+   Global Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -224,38 +241,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="casestudies/compas/introduction.html">
-     COMPAS
+    <a class="reference internal" href="../explainability/globalposthoc/pdp.html">
+     Partial Dependence Plots
     </a>
    </li>
   </ul>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Explainability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../explainability/introduction.html">
-   Explainable Artificial Intelligence
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Accountability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../accountability/introduction.html">
-   Algorithmic Accountability and Auditing
-  </a>
- </li>
-</ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Misc
  </span>
@@ -269,12 +262,17 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -282,83 +280,307 @@
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/fairness/introduction.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Ffairness/introduction.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/fairness/introduction.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hildeweerts/responsibledatascience"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hildeweerts/responsibledatascience/issues/new?title=Issue%20on%20page%20%2Ffairness/introduction.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
     </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unfair-machines">
+   Unfair Machines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#types-of-harm">
+   Types of Harm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#no-fairness-through-unawareness">
+   No Fairness through Unawareness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-        </div>
     </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Algorithmic Fairness</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unfair-machines">
+   Unfair Machines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#types-of-harm">
+   Types of Harm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#no-fairness-through-unawareness">
+   No Fairness through Unawareness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="algorithmic-fairness">
-<span id="introfairness"></span><h1>Algorithmic Fairness<a class="headerlink" href="#algorithmic-fairness" title="Permalink to this headline">¶</a></h1>
-<p>This some text.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="algorithmic-fairness">
+<span id="intro-fairness"></span><h1>Algorithmic Fairness<a class="headerlink" href="#algorithmic-fairness" title="Permalink to this headline">#</a></h1>
+<p>In recent years, there has been an increasing awareness amongst both the public and scientific community that algorithmic systems can reproduce, amplify, or even introduce unfairness in our societies. From automated resume screening tools that favor men over women to facial recognition systems that fail disproportionately for darker-skinned women. In this chapter, we provide an introduction to algorithmic fairness, list several types of fairness-related harm, and explain why there is no fairness through unawareness.</p>
+<div class="section" id="unfair-machines">
+<h2>Unfair Machines<a class="headerlink" href="#unfair-machines" title="Permalink to this headline">#</a></h2>
+<p>Machine learning applications often make predictions about people. For example, algorithmic systems may be used to decide whether a resume makes it through the first selection round, judge the severity of a medical condition, or determine whether somebody will receive a loan. Since these systems are usually trained on massive amounts of data, they have the potential to be more consistent than human decision-makers with varying levels of experience. For example, consider a resume screening process. In a non-automated scenario, the likelihood to get through the resume selection round can depend on the personal beliefs of the recruiter who happens to judge your resume. On the other hand, the predictions of an algorithmic resume screening system can be learned from the collective judgement of many different recruiters.</p>
+<p>However, the workings of a machine learning model heavily depend on how the machine learning task is formulated and which data is used to train the model. Consequently, prejudices against particular groups can seep into the model in each step of the development process. For example, if in the past a company has hired more men than women, this will be reflected in the training data. The machine learning model is likely to pick up this pattern.</p>
+<div class="admonition-example-amazon-s-resume-screening-model admonition">
+<p class="admonition-title"><em>Example:</em> Amazon’s Resume Screening Model</p>
+<p>In 2015, <a class="reference external" href="https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G">Amazon tried to train a resume screening model</a>. In order to avoid biased predictions, the model did not explicitly take the applicant’s gender into account. However, it turned out that the model penalized resumes that included terms that suggested that the applicant was a woman. For example, resumes that included the word “women’s” (e.g., in “women’s chess club captain”) were less likely to be selected. Although Amazon stated the tool “was never used by Amazon recruiters to evaluate candidates”, this incident serves as an example of how machine learning models can, unintentially, replicate undesirable relationships between a sensitive characteristic and a target variable.</p>
+</div>
+<p>Notably, the characteristics that could potentially make algorithmic systems desirable over human-decision making, also amplify fairness related risks. One prejudiced recruiter can judge a few dozen resumes each day, but an algorithmic system can process thousands of resumes in the blink of an eye. If an algorithmic system is biased in any way, harmful consequences will be structural and can occur at an exceptionally large scale. Even in applications where predictions do not directly consider individuals, people can be unfairly impacted <a class="footnote-reference brackets" href="#footcite-barocas2019" id="id1">1</a>. For example, a machine learning model that predicts the future value of houses can influence the actual sale prices. If some neighborhoods receive much lower house price predictions than others, this may disproportionately affect some groups over others.</p>
+<p>Discrimination and bias of algorithmic systems is not a new problem. Well over two decades ago, Friedman and Nissenbaum<a class="footnote-reference brackets" href="#footcite-friedman1996" id="id2">2</a> analyzed fairness of computer systems. However, with the increasing use of algorithmic systems, it has become clear that the issue is far from solved. Researchers from a range of disciplines have started working on unraveling the mechanisms in which algorithmic systems can undermine fairness and how these risks can be mitigated.</p>
+<p>This has given rise to the research field of <a class="reference internal" href="../other/glossary.html#term-algorithmic-fairness"><span class="xref std std-term">algorithmic fairness</span></a>: the idea that algorithmic systems should behave or treat people fairly, i.e., without discrimination on the grounds of <a class="reference internal" href="../other/glossary.html#term-sensitive-characteristic"><span class="xref std std-term">sensitive characteristic</span></a>s such as age, sex, disability, ethnic or racial origin, religion or belief, or sexual orientation. Here, sensitive characteristic refers to a characteristic of an individual such that any decisions based on this characteristic are considered undesirable from an ethical or legal point of view.</p>
+<p>Note that this definition of algorithmic fairness is very broad. This is intentional. The concept is applicable to all types of algorithmic systems, including different flavors of artificial intelligence (e.g., symbolic approaches, expert systems, and machine learning), but also simple rule-based systems.</p>
+</div>
+<div class="section" id="types-of-harm">
+<h2>Types of Harm<a class="headerlink" href="#types-of-harm" title="Permalink to this headline">#</a></h2>
+<p>The exact meaning of “behaving or treating people fairly” depends heavily on the context of the algorithmic system. There are several different ways in which algorithmic systems can disregard fairness. In particular, we can distinguish between the following types of fairness-related harms<a class="footnote-reference brackets" href="#footcite-madaio2020" id="id3">3</a>:</p>
+<ul class="simple">
+<li><p><span class="xref std std-term">Allocation harm</span> can be defined as an unfair allocation of opportunities, resources, or information. In our resume selection example, allocation harm can occur when some groups are selected less often than others, e.g., the algorithm selects men more often than women.</p></li>
+<li><p><span class="xref std std-term">Quality-of-service harm</span> occurs when a system disproportionately fails for certain (groups of) people. For example, a facial recognition system may misclassify black women at a higher rate than white men <a class="footnote-reference brackets" href="#footcite-buolamwini2018" id="id4">4</a> and a speech recognition system may not work well for users whose disability impacts their clarity of speech <a class="footnote-reference brackets" href="#footcite-guo2019" id="id5">5</a>.</p></li>
+<li><p><span class="xref std std-term">Stereotyping harm</span> occurs when a system reinforces undesirable and unfair societal stereotypes. Stereotyping harm are particularly prevalent in systems that rely on unstructed data, such as natural language processing and computer vision systems. The reason for this is that societal stereotypes are often deeply embedded in text corpora and image labels. For example, an image search for “CEO” may primarily show photos of white men.</p></li>
+<li><p><span class="xref std std-term">Denigration harm</span> refers to situations in which algorithmic systems are actively derogatory or offensive. For example, an automated tagging system may <a class="reference external" href="https://www.theverge.com/2015/7/1/8880363/google-apologizes-photos-app-tags-two-black-people-gorillas">misclassify people as animals</a> and a chat bot might <a class="reference external" href="https://fortune.com/2020/09/29/artificial-intelligence-openai-gpt3-toxic/">start using derogatory slurs</a>.</p></li>
+<li><p><span class="xref std std-term">Representation harm</span> occurs when the development and usage of algorithmic systems over- or under-represents certain groups of people For example, some racial groups may be overly scrutinized during welfare fraud investigations or neighborhoods with a high elderly population may be ignored because data on disturbances in the public space (such as <a class="reference external" href="https://hbr.org/2013/04/the-hidden-biases-in-big-data">potholes</a> is collected using a smartphone app. Representation harm can be connected to allocation harms and quality-of-service harms. However, a lack of diversity by itself can already be considered a violation of fairness. Moreover, representation harm can already occur even before the algorithmic system makes a single prediction, which makes it important to consider from the start.</p></li>
+<li><p><span class="xref std std-term">Procedural harm</span> occurs when decisions are made in a way that violates social norms (see e.g., Rudin <em>et al.</em><a class="footnote-reference brackets" href="#footcite-rudin2018a" id="id6">6</a>). For example, penalizing a job applicant for having more experience can violate social norms. Procedural harm is not limited to the prediction-generating mechanisms of the model itself, but can also be extended to the development and usage of the system. For example, is it communicated clearly that an algorithmic decision is made? Do data subjects receive a meaningful justification? Is it possible to appeal a decision?</p></li>
+</ul>
+<p>Note that these types of harm are not mutually exclusive and that this list is not complete – there may be other context and application specific harms.</p>
+</div>
+<div class="section" id="no-fairness-through-unawareness">
+<h2>No Fairness through Unawareness<a class="headerlink" href="#no-fairness-through-unawareness" title="Permalink to this headline">#</a></h2>
+<p>If we do not want to discriminate against certain groups, why don’t we just remove the <span class="xref std std-term">sensitive feature</span>, i.e., the feature that represents a sensitive characteristic in our data set? Unfortunately, it is not that simple. To see why, it can help to distinguish between direct discrimination and indirect discrimination.</p>
+<p>In European Union law, <span class="xref std std-term">direct discrimination</span> refers to cases where (groups of) individuals are treated less favorably based directly on their membership of a protected-by-law group. In United States laber law, a similar concept is referred to as <span class="xref std std-term">disparate treatment</span>. On the other hand, <span class="xref std std-term">indirect discrimination</span> (similar to <span class="xref std std-term">disparate impact</span> in United States labor law), refers to cases where groups or individuals are treated less favorably based on rules that <strong>seem</strong> neutral, but, as a side effect, disadvantage a protected group.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Much of the terminology in algorithmic fairness research, especially earlier works, are loosely based on legal definitions such as disparate impact and discrimination. However, the legal doctrines to which these terms refer are typically much more complex than the technical metrics suggest. This can result in suggestive terminology that may be misleading for computer scientists who are unaware of the legal complexities and can lead to misinterpretations by legal experts. <strong>In this book, I try to avoid legal terminology unless I refer to the actual legal definition</strong>.</p>
+</div>
+<p>An example of direct discrimination is when a person is denied service in a restaurant based on their race. In the context of an algorithmic system, direct discrimination could occur when a machine learning model explicitly uses a sensitive feature to make a prediction. Following this definition of fairness, removing the sensitive feature will prevent discrimination. A classic example of <em>indirect</em> discrimination is redlining. This refers to a practice in the United States where people were systematically denied services based on their postal code. Neighborhoods that were deemed “too risky” were outlined on the map in the color red. Although postal code may appear to be a neutral feature, it was highly correlated with race. As services were mostly denied in predominantly African-American neighborhoods, African-Americans were indirectly discriminated against. Another example can be found in loan applications. Imagine we want to avoid allocation harm across genders. We decide to exclude the feature that represents gender from our data set, to avoid any direct discrimination. However, if we do include occupation, an attribute which is highly gendered in many societies, the model can still identify historical patterns of gender bias. Here, occupation acts as a <span class="xref std std-term">proxyvariable</span> for gender: occupation is highly associated with gender. In the case of indirect discrimination, variables included in our model may unintentionally act as a proxy variables for a sensitive characteristic.</p>
+<p>This is not just a hypothetical problem. <strong>Machine learning algorithms are specifically designed to identify relationships between features in a data set. If undesirable patterns exist within the data, it is very likely that a machine learning model will replicate it.</strong> Removing all possible proxy variables is usually not a viable approach. First of all, it is not always possible to anticipate the patterns through which the sensitive feature can be approximated by the model. Several features that are slightly predictive of the sensitive feature might, taken together, be an accurate predictor of the sensitive feature. Second, apart from their relation with the sensitive feature, proxy variables may provide information that is predictive of the target feature. Removing all features that are slightly related to the sensitive feature could therefore substantially reduce the predictive performance of the model.</p>
+<p>Clearly, removing sensitive feature is unlikely to prevent allocation harm, which can still occur in the form of indirect effects. Similarly, patterns of stereotyping and denigration can be deeply embedded in (unstructured) data such as text. Quality-of-service harm, representation harm, and denigration harm can be caused by a lack of informativeness of the data that is available for these groups, which is not solved by removing the sensitive feature either. <strong>To conclude, removing sensitive features is only helpful in achieving a very narrow definition of fairness.</strong> The practical consequence is that it is unlikely that this approach will prevent real-world harm.</p>
+<div class="tip admonition">
+<p class="admonition-title">Summary</p>
+<p><strong>Unfair Machines</strong></p>
+<p>Machine learning models can reproduce, amplify, and even introduce unfairness. This has given rise to the research field of algorithmic fairness: the idea that algorithmic systems should behave or treat people without discrimination on the grounds of sensitive characteristics.</p>
+<p><strong>Types of harm</strong></p>
+<p>There are different ways in which algorithmic systems can disregard fairenss, including <span class="xref std std-term">allocation harm</span>, <span class="xref std std-term">quality-of-service harm</span>, <span class="xref std std-term">stereotyping harm</span>, <span class="xref std std-term">denigration harm</span>, <span class="xref std std-term">representation harm</span>, and <span class="xref std std-term">procedural harm</span>.</p>
+<p><strong>No fairness through unawareness</strong></p>
+<p>As machine learning models are designed to identify relationships between features in the data set, removing sensitive features is generally not sufficient to mitigate the risk of fairness-related harm.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id7">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-barocas2019"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Solon Barocas, Moritz Hardt, and Menaka Narayanan. Fairness in Machine Learning. 2019. Retrieved from <a class="reference external" href="https://fairmlbook.org">https://fairmlbook.org</a>.</p>
+</dd>
+<dt class="label" id="footcite-friedman1996"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Batya Friedman and Helen Nissenbaum. Bias in computer systems. <em>ACM Transactions on Information Systems</em>, 14(3):330–347, July 1996. URL: <a class="reference external" href="https://doi.org/10.1145/230538.230561">https://doi.org/10.1145/230538.230561</a>, <a class="reference external" href="https://doi.org/10.1145/230538.230561">doi:10.1145/230538.230561</a>.</p>
+</dd>
+<dt class="label" id="footcite-madaio2020"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Michael A Madaio, Luke Stark, Jennifer Wortman Vaughan, and Hanna Wallach. Co-Designing Checklists to Understand Organizational Challenges and Opportunities around Fairness in AI. <em>Chi 2020</em>, pages 1–14, 2020.</p>
+</dd>
+<dt class="label" id="footcite-buolamwini2018"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Joy Buolamwini and Timnit Gebru. Gender shades: intersectional accuracy disparities in commercial gender classification. In <em>Conference on fairness, accountability and transparency</em>, 77–91. 2018.</p>
+</dd>
+<dt class="label" id="footcite-guo2019"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
+<dd><p>Anhong Guo, Ece Kamar, Jennifer Wortman Vaughan, Hanna M. Wallach, and Meredith Ringel Morris. Toward fairness in AI for people with disabilities: A research roadmap. <em>CoRR</em>, 2019. URL: <a class="reference external" href="http://arxiv.org/abs/1907.02227">http://arxiv.org/abs/1907.02227</a>, <a class="reference external" href="https://arxiv.org/abs/1907.02227">arXiv:1907.02227</a>.</p>
+</dd>
+<dt class="label" id="footcite-rudin2018a"><span class="brackets"><a class="fn-backref" href="#id6">6</a></span></dt>
+<dd><p>Cynthia Rudin, Caroline Wang, and Beau Coker. The age of secrecy and unfairness in recidivism prediction. <em>Harvard Data Science Review</em>, 3 2020. https://hdsr.mitpress.mit.edu/pub/7z10o269. URL: <a class="reference external" href="https://hdsr.mitpress.mit.edu/pub/7z10o269">https://hdsr.mitpress.mit.edu/pub/7z10o269</a>, <a class="reference external" href="https://doi.org/10.1162/99608f92.6ed64b30">doi:10.1162/99608f92.6ed64b30</a>.</p>
+</dd>
+</dl>
+</div>
+<hr class="footnotes docutils" />
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -383,34 +605,48 @@
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../introduction/ethics/introduction.html" title="previous page">Ethics Preliminaries</a>
-    <a class='right-next' id="next-link" href="groupfairness/introduction.html" title="next page">Group Fairness</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../introduction/machinelearning/costsensitivelearning.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Cost-Sensitive Learning</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="groupfairness/introduction.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Group Fairness</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hilde Weerts<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

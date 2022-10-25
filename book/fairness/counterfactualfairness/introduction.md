@@ -1,2 +1,0 @@
-(counterfactualfairness)=
-# Counterfactual Fairness

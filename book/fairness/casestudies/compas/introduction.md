@@ -1,4 +1,0 @@
-# COMPAS
-
-This some text.
-

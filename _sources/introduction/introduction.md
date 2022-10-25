@@ -5,7 +5,7 @@ With the advent of large-scale data collection, the toolkit of a data scientist 
 
 A responsible data scientist understands how machine learning models might be harmful and how the risks can be mitigated. This online book provides a practical introduction to the nascent field of responsible machine learning.
 
-## What do I mean with *Responsible Machine Learning*?
+## What do I mean by *Responsible Machine Learning*?
 So what is a 'responsible' approach? Generally speaking, responsibility is a *‘duty or obligation to take care of something’*. Taking responsibility involves actively avoiding that something 'bad; happens or increasing the probability that something 'good' happens. What can be considered 'right' or 'wrong' is the central question of ethics and has occupied philosophers for many centuries.
 
 As machine learning systems are increasingly deployed in all kinds of applications, several incidents have shown in what ways machine learning systems can have negative consequences. Machine learning models can inherit existing prejudices embedded in society, which can result in discrimination. The increasing complexity of machine learning systems can lead to opaque decision-making systems.

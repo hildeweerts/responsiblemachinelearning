@@ -1,2 +1,0 @@
-(individualfairness)=
-# Individual Fairness

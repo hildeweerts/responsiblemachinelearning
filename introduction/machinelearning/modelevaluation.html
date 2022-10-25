@@ -5,10 +5,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Model Evaluation &#8212; An Introduction to Responsible Data Science</title>
+    <title>Model Evaluation &#8212; An Introduction to Responsible Machine Learning</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,48 +19,64 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Model Selection" href="modelselection.html" />
-    <link rel="prev" title="Machine Learning" href="machinelearning.html" />
+    <link rel="prev" title="Machine Learning Preliminaries" href="introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -68,28 +85,31 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
       
-      <h1 class="site-logo" id="site-title">An Introduction to Responsible Data Science</h1>
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../index.html">
-   An Introduction to Responsible Data Science
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
@@ -97,7 +117,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../introduction.html">
-   Responsible Data Science
+   Responsible Machine Learning
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -110,11 +130,6 @@
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="machinelearning.html">
-     Machine Learning
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Model Evaluation
@@ -132,13 +147,8 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ethics/introduction.html">
-   Ethics Preliminaries
-  </a>
- </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Fairness
  </span>
@@ -160,20 +170,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/groupfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../fairness/groupfairness/groupfairnessmetrics.html">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/groupfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../fairness/groupfairness/impossibilitytheorem.html">
+     The Impossibility Theorem
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/individualfairness/introduction.html">
-   Individual Fairness
+  <a class="reference internal" href="../../fairness/fairml/introduction.html">
+   Fairness-Aware Machine Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -182,20 +192,27 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/individualfairness/metrics.html">
-     Individual Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/individualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../fairness/fairml/randomizedthresholds.html">
+     Randomized Thresholds
     </a>
    </li>
   </ul>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../explainability/introduction.html">
+   Explainable Machine Learning
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/counterfactualfairness/introduction.html">
-   Counterfactual Fairness
+  <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
+   Local Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -204,20 +221,20 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/counterfactualfairness/metrics.html">
-     Metrics
+    <a class="reference internal" href="../../explainability/localposthoc/shap.html">
+     SHAP
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/counterfactualfairness/mitigation.html">
-     Mitigation
+    <a class="reference internal" href="../../explainability/localposthoc/discussion.html">
+     Feature importance
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fairness/casestudies/introduction.html">
-   Case Studies
+  <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
+   Global Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -226,38 +243,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/casestudies/compas/introduction.html">
-     COMPAS
+    <a class="reference internal" href="../../explainability/globalposthoc/pdp.html">
+     Partial Dependence Plots
     </a>
    </li>
   </ul>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Explainability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../explainability/introduction.html">
-   Explainable Artificial Intelligence
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Accountability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../accountability/introduction.html">
-   Algorithmic Accountability and Auditing
-  </a>
- </li>
-</ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Misc
  </span>
@@ -271,113 +264,234 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../_sources/introduction/machinelearning/modelevaluation.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/introduction/machinelearning/modelevaluation.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/hildeweerts/responsibledatascience"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/hildeweerts/responsibledatascience/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning/modelevaluation.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/hildeweerts/responsibledatascience/master?urlpath=tree/introduction/machinelearning/modelevaluation.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/hildeweerts/responsiblemachinelearning/master?urlpath=tree/introduction/machinelearning/modelevaluation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Fintroduction/machinelearning/modelevaluation.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/introduction/machinelearning/modelevaluation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../_sources/introduction/machinelearning/modelevaluation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#performance-metrics-based-on-the-confusion-matrix">
-   Performance metrics based on the confusion matrix
+  <a class="reference internal nav-link" href="#predictive-performance-metrics">
+   Predictive Performance Metrics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#performance-metrics-based-on-the-predicted-class">
+   Performance metrics based on the predicted class
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -426,54 +540,166 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Model Evaluation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predictive-performance-metrics">
+   Predictive Performance Metrics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#performance-metrics-based-on-the-predicted-class">
+   Performance metrics based on the predicted class
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accuracy">
+     Accuracy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#misclassification-rates">
+     Misclassification rates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#precision-recall-and-f1-score">
+     Precision, Recall, and F1-score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#positive-predictive-value-and-negative-predictive-value">
+     Positive Predictive Value and Negative Predictive Value
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#performance-metrics-based-on-model-s-predicted-score">
+   Performance metrics based on model’s predicted score
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roc-curve">
+     ROC curve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#precision-recall-curve">
+     Precision-Recall Curve
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-calibration">
+   Model Calibration
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="model-evaluation">
-<h1>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h1>
-<p>How can we evaluate the predictive performance of our model and ensure we select the best one? In most machine learning courses, you will learn about predictive performance metrics that measure how well your model predicts. Different metrics are appropriate for different scenarios. In this section, we will cover several performance metrics. However, keep in mind that in practice, there are typically many other desiderata beyond predictive performance, such as complexity, maintainability, and the available resources.</p>
-<p>We first create a synthetic data set and build a logistic regression classifier on top of it. We will use these as a running example throughout this chapter.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-
-<span class="c1"># create synthethic data set</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># split into train and test set</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># train classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="c1"># make predictions</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</pre></div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="model-evaluation">
+<span id="id1"></span><h1>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">#</a></h1>
+<p>How can we evaluate the predictive performance of our model and ensure we select the best one? In most machine learning courses, you will learn about predictive performance metrics that measure how well your model predicts. Different metrics are appropriate for different scenarios. In this chapter, we will cover the performance metrics displayed in <a class="reference internal" href="#metrics"><span class="std std-numref">Table 1</span></a>. However, keep in mind that in practice, there are typically many other desiderata beyond predictive performance, such as complexity, maintainability, and available resources.</p>
+<div class="section" id="predictive-performance-metrics">
+<h2>Predictive Performance Metrics<a class="headerlink" href="#predictive-performance-metrics" title="Permalink to this headline">#</a></h2>
+<table class="table" id="metrics">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Overview of predictive performance metrics.</span><a class="headerlink" href="#metrics" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>metric</p></th>
+<th class="head"><p>formula</p></th>
+<th class="head"><p>equivalent to</p></th>
+<th class="head"><p>example implementation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-accuracy"><span class="xref std std-term">accuracy</span></a></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{tp + tn}{tp+tn+fp+fn}\)</span></p></td>
+<td></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.accuracy_score()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a> (fpr)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{fp}{fp+tn}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1 - tnr\)</span></p></td>
+<td><p><a class="reference external" href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_positive_rate()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a> (tnr)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{tn}{fp+tn}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1 - fpr\)</span></p></td>
+<td><p><a class="reference external" href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.true_negative_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.true_negative_rate()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a> (fnr)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{fn}{fn+tp}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1 - tpr\)</span></p></td>
+<td><p><a class="reference external" href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_negative_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_negative_rate()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a> (tpr)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{tp}{fn+tp}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1 - fnr\)</span>; recall</p></td>
+<td><p><a class="reference external" href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.true_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.true_positive_rate()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-recall"><span class="xref std std-term">recall</span></a></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp+fn}\)</span></p></td>
+<td><p>tpr</p></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.recall_score()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-precision"><span class="xref std std-term">precision</span></a></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span></p></td>
+<td></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.precision_score()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-f1-score"><span class="xref std std-term">F1-score</span></a></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp + \frac{1}{2}(fp+tn)}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2 \cdot \frac{precision \cdot recall}{precision + recall}\)</span></p></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.f1_score()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (ppv)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span></p></td>
+<td><p>precision</p></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.precision_score()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> (npv)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{tn}{tn+fn}\)</span></p></td>
+<td></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <a class="reference external" href="https://scikit-learn.org/stable/glossary.html#term-random_state"><code class="docutils literal notranslate"><span class="pre">random_state</span></code></a> parameter in scikit-learn algorithms controls randomization. By setting it to an integer, we can ensure that we retrieve the same results across different calls.</p>
-</div>
-<div class="seealso admonition note">
-<p class="admonition-title">Note</p>
-<p>You may have noticed that we first split the synthetic data into a train and test set using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="(in scikit-learn v1.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split()</span></code></a>. Why this is an essential part of a proper machine learning pipeline will be explained in more detail in chapter <a class="reference internal" href="modelselection.html#modelselection"><span class="std std-ref">Model Selection</span></a>.</p>
-</div>
-<div class="section" id="performance-metrics-based-on-the-confusion-matrix">
-<h2>Performance metrics based on the confusion matrix<a class="headerlink" href="#performance-metrics-based-on-the-confusion-matrix" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="performance-metrics-based-on-the-predicted-class">
+<h2>Performance metrics based on the predicted class<a class="headerlink" href="#performance-metrics-based-on-the-predicted-class" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference internal" href="../../other/glossary.html#term-confusion-matrix"><span class="xref std std-term">confusion matrix</span></a> is a basic tool that indicates how well a classification model performs for different classes. One axis displays the true labels and the other axis the predicted labels. Each cell <span class="math notranslate nohighlight">\(C_{i,j}\)</span> shows the number of instances in some class <span class="math notranslate nohighlight">\(i\)</span> that were predicted to be class <span class="math notranslate nohighlight">\(j\)</span>. Despite its name, this matrix is not supposed to confuse you, but visualizes whether the classifier is confusing particular classes (i.e., misclassifying one as another). In a <a class="reference internal" href="../../other/glossary.html#term-binary-classification"><span class="xref std std-term">binary classification</span></a> problem, the confusion matrix contains the number of <a class="reference internal" href="../../other/glossary.html#term-true-positive"><span class="xref std std-term">true positive</span></a>s (tp), <a class="reference internal" href="../../other/glossary.html#term-false-positive"><span class="xref std std-term">false positive</span></a>s (fp), <a class="reference internal" href="../../other/glossary.html#term-true-negative"><span class="xref std std-term">true negative</span></a>s (tn), and <a class="reference internal" href="../../other/glossary.html#term-false-negative"><span class="xref std std-term">false negative</span></a>s (fn).</p>
 <table class="table" id="confusionmatrix">
-<caption><span class="caption-number">Table 1 </span><span class="caption-text">The structure of a confusion matrix of a binary classification problem. In practice, the cells will contain the number of observations of each type.</span><a class="headerlink" href="#confusionmatrix" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">The structure of a confusion matrix of a binary classification problem. In practice, the cells will contain the number of observations of each type.</span><a class="headerlink" href="#confusionmatrix" title="Permalink to this table">#</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 25%" />
@@ -505,6 +731,37 @@
 </tr>
 </tbody>
 </table>
+<p>We first create a synthetic data set and build a logistic regression classifier on top of it. We will use these as a running example throughout this chapter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># create synthethic data set</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># split into train and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># train classifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># make predictions</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference external" href="https://scikit-learn.org/stable/glossary.html#term-random_state"><code class="docutils literal notranslate"><span class="pre">random_state</span></code></a> parameter in scikit-learn algorithms controls randomization. By setting it to an integer, we can ensure that we retrieve the same results across different calls.</p>
+</div>
+<div class="seealso admonition note">
+<p class="admonition-title">Note</p>
+<p>You may have noticed that we first split the synthetic data into a train and test set using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split()</span></code></a>. Why this is an essential part of a proper machine learning pipeline will be explained in more detail in chapter <a class="reference internal" href="modelselection.html#model-selection"><span class="std std-ref">Model Selection</span></a>.</p>
+</div>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.confusion_matrix</span></code> to easiliy compute the confusion matrix:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -523,72 +780,9 @@
 </div>
 </div>
 <p>Many popular predictive performance metrics for binary classification problems can be directly derived from the confusion matrix.</p>
-<table class="table" id="confusionmatrixmetrics">
-<caption><span class="caption-number">Table 2 </span><span class="caption-text">Several predictive performance metrics that can be calculated from the confusion matrix.</span><a class="headerlink" href="#confusionmatrixmetrics" title="Permalink to this table">¶</a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>metric</p></th>
-<th class="head"><p>formula</p></th>
-<th class="head"><p>equivalent to</p></th>
-<th class="head"><p>example implementation</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-accuracy"><span class="xref std std-term">accuracy</span></a></p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{tp + tn}{tp+tn+fp+fn}\)</span></p></td>
-<td></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score" title="(in scikit-learn v1.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.accuracy_score()</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a> (fpr)</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{fp}{fp+tn}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(1 - tnr\)</span></p></td>
-<td><p><a class="reference external" href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_positive_rate()</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a> (tnr)</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{tn}{fp+tn}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(1 - fpr\)</span></p></td>
-<td><p><a class="reference external" href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.true_negative_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.true_negative_rate()</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a> (fnr)</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{fn}{fn+tp}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(1 - tpr\)</span></p></td>
-<td><p><a class="reference external" href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_negative_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_negative_rate()</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a> (tpr)</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{tp}{fn+tp}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(1 - fnr\)</span>; recall</p></td>
-<td><p><a class="reference external" href="https://fairlearn.org/v0.7.0/api_reference/fairlearn.metrics.html#fairlearn.metrics.true_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.true_positive_rate()</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-recall"><span class="xref std std-term">recall</span></a></p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp+fn}\)</span></p></td>
-<td><p>tpr</p></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" title="(in scikit-learn v1.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.recall_score()</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-precision"><span class="xref std std-term">precision</span></a>, <a class="reference internal" href="../../other/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (ppv)</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span></p></td>
-<td></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" title="(in scikit-learn v1.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.precision_score()</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../other/glossary.html#term-f1-score"><span class="xref std std-term">F1-score</span></a></p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp + \frac{1}{2}(fp+tn)}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(2 \cdot \frac{precision \cdot recall}{precision + recall}\)</span></p></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" title="(in scikit-learn v1.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.f1_score()</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../other/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> (npv)</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{tn}{tn+fn}\)</span></p></td>
-<td></td>
-<td><p>N/A</p></td>
-</tr>
-</tbody>
-</table>
 <div class="section" id="accuracy">
-<h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="../../other/glossary.html#term-accuracy"><span class="xref std std-term">Accuracy</span></a> is one of the simplest measures for predictive performance. It can be defined as the fraction of predictions the model predicted correctly (see <a class="reference internal" href="#confusionmatrixmetrics"><span class="std std-numref">Table 2</span></a>).</p>
+<h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">#</a></h3>
+<p><a class="reference internal" href="../../other/glossary.html#term-accuracy"><span class="xref std std-term">Accuracy</span></a> is one of the simplest measures for predictive performance. It can be defined as the fraction of predictions the model predicted correctly (see <a class="reference internal" href="#metrics"><span class="std std-numref">Table 1</span></a>).</p>
 <p>Note that accuracy does not differentiate between mistakes made for one class versus mistakes made for another class. As a result, <strong>accuracy can be a misleading metric when we are dealing with <a class="reference internal" href="../../other/glossary.html#term-imbalanced-data"><span class="xref std std-term">imbalanced data</span></a></strong>, which occurs when the number of instances per class differs greatly across classes.</p>
 <p>For example, consider fraud detection in bank transactions. The number of legal transactions typically greatly outnumbers the number of illegal transactions. Let’s say that for every 99999 transactions there is 1 illegal transaction. In this scenario, a model that predicts every transaction to be legitimate will receive an incredibly high accuracy score: 0.99999. Of course, the practical utility of this model is very low.</p>
 <div class="cell docutils container">
@@ -609,7 +803,7 @@
 </div>
 </div>
 <div class="section" id="misclassification-rates">
-<h3>Misclassification rates<a class="headerlink" href="#misclassification-rates" title="Permalink to this headline">¶</a></h3>
+<h3>Misclassification rates<a class="headerlink" href="#misclassification-rates" title="Permalink to this headline">#</a></h3>
 <p>In many use cases, false positives and false negatives have different consequences in the real world. As a running example, we take the fraud detection scenario.</p>
 <p>The <a class="reference internal" href="../../other/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a> (<span class="math notranslate nohighlight">\(fpr\)</span>) is equal to the fraction of false positives out of all negative instances. In the fraud detection scenario, this corresponds to the fraction of false alerts out of all legitimate transactions. To avoid flooding fraud analysts with false alerts, we may want to keep the <span class="math notranslate nohighlight">\(fpr\)</span> below a certain level. The <a class="reference internal" href="../../other/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a> (<span class="math notranslate nohighlight">\(tnr\)</span>) is equal to the fraction of true negatives out of all negative instances, which is equivalent to <span class="math notranslate nohighlight">\(1-fpr\)</span>.</p>
 <p>The <a class="reference internal" href="../../other/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a> (<span class="math notranslate nohighlight">\(tpr\)</span>) is equal to the fraction of true positives out of all positive instances. In the fraud detection scenario, this metric quantifies the fraction of fraudulent transactions we were able to identify as such. The <a class="reference internal" href="../../other/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a> (<span class="math notranslate nohighlight">\(fnr\)</span>) is equal to the fraction of false negatives out of all positive instances. This corresponds to the fraction of fraudulent transactions we failed to identify out of all fraudulent transactions. The <a class="reference internal" href="../../other/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a> is equal to <span class="math notranslate nohighlight">\(1 - tpr\)</span>.</p>
@@ -645,7 +839,7 @@ tpr: 0.83
 <p>Compared to the accuracy score we computed earlier, misclassification rates give us more insight into which classes the model classified (in)correctly. In this case, the classifier is better at distinguishing instances that belong to the negative class compared to the positive class (<span class="math notranslate nohighlight">\(tnr &gt; tpr\)</span> or conversely <span class="math notranslate nohighlight">\(fpr &lt; fnr\)</span>).</p>
 </div>
 <div class="section" id="precision-recall-and-f1-score">
-<h3>Precision, Recall, and F1-score<a class="headerlink" href="#precision-recall-and-f1-score" title="Permalink to this headline">¶</a></h3>
+<h3>Precision, Recall, and F1-score<a class="headerlink" href="#precision-recall-and-f1-score" title="Permalink to this headline">#</a></h3>
 <p>Precision, recall, and the F1-score were originally introduced in the context of information retrieval, a domain concerned with retrieving information (text, audio, images, data, etc.) based on a query. An example of an information retrieval system is a search engine. Developers of information retrieval systems are often concerned with the <em>relevance</em> of the retrieved results, which can be quantified using precision and recall.</p>
 <p><a class="reference internal" href="../../other/glossary.html#term-precision"><span class="xref std std-term">Precision</span></a> is the defined as the fraction of retrieved documents that were actually relevant (i.e., how precise is the retrieved result?). In a general classification problem, the metric is defined as the fraction of positive instances among the predicted positive instances. <a class="reference internal" href="../../other/glossary.html#term-recall"><span class="xref std std-term">Recall</span></a>, on the other hand, is defined as the fraction of all relevant documents that were successfully retrieved (i.e., how many of the relevant documents are recalled?). In a classification setting, recall refers to the amount of positive instances the model classified as such from all positive instances in the data set, which is equivalent to the true positive rate.</p>
 <p>In practice, we might find both precision and recall important. This is where the <a class="reference internal" href="../../other/glossary.html#term-f1-score"><span class="xref std std-term">f1-score</span></a> comes in, which is defined as the harmonic mean of precision and recall. The f1-score is just one way to aggregate precision and recall. Importantly, this makes the score only relevant in scenarios where we believe precision and recall are equally important. There also exists a more general <span class="math notranslate nohighlight">\(F_{\beta}\)</span>-score, where <span class="math notranslate nohighlight">\(\beta\)</span> is chosen such that recall is considered <span class="math notranslate nohighlight">\(\beta\)</span> times as important as precision.</p>
@@ -676,7 +870,7 @@ f1 score:  0.87
 </div>
 </div>
 <div class="section" id="positive-predictive-value-and-negative-predictive-value">
-<h3>Positive Predictive Value and Negative Predictive Value<a class="headerlink" href="#positive-predictive-value-and-negative-predictive-value" title="Permalink to this headline">¶</a></h3>
+<h3>Positive Predictive Value and Negative Predictive Value<a class="headerlink" href="#positive-predictive-value-and-negative-predictive-value" title="Permalink to this headline">#</a></h3>
 <p>If an instance is predicted to be of a certain class, the <a class="reference internal" href="../../other/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> and <a class="reference internal" href="../../other/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> describe how likely it is the classification is correct. For example, if we predict a patient has a disease, the positive predictive value gives us the probability that the patient actually has the disease. The positive predictive value is equivalent to precision. We can interpret the negative predictive value as the ‘precision’ for the negative class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -708,28 +902,73 @@ npv: 0.86
 </div>
 </div>
 <div class="section" id="performance-metrics-based-on-model-s-predicted-score">
-<h2>Performance metrics based on model’s predicted score<a class="headerlink" href="#performance-metrics-based-on-model-s-predicted-score" title="Permalink to this headline">¶</a></h2>
-<p>The evaluation metrics discussed so far are only defined for discrete predictions. However, many machine learning algorithms do not directly output a class, but a <a class="reference internal" href="../../other/glossary.html#term-confidence-score"><span class="xref std std-term">confidence score</span></a> which indicates the confidence of the model that an instance belongs to a certain class. Based on the confidence score, we can decide how to classify an instance. In a binary classification sencario, this is often done using a <a class="reference internal" href="../../other/glossary.html#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a>: the cut-off value of the model’s confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between performance metrics.</p>
+<span id="performancemetricsscore"></span><h2>Performance metrics based on model’s predicted score<a class="headerlink" href="#performance-metrics-based-on-model-s-predicted-score" title="Permalink to this headline">#</a></h2>
+<p>The evaluation metrics discussed so far are only defined for predicted classes. However, many machine learning algorithms do not directly output a class, but a <a class="reference internal" href="../../other/glossary.html#term-confidence-score"><span class="xref std std-term">confidence score</span></a> which indicates the confidence of the model that an instance belongs to a certain class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># retrieve confidence scores instead of discrete predictions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># retrieve predicted classes</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;predicted classes: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span>
+
+<span class="c1"># print confidence scores instead of discrete predictions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;confidence scores: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)))</span>
+
+<span class="c1"># retrieve confidence scores for the positive class</span>
 <span class="n">y_score</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;confidence scores positive class: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y_score</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>predicted classes: [0 0 1 0 1 1 1 0 0 1 0 0 0 0 1 1 0 1 1 0 1 0 0 0 1]
+confidence scores: [[0.95318273 0.04681727]
+ [0.99617159 0.00382841]
+ [0.02117635 0.97882365]
+ [0.97583057 0.02416943]
+ [0.0332806  0.9667194 ]
+ [0.02815556 0.97184444]
+ [0.30326393 0.69673607]
+ [0.66935727 0.33064273]
+ [0.91678782 0.08321218]
+ [0.03950548 0.96049452]
+ [0.92708598 0.07291402]
+ [0.99829629 0.00170371]
+ [0.70518227 0.29481773]
+ [0.63641324 0.36358676]
+ [0.2251617  0.7748383 ]
+ [0.18185178 0.81814822]
+ [0.97925552 0.02074448]
+ [0.06003966 0.93996034]
+ [0.25534451 0.74465549]
+ [0.9880332  0.0119668 ]
+ [0.01421573 0.98578427]
+ [0.87356955 0.12643045]
+ [0.96832768 0.03167232]
+ [0.99022228 0.00977772]
+ [0.03662168 0.96337832]]
+confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0.9667194  0.97184444
+ 0.69673607 0.33064273 0.08321218 0.96049452 0.07291402 0.00170371
+ 0.29481773 0.36358676 0.7748383  0.81814822 0.02074448 0.93996034
+ 0.74465549 0.0119668  0.98578427 0.12643045 0.03167232 0.00977772
+ 0.96337832]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="tip admonition note">
 <p class="admonition-title">Note</p>
-<p>In scikit-learn, <code class="docutils literal notranslate"><span class="pre">predict_proba()</span></code> gives the confidence score for each class separately. To get the confidence scores for the positive class, we need to select the part of the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> that corresponds to positive predictions.</p>
+<p>In scikit-learn, <code class="docutils literal notranslate"><span class="pre">predict_proba()</span></code> returns an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_classes)</span></code>. To get the confidence scores for the positive class, we need to select the part of the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> that corresponds to the positive predictions. In the binary classification scenario with class <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, this corresponds to the second value for each sample, i.e., <code class="docutils literal notranslate"><span class="pre">[:,</span> <span class="pre">1]]</span></code>).</p>
 </div>
+<p>Based on the confidence score, we can decide how to classify an instance. In a binary classification scenario, this is typically done using a <a class="reference internal" href="../../other/glossary.html#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a>: the cut-off value of the model’s confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives (see also <a class="reference internal" href="costsensitivelearning.html#cost-sensitive-learning"><span class="std std-ref">Cost-Sensitive Learning</span></a>).</p>
 <div class="section" id="roc-curve">
-<h3>ROC curve<a class="headerlink" href="#roc-curve" title="Permalink to this headline">¶</a></h3>
+<h3>ROC curve<a class="headerlink" href="#roc-curve" title="Permalink to this headline">#</a></h3>
 <p>A popular tool for investigating the trade-off between false positives and false negatives is the Receiver Operating Characteristic curve (<a class="reference internal" href="../../other/glossary.html#term-ROC-curve"><span class="xref std std-term">ROC curve</span></a>). <strong>The ROC curve plots the true positive rate against the false positive rate. Each point on the curve corresponds to a different decision threshold.</strong></p>
-<p>We can compute the false positive rate and true positive rates at different thresholds using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html#sklearn.metrics.roc_curve" title="(in scikit-learn v1.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve()</span></code></a>, but to save ourselves some lines of code we use the plotting functionality of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.RocCurveDisplay.html#sklearn.metrics.RocCurveDisplay" title="(in scikit-learn v1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.metrics.RocCurveDisplay</span></code></a>.</p>
+<p>We can compute the false positive rate and true positive rates at different thresholds using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html#sklearn.metrics.roc_curve" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve()</span></code></a>, but to save ourselves some lines of code we use the plotting functionality of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.RocCurveDisplay.html#sklearn.metrics.RocCurveDisplay" title="(in scikit-learn v1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.metrics.RocCurveDisplay</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">RocCurveDisplay</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># compute area under the ROC curve</span>
 <span class="n">roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_score</span><span class="o">=</span><span class="n">y_score</span><span class="p">)</span>
@@ -754,7 +993,7 @@ npv: 0.86
 <p>AUC can be useful to compare the aggregate predictive performance of different models during model selection. However, <strong>AUC summarizes the performance of the model across all possible decision thresholds. To actually use the model for classifying intances, you still need to choose a decision threshold.</strong> As such, unlike confusion-based metrics, AUC typically does not directly correspond to real-world constraints or objectives. For example, in fraud detection, we may want to limit the expected number of false positives such that it is still humanly possible for fraud analysts to process all fraud alerts. Similarly, there may be different costs associated with false positives and false negatives making specific subspaces of the ROC curve more attractive than others.</p>
 </div>
 <div class="section" id="precision-recall-curve">
-<h3>Precision-Recall Curve<a class="headerlink" href="#precision-recall-curve" title="Permalink to this headline">¶</a></h3>
+<h3>Precision-Recall Curve<a class="headerlink" href="#precision-recall-curve" title="Permalink to this headline">#</a></h3>
 <p>In some problems it may be valuable to evaluate the trade-off between the precision and recall across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall, but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a <a class="reference internal" href="../../other/glossary.html#term-precision-recall-curve"><span class="xref std std-term">precision-recall curve</span></a> can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using <a class="reference internal" href="../../other/glossary.html#term-average-precision"><span class="xref std std-term">average precision</span></a>, which is the average precision score over all recall values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -781,8 +1020,8 @@ npv: 0.86
 </div>
 </div>
 <div class="section" id="model-calibration">
-<h2>Model Calibration<a class="headerlink" href="#model-calibration" title="Permalink to this headline">¶</a></h2>
-<p>The confidence score is sometimes referred to as the predicted probability. However, <strong>the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities</strong>. <a class="reference internal" href="../../other/glossary.html#term-calibration"><span class="xref std std-term">Calibration</span></a> is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that actually belongs to the positive class is also 0.7.</p>
+<span id="id2"></span><h2>Model Calibration<a class="headerlink" href="#model-calibration" title="Permalink to this headline">#</a></h2>
+<p>The confidence score is sometimes referred to as the predicted probability. However, <strong>the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities</strong>. <a class="reference internal" href="../../other/glossary.html#term-calibration"><span class="xref std std-term">Calibration</span></a> is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that actually belongs to the positive class is also 0.7. Calibration can be an important characteristic when confidence scores are used for decision-making by domain experts. In particular, a decision threshold for calibrated scores can be directly interpreted in term of different misclassification costs. For example, if a calibrated confidence score is used for suggesting a specific treatment in clinical decision-making, a decision threshold of 0.1 means that we accept up to 9 false positives (i.e., unnecessary treatments) for each true positive. Such a direct connection between misclassification rates and a particular decision threshold cannot be made for uncalibrated scores - although we can still, of course, compute precision to draw similar conclusions.</p>
 <p>You can assess how well a model is calibrated using a <a class="reference internal" href="../../other/glossary.html#term-calibration-curve"><span class="xref std std-term">calibration curve</span></a>, which sets out the mean predicted probability against the fraction of positives.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -838,34 +1077,48 @@ npv: 0.86
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="machinelearning.html" title="previous page">Machine Learning</a>
-    <a class='right-next' id="next-link" href="modelselection.html" title="next page">Model Selection</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Machine Learning Preliminaries</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="modelselection.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Model Selection</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Hilde Weerts<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

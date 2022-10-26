@@ -63,7 +63,7 @@ glue("today", date.today().strftime('%Y-%m-%d'))
 # 
 # ```{code-block}
 # @book{weerts2022,
-#   title = {Responsible Machine Learning},
+#   title = {An Introduction to Responsible Machine Learning},
 #   author = {Hilde Weerts},
 #   year = {2022}
 #   url = {https://hildeweerts.github.io/responsiblemachinelearning/}

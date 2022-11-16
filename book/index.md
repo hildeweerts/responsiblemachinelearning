@@ -26,7 +26,7 @@ glue("today", date.today().strftime('%Y-%m-%d'))
 Last updated: {glue:text}`today`
 
 ```{note}
-This book is still very much under development. If you have suggestions, questions, or comments, please feel free to open an issue on the [Github repository](https://github.com/hildeweerts/responsibleml).
+This book is still very much a work in progress. If you have suggestions, questions, or comments, please feel free to open an issue on the [Github repository](https://github.com/hildeweerts/responsibleml).
 ```
 
 ---

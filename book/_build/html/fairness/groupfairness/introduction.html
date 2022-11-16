@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Group Fairness &#8212; An Introduction to Responsible Machine Learning</title>
+    <title>Measuring Fairness &#8212; An Introduction to Responsible Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -159,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   Group Fairness
+   Measuring Fairness
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -173,8 +173,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="impossibilitytheorem.html">
-     The Impossibility Theorem
+    <a class="reference internal" href="biases.html">
+     Biases as Sources of Unfairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normativeunderpinnings.html">
+     Choosing the “Right” Fairness Metric
     </a>
    </li>
   </ul>
@@ -189,6 +194,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/nofairnessthroughunawareness.html">
+     No Fairness through Unawareness
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../fairml/groupspecificthresholds.html">
      Group-Specific Decision Thresholds
@@ -218,6 +228,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/lime.html">
+     LIME
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../explainability/localposthoc/shap.html">
      SHAP
@@ -426,7 +441,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Group Fairness</h1>
+                <h1>Measuring Fairness</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -438,17 +453,15 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="group-fairness">
-<span id="id1"></span><h1>Group Fairness<a class="headerlink" href="#group-fairness" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="measuring-fairness">
+<span id="group-fairness"></span><h1>Measuring Fairness<a class="headerlink" href="#measuring-fairness" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This chapter is still under construction.</p>
 </div>
-<p>A straightforward way to approach fairness is to consider whether some groups are treated worse, on average, than other groups. <span class="xref std std-term">group fairness</span> is a notion of fairness that requires group statistics to be equal across (sub)groups defined by sensitive characteristic. It is sometimes referred to as statistical fairness. Group fairness is an intuitive notion of fairness that is relatively easy to put into operation. For example, allocation harm can be quantified as a group fairness metric by comparing a classifier’s selection rates across different groups. We can quantify quality-of-service harm and representation harm in a similar way.</p>
 <div class="tip admonition">
 <p class="admonition-title">Summary</p>
-<p><a class="reference internal" href="groupfairnessmetrics.html#group-fairness-metrics"><span class="std std-ref"><strong>Group Fairness Metrics</strong></span></a></p>
-<p><a class="reference internal" href="impossibilitytheorem.html#impossibility-theorem"><span class="std std-ref"><strong>The Impossibility Theorem</strong></span></a></p>
+<p>…</p>
 </div>
 <div class="toctree-wrapper compound">
 </div>

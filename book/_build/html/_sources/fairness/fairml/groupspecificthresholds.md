@@ -5,13 +5,13 @@
 This section is still under construction.
 ```
 
-## Decision Thresholds
+<!-- ## Decision Thresholds
 
 ## Reject-Option Classification
 
 ## Randomized Decision Thresholds
 
-## References
+## References -->
 
 ```{footbibliography}
 ```

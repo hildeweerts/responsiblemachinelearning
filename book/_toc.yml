@@ -18,17 +18,18 @@ parts:
     - file: fairness/groupfairness/introduction
       sections:
       - file: fairness/groupfairness/groupfairnessmetrics
-      - file: fairness/groupfairness/impossibilitytheorem
+      - file: fairness/groupfairness/biases
+      - file: fairness/groupfairness/normativeunderpinnings
     - file: fairness/fairml/introduction
       sections:
+      - file: fairness/fairml/nofairnessthroughunawareness
       - file: fairness/fairml/groupspecificthresholds
-    # - file: fairness/biases.md
   - caption: Explainability
     chapters:
     - file: explainability/introduction
     - file: explainability/localposthoc/introduction
       sections:
-      # - file: explainability/localposthoc/lime
+      - file: explainability/localposthoc/lime
       - file: explainability/localposthoc/shap
       - file: explainability/localposthoc/discussion
     - file: explainability/globalposthoc/introduction

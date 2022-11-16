@@ -42,7 +42,7 @@ sphinx:
         - "https://docs.python.org/3"
         - null
       fairlearn:
-        - "https://fairlearn.org/v0.7.0/"
+        - "https://fairlearn.org/v0.8/"
         - null
       scikit-lego:
         - "https://scikit-lego.netlify.app/"

@@ -56,6 +56,7 @@
 #   - N/A
 # ```
 # 
+# (model_evaluation_classification_metrics)=
 # ## Performance metrics based on the predicted class
 # The {term}`confusion matrix` is a basic tool that indicates how well a classification model performs for different classes. One axis displays the true labels and the other axis the predicted labels. Each cell $C_{i,j}$ shows the number of instances in some class $i$ that were predicted to be class $j$. Despite its name, this matrix is not supposed to confuse you, but visualizes whether the classifier is confusing particular classes (i.e., misclassifying one as another). In a {term}`binary classification` problem, the confusion matrix contains the number of {term}`true positive`s (tp), {term}`false positive`s (fp), {term}`true negative`s (tn), and {term}`false negative`s (fn). 
 # 
@@ -178,7 +179,7 @@ tpr: {:.2f}
 # 
 # {term}`Precision` is the defined as the fraction of retrieved documents that were actually relevant (i.e., how precise is the retrieved result?). In a general classification problem, the metric is defined as the fraction of positive instances among the predicted positive instances. {term}`Recall`, on the other hand, is defined as the fraction of all relevant documents that were successfully retrieved (i.e., how many of the relevant documents are recalled?). In a classification setting, recall refers to the amount of positive instances the model classified as such from all positive instances in the data set, which is equivalent to the true positive rate.
 # 
-# In practice, we might find both precision and recall important. This is where the {term}`f1-score` comes in, which is defined as the harmonic mean of precision and recall. The f1-score is just one way to aggregate precision and recall. Importantly, this makes the score only relevant in scenarios where we believe precision and recall are equally important. There also exists a more general $F_{\beta}$-score, where $\beta$ is chosen such that recall is considered $\beta$ times as important as precision.
+# Often, there is an inverse relationship between precision and recall, which is referred to as the {term}`precision-recall trade-off`. In practice, we might find both precision and recall important. This is where the {term}`f1-score` comes in, which is defined as the harmonic mean of precision and recall. The f1-score is just one way to aggregate precision and recall. Importantly, this makes the score only relevant in scenarios where we believe precision and recall are equally important. There also exists a more general $F_{\beta}$-score, where $\beta$ is chosen such that recall is considered $\beta$ times as important as precision.
 
 # In[5]:
 
@@ -274,8 +275,9 @@ plt.show()
 # 
 # AUC can be useful to compare the aggregate predictive performance of different models during model selection. However, **AUC summarizes the performance of the model across all possible decision thresholds. To actually use the model for classifying intances, you still need to choose a decision threshold.** As such, unlike confusion-based metrics, AUC typically does not directly correspond to real-world constraints or objectives. For example, in fraud detection, we may want to limit the expected number of false positives such that it is still humanly possible for fraud analysts to process all fraud alerts. Similarly, there may be different costs associated with false positives and false negatives making specific subspaces of the ROC curve more attractive than others.
 # 
+# (precision_recall_curve)=
 # ### Precision-Recall Curve
-# In some problems it may be valuable to evaluate the trade-off between the precision and recall across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall, but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a {term}`precision-recall curve` can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using {term}`average precision`, which is the average precision score over all recall values.
+# In some problems it may be valuable to evaluate the {term}`precision-recall trade-off` across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall, but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a {term}`precision-recall curve` can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using {term}`average precision`, which is the average precision score over all recall values.
 
 # In[9]:
 

@@ -20,6 +20,7 @@ This has given rise to the research field of {term}`algorithmic fairness`: the i
 
 Note that this definition of algorithmic fairness is very broad. This is intentional. The concept is applicable to all types of algorithmic systems, including different flavors of artificial intelligence (e.g., symbolic approaches, expert systems, and machine learning), but also simple rule-based systems.
 
+(types_of_harm)=
 ## Types of Harm
 
 The exact meaning of "behaving or treating people fairly" depends heavily on the context of the algorithmic system. There are several different ways in which algorithmic systems can disregard fairness. In particular, we can distinguish between the following types of fairness-related harms{footcite:p}`Madaio2020`:
@@ -33,21 +34,6 @@ The exact meaning of "behaving or treating people fairly" depends heavily on the
 
 Note that these types of harm are not mutually exclusive and that this list is not complete -- there may be other context and application specific harms.
 
-## No Fairness through Unawareness
-If we do not want to discriminate against certain groups, why don't we just remove the {term}`sensitive feature`, i.e., the feature that represents a sensitive characteristic in our data set? Unfortunately, it is not that simple. To see why, it can help to distinguish between direct discrimination and indirect discrimination.
-
-In European Union law, {term}`direct discrimination` refers to cases where (groups of) individuals are treated less favorably based directly on their membership of a protected-by-law group. In United States laber law, a similar concept is referred to as {term}`disparate treatment`. On the other hand, {term}`indirect discrimination` (similar to {term}`disparate impact` in United States labor law), refers to cases where groups or individuals are treated less favorably based on rules that **seem** neutral, but, as a side effect, disadvantage a protected group.
-
-```{caution}
-Much of the terminology in algorithmic fairness research, especially earlier works, are loosely based on legal definitions such as disparate impact and discrimination. However, the legal doctrines to which these terms refer are typically much more complex than the technical metrics suggest. This can result in suggestive terminology that may be misleading for computer scientists who are unaware of the legal complexities and can lead to misinterpretations by legal experts. **In this book, I try to avoid legal terminology unless I refer to the actual legal definition**.
-```
-
-An example of direct discrimination is when a person is denied service in a restaurant based on their race. In the context of an algorithmic system, direct discrimination could occur when a machine learning model explicitly uses a sensitive feature to make a prediction. Following this definition of fairness, removing the sensitive feature will prevent discrimination. A classic example of *indirect* discrimination is redlining. This refers to a practice in the United States where people were systematically denied services based on their postal code. Neighborhoods that were deemed "too risky" were outlined on the map in the color red. Although postal code may appear to be a neutral feature, it was highly correlated with race. As services were mostly denied in predominantly African-American neighborhoods, African-Americans were indirectly discriminated against. Another example can be found in loan applications. Imagine we want to avoid allocation harm across genders. We decide to exclude the feature that represents gender from our data set, to avoid any direct discrimination. However, if we do include occupation, an attribute which is highly gendered in many societies, the model can still identify historical patterns of gender bias. Here, occupation acts as a {term}`proxyvariable` for gender: occupation is highly associated with gender. In the case of indirect discrimination, variables included in our model may unintentionally act as a proxy variables for a sensitive characteristic. 
-
-This is not just a hypothetical problem. **Machine learning algorithms are specifically designed to identify relationships between features in a data set. If undesirable patterns exist within the data, it is very likely that a machine learning model will replicate it.** Removing all possible proxy variables is usually not a viable approach. First of all, it is not always possible to anticipate the patterns through which the sensitive feature can be approximated by the model. Several features that are slightly predictive of the sensitive feature might, taken together, be an accurate predictor of the sensitive feature. Second, apart from their relation with the sensitive feature, proxy variables may provide information that is predictive of the target feature. Removing all features that are slightly related to the sensitive feature could therefore substantially reduce the predictive performance of the model.
-
-Clearly, removing sensitive feature is unlikely to prevent allocation harm, which can still occur in the form of indirect effects. Similarly, patterns of stereotyping and denigration can be deeply embedded in (unstructured) data such as text. Quality-of-service harm, representation harm, and denigration harm can be caused by a lack of informativeness of the data that is available for these groups, which is not solved by removing the sensitive feature either. **To conclude, removing sensitive features is only helpful in achieving a very narrow definition of fairness.** The practical consequence is that it is unlikely that this approach will prevent real-world harm.
-
 ```{admonition} Summary
 :class: tip
 
@@ -58,10 +44,6 @@ Machine learning models can reproduce, amplify, and even introduce unfairness. T
 **Types of harm**
 
 There are different ways in which algorithmic systems can disregard fairenss, including {term}`allocation harm`, {term}`quality-of-service harm`, {term}`stereotyping harm`, {term}`denigration harm`, {term}`representation harm`, and {term}`procedural harm`.
-
-**No fairness through unawareness**
-
-As machine learning models are designed to identify relationships between features in the data set, removing sensitive features is generally not sufficient to mitigate the risk of fairness-related harm.
 
 ```
 

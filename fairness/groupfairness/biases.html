@@ -5,54 +5,56 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Why fairness is not just a data problem &#8212; An Introduction to Responsible Machine Learning</title>
+    <title>Biases as Sources of Unfairness &#8212; An Introduction to Responsible Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Choosing the “Right” Fairness Metric" href="normativeunderpinnings.html" />
+    <link rel="prev" title="Group Fairness Metrics" href="groupfairnessmetrics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -87,14 +89,14 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="bd-sidebar noprint" id="site-navigation">
     <div class="bd-sidebar__content">
         <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+    <a class="navbar-brand text-wrap" href="../../index.html">
       
       
       
       <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -102,7 +104,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../index.html">
+                <a class="reference internal" href="../../index.html">
                     An Introduction to Responsible Machine Learning
                 </a>
             </li>
@@ -114,12 +116,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../introduction/introduction.html">
+  <a class="reference internal" href="../../introduction/introduction.html">
    Responsible Machine Learning
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../introduction/machinelearning/introduction.html">
+  <a class="reference internal" href="../../introduction/machinelearning/introduction.html">
    Machine Learning Preliminaries
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -129,17 +131,17 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../introduction/machinelearning/modelevaluation.html">
+    <a class="reference internal" href="../../introduction/machinelearning/modelevaluation.html">
      Model Evaluation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../introduction/machinelearning/modelselection.html">
+    <a class="reference internal" href="../../introduction/machinelearning/modelselection.html">
      Model Selection
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../introduction/machinelearning/costsensitivelearning.html">
+    <a class="reference internal" href="../../introduction/machinelearning/costsensitivelearning.html">
      Cost-Sensitive Learning
     </a>
    </li>
@@ -151,36 +153,41 @@ const thebe_selector_output = ".output, .cell_output"
   Fairness
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
+  <a class="reference internal" href="../introduction.html">
    Algorithmic Fairness
   </a>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="groupfairness/introduction.html">
-   Group Fairness
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="introduction.html">
+   Measuring Fairness
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="groupfairness/groupfairnessmetrics.html">
+    <a class="reference internal" href="groupfairnessmetrics.html">
      Group Fairness Metrics
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Biases as Sources of Unfairness
+    </a>
+   </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="groupfairness/impossibilitytheorem.html">
-     The Impossibility Theorem
+    <a class="reference internal" href="normativeunderpinnings.html">
+     Choosing the “Right” Fairness Metric
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="fairml/introduction.html">
+  <a class="reference internal" href="../fairml/introduction.html">
    Fairness-Aware Machine Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -190,7 +197,12 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="fairml/groupspecificthresholds.html">
+    <a class="reference internal" href="../fairml/nofairnessthroughunawareness.html">
+     No Fairness through Unawareness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/groupspecificthresholds.html">
      Group-Specific Decision Thresholds
     </a>
    </li>
@@ -204,12 +216,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../explainability/introduction.html">
+  <a class="reference internal" href="../../explainability/introduction.html">
    Explainable Machine Learning
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../explainability/localposthoc/introduction.html">
+  <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
    Local Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -219,19 +231,24 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../explainability/localposthoc/shap.html">
+    <a class="reference internal" href="../../explainability/localposthoc/lime.html">
+     LIME
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/shap.html">
      SHAP
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../explainability/localposthoc/discussion.html">
+    <a class="reference internal" href="../../explainability/localposthoc/discussion.html">
      Feature importance
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../explainability/globalposthoc/introduction.html">
+  <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
    Global Post-Hoc Explanations
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
@@ -241,7 +258,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../explainability/globalposthoc/pdp.html">
+    <a class="reference internal" href="../../explainability/globalposthoc/pdp.html">
      Partial Dependence Plots
     </a>
    </li>
@@ -255,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../other/glossary.html">
+  <a class="reference internal" href="../../other/glossary.html">
    Glossary
   </a>
  </li>
@@ -349,7 +366,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Ffairness/biases.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Ffairness/groupfairness/biases.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -377,7 +394,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/fairness/biases.md"
+        <a href="../../_sources/fairness/groupfairness/biases.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -543,7 +560,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Why fairness is not just a data problem</h1>
+                <h1>Biases as Sources of Unfairness</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -661,19 +678,23 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="why-fairness-is-not-just-a-data-problem">
-<span id="biases-problem"></span><h1>Why fairness is not just a data problem<a class="headerlink" href="#why-fairness-is-not-just-a-data-problem" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="biases-as-sources-of-unfairness">
+<span id="biases-problem"></span><h1>Biases as Sources of Unfairness<a class="headerlink" href="#biases-as-sources-of-unfairness" title="Permalink to this headline">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This section is still under construction.</p>
+</div>
 <p>Algorithmic systems are an accumulation of design choices that embed the developers’ explicit and implicit value judgements into the system <a class="footnote-reference brackets" href="#footcite-wieringa2020" id="id1">1</a>. Consequently, biases can seep into the system in many different places of the development process. In this section, we will explore biases as sources of unfairness in different parts of the machine learning development process.</p>
 <p>But first, let us define more precisely what we mean by bias. Generally speaking, <span class="xref std std-term">bias</span> is a systematic and disproportionate tendency towards something. The word bias can be used to refer to many different things, ranging from social biases related to prejudice, to statistical biases that are of a technical nature.</p>
 <ul class="simple">
 <li><p><strong>Social and systemic bias.</strong> In everyday language, bias often considers prejudice against a person or a group, which we will refer to as <span class="xref std std-term">social bias</span>. Social bias is a form of <span class="xref std std-term">cognitive bias</span>: a systematic error in rational thinking that can affect judgment and decision-making. Most <span class="xref std std-term">cognitive bias</span>es are a result of the limitations of information-processing capabilities of the human brain. From an evolutionary perspective, these biases are useful because they allow people to make quick decisions in critical scenarios. As a hunter-gatherer, you would probably rather be safe than sorry when encountering an unknown group of other humans. However, these shortcuts often come at the cost of the quality of decisions. In particular, stereotypes formed by social bias can be overgeneralized and inaccurate, especially on an individual level. When people act on social biases, they can result in discriminatory practices. It is important to realize that everybody has some degree of conscious or subconscious social bias. Awareness of <span class="xref std std-term">cognitive bias</span>es, including social bias, can help to signal and mitigate their effects. In particular, a diverse team and critical self-reflection can help to signal social biases and avoid acting on them.</p></li>
-<li><p><strong>Statistical bias.</strong> In statistics, bias refers to a systematic error in the estimation of parameters or variables. <span class="xref std std-term">statistical bias</span> can be the result of data collection practices that compromise the accuracy of the estimate, such as a particular sampling procedure. This form of statistical bias can be rooted in <span class="xref std std-term">cognitive bias</span>es of the researcher or data subjects. Statistical bias can also refer to systematic errors caused by assumptions of the estimator. In the context of machine learning algorithms, this type of bias is often discussed in relation to the bias-variance trade-off. For example, some machine learning algorithms can only learn linear relationships between features, whereas the true underlying data distribution exhibits more complex relationships, resulting in an <a class="reference internal" href="../other/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a> model.</p></li>
+<li><p><strong>Statistical bias.</strong> In statistics, bias refers to a systematic error in the estimation of parameters or variables. <span class="xref std std-term">statistical bias</span> can be the result of data collection practices that compromise the accuracy of the estimate, such as a particular sampling procedure. This form of statistical bias can be rooted in <span class="xref std std-term">cognitive bias</span>es of the researcher or data subjects. Statistical bias can also refer to systematic errors caused by assumptions of the estimator. In the context of machine learning algorithms, this type of bias is often discussed in relation to the bias-variance trade-off. For example, some machine learning algorithms can only learn linear relationships between features, whereas the true underlying data distribution exhibits more complex relationships, resulting in an <a class="reference internal" href="../../other/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a> model.</p></li>
 </ul>
 <p>Although all these different types of bias can result in fairness related harms, most issues arise at the intersection of social bias and statistical bias. In the remainder of this section, we will dive more deeply into different types of biases at each stage of the development process. Note that this list is not exhaustive. Moreover, as we will see, biases are hard to precisely dissect and often overlap. In practice, it is usually difficult if not impossible to know exactly which biases are at play. Luckily, a thoughtful development process that leaves room for self-reflection goes a long way in mitigating harms.</p>
 <div class="section" id="problem-understanding-abstraction-traps">
 <h2>Problem Understanding: Abstraction Traps<a class="headerlink" href="#problem-understanding-abstraction-traps" title="Permalink to this headline">#</a></h2>
 <p>Translating a real-world problem into a machine learning task can be difficult. By definition, a model is a simplification of reality. A data scientist’s task is to decide which elements of the real world need to be included in the model and which elements will be left out of scope. To this end, some amount of abstraction is required. This involves removing details to focus attention on general patterns. The impact of your system, both positive and negative, highly depends on how you define the machine learning task. By abstracting away the context surrounding a model and its inputs and outputs, you may accidentally abstract away some of the consequences as well.</p>
-<p>A mismatch between the machine learning task and the real-world context is referred to as an <span class="xref std std-term">abstractiontrap</span> <a class="footnote-reference brackets" href="#footcite-selbst2019" id="id2">2</a>. Abstraction traps can amplify harmful consequences of your system, particularly those related to fairness.</p>
+<p>A mismatch between the machine learning task and the real-world context is referred to as an <span class="xref std std-term">abstraction trap</span> <a class="footnote-reference brackets" href="#footcite-selbst2019" id="id2">2</a>. Abstraction traps can amplify harmful consequences of your system, particularly those related to fairness.</p>
 <div class="section" id="the-framing-trap">
 <h3>The Framing Trap<a class="headerlink" href="#the-framing-trap" title="Permalink to this headline">#</a></h3>
 <p>Machine learning models hardly ever operate in isolation. A decision-making process may incorporate (multiple) other machine learning models or human decision-makers. The <span class="xref std std-term">framing trap</span> considers the failure to model the relevant aspects of the larger system your machine learning model is a part of.</p>
@@ -691,7 +712,7 @@ title="Print to PDF"
 <p>The <span class="xref std std-term">formalism trap</span> is closely related to the statistical concept of <span class="xref std std-term">construct validity</span>: how well does the formalization measure the construct of interest? Business objectives often involve constructs such as “employee quality” or “creditworthiness” that cannot be measured directly <a class="footnote-reference brackets" href="#footcite-jacobs2019" id="id5">5</a>. In such cases, data scientists may use a <span class="xref std std-term">proxy variable</span> instead. Every variable in a data set is the result of a decision on how a particular construct can be measured into a computer readable scale. For example, Netflix has chosen to measure a viewers’ quality judgments with likes, rather than the more commonly used 1 - 5 star rating <a class="footnote-reference brackets" href="#footcite-dobbe2018" id="id6">6</a>.</p>
 <p>Not all variables measure the intended construct equally well. <span class="xref std std-term">construct validity bias</span> is a statistical bias that occurs when a variable does not accurately measure the construct it is supposed to measure. For example, income measures the construct socioeconomic status to some degree, but does not capture other factors such as wealth and education <a class="footnote-reference brackets" href="#footcite-jacobs2019" id="id7">5</a>.</p>
 <p>A mismatch between the choice of target variable and the actual construct of interest can be detrimental towards fairness goals. In particular, fairness concerns can arise when the measurement error introduced by the choice of formalization differs across groups. For example, you may be interested in predicting crime, but only have access to a subset of all criminal activity: arrest records. In societies where arrest records are the result of racially biased policing practices, the measurement error will differ across racial groups. Similarly, Obermeyer <em>et al.</em><a class="footnote-reference brackets" href="#footcite-obermeyer2019" id="id8">7</a> found that due to unequal access to healthcare, historically less money has been spent on caring for African-American patients compared to Caucasian patients. Consequently, a system that used healthcare costs as a proxy for true healthcare needs systematically underestimated the needs of African-American patients.</p>
-<p>Issues of <span class="xref std std-term">construct validity</span> are especially complex for social constructs such as race and gender. Almost paradoxically, measuring <a class="reference internal" href="../other/glossary.html#term-sensitive-characteristic"><span class="xref std std-term">sensitive characteristic</span></a> can introduce bias. In industry and academia, it is common to “infer” these characteristics from observed data, such as facial analysis <a class="footnote-reference brackets" href="#footcite-jacobs2019" id="id9">5</a>. This can be problematic because such approaches often fail to acknowledge that social constructs are inherently contextual, may change over time, and are multidimensional. For example, when talking about race, one may be referring to somebody’s racial identity (i.e., self-identified race), their observed race (i.e., the race others believe them to be), their phenotype (i.e., racial appearance), or even their reflected race (i.e., the race they believe others assume them to be). Which dimension you measure will influence the conclusions you can draw (see Hanna <em>et al.</em><a class="footnote-reference brackets" href="#footcite-hanna2020" id="id10">8</a> for a more detailed account).</p>
+<p>Issues of <span class="xref std std-term">construct validity</span> are especially complex for social constructs such as race and gender. Almost paradoxically, measuring <a class="reference internal" href="../../other/glossary.html#term-sensitive-characteristic"><span class="xref std std-term">sensitive characteristic</span></a> can introduce bias. In industry and academia, it is common to “infer” these characteristics from observed data, such as facial analysis <a class="footnote-reference brackets" href="#footcite-jacobs2019" id="id9">5</a>. This can be problematic because such approaches often fail to acknowledge that social constructs are inherently contextual, may change over time, and are multidimensional. For example, when talking about race, one may be referring to somebody’s racial identity (i.e., self-identified race), their observed race (i.e., the race others believe them to be), their phenotype (i.e., racial appearance), or even their reflected race (i.e., the race they believe others assume them to be). Which dimension you measure will influence the conclusions you can draw (see Hanna <em>et al.</em><a class="footnote-reference brackets" href="#footcite-hanna2020" id="id10">8</a> for a more detailed account).</p>
 <p>To avoid falling into the <span class="xref std std-term">formalism trap</span>, data scientists should take into account whether the problem formulation handles understandings of (social) constructs in a way that matches the intended deployment context. To mitigate <span class="xref std std-term">construct validity bias</span>, ideally multiple measures are collected, especially for complex constructs. As we will see, many of the biases that can occur in later steps of the development process can be traced back to the problem of <span class="xref std std-term">construct validity</span>.</p>
 </div>
 <div class="section" id="the-ripple-effect-trap">
@@ -738,7 +759,7 @@ title="Print to PDF"
 <div class="section" id="aggregation-bias">
 <h3>Aggregation bias<a class="headerlink" href="#aggregation-bias" title="Permalink to this headline">#</a></h3>
 <p><span class="xref std std-term">aggregationbias</span> occurs when a single model is used for groups that have distinct data distributions <a class="footnote-reference brackets" href="#footcite-suresh2020" id="id14">9</a>. If not accounted for, it may lead to a model that does not work well for any of the subgroups. For example, it is known that the relationship between hemoglobin levels (HbA1c) and blood glucose levels differs greatly across genders and ethnicities <a class="footnote-reference brackets" href="#footcite-suresh2020" id="id15">9</a>. If these differences are not taken into account, a model that only uses a single interpretation of HbA1c will likely not work well for any of these groups. In combination with <span class="xref std std-term">representationbias</span>, it can lead to a model that only works well for the majority population.</p>
-<p><span class="xref std std-term">aggregation bias</span> is related to the problem of <a class="reference internal" href="../other/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a>. Machine learning can be seen as a compression problem that produces a mapping between input features and output variable. Some information is inherently lost because of the chosen mapping <a class="footnote-reference brackets" href="#footcite-dobbe2018" id="id16">6</a>. In particular, some model classes may not be able to adequately capture the different data distributions. Such an oversimplified model may come at the cost of predictive performance for minority groups, resulting in <span class="xref std std-term">quality-of-service harm</span>.</p>
+<p><span class="xref std std-term">aggregation bias</span> is related to the problem of <a class="reference internal" href="../../other/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a>. Machine learning can be seen as a compression problem that produces a mapping between input features and output variable. Some information is inherently lost because of the chosen mapping <a class="footnote-reference brackets" href="#footcite-dobbe2018" id="id16">6</a>. In particular, some model classes may not be able to adequately capture the different data distributions. Such an oversimplified model may come at the cost of predictive performance for minority groups, resulting in <span class="xref std std-term">quality-of-service harm</span>.</p>
 </div>
 <div class="section" id="omitted-variable-bias">
 <h3>Omitted variable bias<a class="headerlink" href="#omitted-variable-bias" title="Permalink to this headline">#</a></h3>
@@ -758,20 +779,20 @@ title="Print to PDF"
 </div>
 <div class="section" id="interpretation">
 <h3>Interpretation<a class="headerlink" href="#interpretation" title="Permalink to this headline">#</a></h3>
-<p>Interaction of stakeholders with the system can be a source of unfairness. A decision-maker may interpret the model’s output differently for different groups, due to social bias and <span class="xref std std-term">confirmationbias</span>. For example, a judge may weigh a high risk score more heavily for a black defendant compared to a white defendant, due to (unconscious) social bias. This bias, which can be attributed to falling into the framing trap, can be mitigated by taking into account stakeholder interactions during the system’s design and evaluation.</p>
+<p>Interaction of stakeholders with the system can be a source of unfairness. A decision-maker may interpret the model’s output differently for different groups, due to social bias and <span class="xref std std-term">confirmation bias</span>. For example, a judge may weigh a high risk score more heavily for a black defendant compared to a white defendant, due to (unconscious) social bias. This bias, which can be attributed to falling into the framing trap, can be mitigated by taking into account stakeholder interactions during the system’s design and evaluation.</p>
 </div>
 <div class="section" id="interaction-reinforcing-feedback-loops">
 <h3>Interaction: Reinforcing Feedback Loops<a class="headerlink" href="#interaction-reinforcing-feedback-loops" title="Permalink to this headline">#</a></h3>
 <p>In systems that learn from user interactions, users can introduce social bias. For example, consider a chat bot that learns dynamically. Without safeguards against toxicity, users might teach it to use obscene or otherwise offensive language, resulting in <span class="xref std std-term">denigration harm</span>. This type of bias can be avoided by putting checks in place to identify malicious intent towards the system.</p>
 <p>Feedback mechanisms that amplify an effect are called <span class="xref std std-term">reinforcing feedback loop</span>s. In the context of fairness, it refers to the amplification of existing (historical) biases when new data is collected based on the output of a biased model.</p>
-<div class="tip admonition">
+<div class="admonition-example-a-reinforcing-feedback-loop-in-predictive-policing admonition">
 <p class="admonition-title"><em>Example:</em> A Reinforcing Feedback Loop in Predictive Policing</p>
 <p>Lets imagine there is a police station that is responsible for two neighborhoods, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. Now lets imagine a predictive policing system that allocates police officers to the neighborhoods based on the predicted crime rate in each neighborhood. In this example, the true crime rates of the neighborhoods are equal. However, due to the randomness, we have collected slightly more crime data in neighborhood <span class="math notranslate nohighlight">\(A\)</span> than than in neighborhood <span class="math notranslate nohighlight">\(B\)</span> at the time the prediction model is trained. Consequently, the model predicts more crime in neighborhood <span class="math notranslate nohighlight">\(A\)</span> than in neighborhood <span class="math notranslate nohighlight">\(B\)</span>. Based on this prediction, we send more police officers to neighborhood <span class="math notranslate nohighlight">\(A\)</span>. Consequently, more crime will be detected in neighborhood <span class="math notranslate nohighlight">\(A\)</span> – even though the true crime rates are the same. If we retrain our model on the newly collected crime data, even more police officers will be allocated to neighborhood <span class="math notranslate nohighlight">\(A\)</span> and even more crime is detected. And so the feedback loop continues…</p>
 </div>
 <p>A consequence of these feedback loops is that people can form erroneous beliefs based on the data. For example, after the introduction of the predictive policing system in our example, police officers may believe that neighborhood <span class="math notranslate nohighlight">\(A\)</span> truly has a bigger crime problem than neighborhood <span class="math notranslate nohighlight">\(B\)</span>. A failure to anticipate on feedback loops can be particularly risky for automated decision-making systems, in which bias can propagate quickly over time.</p>
-<p>A specific instance of feedback loops that recommender systems may suffer from is <span class="xref std std-term">popularity bias</span>. If people tend to click on highly ranked items more often, this can lead the algorithm to rank popular items even higher and disregard less popular items that may be just as valuable to the user.</p>
-<p>One way to investigate feedback loops is through simulation. Developing an accurate simulation of a sociotechnical system is difficult and requires a lot of domain expertise. Alternatively, we may borrow approaches from the field of system dynamics <a class="footnote-reference brackets" href="#footcite-martin2020extending" id="id21">13</a> and causal modeling.</p>
-<div class="docutils container" id="id22">
+<!-- A specific instance of feedback loops that recommender systems may suffer from is {term}`popularity bias`. If people tend to click on highly ranked items more often, this can lead the algorithm to rank popular items even higher and disregard less popular items that may be just as valuable to the user. 
+One way to investigate feedback loops is through simulation. Developing an accurate simulation of a sociotechnical system is difficult and requires a lot of domain expertise. Alternatively, we may borrow approaches from the field of system dynamics {footcite:p}`martin2020extending` and causal modeling. -->
+<div class="docutils container" id="id21">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-wieringa2020"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Maranke Wieringa. What to account for when accounting for algorithms. In <em>Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency</em>. ACM, January 2020. URL: <a class="reference external" href="https://doi.org/10.1145/3351095.3372833">https://doi.org/10.1145/3351095.3372833</a>, <a class="reference external" href="https://doi.org/10.1145/3351095.3372833">doi:10.1145/3351095.3372833</a>.</p>
@@ -809,9 +830,6 @@ title="Print to PDF"
 <dt class="label" id="footcite-friedman1996"><span class="brackets"><a class="fn-backref" href="#id20">12</a></span></dt>
 <dd><p>Batya Friedman and Helen Nissenbaum. Bias in computer systems. <em>ACM Transactions on Information Systems</em>, 14(3):330–347, July 1996. URL: <a class="reference external" href="https://doi.org/10.1145/230538.230561">https://doi.org/10.1145/230538.230561</a>, <a class="reference external" href="https://doi.org/10.1145/230538.230561">doi:10.1145/230538.230561</a>.</p>
 </dd>
-<dt class="label" id="footcite-martin2020extending"><span class="brackets"><a class="fn-backref" href="#id21">13</a></span></dt>
-<dd><p>Donald Martin, Jr., Vinodkumar Prabhakaran, Jill Kuhlberg, Andrew Smart, and William S. Isaac. Extending the machine learning abstraction boundary: a complex systems approach to incorporate societal context. 2020. <a class="reference external" href="https://arxiv.org/abs/2006.09663">arXiv:2006.09663</a>.</p>
-</dd>
 </dl>
 </div>
 <hr class="footnotes docutils" />
@@ -832,7 +850,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./fairness"
+            path: "./fairness/groupfairness"
         },
         predefinedOutput: true
     }
@@ -846,6 +864,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="groupfairnessmetrics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Group Fairness Metrics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="normativeunderpinnings.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Choosing the “Right” Fairness Metric</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
@@ -867,7 +899,7 @@ title="Print to PDF"
     </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
 
   </body>

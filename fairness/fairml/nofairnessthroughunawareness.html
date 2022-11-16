@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Impossibility Theorem &#8212; An Introduction to Responsible Machine Learning</title>
+    <title>No Fairness through Unawareness &#8212; An Introduction to Responsible Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -51,8 +51,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Fairness-Aware Machine Learning" href="../fairml/introduction.html" />
-    <link rel="prev" title="Group Fairness Metrics" href="groupfairnessmetrics.html" />
+    <link rel="next" title="Group-Specific Decision Thresholds" href="groupspecificthresholds.html" />
+    <link rel="prev" title="Fairness-Aware Machine Learning" href="introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -157,41 +157,51 @@ const thebe_selector_output = ".output, .cell_output"
    Algorithmic Fairness
   </a>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="introduction.html">
-   Group Fairness
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="groupfairnessmetrics.html">
-     Group Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     The Impossibility Theorem
-    </a>
-   </li>
-  </ul>
- </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../fairml/introduction.html">
-   Fairness-Aware Machine Learning
+  <a class="reference internal" href="../groupfairness/introduction.html">
+   Measuring Fairness
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairml/randomizedthresholds.html">
-     Randomized Thresholds
+    <a class="reference internal" href="../groupfairness/groupfairnessmetrics.html">
+     Group Fairness Metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../groupfairness/biases.html">
+     Biases as Sources of Unfairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../groupfairness/normativeunderpinnings.html">
+     Choosing the “Right” Fairness Metric
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="introduction.html">
+   Fairness-Aware Machine Learning
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     No Fairness through Unawareness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="groupspecificthresholds.html">
+     Group-Specific Decision Thresholds
     </a>
    </li>
   </ul>
@@ -218,6 +228,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/lime.html">
+     LIME
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../explainability/localposthoc/shap.html">
      SHAP
@@ -349,7 +364,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Ffairness/groupfairness/impossibilitytheorem.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Ffairness/fairml/nofairnessthroughunawareness.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -377,7 +392,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/fairness/groupfairness/impossibilitytheorem.md"
+        <a href="../../_sources/fairness/fairml/nofairnessthroughunawareness.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -414,60 +429,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The Impossibility Theorem</h1>
+                <h1>No Fairness through Unawareness</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -475,15 +453,21 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-impossibility-theorem">
-<span id="impossibility-theorem"></span><h1>The Impossibility Theorem<a class="headerlink" href="#the-impossibility-theorem" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="no-fairness-through-unawareness">
+<span id="id1"></span><h1>No Fairness through Unawareness<a class="headerlink" href="#no-fairness-through-unawareness" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This section is still under construction.</p>
 </div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<p>If we do not want to discriminate against certain groups, why don’t we just remove the <span class="xref std std-term">sensitive feature</span>, i.e., the feature that represents a sensitive characteristic in our data set? Unfortunately, it is not that simple. To see why, it can help to distinguish between direct discrimination and indirect discrimination.</p>
+<p>In European Union law, <span class="xref std std-term">direct discrimination</span> refers to cases where (groups of) individuals are treated less favorably based directly on their membership of a protected-by-law group. In United States laber law, a similar concept is referred to as <span class="xref std std-term">disparate treatment</span>. On the other hand, <span class="xref std std-term">indirect discrimination</span> (similar to <span class="xref std std-term">disparate impact</span> in United States labor law), refers to cases where groups or individuals are treated less favorably based on rules that <strong>seem</strong> neutral, but, as a side effect, disadvantage a protected group.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Much of the terminology in algorithmic fairness research, especially earlier works, are loosely based on legal definitions such as disparate impact and discrimination. However, the legal doctrines to which these terms refer are typically much more complex than the technical metrics suggest. This can result in suggestive terminology that may be misleading for computer scientists who are unaware of the legal complexities and can lead to misinterpretations by legal experts. <strong>In this book, I try to avoid legal terminology unless I refer to the actual legal definition</strong>.</p>
 </div>
+<p>An example of direct discrimination is when a person is denied service in a restaurant based on their race. In the context of an algorithmic system, direct discrimination could occur when a machine learning model explicitly uses a sensitive feature to make a prediction. Following this definition of fairness, removing the sensitive feature will prevent discrimination. A classic example of <em>indirect</em> discrimination is redlining. This refers to a practice in the United States where people were systematically denied services based on their postal code. Neighborhoods that were deemed “too risky” were outlined on the map in the color red. Although postal code may appear to be a neutral feature, it was highly correlated with race. As services were mostly denied in predominantly African-American neighborhoods, African-Americans were indirectly discriminated against. Another example can be found in loan applications. Imagine we want to avoid allocation harm across genders. We decide to exclude the feature that represents gender from our data set, to avoid any direct discrimination. However, if we do include occupation, an attribute which is highly gendered in many societies, the model can still identify historical patterns of gender bias. Here, occupation acts as a <span class="xref std std-term">proxyvariable</span> for gender: occupation is highly associated with gender. In the case of indirect discrimination, variables included in our model may unintentionally act as a proxy variables for a sensitive characteristic.</p>
+<p>This is not just a hypothetical problem. <strong>Machine learning algorithms are specifically designed to identify relationships between features in a data set. If undesirable patterns exist within the data, it is very likely that a machine learning model will replicate it.</strong> Removing all possible proxy variables is usually not a viable approach. First of all, it is not always possible to anticipate the patterns through which the sensitive feature can be approximated by the model. Several features that are slightly predictive of the sensitive feature might, taken together, be an accurate predictor of the sensitive feature. Second, apart from their relation with the sensitive feature, proxy variables may provide information that is predictive of the target feature. Removing all features that are slightly related to the sensitive feature could therefore substantially reduce the predictive performance of the model.</p>
+<p>Clearly, removing sensitive feature is unlikely to prevent allocation harm, which can still occur in the form of indirect effects. Similarly, patterns of stereotyping and denigration can be deeply embedded in (unstructured) data such as text. Quality-of-service harm, representation harm, and denigration harm can be caused by a lack of informativeness of the data that is available for these groups, which is not solved by removing the sensitive feature either. <strong>To conclude, removing sensitive features is only helpful in achieving a very narrow definition of fairness.</strong> The practical consequence is that it is unlikely that this approach will prevent real-world harm.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -499,7 +483,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./fairness/groupfairness"
+            path: "./fairness/fairml"
         },
         predefinedOutput: true
     }
@@ -513,17 +497,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="groupfairnessmetrics.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Group Fairness Metrics</p>
+            <p class="prev-next-title">Fairness-Aware Machine Learning</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../fairml/introduction.html" title="next page">
+    <a class='right-next' id="next-link" href="groupspecificthresholds.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fairness-Aware Machine Learning</p>
+        <p class="prev-next-title">Group-Specific Decision Thresholds</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

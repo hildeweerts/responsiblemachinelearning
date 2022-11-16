@@ -49,10 +49,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="The Impossibility Theorem" href="impossibilitytheorem.html" />
-    <link rel="prev" title="Group Fairness" href="introduction.html" />
+    <link rel="next" title="Biases as Sources of Unfairness" href="biases.html" />
+    <link rel="prev" title="Measuring Fairness" href="introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -159,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="introduction.html">
-   Group Fairness
+   Measuring Fairness
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -173,8 +175,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="impossibilitytheorem.html">
-     The Impossibility Theorem
+    <a class="reference internal" href="biases.html">
+     Biases as Sources of Unfairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normativeunderpinnings.html">
+     Choosing the “Right” Fairness Metric
     </a>
    </li>
   </ul>
@@ -190,8 +197,13 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairml/randomizedthresholds.html">
-     Randomized Thresholds
+    <a class="reference internal" href="../fairml/nofairnessthroughunawareness.html">
+     No Fairness through Unawareness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/groupspecificthresholds.html">
+     Group-Specific Decision Thresholds
     </a>
    </li>
   </ul>
@@ -218,6 +230,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/lime.html">
+     LIME
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../explainability/localposthoc/shap.html">
      SHAP
@@ -310,6 +327,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/hildeweerts/responsiblemachinelearning/master?urlpath=tree/fairness/groupfairness/groupfairnessmetrics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -377,6 +423,23 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
+        <a href="../../_sources/fairness/groupfairness/groupfairnessmetrics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
         <a href="../../_sources/fairness/groupfairness/groupfairnessmetrics.md"
    class="headerbtn"
    data-toggle="tooltip"
@@ -437,6 +500,89 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-example">
+   Running Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#independence">
+   Independence
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demographic-parity">
+     Demographic parity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conditional-demographic-parity">
+     Conditional Demographic Parity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#misclassification-rates">
+   Misclassification Rates
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equalized-odds">
+     Equalized Odds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equal-opportunity">
+     Equal Opportunity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calibration">
+   Calibration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equal-calibration">
+     Equal calibration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations-of-group-fairness-metrics">
+   Limitations of Group Fairness Metrics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-impossibility-theorem">
+   The Impossibility Theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demographic-parity-and-equal-calibration">
+     Demographic Parity and Equal Calibration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demographic-parity-and-equalized-odds">
+     Demographic Parity and Equalized Odds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equal-calibration-and-equalized-odds">
+     Equal Calibration and Equalized Odds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fairness-mission-impossible">
+     Fairness: Mission Impossible?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -461,6 +607,89 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-example">
+   Running Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#independence">
+   Independence
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demographic-parity">
+     Demographic parity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conditional-demographic-parity">
+     Conditional Demographic Parity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#misclassification-rates">
+   Misclassification Rates
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equalized-odds">
+     Equalized Odds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equal-opportunity">
+     Equal Opportunity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calibration">
+   Calibration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equal-calibration">
+     Equal calibration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations-of-group-fairness-metrics">
+   Limitations of Group Fairness Metrics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-impossibility-theorem">
+   The Impossibility Theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demographic-parity-and-equal-calibration">
+     Demographic Parity and Equal Calibration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demographic-parity-and-equalized-odds">
+     Demographic Parity and Equalized Odds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equal-calibration-and-equalized-odds">
+     Equal Calibration and Equalized Odds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fairness-mission-impossible">
+     Fairness: Mission Impossible?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -477,37 +706,762 @@ title="Print to PDF"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="group-fairness-metrics">
 <span id="id1"></span><h1>Group Fairness Metrics<a class="headerlink" href="#group-fairness-metrics" title="Permalink to this headline">#</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This section is still under construction.</p>
+<p>There have been many attempts to formalize fairness in mathematical criteria, but by far the most prominent notion of fairness is <span class="xref std std-term">group fairness</span>. Group fairness metrics measure the extent to which a particular <em>group statistic</em> differs across (sub)groups of individuals. In technical literature, these groups are typically referred to as <span class="xref std std-term">sensitive group</span>s and are often - *but not always* - defined based on legally protected characteristics such as race and gender.</p>
+<p>Group fairness metrics differ primarily based on <em>which</em> group statistic is required to be equal across groups. We can distinguish three main categories: metrics based on <a class="reference internal" href="#independence-metrics"><span class="std std-ref">independence</span></a>, <a class="reference internal" href="#misclassification-metrics"><span class="std std-ref">misclassification rates</span></a>, and <a class="reference internal" href="#calibration-metrics"><span class="std std-ref">calibration</span></a>.</p>
+<p>In the remainder of this section, we formally define several group fairness criteria in the classification scenario and illustrate how they can be computed using the Python library <code class="docutils literal notranslate"><span class="pre">fairlearn</span></code>.</p>
+<p>Throughout this section, we use the following notation:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> : the set of input features;</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> : the ‘ground truth’ labels;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\widehat{Y}\)</span> : the predictions;</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> : the sensitive feature(s) that measure sensitive characteristic(s).</p></li>
+</ul>
+<div class="section" id="running-example">
+<h2>Running Example<a class="headerlink" href="#running-example" title="Permalink to this headline">#</a></h2>
+<p>As a running example, we train a logistic regression model on a synthetic hiring data set.</p>
+<p>The data set has a few features that can be used for predictions, including <code class="docutils literal notranslate"><span class="pre">years_of_experience</span></code>, the <code class="docutils literal notranslate"><span class="pre">test_score</span></code> of an applicant on a job-related test, the <code class="docutils literal notranslate"><span class="pre">interview_score</span></code> that is provided by person who interviewed the candidate, the <code class="docutils literal notranslate"><span class="pre">average_grade</span></code> the applicant achieved in their highest degree, and finally the applicant’s <code class="docutils literal notranslate"><span class="pre">gender</span></code>. The target variable is <code class="docutils literal notranslate"><span class="pre">hired</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># load data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;hiring.csv&#39;</span><span class="p">)</span>
+<span class="c1"># display data set</span>
+<span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># prepare data set</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hired&#39;</span><span class="p">]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;hired&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># convert categorical gender to dummy variables</span>
+<span class="n">X</span><span class="p">[[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;non_binary&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># split into train and test set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">A_train</span><span class="p">,</span> <span class="n">A_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># train classifier</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
 </div>
-<!-- 
-## Association-based Metrics
-Predictions should be independent of sensitive group membership.
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-### Demographic parity 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-### Conditional Demographic Parity
-In EU and US law, indirect discrimination in employment may not be unlawful if it is justified by a so-called "legitimate aim". Examples of legal justifications for discrimination are genuine occupational requirement and business necessity. For example, a film producer is allowed to hire only male actors to play a male role, as this is considered a genuine occupational requirement. Apart from employment, there may be characteristics that, either from a legal or ethical perspective, legitimize differences between groups. In particular, EU discrimination law is highly contextual - requiring normative or political evaluations on a case-by-case basis {footcite:p}`wachter2021fairness`. Loosely inspired by these legal imperatives, {footcite:t}`Kamiran2013` put forward a notion of fairness that we will refer to as {term}`conditional group fairness`. This is a variant of group fairness that allows for differences between groups, if these differences are explained by a legitimate feature that can be justified by ethics and/or law.  put forward a similar definition inspired by European Union law.
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>years_of_experience</th>
+      <th>test_score</th>
+      <th>interview_score</th>
+      <th>average_grade</th>
+      <th>gender</th>
+      <th>hired</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>6</td>
+      <td>male</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>6</td>
+      <td>female</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>6</td>
+      <td>female</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>1</td>
+      <td>2</td>
+      <td>7</td>
+      <td>male</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>6</td>
+      <td>male</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The data that will be used throughout this section is <strong>synthetic</strong> and is merely used for illustrative purposes. <strong>I do <em>not</em> claim in any way that this data set and model are representative of actual hiring practices</strong>.</p>
+</div>
+</div>
+<div class="section" id="independence">
+<span id="independence-metrics"></span><h2>Independence<a class="headerlink" href="#independence" title="Permalink to this headline">#</a></h2>
+<p>When we think of discrimination, an intuitive notion of fairness is independence: whether an individual receives a particular output, should not depend on sensitive group membership. For example, in our hiring scenario, one may argue that whether an applicant is hired should not depend on their gender.</p>
+<div class="section" id="demographic-parity">
+<h3>Demographic parity<a class="headerlink" href="#demographic-parity" title="Permalink to this headline">#</a></h3>
+<p>The first criterion that we will discuss is <span class="xref std std-term">demographic parity</span>. In a classification scenario, <span class="xref std std-term">demographic parity</span> requires that, for all values of <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(a\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[P(\hat{Y} = y \mid A = a) = P(\hat{Y} = y \mid A = a')\]</div>
+<p>In other words, the probability of receiving a particular prediction should be <strong>independent</strong> of sensitive group membership. In a binary classification scenario, this criterion can be checked by comparing <span class="xref std std-term">selection rate</span>s, i.e., the proportion of predicted positives, across groups. When positive predictions correspond to a resource that is distributed between people, <span class="xref std std-term">demographic parity</span> can be interpreted as a measure of potential <span class="xref std std-term">allocation harm</span>.</p>
+<p>In many cases, we might be interested to measure not just whether demographic parity holds exactly, but also <em>to what extent</em> it is violated. A popular way to summarize the comparison of group statistics is to compute the maximum <em>difference</em> between sensitive groups:</p>
+<div class="math notranslate nohighlight">
+\[\max_{a, a' \in A}( P(\hat{Y} = 1 \mid A = a) - P(\hat{Y} = 1 \mid A = a') )\]</div>
+<p>Alternatively, we can compute the minimum <em>ratio</em> between groups:</p>
+<div class="math notranslate nohighlight">
+\[\min_{a, a' \in A}(P(\hat{Y} = 1 \mid A = a) / P(\hat{Y} = 1 \mid A = a'))\]</div>
+<p>Note that demographic parity depends on predictions <span class="math notranslate nohighlight">\(\hat{Y}\)</span> and sensitive feature(s) <span class="math notranslate nohighlight">\(A\)</span>, but <strong>not</strong> on the ‘ground-truth’ target variable <span class="math notranslate nohighlight">\(Y\)</span>. A direct consequence of this fact is that if group-specific <span class="xref std std-term">base rate</span>s <span class="math notranslate nohighlight">\(p_a = P(Y=1 \mid A=a)\)</span> (i.e., the proportion of positives) differs between groups <strong>a perfect classifier cannot satisfy demographic parity</strong>. We will explore normative arguments for and against demographic parity in more detail in <a class="reference internal" href="normativeunderpinnings.html#normative-underpinnings"><span class="std std-ref">Choosing the ‘right’ fairness metric</span></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Demographic parity as a fairness metric is <em>very loosely</em> inspired by the legal concepts of indirect discrimination in EU law and disparate impact in US labor law - but satisfying the metric definitely does not directly imply legal compliance!</p>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">fairlearn</span></code>, we can easily compute group-specific statistics and subsequent aggregations using <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.MetricFrame" title="(in Fairlearn)"><code class="xref py py-class docutils literal notranslate"><span class="pre">fairlearn.metrics.MetricFrame</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute metrics by group</span>
+<span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="n">MetricFrame</span><span class="p">,</span> <span class="n">selection_rate</span>
 
-Conditional group fairness is best illustrated by an example. Imagine a scenario in which women have a lower income, on average, than men. This may imply that women are discriminated against. However, in our scenario many women work fewer hours than men. The observed disparity can therefore be at least partly explained by the lower number of working hours. Consequently, equalizing income between men and women would mean that women are paid more per hour than men. If we believe unequal hourly wages to be unfair, we can instead equalize income only between women and men who work similar hours. In other words, we minimize the difference that is still present after conditioning on working hours. Conditional group fairness is particularly relevant considering Simpson's paradox. This paradox states that if a correlation occurs in several different groups, it may disappear or even reverse when the groups are aggregated.
+<span class="n">mf</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;selection rate&quot;</span><span class="p">:</span> <span class="n">selection_rate</span><span class="p">},</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>  <span class="c1"># is ignored</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">A_test</span><span class="p">,</span>
+<span class="p">)</span>
 
-```{admonition} *Example:* Simpson's Paradox: Berkeley University Admissions
-When considering all programs together, women were accepted less often than men, implying a gender bias. However, it turned out that women at Berkeley often apply for competitive programs with a relatively low acceptance rate. As a result, the overall acceptance rate of women in the aggregated data was lower -- even though the acceptance rate of women *within* each program was higher than the acceptance rate of men. Hence, if the admission's office would have tried to equalize the overall acceptance rate between men and women, men would have received an even lower acceptance rate.
-```
+<span class="c1"># print results</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Overall selection rate: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mf</span><span class="o">.</span><span class="n">overall</span><span class="p">)</span>
 
-## Error-based Metrics
+<span class="c1"># compute demographic parity as the max difference between groups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;demographic parity difference: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mf</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;between_groups&quot;</span><span class="p">))</span>
 
-### Equalized Odds
+<span class="c1"># compute demographic parity as the min ratio between groups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;demographic parity ratio: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mf</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;between_groups&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-### Equal Opportunity
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-## Calibration
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>selection rate</th>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.148649</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.226300</td>
+    </tr>
+    <tr>
+      <th>non_binary</th>
+      <td>0.107843</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overall selection rate: 0.19
+demographic parity difference: 0.12
+demographic parity ratio: 0.48
+</pre></div>
+</div>
+</div>
+</div>
+<p>From these results, we can see that our model has a higher selection rate for <code class="docutils literal notranslate"><span class="pre">male</span></code> applicants compared to other applicants, particularly <code class="docutils literal notranslate"><span class="pre">non_binary</span></code> applicants. Without further context, we cannot conclude whether this disparity is problematic. However, the low selection rates of some group can hint towards potential <span class="xref std std-term">allocation harm</span> and calls for further investigation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also directly compute the extent to which demographic parity is violated using
+<a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.demographic_parity_difference" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.demographic_parity_difference()</span></code></a> or <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.demographic_parity_ratio" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.demographic_parity_ratio()</span></code></a>. These summary metrics are particularly convenient for hyperparameter tuning or monitoring.</p>
+<p>For exploratory and manual inspections, I highly recommend sticking to <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.MetricFrame" title="(in Fairlearn)"><code class="xref py py-class docutils literal notranslate"><span class="pre">fairlearn.metrics.MetricFrame</span></code></a>, as this allows you to make more detailed comparisons across groups. While the demographic parity difference indicates the (maximum) disparity, it does not tell you between which groups the disparity occurred, nor what the selection rates of those groups are.</p>
+</div>
+</div>
+<div class="section" id="conditional-demographic-parity">
+<h3>Conditional Demographic Parity<a class="headerlink" href="#conditional-demographic-parity" title="Permalink to this headline">#</a></h3>
+<p>Apart from employment, there may be characteristics that, either from a legal or ethical perspective, legitimize differences between groups. Loosely inspired by these legal imperatives, Kamiran <em>et al.</em><a class="footnote-reference brackets" href="#footcite-kamiran2013" id="id2">1</a> put forward a notion of fairness that we will refer to as <span class="xref std std-term">conditional demographic parity</span>. This is a variant of demographic parity that allows for differences between groups, if these differences are justified, from a legal or ethical point of view, by a <span class="xref std std-term">control feature</span>.</p>
+<p>Conditional group fairness is best illustrated by an example. Imagine a scenario in which women have a lower income, on average, than men. This may imply that women are treated unfairly. However, what if many women work fewer hours than men? In this case, the observed disparity can be (at least partly) explained by the lower number of working hours. Consequently, equalizing income between men and women would mean that women are paid more per hour than men. If we believe unequal hourly wages to be unfair, we can instead equalize income only between women and men who work similar hours. In other words, we minimize the difference that is still present <em>after</em> controlling for working hours.</p>
+<p>Formally, let <span class="math notranslate nohighlight">\(W\)</span> be a control feature. Then, conditional demographic parity holds if, for all values of <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and <span class="math notranslate nohighlight">\(w\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[P(\hat{Y} = y \mid A = a, W=w) = P(\hat{Y} = y \mid A = a', W=w)\]</div>
+<p>Conditional demographic parity is particularly relevant considering Simpson’s paradox. This paradox states that if a correlation occurs in several different groups, it may disappear or even reverse when the groups are aggregated.</p>
+<div class="admonition-example-simpson-s-paradox-berkeley-university-admissions admonition">
+<p class="admonition-title"><em>Example:</em> Simpson’s Paradox: Berkeley University Admissions</p>
+<p>When considering all programs together, women were accepted less often than men, implying a gender bias. However, it turned out that women at Berkeley often apply for competitive programs with a relatively low acceptance rate. As a result, the overall acceptance rate of women in the aggregated data was lower – even though the acceptance rate of women <em>within</em> each program was higher than the acceptance rate of men. Hence, if the admission’s office would have tried to equalize the overall acceptance rate between men and women, men would have received an even lower acceptance rate.</p>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">fairlearn</span></code>, the <code class="docutils literal notranslate"><span class="pre">control_features</span></code> parameter allows you to compare group statistics across the values of a feature we wish to control for.</p>
+<p>When we make comparisons across multiple variables (or variables with a high number of categories), the number of instances within a group can become very small. Small sample sizes can be problematic, as the group statistic estimates become less reliable. We can use <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.count" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.count()</span></code></a> to inspect the number of instances in a <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.MetricFrame" title="(in Fairlearn)"><code class="xref py py-class docutils literal notranslate"><span class="pre">fairlearn.metrics.MetricFrame</span></code></a> along with the metrics of interest.</p>
+<p>Let’s see whether the disparity in selection rates can be explained by the <code class="docutils literal notranslate"><span class="pre">test_score</span></code> a participant achieved.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="n">count</span>
 
-### Equal calibration 
--->
+<span class="c1"># compute metrics by group</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;selection rate&quot;</span><span class="p">:</span> <span class="n">selection_rate</span><span class="p">,</span> 
+        <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">count</span><span class="p">},</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>  <span class="c1"># is ignored</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">A_test</span><span class="p">,</span>
+    <span class="n">control_features</span><span class="o">=</span><span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># display results</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">difference</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>selection rate</th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>test_score</th>
+      <th>gender</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">1</th>
+      <th>female</th>
+      <td>0.051282</td>
+      <td>195.0</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.087571</td>
+      <td>354.0</td>
+    </tr>
+    <tr>
+      <th>non_binary</th>
+      <td>0.046512</td>
+      <td>43.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">2</th>
+      <th>female</th>
+      <td>0.169591</td>
+      <td>171.0</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.295337</td>
+      <td>193.0</td>
+    </tr>
+    <tr>
+      <th>non_binary</th>
+      <td>0.108108</td>
+      <td>37.0</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">3</th>
+      <th>female</th>
+      <td>0.346154</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.560748</td>
+      <td>107.0</td>
+    </tr>
+    <tr>
+      <th>non_binary</th>
+      <td>0.227273</td>
+      <td>22.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>selection rate</th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>test_score</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.041059</td>
+      <td>311.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.187229</td>
+      <td>156.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.333475</td>
+      <td>85.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Interestingly, the disparity in selection rates is much lower for participants with a low <code class="docutils literal notranslate"><span class="pre">test_score</span></code>. However, it is particularly high for participants with a very high <code class="docutils literal notranslate"><span class="pre">test_score</span></code>. As such, <code class="docutils literal notranslate"><span class="pre">test_score</span></code> does not adequately explain disparities.</p>
+<p>However, note that the number of instances in some of the subgroups have become very small. In particular, there are only 22 instances for which <code class="docutils literal notranslate"><span class="pre">gender=non_binary</span></code> <em>and</em> <code class="docutils literal notranslate"><span class="pre">test_score=3</span></code>. As such, the computed selection rate for this group is much less reliable - in practice, it may turn out to be much higher or lower than what we observe here.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Small sample sizes are a very common issue in fairness assessments</strong> - particularly when we consider intersectional notions of fairness that consider multiple sensitive characteristics or cross-validation procedures that further split the data set into smaller portions. Sample size is an important factor to consider before you do any interventions based on your findings, as the estimations of group statistics can be very uncertain.</p>
+<p>The issue of small sample sizes is further complicated by the multiple comparison problem. If we want to statistically test whether a metric is significantly different for one group compared to other groups, we need to make many comparisons between groups. As the number of groups increases, the probability of making a wrong inference increases as well, requiring a stricter significance threshold for each individual comparison. When sample sizes are small, it becomes hard to draw any conclusions at all.</p>
+<p>In some cases, it might be possible to collect more data, but statistically sound fairness assessments are still an active area of research.</p>
+</div>
+</div>
+</div>
+<div class="section" id="misclassification-rates">
+<span id="misclassification-metrics"></span><h2>Misclassification Rates<a class="headerlink" href="#misclassification-rates" title="Permalink to this headline">#</a></h2>
+<p>The second set of fairness metrics that we will consider are related to misclassification rates.</p>
+<div class="section" id="equalized-odds">
+<h3>Equalized Odds<a class="headerlink" href="#equalized-odds" title="Permalink to this headline">#</a></h3>
+<p><span class="xref std std-term">Equalized odds</span> <a class="footnote-reference brackets" href="#footcite-hardt2016equality" id="id3">2</a> is one of the most commonly studied fairness metrics. It requires an equal distribution of classification errors across sensitive groups for all classes. Formally, equalized odds is satisfied if for all values of <span class="math notranslate nohighlight">\(y \in Y\)</span> and <span class="math notranslate nohighlight">\(a, a' \in A\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[P(\hat{Y} = y \mid A = a, Y = y) = P(\hat{Y} = y \mid A = a', Y = y)\]</div>
+<p>In a binary classification scenario, satisfying equalized odds boils down to equal group-specific <a class="reference internal" href="../../other/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a>s and <a class="reference internal" href="../../other/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a>s (or, equivalently, equal <a class="reference internal" href="../../other/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a>s and <a class="reference internal" href="../../other/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a>s). Essenstially, equalized odds requires that, given a particular ‘ground-truth’ label, the probability of receiving a predicted label is independent of sensitive group membership. For example, in our hiring scenario, a classifier that satisfies equalized odds is neither more likely to falsely <em>reject</em> suitable <code class="docutils literal notranslate"><span class="pre">male</span></code> candidates compared <code class="docutils literal notranslate"><span class="pre">non_binary</span></code> or <code class="docutils literal notranslate"><span class="pre">female</span></code> candidates, nor is it more likely to falsely accept unsuitable candidates for some genders. As such, we can interpret equalized odds as one way to measure the risk of <span class="xref std std-term">allocation harm</span> or <span class="xref std std-term">quality-of-service harm</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you need a refresher on different evaluation metrics for classification models, check out the <a class="reference internal" href="../../introduction/machinelearning/modelevaluation.html#model-evaluation-classification-metrics"><span class="std std-ref">Model Evaluation</span></a> section of the machine learning preliminaries.</p>
+</div>
+<p>Similar to the demographic parity difference, we can summarize the comparisons of the false positive rate and false negative rates as the maximum absolute difference between groups. We can further summarize equalized odds as the maximum between the false positive rate difference and false negative rate differnece. Formally, that is:</p>
+<div class="math notranslate nohighlight">
+\[\max_{a, a' \in A, y \in Y}( \mid P(\hat{Y} = y \mid A = a, Y = y) - P(\hat{Y} = y \mid A = a', Y = y) \mid )\]</div>
+<p>Alternatively, one can take the average over the maximum difference.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">fairlearn</span></code>, we can compare the false positive rates and false negative rates across groups in a single <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.MetricFrame" title="(in Fairlearn)"><code class="xref py py-class docutils literal notranslate"><span class="pre">fairlearn.metrics.MetricFrame</span></code></a>. Additionally, we can use <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.equalized_odds_difference" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.equalized_odds_difference()</span></code></a> to directly compute the maximum of the false positive rate difference and false negative rate difference.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="n">false_positive_rate</span><span class="p">,</span> <span class="n">false_negative_rate</span><span class="p">,</span> <span class="n">equalized_odds_difference</span>
+
+<span class="c1"># compute metrics by group</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;fpr&#39;</span> <span class="p">:</span> <span class="n">false_positive_rate</span><span class="p">,</span>
+        <span class="s1">&#39;fnr&#39;</span> <span class="p">:</span> <span class="n">false_negative_rate</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">A_test</span>
+<span class="p">)</span>
+
+<span class="c1"># display results</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">difference</span><span class="p">())</span>
+
+<span class="c1"># compute equalized odds difference directly</span>
+<span class="n">eod</span> <span class="o">=</span> <span class="n">equalized_odds_difference</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">A_test</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;equalized odds difference: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fpr</th>
+      <th>fnr</th>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.040000</td>
+      <td>0.260870</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.055336</td>
+      <td>0.189189</td>
+    </tr>
+    <tr>
+      <th>non_binary</th>
+      <td>0.022727</td>
+      <td>0.357143</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fpr    0.032609
+fnr    0.167954
+dtype: float64
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equalized odds difference: 0.17
+</pre></div>
+</div>
+</div>
+</div>
+<p>From these results we can conclude that the group-specific false negative rates differ a lot, while the false positive rates are relatively similar. This implies that the model more often falsely predicts <code class="docutils literal notranslate"><span class="pre">female</span></code> and especially <code class="docutils literal notranslate"><span class="pre">non_binary</span></code> applicants to be rejected compared to <code class="docutils literal notranslate"><span class="pre">male</span></code> applicants.</p>
+</div>
+<div class="section" id="equal-opportunity">
+<h3>Equal Opportunity<a class="headerlink" href="#equal-opportunity" title="Permalink to this headline">#</a></h3>
+<p>Equal opportunity is a relaxation of equalized odds that only requires the true positive rate (or, equivalently, false negative rate) to be equal across groups. Formally, for all values of <span class="math notranslate nohighlight">\(a, a' \in A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[P(\hat{Y} = 1 \mid A = a, Y = 1) = P(\hat{Y} = 1 \mid A = a', Y = 1)\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Equal opportunity as a fairness metric is <em>very loosely</em> inspired by the egalitarian concept of equality of opportunity, which we will discuss in more detail in <a class="reference internal" href="normativeunderpinnings.html#normative-underpinnings"><span class="std std-ref">Choosing the “right” fairness metric</span></a>.</p>
+</div>
+<p>As we have seen before, the hiring model does not satisfy equal opportunity, as the false negative rates differ between sensitive groups.</p>
+</div>
+</div>
+<div class="section" id="calibration">
+<span id="calibration-metrics"></span><h2>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">#</a></h2>
+<p>The calibration of a machine learning model reflects whether predicted probabilities are consistent with observed probabilities. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that actually belongs to the positive class is also 0.7.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can find a refresher on calibration of machine learning models in the machine learning preliminaries section on <a class="reference internal" href="../../introduction/machinelearning/modelevaluation.html#model-calibration"><span class="std std-ref">model calibration</span></a>.</p>
+</div>
+<div class="section" id="equal-calibration">
+<h3>Equal calibration<a class="headerlink" href="#equal-calibration" title="Permalink to this headline">#</a></h3>
+<p>Calibration is particularly relevant to interpret the output of a predictive model in a risk assessment scenario. In those cases, the output of the machine learning model can be interpreted as a <em>risk score</em> <span class="math notranslate nohighlight">\(R\)</span>. The equal calibration fairness metric requires that the model is equally calibrated for each sensitive group. That is, equal calibration holds if, for all values of <span class="math notranslate nohighlight">\(y \in Y\)</span>, <span class="math notranslate nohighlight">\(a \in A\)</span>, and <span class="math notranslate nohighlight">\(r \in R\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[P(Y = y \mid A = a, \hat{R} = r) = P(Y = y \mid A = a', \hat{R} = r)\]</div>
+<p>In other words, for each possible risk score, the probability that you belong to a particular class is the same, regardless of sensitive group membership. For example, given that an instance is predicted to belong to the negative class, the probability of actually belonging to the negative class is independent of sensitive group membership. Essensially, equal calibration requires that the <em>meaning</em> of a particular score is the same, regardless of sensitive group membership.</p>
+<p>We can evaluate the calibration of risk scores by plotting group-specific calibration curves.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.calibration</span> <span class="kn">import</span> <span class="n">CalibrationDisplay</span>
+
+<span class="c1"># display calibration curves</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Perfectly calibrated&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">gender</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;non_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;male&#39;</span><span class="p">]:</span>
+    <span class="n">CalibrationDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">[</span><span class="n">A_test</span><span class="o">==</span><span class="n">gender</span><span class="p">],</span>
+        <span class="n">y_prob</span><span class="o">=</span><span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">A_test</span><span class="o">==</span><span class="n">gender</span><span class="p">])[:,</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> 
+        <span class="n">label</span><span class="o">=</span><span class="n">gender</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/groupfairnessmetrics_9_0.png" src="../../_images/groupfairnessmetrics_9_0.png" />
+</div>
+</div>
+<p>From this plot, we can see that the model is similarly calibrated for each of the <code class="docutils literal notranslate"><span class="pre">gender</span></code> categories.</p>
+<p>In the binary classification scenario, equal calibration implies that the <a class="reference internal" href="../../other/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (which is equivalent to <a class="reference internal" href="../../other/glossary.html#term-precision"><span class="xref std std-term">precision</span></a>) and <a class="reference internal" href="../../other/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> are equal across groups. That is:</p>
+<div class="math notranslate nohighlight">
+\[P(Y = y \mid A = a, \hat{Y} = y) = P(Y = y \mid A = a', \hat{Y} = y)\]</div>
+<p>As with equalized odds, equal calibration in the binary classification scenario can be summarized as the maximum difference in positive predictive value difference and negative predictive value difference:</p>
+<div class="math notranslate nohighlight">
+\[\max_{a, a' \in A, y \in Y}P(Y = y \mid A = a, \hat{Y} = y) - P(Y = y \mid A = a', \hat{Y} = y)\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span> 
+
+<span class="c1"># first, we define a function to compute the negative predictie value</span>
+<span class="k">def</span> <span class="nf">negative_predictive_value_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NPV is not in scikit-learn, but is the same as PPV but with 0 and 1 swapped.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="c1"># compute metrics</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;positive predictive value&quot;</span><span class="p">:</span> <span class="n">precision_score</span><span class="p">,</span>
+        <span class="s2">&quot;negative predictive value&quot;</span><span class="p">:</span> <span class="n">negative_predictive_value_score</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="o">=</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span>
+    <span class="n">sensitive_features</span><span class="o">=</span><span class="n">A_test</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>positive predictive value</th>
+      <th>negative predictive value</th>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.772727</td>
+      <td>0.952381</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.810811</td>
+      <td>0.944664</td>
+    </tr>
+    <tr>
+      <th>non_binary</th>
+      <td>0.818182</td>
+      <td>0.945055</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Again, we can see that the hiring classifier is similarly calibrated, as the group-specific positive and negative predictive values are very close.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">fairlearn</span></code> we can define a custom fairness metric for NPV using <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.make_derived_metric" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.make_derived_metric()</span></code></a>. This function takes as parameters <code class="docutils literal notranslate"><span class="pre">metric</span></code> (a callable metric such as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.recall_score()</span></code></a> or <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_positive_rate()</span></code></a>) and <code class="docutils literal notranslate"><span class="pre">transform</span></code> (a string indicating the type of transformation, e.g., <code class="docutils literal notranslate"><span class="pre">difference</span></code> or <code class="docutils literal notranslate"><span class="pre">group_min</span></code>). The function returns a function with the same signature as the supplied metric, but with additional <code class="docutils literal notranslate"><span class="pre">sensitive_features=</span></code> and <code class="docutils literal notranslate"><span class="pre">method=</span></code> arguments.</p>
+</div>
+</div>
+</div>
+<div class="section" id="limitations-of-group-fairness-metrics">
+<h2>Limitations of Group Fairness Metrics<a class="headerlink" href="#limitations-of-group-fairness-metrics" title="Permalink to this headline">#</a></h2>
+<p>Group fairness metrics as measures of fairness of machine learning models have several benefits. As the criteria are based on statistics that are commonly used to evaluate machine learning models, they are conceptually easy to understand. Moreover, a disaggregated is analysis is straightforward to implement.</p>
+<p>However, group fairness metrics also pose several challenges. We already touched upon one of them: the risk of <strong>imprecize fairness assessments</strong> due to small sample sizes and the problem of multiple comparisons. A second problem that is often encountered in practice is a lack of <strong>access to sensitive features</strong> due to privacy regulations or practical availability. Moreover, even <strong>identifying sensitive groups</strong> that are at risk of fairness-related harm (and how to measure sensitive group membership) is a non-trivial task that requires a deep understanding of the context of the system you are developing. Additionally, group fairness metrics <strong>only consider the direct outcome of the model, rather than the outcome of the system of which the model is a part</strong>. For example, the whether a candicate gets hired does not only depend on the predictions of a resume selection model, but als on how recruiters interpret the predictions and what happens in the other steps of the hiring process.</p>
+<p>At a more conceptual level, group fairness metrics operationalize fairness as something that is to be achieved <em>between groups</em>, which may not translate to the individual level. In particular, <strong>group statistics may disguise differences <em>within</em> groups</strong>. Moreover, group fairness metrics implicitly assume that a particular outcome (e.g., receiving a positive prediction or being errenously classified as a negative) is universally beneficial or harmful and thus can <strong>disregard individual experiences</strong> of benefits and harm. Finally, group fairness metrics are <strong>merely observational</strong>. While this makes them easy to compute, it also means that group fairness metrics cannot tell you <em>why</em> there exists a disparity between groups. Disparities can arise in various ways (<a class="reference internal" href="biases.html#biases-problem"><span class="std std-ref">Biases as Sources of Unfairness</span></a>) an depending on your philosophical framework, each type of bias can necessitate a different intervention (<a class="reference internal" href="normativeunderpinnings.html#normative-underpinnings"><span class="std std-ref">Choosing the “Right” Fairness Metric</span></a>).</p>
+</div>
+<div class="section" id="the-impossibility-theorem">
+<h2>The Impossibility Theorem<a class="headerlink" href="#the-impossibility-theorem" title="Permalink to this headline">#</a></h2>
+<p>At first glance, each of the fairness criteria discussed above seems desirable (<em>we will dive deeper into this assumption in <a class="reference internal" href="normativeunderpinnings.html#normative-underpinnings"><span class="std std-ref">Choosing the “Right” Fairness Metric</span></a></em>). As such, we might want to attempt to satisfy all criteria. Unfortunately, in many cases it is impossible for demographic parity, equalized odds, and equal calibration to hold simultaneously <a class="footnote-reference brackets" href="#footcite-kleinberg2016inherent" id="id4">3</a><a class="footnote-reference brackets" href="#footcite-chouldechova2017fair" id="id5">4</a>.</p>
+<p>In particular, when a classifer is not perfectly accurate, it is often impossible to satisfy two of the three criteria at the same time. More specifically:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are not independent, demographic parity and equal calibration cannot hold simultaneously.</p></li>
+<li><p>If both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(R\)</span> are not independent of <span class="math notranslate nohighlight">\(Y\)</span>, demographic parity and equalized odds cannot hold simultaneously.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are not independent, equalized odds and equal calibration cannot hold simultaneously.</p></li>
+</ul>
+<p>In practice, these conditions will often hold. First of all, in real-world scenarios, classifiers are almost never perfect.
+Second, in cases where fairness is relevant, it is not uncommon that <span class="xref std std-term">base rate</span>s <span class="math notranslate nohighlight">\(p_a = P(Y=1 \mid A=a)\)</span> (i.e., the proportion of positives) are different across groups, meaning that <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are not independent.
+Finally, for a predictor to be useful, the scores <span class="math notranslate nohighlight">\(R\)</span> cannot be independent of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="section" id="demographic-parity-and-equal-calibration">
+<h3>Demographic Parity and Equal Calibration<a class="headerlink" href="#demographic-parity-and-equal-calibration" title="Permalink to this headline">#</a></h3>
+<p>If base rates differ across groups (i.e., <span class="math notranslate nohighlight">\(p_a \neq p_b\)</span>), it is impossible for demographic parity and equal calibration to hold at the same time.</p>
+<p>This statement is easy to prove when we consider probablistic interpretations of the fairness criteria <a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id6">5</a>.</p>
+<div class="admonition-proof admonition">
+<p class="admonition-title">Proof</p>
+<p>A probabilistic interpretation of <span class="xref std std-term">demographic parity</span> requires that the model’s predictions are independent of sensitive group membership, i.e., <span class="math notranslate nohighlight">\(A \perp\!\!\!\perp \hat{Y}\)</span>. <span class="xref std std-term">Equal calibration</span>, on the other hand, requires that, conditional on the model’s predictions, the ground truth labels are independent of sensitive group membership, i.e., <span class="math notranslate nohighlight">\(A \perp\!\!\!\perp Y \mid \hat{Y}\)</span>.</p>
+<p>By the contraction rule for conditional independence, we have:</p>
+<div class="math notranslate nohighlight">
+\[A \perp\!\!\!\perp \hat{Y} \quad and \quad Y \perp\!\!\!\perp A \mid \hat{Y} \quad \Rightarrow \quad A \perp\!\!\!\perp (Y,\hat{Y}) \quad \Rightarrow \quad A \perp\!\!\!\perp Y\]</div>
+<p>However, when base rates are unequal, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are <strong>not</strong> independent. As such, demographic parity and equal calibration <em>cannot</em> hold when base rates are unequal across groups. Taking the contrapositive complets the proof.</p>
+</div>
+<p>Intuitively, enforcing demographic parity when <span class="math notranslate nohighlight">\(p_a &lt; p_b\)</span> implies selecting either more positives in group <span class="math notranslate nohighlight">\(a\)</span> or more negatives in group <span class="math notranslate nohighlight">\(b\)</span> than suggested by the observed ‘ground-truth’ labels <span class="math notranslate nohighlight">\(Y\)</span>. If we want to increase the selection rate in group <span class="math notranslate nohighlight">\(a\)</span>, we must force the classifier to predict more positives than implied by base rate <span class="math notranslate nohighlight">\(p_a\)</span>. This decreases the group-specific <a class="reference internal" href="../../other/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (and hence calibration). Similarly, if we were to decrease the selection rate of group <span class="math notranslate nohighlight">\(b\)</span> by increasing the number of predicted negatives in group <span class="math notranslate nohighlight">\(b\)</span>, the <a class="reference internal" href="../../other/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> of group <span class="math notranslate nohighlight">\(b\)</span> will deteriorate. In neither of these extremes - as well as cases in between - it is possible to satisfy demographic parity and equal calibration simultaneously.</p>
+</div>
+<div class="section" id="demographic-parity-and-equalized-odds">
+<h3>Demographic Parity and Equalized Odds<a class="headerlink" href="#demographic-parity-and-equalized-odds" title="Permalink to this headline">#</a></h3>
+<p>If base rates differ across groups (i.e., <span class="math notranslate nohighlight">\(p_a \neq p_b\)</span>) and risk scores <span class="math notranslate nohighlight">\(R\)</span> are not independent of target variable <span class="math notranslate nohighlight">\(Y\)</span>, it is impossible for demographic parity and equalized odds to hold at the same time. Lets again consider the probabilistic interpretations of fairness criteria <a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id7">5</a>.
+.</p>
+<div class="admonition-proof admonition">
+<p class="admonition-title">Proof</p>
+<p><span class="xref std std-term">Equalized odds</span> requires that, conditional on the ground truth labels, the model’s predictions are independent of sensitive group membership, i.e., <span class="math notranslate nohighlight">\(\hat{Y} \perp\!\!\!\perp A \mid Y \)</span>.</p>
+<p>In the binary classification scenario, the law of total probability implies that the the following must hold:</p>
+<div class="math notranslate nohighlight">
+\[P(R=r \mid A=a) = P(R=r \mid A=a, Y=1) p_a + P (R=r \mid A=a, Y=0) (1 - p_a)\]</div>
+<p>Assuming demographic parity holds (i.e., <span class="math notranslate nohighlight">\(A \perp\!\!\!\perp R\)</span>) holds, we have:</p>
+<div class="math notranslate nohighlight">
+\[P(R=r) = P(R=r, Y=1) p_a + P (R=r, Y=0) (1 - p_a)\]</div>
+<p>Assuming that equalized odds holds (i.e., <span class="math notranslate nohighlight">\(A \perp\!\!\!\perp R \mid Y\)</span>), gives:</p>
+<div class="math notranslate nohighlight">
+\[P(R=r) = P(R=r \mid Y=1) p + P(R=r \mid Y=0) (1 - p)\]</div>
+<p>Let <span class="math notranslate nohighlight">\(r_y\)</span> denote <span class="math notranslate nohighlight">\(P(R=r \mid Y=y)\)</span>. From the previous two findings, if demograhpic parity and equalized odds both hold, we must have:</p>
+<div class="math notranslate nohighlight">
+\[r_1 p_a + r_0(1 - p_a) = r_1 p + r_0 (1-p) \Leftrightarrow p_a (r_1 - r_0) = p(r_1 - r_0) \]</div>
+<p>which can only hold if either <span class="math notranslate nohighlight">\(p_a = p\)</span> (which implies base rates are equal) or <span class="math notranslate nohighlight">\(r_1 = r_0\)</span> (which implies that <span class="math notranslate nohighlight">\(R\)</span> is independent of <span class="math notranslate nohighlight">\(Y\)</span>).</p>
+</div>
+<p>Again, an intuitive explanation of this result can be found in observing that, when <span class="math notranslate nohighlight">\(p_a  &lt; p_b\)</span>, demographic parity requires classifying instances differently than suggested by the target variable <span class="math notranslate nohighlight">\(Y\)</span>. Provided that the (non-thresholded) risk scores <span class="math notranslate nohighlight">\(R\)</span> are not independent of the ground truth labels <span class="math notranslate nohighlight">\(Y\)</span> (i.e., the model’s predicted scores are somewhat sensible), increasing the decision threshold for group <span class="math notranslate nohighlight">\(a\)</span> inevitably increases the number of false positives in group <span class="math notranslate nohighlight">\(a\)</span> and hence the false positive rate. As before, this also holds for the opposite scenario where we increase the number of negatives in group <span class="math notranslate nohighlight">\(b\)</span>.</p>
+</div>
+<div class="section" id="equal-calibration-and-equalized-odds">
+<h3>Equal Calibration and Equalized Odds<a class="headerlink" href="#equal-calibration-and-equalized-odds" title="Permalink to this headline">#</a></h3>
+<p>When a classifier does not have perfect <a class="reference internal" href="../../other/glossary.html#term-accuracy"><span class="xref std std-term">accuracy</span></a> and <span class="xref std std-term">base rate</span>s differ across sensitive groups, it is impossible to satisfy equal calibration and equalized odds simultaneously. Again, we can prove this using the probabilistic interpretations of the fairness criteria<a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id8">5</a>.</p>
+<div class="admonition-proof admonition">
+<p class="admonition-title">Proof</p>
+<p>Assuming equalized odds and equal calibration hold, conditional independence gives us:</p>
+<div class="math notranslate nohighlight">
+\[A \perp\!\!\!\perp \hat{Y} \mid {Y} \quad and \quad A \perp\!\!\!\perp Y \mid \hat{Y} \Rightarrow A  \perp\!\!\!\perp (\hat{Y}, Y)\]</div>
+<p>The following also holds:</p>
+<div class="math notranslate nohighlight">
+\[A  \perp\!\!\!\perp (\hat{Y}, Y) \Rightarrow A  \perp\!\!\!\perp \hat{Y} \quad and \quad A \perp\!\!\!\perp Y\]</div>
+<p>However, when base rates are unequal, <span class="math notranslate nohighlight">\(A\)</span> is not independent of <span class="math notranslate nohighlight">\(Y\)</span>. As such, equalized odds and equal calibration cannot hold simultaneously when <span class="math notranslate nohighlight">\(p_a \neq p_b\)</span>. Taking the contrapositive completes the proof.</p>
+</div>
+<p>In the binary classification scenario, an alternative proof of this phenomenon follows from the <a class="reference internal" href="../../introduction/machinelearning/modelevaluation.html#precision-recall-curve"><span class="std std-ref">precision-recall trade-off</span></a> <a class="footnote-reference brackets" href="#footcite-chouldechova2017fair" id="id9">4</a>.</p>
+<div class="admonition-alternative-proof admonition">
+<p class="admonition-title">Alternative proof</p>
+<p>Formally, let <span class="math notranslate nohighlight">\(\text{tp}\)</span>, <span class="math notranslate nohighlight">\(\text{tn}\)</span>, <span class="math notranslate nohighlight">\(\text{fp}\)</span>, <span class="math notranslate nohighlight">\(\text{fn}\)</span> refer to the number of true positives, true negatives, false positives, and false negatives respectively. Moreover, let <span class="math notranslate nohighlight">\(N\)</span> denote the total number of instances (i.e., <span class="math notranslate nohighlight">\(N = \text{tp} + \text{tn} + \text{fp} + \text{fn}\)</span>). Additionally, let <span class="math notranslate nohighlight">\(p = \frac{\text{tp} + \text{fn}}{\text{fp} + \text{tn} + \text{fn} + \text{tp}}\)</span> denote the prevalence of the positive class (i.e., the base rate).</p>
+<p>Note the following relationship between the number of false positives <span class="math notranslate nohighlight">\(\text{fp}\)</span>, the false positive rate <span class="math notranslate nohighlight">\({FPR}\)</span> and the base rate <span class="math notranslate nohighlight">\(p\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\text{fp} = \frac{\text{fp}}{\text{fp}+\text{tn}} (\text{fp}+\text{tn}) = FPR (\text{fp} + \text{tn}) = FPR (1 - p) N \]</div>
+<p>Similarly, we have:</p>
+<div class="math notranslate nohighlight">
+\[\text{tp} = \frac{\text{tp}}{\text{tp}+\text{fn}} {\text{tp}+\text{fn}} = TPR (\text{tp}+\text{fn}) = (1 - FNR) p \cdot N\]</div>
+<p>If we plug in these observations, it is easy to see that the <span class="math notranslate nohighlight">\(PPV\)</span> depends on the <span class="math notranslate nohighlight">\(FNR\)</span>, <span class="math notranslate nohighlight">\(FPR\)</span>, <em>as well as</em> base rate <span class="math notranslate nohighlight">\(p\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[PPV = \frac{\text{tp}}{\text{tp}+\text{fp}} = \frac{(1-FNR)p}{(1-FNR)p + FPR (1 - p)}\]</div>
+<p>Given this observation, if base rates differ across groups (i.e., <span class="math notranslate nohighlight">\(p_a \neq p_b\)</span>) an imperfect classifier (i.e., <span class="math notranslate nohighlight">\(FPR &gt; 0\)</span> and/or <span class="math notranslate nohighlight">\(FNR &gt; 0\)</span>) that satisfies equal calibration (i.e.,  <span class="math notranslate nohighlight">\(PPV_a = PPV_b\)</span>) cannot have <strong>both</strong> <span class="math notranslate nohighlight">\(FPR_a = FPR_b\)</span> and <span class="math notranslate nohighlight">\(FNR_a = FNR_b\)</span>.</p>
+</div>
+</div>
+<div class="section" id="fairness-mission-impossible">
+<h3>Fairness: Mission Impossible?<a class="headerlink" href="#fairness-mission-impossible" title="Permalink to this headline">#</a></h3>
+<p>These results seem concerning. However, before we conclude that fairness is impossible to achieve, lets first take a step back.</p>
+<p>From a mathematical point of view, it is impossible to achieve more than two of the discussed fairness metrics at the same time. However, fairness is not merely a mathematical concept. Instead, what these impossibility results reveal is that each of the metrics corresponds to a different - conflicting - view on what it means for a machine learning model to be “fair”. That is, although the impossiblity results can be presented as a mathematical dispute, it is better framed as a <em>moral</em> dispute. We will revisit this in more detail in <a class="reference internal" href="normativeunderpinnings.html#normative-underpinnings"><span class="std std-ref">Choosing the “Right” Fairness Metric”</span></a>. Before we dive into these moral arguments, however, in <a class="reference internal" href="biases.html#biases-problem"><span class="std std-ref">the next section</span></a> we first explore in more detail <em>how</em> different types of disparities across groups can arise.</p>
+</div>
+</div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id10">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-kamiran2013"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>Faisal Kamiran, Indrė Žliobaitė, and Toon Calders. Quantifying explainable discrimination and removing illegal discrimination in automated decision making. <em>Knowledge and Information Systems</em>, 35(3):613–644, 2013. <a class="reference external" href="https://doi.org/10.1007/s10115-012-0584-8">doi:10.1007/s10115-012-0584-8</a>.</p>
+</dd>
+<dt class="label" id="footcite-hardt2016equality"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>Moritz Hardt, Eric Price, and Nati Srebro. Equality of opportunity in supervised learning. <em>Advances in neural information processing systems</em>, 2016.</p>
+</dd>
+<dt class="label" id="footcite-kleinberg2016inherent"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p>Jon Kleinberg, Sendhil Mullainathan, and Manish Raghavan. Inherent trade-offs in the fair determination of risk scores. 2016. URL: <a class="reference external" href="https://arxiv.org/abs/1609.05807">https://arxiv.org/abs/1609.05807</a>, <a class="reference external" href="https://doi.org/10.48550/ARXIV.1609.05807">doi:10.48550/ARXIV.1609.05807</a>.</p>
+</dd>
+<dt class="label" id="footcite-chouldechova2017fair"><span class="brackets">4</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id9">2</a>)</span></dt>
+<dd><p>Alexandra Chouldechova. Fair prediction with disparate impact: a study of bias in recidivism prediction instruments. <em>Big data</em>, 5(2):153–163, 2017.</p>
+</dd>
+<dt class="label" id="footcite-fairmlbook"><span class="brackets">5</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id7">2</a>,<a href="#id8">3</a>)</span></dt>
+<dd><p>Solon Barocas, Moritz Hardt, and Menaka Narayanan. Fairness in Machine Learning. 2022. Retrieved from <a class="reference external" href="https://fairmlbook.org">https://fairmlbook.org</a>.</p>
+</dd>
+</dl>
+</div>
+<hr class="footnotes docutils" />
 </div>
 </div>
 
@@ -542,13 +1496,13 @@ When considering all programs together, women were accepted less often than men,
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Group Fairness</p>
+            <p class="prev-next-title">Measuring Fairness</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="impossibilitytheorem.html" title="next page">
+    <a class='right-next' id="next-link" href="biases.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Impossibility Theorem</p>
+        <p class="prev-next-title">Biases as Sources of Unfairness</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

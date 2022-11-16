@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Explainable Machine Learning" href="../../explainability/introduction.html" />
-    <link rel="prev" title="Fairness-Aware Machine Learning" href="introduction.html" />
+    <link rel="prev" title="No Fairness through Unawareness" href="nofairnessthroughunawareness.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -159,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../groupfairness/introduction.html">
-   Group Fairness
+   Measuring Fairness
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -173,8 +173,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../groupfairness/impossibilitytheorem.html">
-     The Impossibility Theorem
+    <a class="reference internal" href="../groupfairness/biases.html">
+     Biases as Sources of Unfairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../groupfairness/normativeunderpinnings.html">
+     Choosing the “Right” Fairness Metric
     </a>
    </li>
   </ul>
@@ -189,6 +194,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="nofairnessthroughunawareness.html">
+     No Fairness through Unawareness
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Group-Specific Decision Thresholds
@@ -218,6 +228,11 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/lime.html">
+     LIME
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../explainability/localposthoc/shap.html">
      SHAP
@@ -414,51 +429,12 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#decision-thresholds">
-   Decision Thresholds
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reject-option-classification">
-   Reject-Option Classification
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#randomized-decision-thresholds">
-   Randomized Decision Thresholds
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
@@ -470,34 +446,6 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#decision-thresholds">
-   Decision Thresholds
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reject-option-classification">
-   Reject-Option Classification
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#randomized-decision-thresholds">
-   Randomized Decision Thresholds
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -511,18 +459,13 @@ title="Print to PDF"
 <p class="admonition-title">Warning</p>
 <p>This section is still under construction.</p>
 </div>
-<div class="section" id="decision-thresholds">
-<h2>Decision Thresholds<a class="headerlink" href="#decision-thresholds" title="Permalink to this headline">#</a></h2>
-</div>
-<div class="section" id="reject-option-classification">
-<h2>Reject-Option Classification<a class="headerlink" href="#reject-option-classification" title="Permalink to this headline">#</a></h2>
-</div>
-<div class="section" id="randomized-decision-thresholds">
-<h2>Randomized Decision Thresholds<a class="headerlink" href="#randomized-decision-thresholds" title="Permalink to this headline">#</a></h2>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-</div>
+<!-- ## Decision Thresholds
+
+## Reject-Option Classification
+
+## Randomized Decision Thresholds
+
+## References -->
 </div>
 
     <script type="text/x-thebe-config">
@@ -552,11 +495,11 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="nofairnessthroughunawareness.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Fairness-Aware Machine Learning</p>
+            <p class="prev-next-title">No Fairness through Unawareness</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../../explainability/introduction.html" title="next page">

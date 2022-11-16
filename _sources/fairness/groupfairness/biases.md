@@ -1,5 +1,9 @@
 (biases_problem)=
-# Why fairness is not just a data problem
+# Biases as Sources of Unfairness
+
+```{warning}
+This section is still under construction.
+```
 
 Algorithmic systems are an accumulation of design choices that embed the developers' explicit and implicit value judgements into the system {footcite:p}`Wieringa2020`. Consequently, biases can seep into the system in many different places of the development process. In this section, we will explore biases as sources of unfairness in different parts of the machine learning development process. 
 
@@ -14,7 +18,7 @@ Although all these different types of bias can result in fairness related harms,
 ## Problem Understanding: Abstraction Traps
 Translating a real-world problem into a machine learning task can be difficult. By definition, a model is a simplification of reality. A data scientist's task is to decide which elements of the real world need to be included in the model and which elements will be left out of scope. To this end, some amount of abstraction is required. This involves removing details to focus attention on general patterns. The impact of your system, both positive and negative, highly depends on how you define the machine learning task. By abstracting away the context surrounding a model and its inputs and outputs, you may accidentally abstract away some of the consequences as well.
 
-A mismatch between the machine learning task and the real-world context is referred to as an {term}`abstractiontrap` {footcite:p}`Selbst2019`. Abstraction traps can amplify harmful consequences of your system, particularly those related to fairness.
+A mismatch between the machine learning task and the real-world context is referred to as an {term}`abstraction trap` {footcite:p}`Selbst2019`. Abstraction traps can amplify harmful consequences of your system, particularly those related to fairness.
 
 ### The Framing Trap
 Machine learning models hardly ever operate in isolation. A decision-making process may incorporate (multiple) other machine learning models or human decision-makers. The {term}`framing trap` considers the failure to model the relevant aspects of the larger system your machine learning model is a part of. 
@@ -106,7 +110,7 @@ Once the system is deployed, it may be used, interpreted, or interacted with ina
 The system may be used in a context for which it was not (properly) designed, in which case we fall into the {term}`portability trap`. For example, a toxic language detection model trained on tweets may not be suitable for a platform such as TikTok, where the average user is much younger and may use different language (tone, words, etc.) than an average Twitter user. Note that this type of bias can also accrue over time due to changing populations and behaviors, in which case it can be seen as a form of concept drift.
 
 ### Interpretation
-Interaction of stakeholders with the system can be a source of unfairness. A decision-maker may interpret the model's output differently for different groups, due to social bias and {term}`confirmationbias`. For example, a judge may weigh a high risk score more heavily for a black defendant compared to a white defendant, due to (unconscious) social bias. This bias, which can be attributed to falling into the framing trap, can be mitigated by taking into account stakeholder interactions during the system's design and evaluation.
+Interaction of stakeholders with the system can be a source of unfairness. A decision-maker may interpret the model's output differently for different groups, due to social bias and {term}`confirmation bias`. For example, a judge may weigh a high risk score more heavily for a black defendant compared to a white defendant, due to (unconscious) social bias. This bias, which can be attributed to falling into the framing trap, can be mitigated by taking into account stakeholder interactions during the system's design and evaluation.
 
 ### Interaction: Reinforcing Feedback Loops
 In systems that learn from user interactions, users can introduce social bias. For example, consider a chat bot that learns dynamically. Without safeguards against toxicity, users might teach it to use obscene or otherwise offensive language, resulting in {term}`denigration harm`. This type of bias can be avoided by putting checks in place to identify malicious intent towards the system.
@@ -114,15 +118,14 @@ In systems that learn from user interactions, users can introduce social bias. F
 Feedback mechanisms that amplify an effect are called {term}`reinforcing feedback loop`s. In the context of fairness, it refers to the amplification of existing (historical) biases when new data is collected based on the output of a biased model.
 
 ```{admonition} *Example:* A Reinforcing Feedback Loop in Predictive Policing
-:class: tip
+
 Lets imagine there is a police station that is responsible for two neighborhoods, $A$ and $B$. Now lets imagine a predictive policing system that allocates police officers to the neighborhoods based on the predicted crime rate in each neighborhood. In this example, the true crime rates of the neighborhoods are equal. However, due to the randomness, we have collected slightly more crime data in neighborhood $A$ than than in neighborhood $B$ at the time the prediction model is trained. Consequently, the model predicts more crime in neighborhood $A$ than in neighborhood $B$. Based on this prediction, we send more police officers to neighborhood $A$. Consequently, more crime will be detected in neighborhood $A$ -- even though the true crime rates are the same. If we retrain our model on the newly collected crime data, even more police officers will be allocated to neighborhood $A$ and even more crime is detected. And so the feedback loop continues... 
 ```
 
 A consequence of these feedback loops is that people can form erroneous beliefs based on the data. For example, after the introduction of the predictive policing system in our example, police officers may believe that neighborhood $A$ truly has a bigger crime problem than neighborhood $B$. A failure to anticipate on feedback loops can be particularly risky for automated decision-making systems, in which bias can propagate quickly over time.
 
-A specific instance of feedback loops that recommender systems may suffer from is {term}`popularity bias`. If people tend to click on highly ranked items more often, this can lead the algorithm to rank popular items even higher and disregard less popular items that may be just as valuable to the user. 
-
-One way to investigate feedback loops is through simulation. Developing an accurate simulation of a sociotechnical system is difficult and requires a lot of domain expertise. Alternatively, we may borrow approaches from the field of system dynamics {footcite:p}`martin2020extending` and causal modeling.
+<!-- A specific instance of feedback loops that recommender systems may suffer from is {term}`popularity bias`. If people tend to click on highly ranked items more often, this can lead the algorithm to rank popular items even higher and disregard less popular items that may be just as valuable to the user. 
+One way to investigate feedback loops is through simulation. Developing an accurate simulation of a sociotechnical system is difficult and requires a lot of domain expertise. Alternatively, we may borrow approaches from the field of system dynamics {footcite:p}`martin2020extending` and causal modeling. -->
 
 ```{footbibliography}
 ```

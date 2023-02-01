@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Biases as Sources of Unfairness" href="biases.html" />
-    <link rel="prev" title="Measuring Fairness" href="introduction.html" />
+    <link rel="next" title="Choosing the “Right” Fairness Metric" href="normativeunderpinnings.html" />
+    <link rel="prev" title="Biases as Sources of Unfairness" href="biases.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -169,14 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Group Fairness Metrics
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="biases.html">
      Biases as Sources of Unfairness
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
@@ -272,7 +272,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../other/glossary.html">
+  <a class="reference internal" href="../../misc/harms.html">
+   List of Harms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/glossary.html">
    Glossary
   </a>
  </li>
@@ -1116,7 +1121,7 @@ demographic parity ratio: 0.48
 <p><span class="xref std std-term">Equalized odds</span> <a class="footnote-reference brackets" href="#footcite-hardt2016equality" id="id3">2</a> is one of the most commonly studied fairness metrics. It requires an equal distribution of classification errors across sensitive groups for all classes. Formally, equalized odds is satisfied if for all values of <span class="math notranslate nohighlight">\(y \in Y\)</span> and <span class="math notranslate nohighlight">\(a, a' \in A\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[P(\hat{Y} = y \mid A = a, Y = y) = P(\hat{Y} = y \mid A = a', Y = y)\]</div>
-<p>In a binary classification scenario, satisfying equalized odds boils down to equal group-specific <a class="reference internal" href="../../other/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a>s and <a class="reference internal" href="../../other/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a>s (or, equivalently, equal <a class="reference internal" href="../../other/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a>s and <a class="reference internal" href="../../other/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a>s). Essenstially, equalized odds requires that, given a particular ‘ground-truth’ label, the probability of receiving a predicted label is independent of sensitive group membership. For example, in our hiring scenario, a classifier that satisfies equalized odds is neither more likely to falsely <em>reject</em> suitable <code class="docutils literal notranslate"><span class="pre">male</span></code> candidates compared <code class="docutils literal notranslate"><span class="pre">non_binary</span></code> or <code class="docutils literal notranslate"><span class="pre">female</span></code> candidates, nor is it more likely to falsely accept unsuitable candidates for some genders. As such, we can interpret equalized odds as one way to measure the risk of <span class="xref std std-term">allocation harm</span> or <span class="xref std std-term">quality-of-service harm</span>.</p>
+<p>In a binary classification scenario, satisfying equalized odds boils down to equal group-specific <a class="reference internal" href="../../misc/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a>s and <a class="reference internal" href="../../misc/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a>s (or, equivalently, equal <a class="reference internal" href="../../misc/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a>s and <a class="reference internal" href="../../misc/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a>s). Essenstially, equalized odds requires that, given a particular ‘ground-truth’ label, the probability of receiving a predicted label is independent of sensitive group membership. For example, in our hiring scenario, a classifier that satisfies equalized odds is neither more likely to falsely <em>reject</em> suitable <code class="docutils literal notranslate"><span class="pre">male</span></code> candidates compared <code class="docutils literal notranslate"><span class="pre">non_binary</span></code> or <code class="docutils literal notranslate"><span class="pre">female</span></code> candidates, nor is it more likely to falsely accept unsuitable candidates for some genders. As such, we can interpret equalized odds as one way to measure the risk of <span class="xref std std-term">allocation harm</span> or <span class="xref std std-term">quality-of-service harm</span>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you need a refresher on different evaluation metrics for classification models, check out the <a class="reference internal" href="../../introduction/machinelearning/modelevaluation.html#model-evaluation-classification-metrics"><span class="std std-ref">Model Evaluation</span></a> section of the machine learning preliminaries.</p>
@@ -1264,7 +1269,7 @@ dtype: float64
 </div>
 </div>
 <p>From this plot, we can see that the model is similarly calibrated for each of the <code class="docutils literal notranslate"><span class="pre">gender</span></code> categories.</p>
-<p>In the binary classification scenario, equal calibration implies that the <a class="reference internal" href="../../other/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (which is equivalent to <a class="reference internal" href="../../other/glossary.html#term-precision"><span class="xref std std-term">precision</span></a>) and <a class="reference internal" href="../../other/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> are equal across groups. That is:</p>
+<p>In the binary classification scenario, equal calibration implies that the <a class="reference internal" href="../../misc/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (which is equivalent to <a class="reference internal" href="../../misc/glossary.html#term-precision"><span class="xref std std-term">precision</span></a>) and <a class="reference internal" href="../../misc/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> are equal across groups. That is:</p>
 <div class="math notranslate nohighlight">
 \[P(Y = y \mid A = a, \hat{Y} = y) = P(Y = y \mid A = a', \hat{Y} = y)\]</div>
 <p>As with equalized odds, equal calibration in the binary classification scenario can be summarized as the maximum difference in positive predictive value difference and negative predictive value difference:</p>
@@ -1346,7 +1351,7 @@ dtype: float64
 <p>Again, we can see that the hiring classifier is similarly calibrated, as the group-specific positive and negative predictive values are very close.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In <code class="docutils literal notranslate"><span class="pre">fairlearn</span></code> we can define a custom fairness metric for NPV using <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.make_derived_metric" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.make_derived_metric()</span></code></a>. This function takes as parameters <code class="docutils literal notranslate"><span class="pre">metric</span></code> (a callable metric such as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" title="(in scikit-learn v1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.recall_score()</span></code></a> or <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_positive_rate()</span></code></a>) and <code class="docutils literal notranslate"><span class="pre">transform</span></code> (a string indicating the type of transformation, e.g., <code class="docutils literal notranslate"><span class="pre">difference</span></code> or <code class="docutils literal notranslate"><span class="pre">group_min</span></code>). The function returns a function with the same signature as the supplied metric, but with additional <code class="docutils literal notranslate"><span class="pre">sensitive_features=</span></code> and <code class="docutils literal notranslate"><span class="pre">method=</span></code> arguments.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">fairlearn</span></code> we can define a custom fairness metric for NPV using <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.make_derived_metric" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.make_derived_metric()</span></code></a>. This function takes as parameters <code class="docutils literal notranslate"><span class="pre">metric</span></code> (a callable metric such as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" title="(in scikit-learn v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.recall_score()</span></code></a> or <a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_positive_rate()</span></code></a>) and <code class="docutils literal notranslate"><span class="pre">transform</span></code> (a string indicating the type of transformation, e.g., <code class="docutils literal notranslate"><span class="pre">difference</span></code> or <code class="docutils literal notranslate"><span class="pre">group_min</span></code>). The function returns a function with the same signature as the supplied metric, but with additional <code class="docutils literal notranslate"><span class="pre">sensitive_features=</span></code> and <code class="docutils literal notranslate"><span class="pre">method=</span></code> arguments.</p>
 </div>
 </div>
 </div>
@@ -1380,7 +1385,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 \[A \perp\!\!\!\perp \hat{Y} \quad and \quad Y \perp\!\!\!\perp A \mid \hat{Y} \quad \Rightarrow \quad A \perp\!\!\!\perp (Y,\hat{Y}) \quad \Rightarrow \quad A \perp\!\!\!\perp Y\]</div>
 <p>However, when base rates are unequal, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are <strong>not</strong> independent. As such, demographic parity and equal calibration <em>cannot</em> hold when base rates are unequal across groups. Taking the contrapositive complets the proof.</p>
 </div>
-<p>Intuitively, enforcing demographic parity when <span class="math notranslate nohighlight">\(p_a &lt; p_b\)</span> implies selecting either more positives in group <span class="math notranslate nohighlight">\(a\)</span> or more negatives in group <span class="math notranslate nohighlight">\(b\)</span> than suggested by the observed ‘ground-truth’ labels <span class="math notranslate nohighlight">\(Y\)</span>. If we want to increase the selection rate in group <span class="math notranslate nohighlight">\(a\)</span>, we must force the classifier to predict more positives than implied by base rate <span class="math notranslate nohighlight">\(p_a\)</span>. This decreases the group-specific <a class="reference internal" href="../../other/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (and hence calibration). Similarly, if we were to decrease the selection rate of group <span class="math notranslate nohighlight">\(b\)</span> by increasing the number of predicted negatives in group <span class="math notranslate nohighlight">\(b\)</span>, the <a class="reference internal" href="../../other/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> of group <span class="math notranslate nohighlight">\(b\)</span> will deteriorate. In neither of these extremes - as well as cases in between - it is possible to satisfy demographic parity and equal calibration simultaneously.</p>
+<p>Intuitively, enforcing demographic parity when <span class="math notranslate nohighlight">\(p_a &lt; p_b\)</span> implies selecting either more positives in group <span class="math notranslate nohighlight">\(a\)</span> or more negatives in group <span class="math notranslate nohighlight">\(b\)</span> than suggested by the observed ‘ground-truth’ labels <span class="math notranslate nohighlight">\(Y\)</span>. If we want to increase the selection rate in group <span class="math notranslate nohighlight">\(a\)</span>, we must force the classifier to predict more positives than implied by base rate <span class="math notranslate nohighlight">\(p_a\)</span>. This decreases the group-specific <a class="reference internal" href="../../misc/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (and hence calibration). Similarly, if we were to decrease the selection rate of group <span class="math notranslate nohighlight">\(b\)</span> by increasing the number of predicted negatives in group <span class="math notranslate nohighlight">\(b\)</span>, the <a class="reference internal" href="../../misc/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> of group <span class="math notranslate nohighlight">\(b\)</span> will deteriorate. In neither of these extremes - as well as cases in between - it is possible to satisfy demographic parity and equal calibration simultaneously.</p>
 </div>
 <div class="section" id="demographic-parity-and-equalized-odds">
 <h3>Demographic Parity and Equalized Odds<a class="headerlink" href="#demographic-parity-and-equalized-odds" title="Permalink to this headline">#</a></h3>
@@ -1407,7 +1412,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 </div>
 <div class="section" id="equal-calibration-and-equalized-odds">
 <h3>Equal Calibration and Equalized Odds<a class="headerlink" href="#equal-calibration-and-equalized-odds" title="Permalink to this headline">#</a></h3>
-<p>When a classifier does not have perfect <a class="reference internal" href="../../other/glossary.html#term-accuracy"><span class="xref std std-term">accuracy</span></a> and <span class="xref std std-term">base rate</span>s differ across sensitive groups, it is impossible to satisfy equal calibration and equalized odds simultaneously. Again, we can prove this using the probabilistic interpretations of the fairness criteria<a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id8">5</a>.</p>
+<p>When a classifier does not have perfect <a class="reference internal" href="../../misc/glossary.html#term-accuracy"><span class="xref std std-term">accuracy</span></a> and <span class="xref std std-term">base rate</span>s differ across sensitive groups, it is impossible to satisfy equal calibration and equalized odds simultaneously. Again, we can prove this using the probabilistic interpretations of the fairness criteria<a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id8">5</a>.</p>
 <div class="admonition-proof admonition">
 <p class="admonition-title">Proof</p>
 <p>Assuming equalized odds and equal calibration hold, conditional independence gives us:</p>
@@ -1437,7 +1442,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 <div class="section" id="fairness-mission-impossible">
 <h3>Fairness: Mission Impossible?<a class="headerlink" href="#fairness-mission-impossible" title="Permalink to this headline">#</a></h3>
 <p>These results seem concerning. However, before we conclude that fairness is impossible to achieve, lets first take a step back.</p>
-<p>From a mathematical point of view, it is impossible to achieve more than two of the discussed fairness metrics at the same time. However, fairness is not merely a mathematical concept. Instead, what these impossibility results reveal is that each of the metrics corresponds to a different - conflicting - view on what it means for a machine learning model to be “fair”. That is, although the impossiblity results can be presented as a mathematical dispute, it is better framed as a <em>moral</em> dispute. We will revisit this in more detail in <a class="reference internal" href="normativeunderpinnings.html#normative-underpinnings"><span class="std std-ref">Choosing the “Right” Fairness Metric”</span></a>. Before we dive into these moral arguments, however, in <a class="reference internal" href="biases.html#biases-problem"><span class="std std-ref">the next section</span></a> we first explore in more detail <em>how</em> different types of disparities across groups can arise.</p>
+<p>From a mathematical point of view, it is impossible to achieve more than two of the discussed fairness metrics at the same time. However, fairness is not merely a mathematical concept. Instead, what these impossibility results reveal is that each of the metrics corresponds to a different - conflicting - view on what it means for a machine learning model to be “fair”. That is, although the impossiblity results can be presented as a mathematical dispute, it is better framed as a <em>moral</em> dispute. We will revisit this in more detail in the next section, <a class="reference internal" href="normativeunderpinnings.html#normative-underpinnings"><span class="std std-ref">Choosing the “Right” Fairness Metric”</span></a>.</p>
 </div>
 </div>
 <div class="section" id="references">
@@ -1457,7 +1462,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 <dd><p>Alexandra Chouldechova. Fair prediction with disparate impact: a study of bias in recidivism prediction instruments. <em>Big data</em>, 5(2):153–163, 2017.</p>
 </dd>
 <dt class="label" id="footcite-fairmlbook"><span class="brackets">5</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id7">2</a>,<a href="#id8">3</a>)</span></dt>
-<dd><p>Solon Barocas, Moritz Hardt, and Menaka Narayanan. Fairness in Machine Learning. 2022. Retrieved from <a class="reference external" href="https://fairmlbook.org">https://fairmlbook.org</a>.</p>
+<dd><p>Solon Barocas, Moritz Hardt, and Menaka Narayanan. Fairness and machine learning: limitations and opportunities. 2022. Retrieved from <a class="reference external" href="https://fairmlbook.org">https://fairmlbook.org</a>.</p>
 </dd>
 </dl>
 </div>
@@ -1492,17 +1497,17 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="biases.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Measuring Fairness</p>
+            <p class="prev-next-title">Biases as Sources of Unfairness</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="biases.html" title="next page">
+    <a class='right-next' id="next-link" href="normativeunderpinnings.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Biases as Sources of Unfairness</p>
+        <p class="prev-next-title">Choosing the “Right” Fairness Metric</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -1515,7 +1520,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
   
     By Hilde Weerts<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

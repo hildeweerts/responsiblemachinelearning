@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Choosing the “Right” Fairness Metric" href="normativeunderpinnings.html" />
-    <link rel="prev" title="Group Fairness Metrics" href="groupfairnessmetrics.html" />
+    <link rel="next" title="Group Fairness Metrics" href="groupfairnessmetrics.html" />
+    <link rel="prev" title="Measuring Fairness" href="introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -169,14 +169,14 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="groupfairnessmetrics.html">
-     Group Fairness Metrics
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Biases as Sources of Unfairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="groupfairnessmetrics.html">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
@@ -272,7 +272,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../other/glossary.html">
+  <a class="reference internal" href="../../misc/harms.html">
+   List of Harms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/glossary.html">
    Glossary
   </a>
  </li>
@@ -684,11 +689,12 @@ title="Print to PDF"
 <p class="admonition-title">Warning</p>
 <p>This section is still under construction.</p>
 </div>
+<!-- TODO: add parts about noise/variance by Chen et al.-->
 <p>Algorithmic systems are an accumulation of design choices that embed the developers’ explicit and implicit value judgements into the system <a class="footnote-reference brackets" href="#footcite-wieringa2020" id="id1">1</a>. Consequently, biases can seep into the system in many different places of the development process. In this section, we will explore biases as sources of unfairness in different parts of the machine learning development process.</p>
 <p>But first, let us define more precisely what we mean by bias. Generally speaking, <span class="xref std std-term">bias</span> is a systematic and disproportionate tendency towards something. The word bias can be used to refer to many different things, ranging from social biases related to prejudice, to statistical biases that are of a technical nature.</p>
 <ul class="simple">
 <li><p><strong>Social and systemic bias.</strong> In everyday language, bias often considers prejudice against a person or a group, which we will refer to as <span class="xref std std-term">social bias</span>. Social bias is a form of <span class="xref std std-term">cognitive bias</span>: a systematic error in rational thinking that can affect judgment and decision-making. Most <span class="xref std std-term">cognitive bias</span>es are a result of the limitations of information-processing capabilities of the human brain. From an evolutionary perspective, these biases are useful because they allow people to make quick decisions in critical scenarios. As a hunter-gatherer, you would probably rather be safe than sorry when encountering an unknown group of other humans. However, these shortcuts often come at the cost of the quality of decisions. In particular, stereotypes formed by social bias can be overgeneralized and inaccurate, especially on an individual level. When people act on social biases, they can result in discriminatory practices. It is important to realize that everybody has some degree of conscious or subconscious social bias. Awareness of <span class="xref std std-term">cognitive bias</span>es, including social bias, can help to signal and mitigate their effects. In particular, a diverse team and critical self-reflection can help to signal social biases and avoid acting on them.</p></li>
-<li><p><strong>Statistical bias.</strong> In statistics, bias refers to a systematic error in the estimation of parameters or variables. <span class="xref std std-term">statistical bias</span> can be the result of data collection practices that compromise the accuracy of the estimate, such as a particular sampling procedure. This form of statistical bias can be rooted in <span class="xref std std-term">cognitive bias</span>es of the researcher or data subjects. Statistical bias can also refer to systematic errors caused by assumptions of the estimator. In the context of machine learning algorithms, this type of bias is often discussed in relation to the bias-variance trade-off. For example, some machine learning algorithms can only learn linear relationships between features, whereas the true underlying data distribution exhibits more complex relationships, resulting in an <a class="reference internal" href="../../other/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a> model.</p></li>
+<li><p><strong>Statistical bias.</strong> In statistics, bias refers to a systematic error in the estimation of parameters or variables. <span class="xref std std-term">statistical bias</span> can be the result of data collection practices that compromise the accuracy of the estimate, such as a particular sampling procedure. This form of statistical bias can be rooted in <span class="xref std std-term">cognitive bias</span>es of the researcher or data subjects. Statistical bias can also refer to systematic errors caused by assumptions of the estimator. In the context of machine learning algorithms, this type of bias is often discussed in relation to the bias-variance trade-off. For example, some machine learning algorithms can only learn linear relationships between features, whereas the true underlying data distribution exhibits more complex relationships, resulting in an <a class="reference internal" href="../../misc/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a> model.</p></li>
 </ul>
 <p>Although all these different types of bias can result in fairness related harms, most issues arise at the intersection of social bias and statistical bias. In the remainder of this section, we will dive more deeply into different types of biases at each stage of the development process. Note that this list is not exhaustive. Moreover, as we will see, biases are hard to precisely dissect and often overlap. In practice, it is usually difficult if not impossible to know exactly which biases are at play. Luckily, a thoughtful development process that leaves room for self-reflection goes a long way in mitigating harms.</p>
 <div class="section" id="problem-understanding-abstraction-traps">
@@ -712,7 +718,7 @@ title="Print to PDF"
 <p>The <span class="xref std std-term">formalism trap</span> is closely related to the statistical concept of <span class="xref std std-term">construct validity</span>: how well does the formalization measure the construct of interest? Business objectives often involve constructs such as “employee quality” or “creditworthiness” that cannot be measured directly <a class="footnote-reference brackets" href="#footcite-jacobs2019" id="id5">5</a>. In such cases, data scientists may use a <span class="xref std std-term">proxy variable</span> instead. Every variable in a data set is the result of a decision on how a particular construct can be measured into a computer readable scale. For example, Netflix has chosen to measure a viewers’ quality judgments with likes, rather than the more commonly used 1 - 5 star rating <a class="footnote-reference brackets" href="#footcite-dobbe2018" id="id6">6</a>.</p>
 <p>Not all variables measure the intended construct equally well. <span class="xref std std-term">construct validity bias</span> is a statistical bias that occurs when a variable does not accurately measure the construct it is supposed to measure. For example, income measures the construct socioeconomic status to some degree, but does not capture other factors such as wealth and education <a class="footnote-reference brackets" href="#footcite-jacobs2019" id="id7">5</a>.</p>
 <p>A mismatch between the choice of target variable and the actual construct of interest can be detrimental towards fairness goals. In particular, fairness concerns can arise when the measurement error introduced by the choice of formalization differs across groups. For example, you may be interested in predicting crime, but only have access to a subset of all criminal activity: arrest records. In societies where arrest records are the result of racially biased policing practices, the measurement error will differ across racial groups. Similarly, Obermeyer <em>et al.</em><a class="footnote-reference brackets" href="#footcite-obermeyer2019" id="id8">7</a> found that due to unequal access to healthcare, historically less money has been spent on caring for African-American patients compared to Caucasian patients. Consequently, a system that used healthcare costs as a proxy for true healthcare needs systematically underestimated the needs of African-American patients.</p>
-<p>Issues of <span class="xref std std-term">construct validity</span> are especially complex for social constructs such as race and gender. Almost paradoxically, measuring <a class="reference internal" href="../../other/glossary.html#term-sensitive-characteristic"><span class="xref std std-term">sensitive characteristic</span></a> can introduce bias. In industry and academia, it is common to “infer” these characteristics from observed data, such as facial analysis <a class="footnote-reference brackets" href="#footcite-jacobs2019" id="id9">5</a>. This can be problematic because such approaches often fail to acknowledge that social constructs are inherently contextual, may change over time, and are multidimensional. For example, when talking about race, one may be referring to somebody’s racial identity (i.e., self-identified race), their observed race (i.e., the race others believe them to be), their phenotype (i.e., racial appearance), or even their reflected race (i.e., the race they believe others assume them to be). Which dimension you measure will influence the conclusions you can draw (see Hanna <em>et al.</em><a class="footnote-reference brackets" href="#footcite-hanna2020" id="id10">8</a> for a more detailed account).</p>
+<p>Issues of <span class="xref std std-term">construct validity</span> are especially complex for social constructs such as race and gender. Almost paradoxically, measuring <a class="reference internal" href="../../misc/glossary.html#term-sensitive-characteristic"><span class="xref std std-term">sensitive characteristic</span></a> can introduce bias. In industry and academia, it is common to “infer” these characteristics from observed data, such as facial analysis <a class="footnote-reference brackets" href="#footcite-jacobs2019" id="id9">5</a>. This can be problematic because such approaches often fail to acknowledge that social constructs are inherently contextual, may change over time, and are multidimensional. For example, when talking about race, one may be referring to somebody’s racial identity (i.e., self-identified race), their observed race (i.e., the race others believe them to be), their phenotype (i.e., racial appearance), or even their reflected race (i.e., the race they believe others assume them to be). Which dimension you measure will influence the conclusions you can draw (see Hanna <em>et al.</em><a class="footnote-reference brackets" href="#footcite-hanna2020" id="id10">8</a> for a more detailed account).</p>
 <p>To avoid falling into the <span class="xref std std-term">formalism trap</span>, data scientists should take into account whether the problem formulation handles understandings of (social) constructs in a way that matches the intended deployment context. To mitigate <span class="xref std std-term">construct validity bias</span>, ideally multiple measures are collected, especially for complex constructs. As we will see, many of the biases that can occur in later steps of the development process can be traced back to the problem of <span class="xref std std-term">construct validity</span>.</p>
 </div>
 <div class="section" id="the-ripple-effect-trap">
@@ -759,7 +765,7 @@ title="Print to PDF"
 <div class="section" id="aggregation-bias">
 <h3>Aggregation bias<a class="headerlink" href="#aggregation-bias" title="Permalink to this headline">#</a></h3>
 <p><span class="xref std std-term">aggregationbias</span> occurs when a single model is used for groups that have distinct data distributions <a class="footnote-reference brackets" href="#footcite-suresh2020" id="id14">9</a>. If not accounted for, it may lead to a model that does not work well for any of the subgroups. For example, it is known that the relationship between hemoglobin levels (HbA1c) and blood glucose levels differs greatly across genders and ethnicities <a class="footnote-reference brackets" href="#footcite-suresh2020" id="id15">9</a>. If these differences are not taken into account, a model that only uses a single interpretation of HbA1c will likely not work well for any of these groups. In combination with <span class="xref std std-term">representationbias</span>, it can lead to a model that only works well for the majority population.</p>
-<p><span class="xref std std-term">aggregation bias</span> is related to the problem of <a class="reference internal" href="../../other/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a>. Machine learning can be seen as a compression problem that produces a mapping between input features and output variable. Some information is inherently lost because of the chosen mapping <a class="footnote-reference brackets" href="#footcite-dobbe2018" id="id16">6</a>. In particular, some model classes may not be able to adequately capture the different data distributions. Such an oversimplified model may come at the cost of predictive performance for minority groups, resulting in <span class="xref std std-term">quality-of-service harm</span>.</p>
+<p><span class="xref std std-term">aggregation bias</span> is related to the problem of <a class="reference internal" href="../../misc/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a>. Machine learning can be seen as a compression problem that produces a mapping between input features and output variable. Some information is inherently lost because of the chosen mapping <a class="footnote-reference brackets" href="#footcite-dobbe2018" id="id16">6</a>. In particular, some model classes may not be able to adequately capture the different data distributions. Such an oversimplified model may come at the cost of predictive performance for minority groups, resulting in <span class="xref std std-term">quality-of-service harm</span>.</p>
 </div>
 <div class="section" id="omitted-variable-bias">
 <h3>Omitted variable bias<a class="headerlink" href="#omitted-variable-bias" title="Permalink to this headline">#</a></h3>
@@ -864,17 +870,17 @@ One way to investigate feedback loops is through simulation. Developing an accur
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="groupfairnessmetrics.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Group Fairness Metrics</p>
+            <p class="prev-next-title">Measuring Fairness</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="normativeunderpinnings.html" title="next page">
+    <a class='right-next' id="next-link" href="groupfairnessmetrics.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Choosing the “Right” Fairness Metric</p>
+        <p class="prev-next-title">Group Fairness Metrics</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -887,7 +893,7 @@ One way to investigate feedback loops is through simulation. Developing an accur
   
     By Hilde Weerts<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

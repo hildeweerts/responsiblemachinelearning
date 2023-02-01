@@ -168,13 +168,13 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/groupfairness/groupfairnessmetrics.html">
-     Group Fairness Metrics
+    <a class="reference internal" href="../fairness/groupfairness/biases.html">
+     Biases as Sources of Unfairness
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../fairness/groupfairness/biases.html">
-     Biases as Sources of Unfairness
+    <a class="reference internal" href="../fairness/groupfairness/groupfairnessmetrics.html">
+     Group Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
@@ -270,7 +270,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../other/glossary.html">
+  <a class="reference internal" href="../misc/harms.html">
+   List of Harms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../misc/glossary.html">
    Glossary
   </a>
  </li>
@@ -564,7 +569,7 @@ title="Print to PDF"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="responsible-machine-learning">
 <span id="introduction"></span><h1>Responsible Machine Learning<a class="headerlink" href="#responsible-machine-learning" title="Permalink to this headline">#</a></h1>
-<p>With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of <a class="reference internal" href="../other/glossary.html#term-machine-learning"><span class="xref std std-term">machine learning</span></a> algorithms: algorithms that build mathematical models by ‘learning’ from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.</p>
+<p>With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of <a class="reference internal" href="../misc/glossary.html#term-machine-learning"><span class="xref std std-term">machine learning</span></a> algorithms: algorithms that build mathematical models by ‘learning’ from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.</p>
 <p>A responsible data scientist understands how machine learning models might be harmful and how the risks can be mitigated. This online book provides a practical introduction to the nascent field of responsible machine learning.</p>
 <div class="section" id="what-do-i-mean-by-responsible-machine-learning">
 <h2>What do I mean by <em>Responsible Machine Learning</em>?<a class="headerlink" href="#what-do-i-mean-by-responsible-machine-learning" title="Permalink to this headline">#</a></h2>
@@ -574,13 +579,13 @@ title="Print to PDF"
 <p>I have organized these lecture notes along two key moral values: fairness and transparency. Although there exists some overlap, each theme emphasizes a different aspect of a responsible approach to machine learning.</p>
 <div class="section" id="fairness">
 <h3>Fairness<a class="headerlink" href="#fairness" title="Permalink to this headline">#</a></h3>
-<p><a class="reference internal" href="../other/glossary.html#term-fairness"><span class="xref std std-term">Fairness</span></a> is a moral value that concerns treatment of behavior that is <em>just</em> and <em>free from discrimination</em>. Machine learning models, particularly classifiers, are specifically designed to discriminate between cases. As with any decision-making process, these distinctions can be undesirable from an ethical perspective or unlawful if they disproportionately affect people on the basis of sensitive characteristics such as gender, race, religion, age, and sexual orientation.</p>
+<p><a class="reference internal" href="../misc/glossary.html#term-fairness"><span class="xref std std-term">Fairness</span></a> is a moral value that concerns treatment of behavior that is <em>just</em> and <em>free from discrimination</em>. Machine learning models, particularly classifiers, are specifically designed to discriminate between cases. As with any decision-making process, these distinctions can be undesirable from an ethical perspective or unlawful if they disproportionately affect people on the basis of sensitive characteristics such as gender, race, religion, age, and sexual orientation.</p>
 <p>In recent years, several incidents have shown that machine learning systems can inherit and amplify social biases embedded in society. In 2016, investigative journalists from Propublica found that COMPAS, a decision support tool for assessing the likelihood of a defendant becoming a recidivist, wrongly labeled African-American defendants as recidivists at much higher rates than white Americans <a class="footnote-reference brackets" href="#footcite-compas2017" id="id1">1</a>. Although concerns regarding the fairness of algorithmic decision-making systems is not new, Propublica’s article sparked an increased interest in the field.</p>
 <p>Although math and numbers may seem objective, machine learning models are not value neutral. They are the result of many design choices that embed the values of their developers: which data is collected, what metrics are used to evaluate our models, and which problems do we decide to tackle in the first place? The risk of unfairness is not limited to adversarial actors - even a well-intentioned data scientist has their blind spots.</p>
 </div>
 <div class="section" id="transparency">
 <h3>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline">#</a></h3>
-<p>As a moral value, <a class="reference internal" href="../other/glossary.html#term-transparency"><span class="xref std std-term">transparency</span></a> can be defined as the <em>degree of openness that allows others to understand what actions are performed</em>. In the context of machine learning, an important dimension of transparency is the extent to which we can understand a model’s prediction-generating process. This is known as <a class="reference internal" href="../other/glossary.html#term-interpretable-machine-learning"><span class="xref std std-term">interpretable machine learning</span></a> or <a class="reference internal" href="../other/glossary.html#term-explainable-machine-learning"><span class="xref std std-term">explainable machine learning</span></a>.</p>
+<p>As a moral value, <a class="reference internal" href="../misc/glossary.html#term-transparency"><span class="xref std std-term">transparency</span></a> can be defined as the <em>degree of openness that allows others to understand what actions are performed</em>. In the context of machine learning, an important dimension of transparency is the extent to which we can understand a model’s prediction-generating process. This is known as <a class="reference internal" href="../misc/glossary.html#term-interpretable-machine-learning"><span class="xref std std-term">interpretable machine learning</span></a> or <a class="reference internal" href="../misc/glossary.html#term-explainable-machine-learning"><span class="xref std std-term">explainable machine learning</span></a>.</p>
 <p>In some cases, the best performing models are complex models such as ensembles or deep neural networks. As the complexity of models increases, it generally becomes more difficult for humans to understand their behavior. In many contexts, it can be valuable or even imperative to understand why a machine learning model makes certain predictions. For example, machine learning practitioners might use explanations to understand where the model fails and how it might be improved.</p>
 <!-- ### Accountability
 
@@ -677,7 +682,7 @@ An important tool for fostering accountability is auditing, in which the develop
   
     By Hilde Weerts<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

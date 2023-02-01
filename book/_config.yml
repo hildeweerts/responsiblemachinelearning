@@ -3,7 +3,7 @@
 
 title: An Introduction to Responsible Machine Learning
 author: Hilde Weerts
-copyright: "2022"  # Copyright year to be placed in the footer
+copyright: "2023"  # Copyright year to be placed in the footer
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

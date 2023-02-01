@@ -72,10 +72,10 @@ learn more
 To cite this book, please use the following bibtex entry:
 
 ```{code-block}
-@book{weerts2022,
+@book{weerts2023,
   title = {An Introduction to Responsible Machine Learning},
   author = {Hilde Weerts},
-  year = {2022}
+  year = {2023}
   url = {https://hildeweerts.github.io/responsiblemachinelearning/}
 }
 ```

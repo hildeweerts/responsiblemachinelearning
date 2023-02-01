@@ -17,8 +17,8 @@ parts:
     - file: fairness/introduction
     - file: fairness/groupfairness/introduction
       sections:
-      - file: fairness/groupfairness/groupfairnessmetrics
       - file: fairness/groupfairness/biases
+      - file: fairness/groupfairness/groupfairnessmetrics
       - file: fairness/groupfairness/normativeunderpinnings
     - file: fairness/fairml/introduction
       sections:
@@ -37,4 +37,5 @@ parts:
       - file: explainability/globalposthoc/pdp
   - caption: Misc
     chapters:
-    - file: other/glossary
+    - file: misc/harms
+    - file: misc/glossary

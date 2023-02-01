@@ -429,7 +429,7 @@ Given this observation, if base rates differ across groups (i.e., $p_a \neq p_b$
 ### Fairness: Mission Impossible?
 These results seem concerning. However, before we conclude that fairness is impossible to achieve, lets first take a step back. 
 
-From a mathematical point of view, it is impossible to achieve more than two of the discussed fairness metrics at the same time. However, fairness is not merely a mathematical concept. Instead, what these impossibility results reveal is that each of the metrics corresponds to a different - conflicting - view on what it means for a machine learning model to be "fair". That is, although the impossiblity results can be presented as a mathematical dispute, it is better framed as a *moral* dispute. We will revisit this in more detail in [Choosing the "Right" Fairness Metric"](normative_underpinnings). Before we dive into these moral arguments, however, in [the next section](biases_problem) we first explore in more detail *how* different types of disparities across groups can arise.
+From a mathematical point of view, it is impossible to achieve more than two of the discussed fairness metrics at the same time. However, fairness is not merely a mathematical concept. Instead, what these impossibility results reveal is that each of the metrics corresponds to a different - conflicting - view on what it means for a machine learning model to be "fair". That is, although the impossiblity results can be presented as a mathematical dispute, it is better framed as a *moral* dispute. We will revisit this in more detail in the next section, [Choosing the "Right" Fairness Metric"](normative_underpinnings).
 
 ## References
 ```{footbibliography}

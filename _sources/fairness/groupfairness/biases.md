@@ -5,6 +5,8 @@
 This section is still under construction.
 ```
 
+<!-- TODO: add parts about noise/variance by Chen et al.-->
+
 Algorithmic systems are an accumulation of design choices that embed the developers' explicit and implicit value judgements into the system {footcite:p}`Wieringa2020`. Consequently, biases can seep into the system in many different places of the development process. In this section, we will explore biases as sources of unfairness in different parts of the machine learning development process. 
 
 But first, let us define more precisely what we mean by bias. Generally speaking, {term}`bias` is a systematic and disproportionate tendency towards something. The word bias can be used to refer to many different things, ranging from social biases related to prejudice, to statistical biases that are of a technical nature.

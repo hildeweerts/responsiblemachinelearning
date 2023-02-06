@@ -1,5 +1,5 @@
 (normative_underpinnings)=
-# Choosing the "Right" Fairness Metric
+# Moral Philosophy: Choosing the "Right" Fairness Metrics
 
 ```{warning}
 This section is still under construction.
@@ -12,7 +12,6 @@ Several types of [fairness-related harm](types_of_harm), such as {term}`allocati
 If the output of the model corresponds to some kind of resource (e.g., a job or a loan) and selection rates differ across groups, there is a risk of {term}`allocation harm`. For example, in our hiring example, the selection rate of applicants who identify as men may be higher compared to other applicants, i.e., relatively more men are classified as positive compared to women or non-binary applications.
 
 For example, in a hiring scenario, we may mistakingly reject strong female candidates more often than strong male candidates. The risk of quality-of-service harm is particularly prevalent if the relationship between the features and target variable is different across groups. The risk is further amplified if less data is available for some groups.  For example, strong candidates for a data science position may have either a quantitative social science background or a computer science background. Now imagine that in the past, hiring managers have mostly hired people with a computer science degree but hardly any social scientists. As a result, a machine learning model could mistakingly penalize people who do not have a computer science degree. If particular groups are overrepresented in the candidate pool of social scientists, the error rates may be be higher for those groups, resulting in a quality-of-service harm.
-
 
 In EU and US law, indirect discrimination in employment may not be unlawful if it is justified by a so-called "legitimate aim". Examples of legal justifications for discrimination are genuine occupational requirement and business necessity. For example, a film producer is allowed to hire only male actors to play a male role, as this is considered a genuine occupational requirement.  In particular, EU discrimination law is highly contextual - requiring normative or political evaluations on a case-by-case basis {footcite:p}`wachter2021fairness`.
 
@@ -54,6 +53,9 @@ Previous work has often cited the \emph{four-fifths} rule~\shortcite<e.g.,>{feld
 
 ### Socially Salient Groups
 What groups should we consider? *How* should we measure these groups?
+
+During the evaluation stage, the final model is scrutinized in more detail. {term}`evaluation bias` refers to the use of performance metrics and procedures that are not appropriate for the way in which the model will be used {footcite:p}`suresh2020`. {footcite:t}`Mitchell2018` identify several underlying assumptions of performance metrics. First, these metrics assume that individual decisions are independent of each other. Note how this assumption is grounded in utilitarianism, in which overall utility is expressed as the sum of individual utilities. In practice, however, the impact of a decision may not be independent across instances. For example, denying one family member a loan may impact another family member's ability to repay their own loan. Additionally, it is typically assumed that decisions are symmetrical, i.e. the impact of the outcome is equal across instances. Again, this often does not hold in practice. For example, a rejection of a job application can have a very different impact depending on whether that person is currently employed or unemployed.
+
 
 -->
 

@@ -51,7 +51,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Measuring Fairness" href="groupfairness/introduction.html" />
+    <link rel="next" title="Group Fairness Metrics" href="groupfairnessmetrics.html" />
     <link rel="prev" title="Cost-Sensitive Learning" href="../introduction/machinelearning/costsensitivelearning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -157,9 +157,14 @@ const thebe_selector_output = ".output, .cell_output"
    Algorithmic Fairness
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="groupfairnessmetrics.html">
+   Group Fairness Metrics
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="groupfairness/introduction.html">
-   Measuring Fairness
+  <a class="reference internal" href="fairml/introduction.html">
+   Fairness-Aware Machine Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -168,25 +173,15 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="groupfairness/biases.html">
-     Biases as Sources of Unfairness
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="groupfairness/groupfairnessmetrics.html">
-     Group Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="groupfairness/normativeunderpinnings.html">
-     Choosing the “Right” Fairness Metric
+    <a class="reference internal" href="fairml/groupspecificthresholds.html">
+     Group-Specific Decision Thresholds
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="fairml/introduction.html">
-   Fairness-Aware Machine Learning
+  <a class="reference internal" href="interdisciplinary/introduction.html">
+   Interdisciplinary Insights
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -195,13 +190,13 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="fairml/nofairnessthroughunawareness.html">
-     No Fairness through Unawareness
+    <a class="reference internal" href="interdisciplinary/sociotechnical.html">
+     Socio-technical Systems: Abstraction Traps
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="fairml/groupspecificthresholds.html">
-     Group-Specific Decision Thresholds
+    <a class="reference internal" href="interdisciplinary/ethics.html">
+     Moral Philosophy: Choosing the “Right” Fairness Metrics
     </a>
    </li>
   </ul>
@@ -467,6 +462,52 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#biases">
+   Biases
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-bias">
+     What is Bias?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#social-and-systemic-bias">
+       Social and Systemic bias
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#statistical-bias">
+       Statistical Bias
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#biases-in-a-machine-learning-development-process">
+     Biases in a Machine Learning Development Process
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#historical-bias-social-biases-encoded-in-data">
+       Historical Bias: Social Biases Encoded in Data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#disparate-informativeness-representation-bias-and-predictive-bias">
+       Disparate Informativeness: Representation Bias and Predictive Bias
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aggregation-bias">
+       Aggregation bias
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -501,6 +542,52 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#biases">
+   Biases
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-bias">
+     What is Bias?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#social-and-systemic-bias">
+       Social and Systemic bias
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#statistical-bias">
+       Statistical Bias
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#biases-in-a-machine-learning-development-process">
+     Biases in a Machine Learning Development Process
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#historical-bias-social-biases-encoded-in-data">
+       Historical Bias: Social Biases Encoded in Data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#disparate-informativeness-representation-bias-and-predictive-bias">
+       Disparate Informativeness: Representation Bias and Predictive Bias
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aggregation-bias">
+       Aggregation bias
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -533,7 +620,8 @@ title="Print to PDF"
 </div>
 <div class="section" id="types-of-harm">
 <span id="id2"></span><h2>Types of Harm<a class="headerlink" href="#types-of-harm" title="Permalink to this headline">#</a></h2>
-<p>The exact meaning of “behaving or treating people fairly” depends heavily on the context of the algorithmic system. There are several different ways in which algorithmic systems can disregard fairness. In particular, we can distinguish between the following types of fairness-related harms<a class="footnote-reference brackets" href="#footcite-madaio2020" id="id3">2</a>:</p>
+<p>The exact meaning of “behaving or treating people fairly” depends heavily on the context of the algorithmic system. There are several different ways in which algorithmic systems can disregard fairness. In particular, we can distinguish between the following types of fairness-related harms<a class="footnote-reference brackets" href="#footcite-madaio2020" id="id3">2</a>.</p>
+<a class="reference external image-reference" href="none"><img alt="A process model of a machine learning development process, with a chain of blocks starting at &quot;problem formulation&quot;, followed by &quot;collect data&quot;, &quot;train model&quot;, &quot;make predictions&quot;, &quot;make decisions&quot;, and finally &quot;impact&quot;." class="align-center" src="../_images/fairnessharms.svg" width="600px" /></a>
 <ul class="simple">
 <li><p><span class="xref std std-term">Allocation harm</span> can be defined as an unfair allocation of opportunities, resources, or information. In our resume selection example, allocation harm can occur when some groups are selected less often than others, e.g., the algorithm selects men more often than women.</p></li>
 <li><p><span class="xref std std-term">Quality-of-service harm</span> occurs when a system disproportionately fails for certain (groups of) people. For example, a facial recognition system may misclassify black women at a higher rate than white men <a class="footnote-reference brackets" href="#footcite-buolamwini2018" id="id4">3</a> and a speech recognition system may not work well for users whose disability impacts their clarity of speech <a class="footnote-reference brackets" href="#footcite-guo2019" id="id5">4</a>.</p></li>
@@ -543,17 +631,74 @@ title="Print to PDF"
 <li><p><span class="xref std std-term">Procedural harm</span> occurs when decisions are made in a way that violates social norms (see e.g., Rudin <em>et al.</em><a class="footnote-reference brackets" href="#footcite-rudin2018a" id="id6">5</a>). For example, penalizing a job applicant for having more experience can violate social norms. Procedural harm is not limited to the prediction-generating mechanisms of the model itself, but can also be extended to the development and usage of the system. For example, is it communicated clearly that an algorithmic decision is made? Do data subjects receive a meaningful justification? Is it possible to appeal a decision?</p></li>
 </ul>
 <p>Note that these types of harm are not mutually exclusive and that this list is not complete – there may be other context and application specific harms.</p>
+</div>
+<div class="section" id="biases">
+<h2>Biases<a class="headerlink" href="#biases" title="Permalink to this headline">#</a></h2>
+<p>Anybody who has ever attempted to build a machine learning model will know that machine learning systems are an accumulation of design choices that shape what the final model will look like. From high-level decisions related to the goal of the model, to a plethora of detailed choices such as whether you will use one-hot-encoding for that categorical feature in your data set. These puzzles are part of what makes machine learning development interesting and creative work. However, choosing the ‘best’ option implicitly involves a value judgment. This has important moral implications. In the context of algorithmic fairness, a major concern revolves different forms of biases that can seep into a machine learning system through various design choices. In this section, we will explore several of these biases as sources of fairness-related harm.</p>
+<div class="section" id="what-is-bias">
+<h3>What is Bias?<a class="headerlink" href="#what-is-bias" title="Permalink to this headline">#</a></h3>
+<p>But first, let us define more precisely what we mean when we talk about ‘bias’. In the dictionary, <span class="xref std std-term">bias</span> is defined as “a systematic and disproportionate tendency towards something”. It can refer to many different things, ranging from social biases related to prejudice, to statistical biases that are of a technical nature.</p>
+<a class="reference external image-reference" href="none"><img alt="A process model of a machine learning development process, with a chain of blocks starting at &quot;problem formulation&quot;, followed by &quot;collect data&quot;, &quot;train model&quot;, &quot;make predictions&quot;, &quot;make decisions&quot;, and finally &quot;impact&quot;." class="align-center" src="../_images/bias.svg" width="300px" /></a>
+<div class="section" id="social-and-systemic-bias">
+<h4>Social and Systemic bias<a class="headerlink" href="#social-and-systemic-bias" title="Permalink to this headline">#</a></h4>
+<p>In everyday language, bias is typically used to refer to prejudice against a person or a group. To avoid confusion, we will generally refer this type of bias as <span class="xref std std-term">social bias</span>. Social bias is a form of <span class="xref std std-term">cognitive bias</span>: a systematic error in rational thinking that can affect judgment and decision-making. Several theoretical explanations of <span class="xref std std-term">cognitive bias</span>es exist. In particular, the biases are thought to be the result of the limitations of information-processing capabilities of the human brain. From an evolutionary perspective, cognitive biases might have been useful because they allow people to make quick decisions in critical scenarios. As a hunter-gatherer, you would probably rather be safe than sorry when encountering an unknown group of other humans. However, shortcuts and heuristics often come at the cost of the quality of decisions. In particular, stereotypes formed by <span class="xref std std-term">social bias</span> can be overgeneralized and inaccurate, especially on an individual level. When people act on <span class="xref std std-term">social bias</span>es, they can result in discriminatory practices. Social bias is not limited to human actors and can also be embedded in instititutions, in which case it is typically referred to as <span class="xref std std-term">systemic bias</span> or <span class="xref std std-term">institutional bias</span>.</p>
+</div>
+<div class="section" id="statistical-bias">
+<h4>Statistical Bias<a class="headerlink" href="#statistical-bias" title="Permalink to this headline">#</a></h4>
+<p>If you have ever done an introductory course on statistics or machine learning theory, you have almost certainly come across <span class="xref std std-term">statistical bias</span>. In this context, ‘bias’ refers to a systematic error in the estimation of parameters or variables. For example, you may have come across a <a class="reference external" href="https://en.wikipedia.org/wiki/Variance#Sample_variance">naive estimation of sample variance</a> in one of your statistics classes, which is a provably biased estimate of true variance of a population. In other cases, <span class="xref std std-term">statistical bias</span> is used to refer to biases in the data collection process that compromise the accuracy of an estimate. For example, respondents of a twitter poll are rarely a random sample of the population. Bias is also used to refer to systematic errors caused by assumptions of an estimator. In the context of machine learning algorithms, this type of bias is often discussed in relation to the bias-variance trade-off. For example, some machine learning algorithms can only learn linear relationships between features, whereas the true underlying data distribution exhibits more complex relationships, resulting in an <a class="reference internal" href="../misc/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a> model.</p>
+</div>
+</div>
+<div class="section" id="biases-in-a-machine-learning-development-process">
+<h3>Biases in a Machine Learning Development Process<a class="headerlink" href="#biases-in-a-machine-learning-development-process" title="Permalink to this headline">#</a></h3>
+<p>There are many different types of bias that can result in fairness-related harm. Most of these issues arise at the intersections of social, systemic, and statistical bias. In the remainder of this section, we will dive more deeply into different types of biases during data collection and modelling.</p>
+<a class="reference external image-reference" href="none"><img alt="A process model of a machine learning development process, with a chain of blocks starting at &quot;problem formulation&quot;, followed by &quot;collect data&quot;, &quot;train model&quot;, &quot;make predictions&quot;, &quot;make decisions&quot;, and finally &quot;impact&quot;." class="align-center" src="../_images/process.svg" width="500px" /></a>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The list of biases discussed in this chapter is by no means exhaustive. Moreover, reality is messy, and in practice biases are much harder to precisely dissect than many research papers suggest. Finally, note that in the algorithmic literature, several of these biases are known under various different names.</p>
+</div>
+<div class="section" id="historical-bias-social-biases-encoded-in-data">
+<h4>Historical Bias: Social Biases Encoded in Data<a class="headerlink" href="#historical-bias-social-biases-encoded-in-data" title="Permalink to this headline">#</a></h4>
+<p>When it comes to bias, one stage of the development process is arguably the most notirous: data collection and processing. While <em>bias in = bias out</em> only scratches the surface of fairness issues (more on that later), data sets are important sources of fairness-related harm.</p>
+<p>One of the seemingly most obvious ways in which data can be biased is when social biases are explicitly encoded in data, typically in the form of an association between a <span class="xref std std-term">sensitive feature</span> and the <a class="reference internal" href="../misc/glossary.html#term-target-variable"><span class="xref std std-term">target variable</span></a>. If not accounted for, a machine learning model will reproduce these biases, resulting in unfair outcomes. Generally speaking, <span class="xref std std-term">historical bias</span> comes in two flavors.</p>
+<p>First, <span class="xref std std-term">historical bias</span> can arise due to social biases in historical decision-making, resulting in <span class="xref std std-term">measurement bias</span>. Generally speaking, <span class="xref std std-term">measurement bias</span> occurs when the method of observation results in systematic errors. When <span class="xref std std-term">measurement bias</span> is related to a <span class="xref std std-term">sensitive feature</span>, such as gender or race, it can be a source of downstream model unfairness. For example, a company may have historically hired more men than women for technical positions due to social bias. In this case, historical hiring decisions are a biased proxy for actual suitability of the applicant. A model trained on historical decisions will likely reproduce the association. Another example can be found in fraud detection. A fraud analyst might overly scrutinize some groups over others. Higher rates of testing will result in more positives, confirming the analysts biased beliefs and skewing the observed base rates. If not accounted for, these skewed numbers will be reproduced by the machine learning model. Inaccurate stereotypes can also be embedded in texts, images, and annotations produced by people, resulting in systems that reinforce these stereotypes. It is important to emphasize that simply removing the <span class="xref std std-term">sensitive feature</span> is unlikely to mitigate this type of bias, due to associations between features (see also <span class="xref myst">No Fairness through Unawareness</span>).</p>
+<p>A second type of <span class="xref std std-term">historical bias</span>  occurs when the data is a good representation of reality, but reality is biased. In the hiring example, observed bias could also be caused by actual differences in suitability, but these differences are in turn caused by structural inequalities in society. For example, people from lower socioeconomic backgrounds may have had fewer opportunities to get good education, making them less suitable for jobs where such education is required for job performance. Similarly, some stereotypes are accurate at an aggregate level (even if they can be very inaccurate at an individual level!). For example, in many societies female nurses still greatly outnumber male nurses.</p>
+<p>In practice, it is impossible to distinguish between these two types of <span class="xref std std-term">historical bias</span> from observed data alone. For example, we cannot know the true underlying fraud rate if we only take into account data produced by a biased fraud detection approach. Moreover, when social biases are involved, cases of measurement bias and structural inequality often occur simultaneously. However, while <span class="xref std std-term">measurement bias</span> can be mitigated by thoughtful and high-quality data collection, meaningfully addressing structural injustice in the context of a single machine learning model is not as much a technical question as a moral one (we will dive deeper into this type of questions in <a class="reference internal" href="interdisciplinary/ethics.html#normative-underpinnings"><span class="std std-ref">Choosing the “Right” Fairness Metric</span></a>).</p>
+</div>
+<div class="section" id="disparate-informativeness-representation-bias-and-predictive-bias">
+<h4>Disparate Informativeness: Representation Bias and Predictive Bias<a class="headerlink" href="#disparate-informativeness-representation-bias-and-predictive-bias" title="Permalink to this headline">#</a></h4>
+<!-- TODO: add parts about noise/variance by Chen et al.-->
+<p>A different set of data biases are related to the informativeness of the data for different sensitive groups.</p>
+<p>A data set can be less informative for a sensitive group if less data points are available. In particular, <span class="xref std std-term">representation bias</span> occurs when some groups are underrepresented in the data <a class="footnote-reference brackets" href="#footcite-suresh2020" id="id7">6</a>. A machine learning model might not generalize well for underrepresented groups, causing <span class="xref std std-term">allocation harm</span> or <span class="xref std std-term">quality-of-service harm</span>. <span class="xref std std-term">Representation bias</span> is especially risky when the data distribution of minority groups differs substantially from the majority group (see also <span class="xref std std-term">aggregation bias</span>). A well-known example of <span class="xref std std-term">representation bias</span> was uncovered by Buolamwini and Gebru<a class="footnote-reference brackets" href="#footcite-buolamwini2018" id="id8">3</a>. They found that the data sets that were used to train commercial facial recognition systems contained predominantly images of white men. Consequently, the models did not generalize well to people with dark skin, especially women.
+<span class="xref std std-term">Representation bias</span> is closely related to <span class="xref std std-term">selection bias</span>, a statistical bias that occurs when the data collection or selection results in a non-random sample of the population. If not taken into account, conclusions regarding the studied effect may be wrong. For example, young healthy people may be more likely to volunteer for a vaccine trial than less healthy older people. As a result, conclusions about the side effects may not be representative for the whole population. Notably, <span class="xref std std-term">representation bias</span> can occur even when a sample is truly random, as there may not be sufficient information available for minority groups. Moreover, <span class="xref std std-term">representation bias</span> can be an issue in both training and testing data.
+An underlying cause of <span class="xref std std-term">representation bias</span> are blind spots of the collectors. For example, a data science team that consists solely of women is less likely to notice that men are not well represented in the data than a more diverse team. Additionally, some data is easier to get than others. For example, collecting data on the interests of young adults, who often spend hours each day scrolling through their social media feeds, is much easier compared to the interests elderly people who are generally not as active online.</p>
+<p>The informativeness of the data can also be affected by <span class="xref std std-term">predictive bias</span>, which occurs when the informativeness of the features differs across groups. In this case, it is not so much the amount of data that is relevant, but the quality of that data for a predictive task. For example, women face different risk factors for heart disease compared to men, including pregnancy and menopause induced factors. If we were to build a machine learning model that does not take into account these features, the model is likely to be less accurate for women than it is for men.</p>
+<p><span class="xref std std-term">Representation bias</span> is relatively easy to solve by getting more data. Additionally, data scientists can leverage techniques that were designed to deal with sampling errors, such as weighting instances. However, one should be cautious to not overburden already marginalized groups. Moreover, it is hard to justify harming other values, such as privacy and autonomy, on your quest for more data. For example, after IBM released their “diverse data set”, it became clear that the data set <a class="reference external" href="https://www.nbcnews.com/tech/internet/facial-recognition-s-dirty-little-secret-millions-online-photos-scraped-n981921">contained millions of photos that were retrieved from the internet</a> without consent. Similarly, researchers attempting to increase predictive performance of facial recognition systems for transgender persons, proceeded to <a class="reference external" href="https://www.theverge.com/2017/8/22/16180080/transgender-youtubers-ai-facial-recognition-dataset">collect a set of Youtube video links of transgender individuals</a>, without informing them. Predictive bias, on the other hand, cannot be solved by collecting more data, only by collecting better data. For example, we may carefully consider which additional features should be added to the model, e.g. by consulting domain experts.</p>
+</div>
+<div class="section" id="aggregation-bias">
+<h4>Aggregation bias<a class="headerlink" href="#aggregation-bias" title="Permalink to this headline">#</a></h4>
+<p>Building a machine learning model includes many different choices, ranging from the class of machine learning algorithms that is considered to their hyperparameter settings. Different models may have different consequences related to fairness, depending on the task at hand.</p>
+<p><span class="xref std std-term">Aggregation bias</span> occurs when a single model is used for groups that have distinct data distributions <a class="footnote-reference brackets" href="#footcite-suresh2020" id="id9">6</a>. If not accounted for, it may lead to a model that does not work well for any of the subgroups. For example, it is known that the relationship between hemoglobin levels (HbA1c) and blood glucose levels differs greatly across genders and ethnicities <a class="footnote-reference brackets" href="#footcite-suresh2020" id="id10">6</a>. If these differences are not taken into account, a model that only uses a single interpretation of HbA1c will likely not work well for any of these groups. In combination with <span class="xref std std-term">representationbias</span>, it can lead to a model that only works well for the majority population.</p>
+<p><span class="xref std std-term">Aggregation bias</span> is related to the problem of <a class="reference internal" href="../misc/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a>. Machine learning can be seen as a compression problem that produces a mapping between input features and output variable. Some information is inherently lost because of the chosen mapping <a class="footnote-reference brackets" href="#footcite-dobbe2018" id="id11">7</a>. In particular, some model classes may not be able to adequately capture the different data distributions. Such an oversimplified model may come at the cost of predictive performance for minority groups, resulting in <span class="xref std std-term">quality-of-service harm</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Summary</p>
 <p><strong>Unfair Machines</strong></p>
 <p>Machine learning models can reproduce, amplify, and even introduce unfairness. This has given rise to the research field of algorithmic fairness: the idea that algorithmic systems should behave or treat people without discrimination on the grounds of sensitive characteristics.</p>
 <p><strong>Types of harm</strong></p>
 <p>There are different ways in which algorithmic systems can disregard fairenss, including <span class="xref std std-term">allocation harm</span>, <span class="xref std std-term">quality-of-service harm</span>, <span class="xref std std-term">stereotyping harm</span>, <span class="xref std std-term">denigration harm</span>, <span class="xref std std-term">representation harm</span>, and <span class="xref std std-term">procedural harm</span>.</p>
+<p><strong>Biases as Sources of Unfairness</strong></p>
+<p>Social, systemic, and statistical biases can influence the machine learning development process, causing fairness-related harm.</p>
+<ul class="simple">
+<li><p>Social biases can be encoded in data sets in the form of measurement bias and structural inequalities in society.</p></li>
+<li><p>Representation bias and predictive bias affect the informativeness of data across different sensitive groups, which can result in disparate predictive performance.</p></li>
+<li><p>During modelling, aggregation bias can result in a model that does not work well for sensitive groups that have distinct data distributions.</p></li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<div class="docutils container" id="id7">
+<div class="docutils container" id="id12">
 <dl class="footnote brackets">
 <dt class="label" id="footcite-friedman1996"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Batya Friedman and Helen Nissenbaum. Bias in computer systems. <em>ACM Transactions on Information Systems</em>, 14(3):330–347, July 1996. URL: <a class="reference external" href="https://doi.org/10.1145/230538.230561">https://doi.org/10.1145/230538.230561</a>, <a class="reference external" href="https://doi.org/10.1145/230538.230561">doi:10.1145/230538.230561</a>.</p>
@@ -561,7 +706,7 @@ title="Print to PDF"
 <dt class="label" id="footcite-madaio2020"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
 <dd><p>Michael A Madaio, Luke Stark, Jennifer Wortman Vaughan, and Hanna Wallach. Co-Designing Checklists to Understand Organizational Challenges and Opportunities around Fairness in AI. <em>Chi 2020</em>, pages 1–14, 2020.</p>
 </dd>
-<dt class="label" id="footcite-buolamwini2018"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dt class="label" id="footcite-buolamwini2018"><span class="brackets">3</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id8">2</a>)</span></dt>
 <dd><p>Joy Buolamwini and Timnit Gebru. Gender shades: intersectional accuracy disparities in commercial gender classification. In <em>Conference on fairness, accountability and transparency</em>, 77–91. 2018.</p>
 </dd>
 <dt class="label" id="footcite-guo2019"><span class="brackets"><a class="fn-backref" href="#id5">4</a></span></dt>
@@ -569,6 +714,12 @@ title="Print to PDF"
 </dd>
 <dt class="label" id="footcite-rudin2018a"><span class="brackets"><a class="fn-backref" href="#id6">5</a></span></dt>
 <dd><p>Cynthia Rudin, Caroline Wang, and Beau Coker. The age of secrecy and unfairness in recidivism prediction. <em>Harvard Data Science Review</em>, 3 2020. https://hdsr.mitpress.mit.edu/pub/7z10o269. URL: <a class="reference external" href="https://hdsr.mitpress.mit.edu/pub/7z10o269">https://hdsr.mitpress.mit.edu/pub/7z10o269</a>, <a class="reference external" href="https://doi.org/10.1162/99608f92.6ed64b30">doi:10.1162/99608f92.6ed64b30</a>.</p>
+</dd>
+<dt class="label" id="footcite-suresh2020"><span class="brackets">6</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id9">2</a>,<a href="#id10">3</a>)</span></dt>
+<dd><p>Harini Suresh and John V. Guttag. A framework for understanding unintended consequences of machine learning. 2020. <a class="reference external" href="https://arxiv.org/abs/1901.10002">arXiv:1901.10002</a>.</p>
+</dd>
+<dt class="label" id="footcite-dobbe2018"><span class="brackets"><a class="fn-backref" href="#id11">7</a></span></dt>
+<dd><p>Roel Dobbe, Sarah Dean, Thomas Gilbert, and Nitin Kohli. A broader view on bias in automated decision-making: reflecting on epistemology and dynamics. <em>arXiv preprint arXiv:1807.00553</em>, 2018.</p>
 </dd>
 </dl>
 </div>
@@ -610,10 +761,10 @@ title="Print to PDF"
             <p class="prev-next-title">Cost-Sensitive Learning</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="groupfairness/introduction.html" title="next page">
+    <a class='right-next' id="next-link" href="groupfairnessmetrics.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Measuring Fairness</p>
+        <p class="prev-next-title">Group Fairness Metrics</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -15,15 +15,14 @@ parts:
   - caption: Fairness
     chapters:
     - file: fairness/introduction
-    - file: fairness/groupfairness/introduction
-      sections:
-      - file: fairness/groupfairness/biases
-      - file: fairness/groupfairness/groupfairnessmetrics
-      - file: fairness/groupfairness/normativeunderpinnings
+    - file: fairness/groupfairnessmetrics
     - file: fairness/fairml/introduction
       sections:
-      - file: fairness/fairml/nofairnessthroughunawareness
       - file: fairness/fairml/groupspecificthresholds
+    - file: fairness/interdisciplinary/introduction
+      sections:
+      - file: fairness/interdisciplinary/sociotechnical
+      - file: fairness/interdisciplinary/ethics
   - caption: Explainability
     chapters:
     - file: explainability/introduction

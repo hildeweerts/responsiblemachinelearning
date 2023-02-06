@@ -51,8 +51,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="No Fairness through Unawareness" href="nofairnessthroughunawareness.html" />
-    <link rel="prev" title="Choosing the “Right” Fairness Metric" href="../groupfairness/normativeunderpinnings.html" />
+    <link rel="next" title="Group-Specific Decision Thresholds" href="groupspecificthresholds.html" />
+    <link rel="prev" title="Group Fairness Metrics" href="../groupfairnessmetrics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -157,51 +157,46 @@ const thebe_selector_output = ".output, .cell_output"
    Algorithmic Fairness
   </a>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../groupfairness/introduction.html">
-   Measuring Fairness
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupfairnessmetrics.html">
+   Group Fairness Metrics
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Fairness-Aware Machine Learning
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../groupfairness/biases.html">
-     Biases as Sources of Unfairness
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../groupfairness/groupfairnessmetrics.html">
-     Group Fairness Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../groupfairness/normativeunderpinnings.html">
-     Choosing the “Right” Fairness Metric
+    <a class="reference internal" href="groupspecificthresholds.html">
+     Group-Specific Decision Thresholds
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   Fairness-Aware Machine Learning
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../interdisciplinary/introduction.html">
+   Interdisciplinary Insights
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="nofairnessthroughunawareness.html">
-     No Fairness through Unawareness
+    <a class="reference internal" href="../interdisciplinary/sociotechnical.html">
+     Socio-technical Systems: Abstraction Traps
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="groupspecificthresholds.html">
-     Group-Specific Decision Thresholds
+    <a class="reference internal" href="../interdisciplinary/ethics.html">
+     Moral Philosophy: Choosing the “Right” Fairness Metrics
     </a>
    </li>
   </ul>
@@ -457,6 +452,26 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#no-fairness-through-unawareness">
+   No Fairness Through Unawareness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   Pre-Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constrained-learning">
+   Constrained Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing">
+   Post-Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -481,6 +496,26 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#no-fairness-through-unawareness">
+   No Fairness Through Unawareness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   Pre-Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constrained-learning">
+   Constrained Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing">
+   Post-Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -502,14 +537,25 @@ title="Print to PDF"
 <p>This chapter is still under construction.</p>
 </div>
 <p>Fairness-aware machine learning algorithms are algorithmic interventions aimed at mitigating unfairness. A typical approach is to formulate unfairness mitigation as an optimization task, with the goal to achieve high predictive performance whilst satisfying a fairness constraint.</p>
-<ul class="simple">
-<li><p><strong>Pre-processing</strong>.</p></li>
-<li><p><strong>Constrained learning</strong>.</p></li>
-<li><p><strong>Post-processing</strong>.</p></li>
-</ul>
+<div class="section" id="no-fairness-through-unawareness">
+<h2>No Fairness Through Unawareness<a class="headerlink" href="#no-fairness-through-unawareness" title="Permalink to this headline">#</a></h2>
+<p>Now, you may wonder: if we want to avoid fairness-related harm, why don’t we just remove the <span class="xref std std-term">sensitive feature</span>, i.e., the feature that represents a sensitive characteristic in our data set? Unfortunately, it is not that simple.</p>
+<p>While removing a sensitive feature ensures the model cannot explicitly use a sensitive feature as input to a prediction, machine learning models will often still be able to replicate the association between a sensitive feature and the target variable. In its simplest form, one of the remaining features in the data set may act as a <span class="xref std std-term">proxyvariable</span> for a sensitive feature. The use of proxy variables is common in cases of (subconscious and conscious) discrimination by human actors. A classical example is redlining, a practice in the United States where people were systematically denied services based on their postal code. Neighborhoods that were deemed “too risky” were outlined on the map in the color red. Although postal code may appear to be a neutral feature, it was highly correlated with race. As services were mostly denied in predominantly African-American neighborhoods, African-Americans were indirectly discriminated against. Another example can be found in loan applications. Imagine we want to avoid <span class="xref std std-term">allocation harm</span> across genders. We decide to exclude the feature that represents gender from our data set, to avoid any direct discrimination. However, if we do include occupation, an attribute which is highly gendered in many societies, the model can still identify historical patterns of gender bias. Here, occupation acts as a <span class="xref std std-term">proxyvariable</span> for gender: occupation is highly associated with gender.</p>
+<p>This is not just a hypothetical problem. <strong>Machine learning algorithms are specifically designed to identify relationships between features in a data set. If undesirable patterns exist within the data, it is very likely that a machine learning model will replicate it.</strong> Removing all possible proxy variables is usually not a viable approach. First of all, it is not always possible to anticipate the patterns through which the sensitive feature can be approximated by the model. Several features that are slightly predictive of the sensitive feature might, taken together, be an accurate predictor of the sensitive feature. Second, apart from their relation with the sensitive feature, proxy variables may provide information that is predictive of the target feature. Removing all features that are slightly related to the sensitive feature could therefore substantially reduce the predictive performance of the model.</p>
+<p>Clearly, removing sensitive feature is unlikely to prevent <span class="xref std std-term">allocation harm</span>, which can still occur in the form of indirect effects. Similarly, patterns of stereotyping and denigration can be deeply embedded in (unstructured) data such as text. Quality-of-service harm, representation harm, and denigration harm can be caused by a lack of informativeness of the data that is available for these groups, which is not solved by removing the sensitive feature either. <strong>To conclude, removing sensitive features is only helpful in achieving a very narrow definition of fairness.</strong> The practical consequence is that it is unlikely that this approach will prevent real-world harm.</p>
+</div>
+<div class="section" id="pre-processing">
+<h2>Pre-Processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="constrained-learning">
+<h2>Constrained Learning<a class="headerlink" href="#constrained-learning" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="post-processing">
+<h2>Post-Processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">Summary</p>
 <p>…</p>
+</div>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
@@ -545,17 +591,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../groupfairness/normativeunderpinnings.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../groupfairnessmetrics.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Choosing the “Right” Fairness Metric</p>
+            <p class="prev-next-title">Group Fairness Metrics</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="nofairnessthroughunawareness.html" title="next page">
+    <a class='right-next' id="next-link" href="groupspecificthresholds.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">No Fairness through Unawareness</p>
+        <p class="prev-next-title">Group-Specific Decision Thresholds</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

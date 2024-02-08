@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Model Evaluation &#8212; An Introduction to Responsible Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -269,11 +270,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../misc/harms.html">
    List of Harms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/glossary.html">
-   Glossary
   </a>
  </li>
 </ul>
@@ -636,10 +632,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="model-evaluation">
+  <section class="tex2jax_ignore mathjax_ignore" id="model-evaluation">
 <span id="id1"></span><h1>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">#</a></h1>
 <p>How can we evaluate the predictive performance of our model and ensure we select the best one? In most machine learning courses, you will learn about predictive performance metrics that measure how well your model predicts. Different metrics are appropriate for different scenarios. In this chapter, we will cover the performance metrics displayed in <a class="reference internal" href="#metrics"><span class="std std-numref">Table 1</span></a>. However, keep in mind that in practice, there are typically many other desiderata beyond predictive performance, such as complexity, maintainability, and available resources.</p>
-<div class="section" id="predictive-performance-metrics">
+<section id="predictive-performance-metrics">
 <h2>Predictive Performance Metrics<a class="headerlink" href="#predictive-performance-metrics" title="Permalink to this headline">#</a></h2>
 <table class="table" id="metrics">
 <caption><span class="caption-number">Table 1 </span><span class="caption-text">Overview of predictive performance metrics.</span><a class="headerlink" href="#metrics" title="Permalink to this table">#</a></caption>
@@ -657,62 +653,62 @@ title="Print to PDF"
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="../../misc/glossary.html#term-accuracy"><span class="xref std std-term">accuracy</span></a></p></td>
+<tr class="row-even"><td><p>accuracy</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{tp + tn}{tp+tn+fp+fn}\)</span></p></td>
 <td></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score" title="(in scikit-learn v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.accuracy_score()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.accuracy_score()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../misc/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a> (fpr)</p></td>
+<tr class="row-odd"><td><p>false positive rate (fpr)</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{fp}{fp+tn}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(1 - tnr\)</span></p></td>
 <td><p><a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_positive_rate()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../misc/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a> (tnr)</p></td>
+<tr class="row-even"><td><p>true negative rate (tnr)</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{tn}{fp+tn}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(1 - fpr\)</span></p></td>
 <td><p><a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.true_negative_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.true_negative_rate()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../misc/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a> (fnr)</p></td>
+<tr class="row-odd"><td><p>false negative rate (fnr)</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{fn}{fn+tp}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(1 - tpr\)</span></p></td>
 <td><p><a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.false_negative_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.false_negative_rate()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../misc/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a> (tpr)</p></td>
+<tr class="row-even"><td><p>true positive rate (tpr)</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{tp}{fn+tp}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(1 - fnr\)</span>; recall</p></td>
 <td><p><a class="reference external" href="https://fairlearn.org/v0.8/api_reference/fairlearn.metrics.html#fairlearn.metrics.true_positive_rate" title="(in Fairlearn)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fairlearn.metrics.true_positive_rate()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../misc/glossary.html#term-recall"><span class="xref std std-term">recall</span></a></p></td>
+<tr class="row-odd"><td><p>recall</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp+fn}\)</span></p></td>
 <td><p>tpr</p></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" title="(in scikit-learn v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.recall_score()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.recall_score()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../misc/glossary.html#term-precision"><span class="xref std std-term">precision</span></a></p></td>
+<tr class="row-even"><td><p>precision</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span></p></td>
 <td></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" title="(in scikit-learn v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.precision_score()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.precision_score()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../misc/glossary.html#term-f1-score"><span class="xref std std-term">F1-score</span></a></p></td>
+<tr class="row-odd"><td><p>F1-score</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp + \frac{1}{2}(fp+tn)}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(2 \cdot \frac{precision \cdot recall}{precision + recall}\)</span></p></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" title="(in scikit-learn v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.f1_score()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.f1_score()</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../misc/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> (ppv)</p></td>
+<tr class="row-even"><td><p>positive predictive value (ppv)</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{tp}{tp+fp}\)</span></p></td>
 <td><p>precision</p></td>
-<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" title="(in scikit-learn v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.precision_score()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.precision_score()</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../misc/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> (npv)</p></td>
+<tr class="row-odd"><td><p>negative predictive value (npv)</p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{tn}{tn+fn}\)</span></p></td>
 <td></td>
 <td><p>N/A</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="performance-metrics-based-on-the-predicted-class">
+</section>
+<section id="performance-metrics-based-on-the-predicted-class">
 <span id="model-evaluation-classification-metrics"></span><h2>Performance metrics based on the predicted class<a class="headerlink" href="#performance-metrics-based-on-the-predicted-class" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference internal" href="../../misc/glossary.html#term-confusion-matrix"><span class="xref std std-term">confusion matrix</span></a> is a basic tool that indicates how well a classification model performs for different classes. One axis displays the true labels and the other axis the predicted labels. Each cell <span class="math notranslate nohighlight">\(C_{i,j}\)</span> shows the number of instances in some class <span class="math notranslate nohighlight">\(i\)</span> that were predicted to be class <span class="math notranslate nohighlight">\(j\)</span>. Despite its name, this matrix is not supposed to confuse you, but visualizes whether the classifier is confusing particular classes (i.e., misclassifying one as another). In a <a class="reference internal" href="../../misc/glossary.html#term-binary-classification"><span class="xref std std-term">binary classification</span></a> problem, the confusion matrix contains the number of <a class="reference internal" href="../../misc/glossary.html#term-true-positive"><span class="xref std std-term">true positive</span></a>s (tp), <a class="reference internal" href="../../misc/glossary.html#term-false-positive"><span class="xref std std-term">false positive</span></a>s (fp), <a class="reference internal" href="../../misc/glossary.html#term-true-negative"><span class="xref std std-term">true negative</span></a>s (tn), and <a class="reference internal" href="../../misc/glossary.html#term-false-negative"><span class="xref std std-term">false negative</span></a>s (fn).</p>
+<p>The confusion matrix is a basic tool that indicates how well a classification model performs for different classes. One axis displays the true labels and the other axis the predicted labels. Each cell <span class="math notranslate nohighlight">\(C_{i,j}\)</span> shows the number of instances in some class <span class="math notranslate nohighlight">\(i\)</span> that were predicted to be class <span class="math notranslate nohighlight">\(j\)</span>. Despite its name, this matrix is not supposed to confuse you, but visualizes whether the classifier is confusing particular classes (i.e., misclassifying one as another). In a binary classification problem, the confusion matrix contains the number of true positives (tp), false positives (fp), true negatives (tn), and false negatives (fn).</p>
 <table class="table" id="confusionmatrix">
 <caption><span class="caption-number">Table 2 </span><span class="caption-text">The structure of a confusion matrix of a binary classification problem. In practice, the cells will contain the number of observations of each type.</span><a class="headerlink" href="#confusionmatrix" title="Permalink to this table">#</a></caption>
 <colgroup>
@@ -732,7 +728,7 @@ title="Print to PDF"
 <tr class="row-even"><td></td>
 <td></td>
 <td><p><em>negative</em> (<code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></td>
-<td><p><em>positive</em> (<code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></td>
+<td><p><em>positive</em> (<code class="docutils literal notranslate"><span class="pre">1</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>actual label</strong></p></td>
 <td><p><em>negative</em> (<code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></td>
@@ -740,7 +736,7 @@ title="Print to PDF"
 <td><p>false positive (fp)</p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><em>positive</em> (<code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></td>
+<td><p><em>positive</em> (<code class="docutils literal notranslate"><span class="pre">1</span></code>)</p></td>
 <td><p>false negative (fn)</p></td>
 <td><p>true positive (tp)</p></td>
 </tr>
@@ -775,9 +771,9 @@ title="Print to PDF"
 </div>
 <div class="seealso admonition note">
 <p class="admonition-title">Note</p>
-<p>You may have noticed that we first split the synthetic data into a train and test set using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="(in scikit-learn v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split()</span></code></a>. Why this is an essential part of a proper machine learning pipeline will be explained in more detail in chapter <a class="reference internal" href="modelselection.html#model-selection"><span class="std std-ref">Model Selection</span></a>.</p>
+<p>You may have noticed that we first split the synthetic data into a train and test set using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split()</span></code></a>. Why this is an essential part of a proper machine learning pipeline will be explained in more detail in chapter <a class="reference internal" href="modelselection.html#model-selection"><span class="std std-ref">Model Selection</span></a>.</p>
 </div>
-<p>We can use <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.confusion_matrix</span></code> to easiliy compute the confusion matrix:</p>
+<p>We can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html#sklearn.metrics.confusion_matrix" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.confusion_matrix()</span></code></a> to easiliy compute the confusion matrix:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
@@ -795,10 +791,10 @@ title="Print to PDF"
 </div>
 </div>
 <p>Many popular predictive performance metrics for binary classification problems can be directly derived from the confusion matrix.</p>
-<div class="section" id="accuracy">
+<section id="accuracy">
 <h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">#</a></h3>
-<p><a class="reference internal" href="../../misc/glossary.html#term-accuracy"><span class="xref std std-term">Accuracy</span></a> is one of the simplest measures for predictive performance. It can be defined as the fraction of predictions the model predicted correctly (see <a class="reference internal" href="#metrics"><span class="std std-numref">Table 1</span></a>).</p>
-<p>Note that accuracy does not differentiate between mistakes made for one class versus mistakes made for another class. As a result, <strong>accuracy can be a misleading metric when we are dealing with <a class="reference internal" href="../../misc/glossary.html#term-imbalanced-data"><span class="xref std std-term">imbalanced data</span></a></strong>, which occurs when the number of instances per class differs greatly across classes.</p>
+<p>Accuracy is one of the simplest measures for predictive performance. It can be defined as the fraction of predictions the model predicted correctly (see <a class="reference internal" href="#metrics"><span class="std std-numref">Table 1</span></a>).</p>
+<p>Note that accuracy does not differentiate between mistakes made for one class versus mistakes made for another class. As a result, <strong>accuracy can be a misleading metric when we are dealing with imbalanced data</strong>, which occurs when the number of instances per class differs greatly across classes.</p>
 <p>For example, consider fraud detection in bank transactions. The number of legal transactions typically greatly outnumbers the number of illegal transactions. Let’s say that for every 99999 transactions there is 1 illegal transaction. In this scenario, a model that predicts every transaction to be legitimate will receive an incredibly high accuracy score: 0.99999. Of course, the practical utility of this model is very low.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -816,12 +812,12 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="misclassification-rates">
+</section>
+<section id="misclassification-rates">
 <h3>Misclassification rates<a class="headerlink" href="#misclassification-rates" title="Permalink to this headline">#</a></h3>
 <p>In many use cases, false positives and false negatives have different consequences in the real world. As a running example, we take the fraud detection scenario.</p>
-<p>The <a class="reference internal" href="../../misc/glossary.html#term-false-positive-rate"><span class="xref std std-term">false positive rate</span></a> (<span class="math notranslate nohighlight">\(fpr\)</span>) is equal to the fraction of false positives out of all negative instances. In the fraud detection scenario, this corresponds to the fraction of false alerts out of all legitimate transactions. To avoid flooding fraud analysts with false alerts, we may want to keep the <span class="math notranslate nohighlight">\(fpr\)</span> below a certain level. The <a class="reference internal" href="../../misc/glossary.html#term-true-negative-rate"><span class="xref std std-term">true negative rate</span></a> (<span class="math notranslate nohighlight">\(tnr\)</span>) is equal to the fraction of true negatives out of all negative instances, which is equivalent to <span class="math notranslate nohighlight">\(1-fpr\)</span>.</p>
-<p>The <a class="reference internal" href="../../misc/glossary.html#term-true-positive-rate"><span class="xref std std-term">true positive rate</span></a> (<span class="math notranslate nohighlight">\(tpr\)</span>) is equal to the fraction of true positives out of all positive instances. In the fraud detection scenario, this metric quantifies the fraction of fraudulent transactions we were able to identify as such. The <a class="reference internal" href="../../misc/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a> (<span class="math notranslate nohighlight">\(fnr\)</span>) is equal to the fraction of false negatives out of all positive instances. This corresponds to the fraction of fraudulent transactions we failed to identify out of all fraudulent transactions. The <a class="reference internal" href="../../misc/glossary.html#term-false-negative-rate"><span class="xref std std-term">false negative rate</span></a> is equal to <span class="math notranslate nohighlight">\(1 - tpr\)</span>.</p>
+<p>The false positive rate (<span class="math notranslate nohighlight">\(fpr\)</span>) is equal to the fraction of false positives out of all negative instances. In the fraud detection scenario, this corresponds to the fraction of false alerts out of all legitimate transactions. To avoid flooding fraud analysts with false alerts, we may want to keep the <span class="math notranslate nohighlight">\(fpr\)</span> below a certain level. The true negative rate (<span class="math notranslate nohighlight">\(tnr\)</span>) is equal to the fraction of true negatives out of all negative instances, which is equivalent to <span class="math notranslate nohighlight">\(1-fpr\)</span>.</p>
+<p>The true positive rate (<span class="math notranslate nohighlight">\(tpr\)</span>) is equal to the fraction of true positives out of all positive instances. In the fraud detection scenario, this metric quantifies the fraction of fraudulent transactions we were able to identify as such. The false negative rate (<span class="math notranslate nohighlight">\(fnr\)</span>) is equal to the fraction of false negatives out of all positive instances. This corresponds to the fraction of fraudulent transactions we failed to identify out of all fraudulent transactions. The false negative rate is equal to <span class="math notranslate nohighlight">\(1 - tpr\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="p">(</span><span class="n">false_positive_rate</span><span class="p">,</span> <span class="n">true_negative_rate</span><span class="p">,</span>
@@ -834,10 +830,10 @@ title="Print to PDF"
 <span class="n">tpr</span> <span class="o">=</span> <span class="n">true_positive_rate</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">fpr: </span><span class="si">{:.2f}</span><span class="s2"></span>
-<span class="s2">tnr: </span><span class="si">{:.2f}</span><span class="s2"></span>
-<span class="s2">fnr: </span><span class="si">{:.2f}</span><span class="s2"></span>
-<span class="s2">tpr: </span><span class="si">{:.2f}</span><span class="s2"></span>
+<span class="s2">fpr: </span><span class="si">{:.2f}</span>
+<span class="s2">tnr: </span><span class="si">{:.2f}</span>
+<span class="s2">fnr: </span><span class="si">{:.2f}</span>
+<span class="s2">tpr: </span><span class="si">{:.2f}</span>
 <span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tnr</span><span class="p">,</span> <span class="n">fnr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -852,12 +848,12 @@ tpr: 0.83
 </div>
 </div>
 <p>Compared to the accuracy score we computed earlier, misclassification rates give us more insight into which classes the model classified (in)correctly. In this case, the classifier is better at distinguishing instances that belong to the negative class compared to the positive class (<span class="math notranslate nohighlight">\(tnr &gt; tpr\)</span> or conversely <span class="math notranslate nohighlight">\(fpr &lt; fnr\)</span>).</p>
-</div>
-<div class="section" id="precision-recall-and-f1-score">
+</section>
+<section id="precision-recall-and-f1-score">
 <h3>Precision, Recall, and F1-score<a class="headerlink" href="#precision-recall-and-f1-score" title="Permalink to this headline">#</a></h3>
 <p>Precision, recall, and the F1-score were originally introduced in the context of information retrieval, a domain concerned with retrieving information (text, audio, images, data, etc.) based on a query. An example of an information retrieval system is a search engine. Developers of information retrieval systems are often concerned with the <em>relevance</em> of the retrieved results, which can be quantified using precision and recall.</p>
-<p><a class="reference internal" href="../../misc/glossary.html#term-precision"><span class="xref std std-term">Precision</span></a> is the defined as the fraction of retrieved documents that were actually relevant (i.e., how precise is the retrieved result?). In a general classification problem, the metric is defined as the fraction of positive instances among the predicted positive instances. <a class="reference internal" href="../../misc/glossary.html#term-recall"><span class="xref std std-term">Recall</span></a>, on the other hand, is defined as the fraction of all relevant documents that were successfully retrieved (i.e., how many of the relevant documents are recalled?). In a classification setting, recall refers to the amount of positive instances the model classified as such from all positive instances in the data set, which is equivalent to the true positive rate.</p>
-<p>Often, there is an inverse relationship between precision and recall, which is referred to as the <span class="xref std std-term">precision-recall trade-off</span>. In practice, we might find both precision and recall important. This is where the <a class="reference internal" href="../../misc/glossary.html#term-f1-score"><span class="xref std std-term">f1-score</span></a> comes in, which is defined as the harmonic mean of precision and recall. The f1-score is just one way to aggregate precision and recall. Importantly, this makes the score only relevant in scenarios where we believe precision and recall are equally important. There also exists a more general <span class="math notranslate nohighlight">\(F_{\beta}\)</span>-score, where <span class="math notranslate nohighlight">\(\beta\)</span> is chosen such that recall is considered <span class="math notranslate nohighlight">\(\beta\)</span> times as important as precision.</p>
+<p>Precision is the defined as the fraction of retrieved documents that were actually relevant (i.e., how precise is the retrieved result?). In a general classification problem, the metric is defined as the fraction of positive instances among the predicted positive instances. Recall, on the other hand, is defined as the fraction of all relevant documents that were successfully retrieved (i.e., how many of the relevant documents are recalled?). In a classification setting, recall refers to the amount of positive instances the model classified as such from all positive instances in the data set, which is equivalent to the true positive rate.</p>
+<p>Often, there is an inverse relationship between precision and recall, which is referred to as the precision-recall trade-off. In practice, we might find both precision and recall important. This is where the f1-score comes in, which is defined as the harmonic mean of precision and recall. The f1-score is just one way to aggregate precision and recall. Importantly, this makes the score only relevant in scenarios where we believe precision and recall are equally important. There also exists a more general <span class="math notranslate nohighlight">\(F_{\beta}\)</span>-score, where <span class="math notranslate nohighlight">\(\beta\)</span> is chosen such that recall is considered <span class="math notranslate nohighlight">\(\beta\)</span> times as important as precision.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span>
@@ -868,9 +864,9 @@ tpr: 0.83
 <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">precision: </span><span class="si">{:.2f}</span><span class="s2"></span>
-<span class="s2">recall:    </span><span class="si">{:.2f}</span><span class="s2"></span>
-<span class="s2">f1 score:  </span><span class="si">{:.2f}</span><span class="s2"></span>
+<span class="s2">precision: </span><span class="si">{:.2f}</span>
+<span class="s2">recall:    </span><span class="si">{:.2f}</span>
+<span class="s2">f1 score:  </span><span class="si">{:.2f}</span>
 <span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -883,15 +879,15 @@ f1 score:  0.87
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="positive-predictive-value-and-negative-predictive-value">
+</section>
+<section id="positive-predictive-value-and-negative-predictive-value">
 <h3>Positive Predictive Value and Negative Predictive Value<a class="headerlink" href="#positive-predictive-value-and-negative-predictive-value" title="Permalink to this headline">#</a></h3>
-<p>If an instance is predicted to be of a certain class, the <a class="reference internal" href="../../misc/glossary.html#term-positive-predictive-value"><span class="xref std std-term">positive predictive value</span></a> and <a class="reference internal" href="../../misc/glossary.html#term-negative-predictive-value"><span class="xref std std-term">negative predictive value</span></a> describe how likely it is the classification is correct. For example, if we predict a patient has a disease, the positive predictive value gives us the probability that the patient actually has the disease. The positive predictive value is equivalent to precision. We can interpret the negative predictive value as the ‘precision’ for the negative class.</p>
+<p>If an instance is predicted to be of a certain class, the positive predictive value and negative predictive value describe how likely it is the classification is correct. For example, if we predict a patient has a disease, the positive predictive value gives us the probability that the patient actually has the disease. The positive predictive value is equivalent to precision. We can interpret the negative predictive value as the ‘precision’ for the negative class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">npv_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    NPV is not implemented in scikit-learn, but is the same as PPV (i.e., precision) </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NPV is not implemented in scikit-learn, but is the same as PPV (i.e., precision)</span>
 <span class="sd">    for the negative class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -901,8 +897,8 @@ f1 score:  0.87
 <span class="n">npv</span> <span class="o">=</span> <span class="n">npv_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">ppv: </span><span class="si">{:.2f}</span><span class="s2"></span>
-<span class="s2">npv: </span><span class="si">{:.2f}</span><span class="s2"></span>
+<span class="s2">ppv: </span><span class="si">{:.2f}</span>
+<span class="s2">npv: </span><span class="si">{:.2f}</span>
 <span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ppv</span><span class="p">,</span> <span class="n">npv</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -914,11 +910,11 @@ npv: 0.86
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="performance-metrics-based-on-model-s-predicted-score">
+</section>
+</section>
+<section id="performance-metrics-based-on-model-s-predicted-score">
 <span id="performancemetricsscore"></span><h2>Performance metrics based on model’s predicted score<a class="headerlink" href="#performance-metrics-based-on-model-s-predicted-score" title="Permalink to this headline">#</a></h2>
-<p>The evaluation metrics discussed so far are only defined for predicted classes. However, many machine learning algorithms do not directly output a class, but a <a class="reference internal" href="../../misc/glossary.html#term-confidence-score"><span class="xref std std-term">confidence score</span></a> which indicates the confidence of the model that an instance belongs to a certain class.</p>
+<p>The evaluation metrics discussed so far are only defined for predicted classes. However, many machine learning algorithms do not directly output a class, but a confidence score which indicates the confidence of the model that an instance belongs to a certain class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -976,11 +972,11 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 <p class="admonition-title">Note</p>
 <p>In scikit-learn, <code class="docutils literal notranslate"><span class="pre">predict_proba()</span></code> returns an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_classes)</span></code>. To get the confidence scores for the positive class, we need to select the part of the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> that corresponds to the positive predictions. In the binary classification scenario with class <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, this corresponds to the second value for each sample, i.e., <code class="docutils literal notranslate"><span class="pre">[:,</span> <span class="pre">1]]</span></code>).</p>
 </div>
-<p>Based on the confidence score, we can decide how to classify an instance. In a binary classification scenario, this is typically done using a <a class="reference internal" href="../../misc/glossary.html#term-decision-threshold"><span class="xref std std-term">decision threshold</span></a>: the cut-off value of the model’s confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives (see also <a class="reference internal" href="costsensitivelearning.html#cost-sensitive-learning"><span class="std std-ref">Cost-Sensitive Learning</span></a>).</p>
-<div class="section" id="roc-curve">
+<p>Based on the confidence score, we can decide how to classify an instance. In a binary classification scenario, this is typically done using a decision threshold: the cut-off value of the model’s confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives (see also <a class="reference internal" href="costsensitivelearning.html#cost-sensitive-learning"><span class="std std-ref">Cost-Sensitive Learning</span></a>).</p>
+<section id="roc-curve">
 <h3>ROC curve<a class="headerlink" href="#roc-curve" title="Permalink to this headline">#</a></h3>
-<p>A popular tool for investigating the trade-off between false positives and false negatives is the Receiver Operating Characteristic curve (<a class="reference internal" href="../../misc/glossary.html#term-ROC-curve"><span class="xref std std-term">ROC curve</span></a>). <strong>The ROC curve plots the true positive rate against the false positive rate. Each point on the curve corresponds to a different decision threshold.</strong></p>
-<p>We can compute the false positive rate and true positive rates at different thresholds using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html#sklearn.metrics.roc_curve" title="(in scikit-learn v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve()</span></code></a>, but to save ourselves some lines of code we use the plotting functionality of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.RocCurveDisplay.html#sklearn.metrics.RocCurveDisplay" title="(in scikit-learn v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.metrics.RocCurveDisplay</span></code></a>.</p>
+<p>A popular tool for investigating the trade-off between false positives and false negatives is the Receiver Operating Characteristic curve (ROC curve`). <strong>The ROC curve plots the true positive rate against the false positive rate. Each point on the curve corresponds to a different decision threshold.</strong></p>
+<p>We can compute the false positive rate and true positive rates at different thresholds using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html#sklearn.metrics.roc_curve" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve()</span></code></a>, but to save ourselves some lines of code we use the plotting functionality of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.RocCurveDisplay.html#sklearn.metrics.RocCurveDisplay" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.metrics.RocCurveDisplay</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">RocCurveDisplay</span>
@@ -1004,12 +1000,12 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 <img alt="../../_images/modelevaluation_15_1.png" src="../../_images/modelevaluation_15_1.png" />
 </div>
 </div>
-<p>To quantify the aggregate classification performance of the machine learning model, the ROC curve can be summarized as the Area Under the ROC curve (<a class="reference internal" href="../../misc/glossary.html#term-AUC"><span class="xref std std-term">AUC</span></a>). For a binary classification problem, an AUC of 0.5 is equal to a classifier that makes random predictions. An AUC of 1 corresponds to perfect separation between the positive and negative class.</p>
+<p>To quantify the aggregate classification performance of the machine learning model, the ROC curve can be summarized as the Area Under the ROC curve (AUC). For a binary classification problem, an AUC of 0.5 is equal to a classifier that makes random predictions. An AUC of 1 corresponds to perfect separation between the positive and negative class.</p>
 <p>AUC can be useful to compare the aggregate predictive performance of different models during model selection. However, <strong>AUC summarizes the performance of the model across all possible decision thresholds. To actually use the model for classifying intances, you still need to choose a decision threshold.</strong> As such, unlike confusion-based metrics, AUC typically does not directly correspond to real-world constraints or objectives. For example, in fraud detection, we may want to limit the expected number of false positives such that it is still humanly possible for fraud analysts to process all fraud alerts. Similarly, there may be different costs associated with false positives and false negatives making specific subspaces of the ROC curve more attractive than others.</p>
-</div>
-<div class="section" id="precision-recall-curve">
+</section>
+<section id="precision-recall-curve">
 <span id="id2"></span><h3>Precision-Recall Curve<a class="headerlink" href="#precision-recall-curve" title="Permalink to this headline">#</a></h3>
-<p>In some problems it may be valuable to evaluate the <span class="xref std std-term">precision-recall trade-off</span> across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall, but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a <a class="reference internal" href="../../misc/glossary.html#term-precision-recall-curve"><span class="xref std std-term">precision-recall curve</span></a> can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using <a class="reference internal" href="../../misc/glossary.html#term-average-precision"><span class="xref std std-term">average precision</span></a>, which is the average precision score over all recall values.</p>
+<p>In some problems it may be valuable to evaluate the precision-recall trade-off across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall, but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a precision-recall curve can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using average precision, which is the average precision score over all recall values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">average_precision_score</span><span class="p">,</span> <span class="n">PrecisionRecallDisplay</span>
@@ -1032,12 +1028,12 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 <img alt="../../_images/modelevaluation_17_1.png" src="../../_images/modelevaluation_17_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="model-calibration">
+</section>
+</section>
+<section id="model-calibration">
 <span id="id3"></span><h2>Model Calibration<a class="headerlink" href="#model-calibration" title="Permalink to this headline">#</a></h2>
-<p>The confidence score is sometimes referred to as the predicted probability. However, <strong>the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities</strong>. <a class="reference internal" href="../../misc/glossary.html#term-calibration"><span class="xref std std-term">Calibration</span></a> is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that actually belongs to the positive class is also 0.7. Calibration can be an important characteristic when confidence scores are used for decision-making by domain experts. In particular, a decision threshold for calibrated scores can be directly interpreted in term of different misclassification costs. For example, if a calibrated confidence score is used for suggesting a specific treatment in clinical decision-making, a decision threshold of 0.1 means that we accept up to 9 false positives (i.e., unnecessary treatments) for each true positive. Such a direct connection between misclassification rates and a particular decision threshold cannot be made for uncalibrated scores - although we can still, of course, compute precision to draw similar conclusions.</p>
-<p>You can assess how well a model is calibrated using a <a class="reference internal" href="../../misc/glossary.html#term-calibration-curve"><span class="xref std std-term">calibration curve</span></a>, which sets out the mean predicted probability against the fraction of positives.</p>
+<p>The confidence score is sometimes referred to as the predicted probability. However, <strong>the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities</strong>. Calibration is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that actually belongs to the positive class is also 0.7. Calibration can be an important characteristic when confidence scores are used for decision-making by domain experts. In particular, a decision threshold for calibrated scores can be directly interpreted in term of different misclassification costs. For example, if a calibrated confidence score is used for suggesting a specific treatment in clinical decision-making, a decision threshold of 0.1 means that we accept up to 9 false positives (i.e., unnecessary treatments) for each true positive. Such a direct connection between misclassification rates and a particular decision threshold cannot be made for uncalibrated scores - although we can still, of course, compute precision to draw similar conclusions.</p>
+<p>You can assess how well a model is calibrated using a calibration curve, which sets out the mean predicted probability against the fraction of positives.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.calibration</span> <span class="kn">import</span> <span class="n">CalibrationDisplay</span>
@@ -1067,8 +1063,8 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 </div>
 <p>The calibration ‘curve’ of discrete predictions is closely related to the positive and negative predictive value. The fraction of positives at mean predicted value of <code class="docutils literal notranslate"><span class="pre">1</span></code> corresponds to the number of true positives out of all predicted positives, which is exactly the definition of the positive predictive value. The fraction of positives for the mean predicted value of <code class="docutils literal notranslate"><span class="pre">0</span></code> is equal to the fraction of false negetatives out of all predicted negatives, which is exactly <span class="math notranslate nohighlight">\(1-npv\)</span>. As such, we can summarize the calibration of binary predictions using the predictive values.</p>
 <p>There exist techniques to post-process confidence scores such that they are better calibrated. A discussion of these techniques is outside of the scope of this book. We refer interested readers to the <a class="reference external" href="https://scikit-learn.org/stable/modules/calibration.html#calibrating-a-classifier">user guide of scikit-learn</a>, which provides a useful introduction to the topic.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1120,7 +1116,7 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
   
     By Hilde Weerts<br/>
   
-      &copy; Copyright 2023.<br/>
+      &copy; Copyright 2024.<br/>
 </p>
         </footer>
     </div>

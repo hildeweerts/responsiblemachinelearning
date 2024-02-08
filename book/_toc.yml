@@ -6,35 +6,34 @@ root: index.md
 parts:
   - caption: Introduction
     chapters:
-    - file: introduction/introduction
-    - file: introduction/machinelearning/introduction
-      sections:
-      - file: introduction/machinelearning/modelevaluation
-      - file: introduction/machinelearning/modelselection
-      - file: introduction/machinelearning/costsensitivelearning
+      - file: introduction/introduction
+      - file: introduction/machinelearning/introduction
+        sections:
+          - file: introduction/machinelearning/modelevaluation
+          - file: introduction/machinelearning/modelselection
+          - file: introduction/machinelearning/costsensitivelearning
   - caption: Fairness
     chapters:
-    - file: fairness/introduction
-    - file: fairness/groupfairnessmetrics
-    - file: fairness/fairml/introduction
-      sections:
-      - file: fairness/fairml/groupspecificthresholds
-    - file: fairness/interdisciplinary/introduction
-      sections:
-      - file: fairness/interdisciplinary/sociotechnical
-      - file: fairness/interdisciplinary/ethics
+      - file: fairness/introduction
+      - file: fairness/groupfairnessmetrics
+      - file: fairness/fairml/introduction
+        sections:
+          - file: fairness/fairml/groupspecificthresholds
+      - file: fairness/interdisciplinary/introduction
+        sections:
+          - file: fairness/interdisciplinary/sociotechnical
+          - file: fairness/interdisciplinary/ethics
   - caption: Explainability
     chapters:
-    - file: explainability/introduction
-    - file: explainability/localposthoc/introduction
-      sections:
-      - file: explainability/localposthoc/lime
-      - file: explainability/localposthoc/shap
-      - file: explainability/localposthoc/discussion
-    - file: explainability/globalposthoc/introduction
-      sections:
-      - file: explainability/globalposthoc/pdp
+      - file: explainability/introduction
+      - file: explainability/localposthoc/introduction
+        sections:
+          - file: explainability/localposthoc/lime
+          - file: explainability/localposthoc/shap
+          - file: explainability/localposthoc/discussion
+      - file: explainability/globalposthoc/introduction
+        sections:
+          - file: explainability/globalposthoc/pdp
   - caption: Misc
     chapters:
-    - file: misc/harms
-    - file: misc/glossary
+      - file: misc/harms

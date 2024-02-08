@@ -1,3 +1,19 @@
-jupyter-book
-matplotlib
-numpy
+# book generation
+jupyter-book==0.13.1
+sphinx-book-theme==0.3.3
+jupyterlab==3.2.9
+sphinxcontrib-applehelp==1.0.4
+sphinxcontrib-devhelp==1.0.2
+sphinxcontrib-htmlhelp==2.0.1
+sphinxcontrib-qthelp==1.0.3
+sphinxcontrib-serializinghtml==1.1.5
+
+# content
+mglearn
+
+# code examples (python 3.11)
+numpy==1.24.4
+pandas==2.0.3
+scikit-learn==1.2.1
+matplotlib==3.5.1
+fairlearn==0.10.0

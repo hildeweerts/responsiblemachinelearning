@@ -11,10 +11,13 @@ kernelspec:
 ---
 
 (cost_sensitive_learning)=
+
 # Cost-Sensitive Learning
-In practice, we often associate different costs with different types of mistakes. {term}`cost-sensitive learning` is a way to explicitly take into account different valuations of mistakes during model training and selection.
+
+In practice, we often associate different costs with different types of mistakes. Cost-sensitive learning is a way to explicitly take into account different valuations of mistakes during model training and selection.
 
 ## Optimizing the Decision Threshold
+
 In binary classification, the decision threshold is the cut-off value of the model's confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives. Let's see how varying the decision threshold affects the model's accuracy, true positive rate, and true negative rate on the test data.
 
 ```{code-cell} ipython3
@@ -58,7 +61,8 @@ plt.ylabel("metric output")
 plt.legend()
 plt.show()
 ```
-In the example above, we clearly see a trade-off between the true positive rate and the true negative rate. At lower decision thresholds, more instances are classified as positives. As such, we are also able to correctly identify more *true* positives. At the extreme $t=0$, *all* instances are classified as positive, resulting in $tpr=1$. At higher decision thresholds, more instances are classified as negatives. As a result, the number of true negatives increases, but the number of true positives decreases. Again, at the extreme $t=1$, all instances are classified as negatives, resulting in $tnr=1$. 
+
+In the example above, we clearly see a trade-off between the true positive rate and the true negative rate. At lower decision thresholds, more instances are classified as positives. As such, we are also able to correctly identify more _true_ positives. At the extreme $t=0$, _all_ instances are classified as positive, resulting in $tpr=1$. At higher decision thresholds, more instances are classified as negatives. As a result, the number of true negatives increases, but the number of true positives decreases. Again, at the extreme $t=1$, all instances are classified as negatives, resulting in $tnr=1$.
 
 In our example, it seems that the default decision threshold in scikit-learn, $t=0.5$, provides a good balance between the number of false positives and false negatives. In practice, however, the default decision threshold may not represent an adequate trade-off. For example, the predicted scores may be skewed towards lower or higher values, making $t=0.5$ a suboptimal choice. In other cases, we may not value false positives and false negatives equally and, as such, prefer to trade off one for the other by decreasing or increasing the decision threshold.
 
@@ -75,6 +79,7 @@ The Python library *scikit-lego* provides a useful wrapper class, {py:class}`skl
 ```
 
 ## Cost-Sensitive Learning Algorithms
+
 It is often also possible to directly take into account misclassification cost during learning. In particular, it may be possible to weigh instances of a particular class differently in the algorithm's loss function. For example, {py:class}`sklearn.linear_model.LogisticRegression` has a `class_weight` parameter that allows to adjust the weight for each class.
 
 ```{code-cell} ipython3
@@ -92,9 +97,10 @@ for class_weight in [{0:10, 1:1}, {0:1, 1:10}, {0:1, 1:1}]:
 ```
 
 ## Sampling Approaches
+
 Similar to cost-sensitive learning, oversampling and undersampling techniques serve to emphasize one class over another. Oversampling techniques increase the number of samples in the data set of the minority class, whereas undersampling techniques decrease the number of samples in the majority calss.
 
-The most naive sampling approaches use *random resampling*, in which instances in the original training data set are randomly selected. In case of random oversampling, instances of the minority class are randomly selected and duplicated. *Random undersampling*, on the other hand, randomly deletes instances of the majority class from the data set. More sophisticasted approaches, such as SMOTE or prototypes, generate synthetic examples to achieve a more 'balanced' data set. 
+The most naive sampling approaches use _random resampling_, in which instances in the original training data set are randomly selected. In case of random oversampling, instances of the minority class are randomly selected and duplicated. _Random undersampling_, on the other hand, randomly deletes instances of the majority class from the data set. More sophisticasted approaches, such as SMOTE or prototypes, generate synthetic examples to achieve a more 'balanced' data set.
 
 ```{note}
 :class: seealso

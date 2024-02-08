@@ -3,7 +3,7 @@
 
 title: An Introduction to Responsible Machine Learning
 author: Hilde Weerts
-copyright: "2023"  # Copyright year to be placed in the footer
+copyright: "2024" # Copyright year to be placed in the footer
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -23,15 +23,14 @@ bibtex_bibfiles:
 repository:
   url: https://github.com/hildeweerts/responsiblemachinelearning # Online location of your book
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+# Add GitHub buttons to book
 html:
   use_issues_button: true
   use_repository_button: true
 
 sphinx:
   extra_extensions:
-   - sphinx.ext.intersphinx
+    - sphinx.ext.intersphinx
   config:
     bibtex_reference_style: super
     intersphinx_mapping:

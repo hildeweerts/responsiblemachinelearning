@@ -1,12 +1,14 @@
 (introduction)=
+
 # Responsible Machine Learning
 
-With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of {term}`machine learning` algorithms: algorithms that build mathematical models by ‘learning’ from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.
+With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of machine learning algorithms: algorithms that build mathematical models by ‘learning’ from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.
 
 A responsible data scientist understands how machine learning models might be harmful and how the risks can be mitigated. This online book provides a practical introduction to the nascent field of responsible machine learning.
 
-## What do I mean by *Responsible Machine Learning*?
-So what is a 'responsible' approach? Generally speaking, responsibility is a *‘duty or obligation to take care of something’*. Taking responsibility involves actively avoiding that something 'bad; happens or increasing the probability that something 'good' happens. What can be considered 'right' or 'wrong' is the central question of ethics and has occupied philosophers for many centuries.
+## What do I mean by _Responsible Machine Learning_?
+
+So what is a 'responsible' approach? Generally speaking, responsibility is a _‘duty or obligation to take care of something’_. Taking responsibility involves actively avoiding that something 'bad; happens or increasing the probability that something 'good' happens. What can be considered 'right' or 'wrong' is the central question of ethics and has occupied philosophers for many centuries.
 
 As machine learning systems are increasingly deployed in all kinds of applications, several incidents have shown in what ways machine learning systems can have negative consequences. Machine learning models can inherit existing prejudices embedded in society, which can result in discrimination. The increasing complexity of machine learning systems can lead to opaque decision-making systems.
 
@@ -16,7 +18,7 @@ I have organized these lecture notes along two key moral values: fairness and tr
 
 ### Fairness
 
-{term}`Fairness` is a moral value that concerns treatment of behavior that is *just* and *free from discrimination*. Machine learning models, particularly classifiers, are specifically designed to discriminate between cases. As with any decision-making process, these distinctions can be undesirable from an ethical perspective or unlawful if they disproportionately affect people on the basis of sensitive characteristics such as gender, race, religion, age, and sexual orientation.
+Fairness is a moral value that concerns treatment of behavior that is _just_ and _free from discrimination_. Machine learning models, particularly classifiers, are specifically designed to discriminate between cases. As with any decision-making process, these distinctions can be undesirable from an ethical perspective or unlawful if they disproportionately affect people on the basis of sensitive characteristics such as gender, race, religion, age, and sexual orientation.
 
 In recent years, several incidents have shown that machine learning systems can inherit and amplify social biases embedded in society. In 2016, investigative journalists from Propublica found that COMPAS, a decision support tool for assessing the likelihood of a defendant becoming a recidivist, wrongly labeled African-American defendants as recidivists at much higher rates than white Americans {footcite:p}`compas2017`. Although concerns regarding the fairness of algorithmic decision-making systems is not new, Propublica’s article sparked an increased interest in the field.
 
@@ -24,13 +26,13 @@ Although math and numbers may seem objective, machine learning models are not va
 
 ### Transparency
 
-As a moral value, {term}`transparency` can be defined as the *degree of openness that allows others to understand what actions are performed*. In the context of machine learning, an important dimension of transparency is the extent to which we can understand a model’s prediction-generating process. This is known as {term}`interpretable machine learning` or {term}`explainable machine learning`.
+As a moral value, transparency can be defined as the _degree of openness that allows others to understand what actions are performed_. In the context of machine learning, an important dimension of transparency is the extent to which we can understand a model’s prediction-generating process. This is known as interpretable machine learning or explainable machine learning.
 
-In some cases, the best performing models are complex models such as ensembles or deep neural networks. As the complexity of models increases, it generally becomes more difficult for humans to understand their behavior. In many contexts, it can be valuable or even imperative to understand why a machine learning model makes certain predictions. For example, machine learning practitioners might use explanations to understand where the model fails and how it might be improved. 
+In some cases, the best performing models are complex models such as ensembles or deep neural networks. As the complexity of models increases, it generally becomes more difficult for humans to understand their behavior. In many contexts, it can be valuable or even imperative to understand why a machine learning model makes certain predictions. For example, machine learning practitioners might use explanations to understand where the model fails and how it might be improved.
 
 <!-- ### Accountability
 
-Previously, I have defined responsibility as a duty to take care of something. Responsibility can also be defined as being *accountable* for something. {term}`Accountability` considers being held responsible for one’s actions, typically after something 'bad' has happened. Due to the apparent complexity of algorithmic systems, organizations may try to divert blame to the algorithm: *“oh, it’s just the algorithm.”* Algorithmic accountability is the idea that an institution should be held accountable for the use, design, and decisions of an algorithmic system. It involves taking adequate measures to comply with ethical principles or legal regulations, including detailed documentation and clear procedures for appealing decisions.
+Previously, I have defined responsibility as a duty to take care of something. Responsibility can also be defined as being *accountable* for something. Accountability considers being held responsible for one’s actions, typically after something 'bad' has happened. Due to the apparent complexity of algorithmic systems, organizations may try to divert blame to the algorithm: *“oh, it’s just the algorithm.”* Algorithmic accountability is the idea that an institution should be held accountable for the use, design, and decisions of an algorithmic system. It involves taking adequate measures to comply with ethical principles or legal regulations, including detailed documentation and clear procedures for appealing decisions.
 
 An important tool for fostering accountability is auditing, in which the development process, usage, and impact of an algorithmic system are closely inspected - either through internal procedures or by an external third party. -->
 
@@ -50,11 +52,11 @@ Of course, there is much more to cover than what reasonably fits into one book. 
 
 ## Navigating this book
 
-The rest of this book is organized as follows: 
+The rest of this book is organized as follows:
 
-* [Machine Learning](ml_preliminaries) contains a quick recap of relevant machine learning concepts.
-* [Fairness](intro_fairness) dives into the topic of algorithmic fairness, including techniques to discover and mitigate undesirable discrimination that have been proposed in the compute science literature. 
-* [Explainable Artificial Intelligence](intro_xai) covers several techniques for creating interpretable models and explaining black-box machine learning models.
+- [Machine Learning](ml_preliminaries) contains a quick recap of relevant machine learning concepts.
+- [Fairness](intro_fairness) dives into the topic of algorithmic fairness, including techniques to discover and mitigate undesirable discrimination that have been proposed in the compute science literature.
+- [Explainable Artificial Intelligence](intro_xai) covers several techniques for creating interpretable models and explaining black-box machine learning models.
 
 ```{note}
 
@@ -66,4 +68,5 @@ The rest of this book is organized as follows:
 ## References
 
 ```{footbibliography}
+
 ```

@@ -1,4 +1,5 @@
 (group_specific_thresholds)=
+
 # Group-Specific Decision Thresholds
 
 ```{warning}
@@ -14,4 +15,5 @@ This section is still under construction.
 ## References -->
 
 ```{footbibliography}
+
 ```

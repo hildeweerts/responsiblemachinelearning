@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Model Selection &#8212; An Introduction to Responsible Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -269,11 +270,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../misc/harms.html">
    List of Harms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../misc/glossary.html">
-   Glossary
   </a>
  </li>
 </ul>
@@ -572,30 +568,32 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="model-selection">
+  <section class="tex2jax_ignore mathjax_ignore" id="model-selection">
 <span id="id1"></span><h1>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">#</a></h1>
 <p>Model selection is the process of choosing among different candidate models. Model selection is often based on the evaluation metrics discussed in chapter <a class="reference internal" href="modelevaluation.html#model-evaluation"><span class="std std-ref">Model Evaluation</span></a>. In practice, however, there are typically many relevant other desiderata and requirements, such as robustness, interpretability, and the available resources.</p>
-<div class="section" id="estimating-performance">
+<section id="estimating-performance">
 <h2>Estimating Performance<a class="headerlink" href="#estimating-performance" title="Permalink to this headline">#</a></h2>
 <p>The goal of model selection is to select the model development procedure that results in the “best” model. An important (but not the only) consideration is to identify which approach results in the best predictive performance. Two common approaches to estimate the model’s performance are splitting data and cross-validation.</p>
-<div class="section" id="splitting-data">
+<section id="splitting-data">
 <h3>Splitting Data<a class="headerlink" href="#splitting-data" title="Permalink to this headline">#</a></h3>
-<p>The performance of a model on data that was used to fit the model is not a good estimate of the performance of the model on new, unseen data. For example, consider a model that simply repeats the labels of the instances it has previously seen. Such a model will be able to perfectly predict the instances in the training data, but performs terribly on unseen instances. More generally speaking, <a class="reference internal" href="../../misc/glossary.html#term-overfitting"><span class="xref std std-term">overfitting</span></a> occurs when the learned mapping relies on artefacts in the training data that do not generalize beyond the training data. At the other side of the spectrum, <a class="reference internal" href="../../misc/glossary.html#term-underfitting"><span class="xref std std-term">underfitting</span></a> occurs when the model class is not able to capture the underlying structure of the data. For example, a linear model will not be able to capture non-linear patterns in the data. In this case, the model will not perform well on neither the data it was trained on, nor new data.</p>
+<p>The performance of a model on data that was used to fit the model is not a good estimate of the performance of the model on new, unseen data. For example, consider a model that simply repeats the labels of the instances it has previously seen. Such a model will be able to perfectly predict the instances in the training data, but performs terribly on unseen instances. More generally speaking, overfitting occurs when the learned mapping relies on artefacts in the training data that do not generalize beyond the training data. At the other side of the spectrum, underfitting` occurs when the model class is not able to capture the underlying structure of the data. For example, a linear model will not be able to capture non-linear patterns in the data. In this case, the model will not perform well on neither the data it was trained on, nor new data.</p>
 <p>To identify and prevent these issues, it is best practice to split your data in a training set, validation set, and test set.</p>
-<div class="figure align-default" id="fig-split">
+<figure class="align-default" id="fig-split">
 <div class="cell_output docutils container">
 <img alt="../../_images/modelselection_0_0.png" src="../../_images/modelselection_0_0.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The dataset is split into a training set, validation set, and test set.<a class="footnote-reference brackets" href="#mglearn" id="id2">1</a></span><a class="headerlink" href="#fig-split" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The dataset is split into a training set, validation set, and test set.<a class="footnote-reference brackets" href="#mglearn" id="id2">1</a></span><a class="headerlink" href="#fig-split" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
-<li><p><strong><a class="reference internal" href="../../misc/glossary.html#term-training-set"><span class="xref std std-term">Training set</span></a>.</strong> This data (and this data alone!) is used to fit the machine learning model to.</p></li>
-<li><p><strong><a class="reference internal" href="../../misc/glossary.html#term-validation-set"><span class="xref std std-term">Validation set</span></a>.</strong> This set is used to estimate the performance of the trained model on unseen data. These performance estimates are used to select a model.</p></li>
-<li><p><strong><a class="reference internal" href="../../misc/glossary.html#term-test-set"><span class="xref std std-term">Test set</span></a>.</strong> The performance estimate based on the validation set is influenced by randomness. In some cases, it will be lower than the actual generalization performance of the model, in other cases it is higher. <strong>Because you choose the model that performs best on the validation set, validation set performance is likely to err on the optimistic side.</strong> The test set serves as an estimate of how well the chosen model will perform on <em>new</em> data. To prevent a biased estimate, the test set should only be used once to estimate the performance of the final selected model.</p></li>
+<li><p><strong>Training set.</strong> This data (and this data alone!) is used to fit the machine learning model to.</p></li>
+<li><p><strong>Validation set.</strong> This set is used to estimate the performance of the trained model on unseen data. These performance estimates are used to select a model.</p></li>
+<li><p><strong>Test set.</strong> The performance estimate based on the validation set is influenced by randomness. In some cases, it will be lower than the actual generalization performance of the model, in other cases it is higher. <strong>Because you choose the model that performs best on the validation set, validation set performance is likely to err on the optimistic side.</strong> The test set serves as an estimate of how well the chosen model will perform on <em>new</em> data. To prevent a biased estimate, the test set should only be used once to estimate the performance of the final selected model.</p></li>
 </ul>
 <p>Keep in mind that <strong>any data pre-processing steps must solely be based on the training data</strong>. Otherwise, information available only in the validation or test set may ‘leak’ into the model selection procedure. This can result in overly optimistic performance estimates. For example, when you normalize a feature or impute values based on the mean, the mean must be computed solely over the training data. Similarly, feature selection must be performed based on the information in the training set alone.</p>
 <p>Depending on the learning task, the data may be split at random. If patterns within the data are likely to change over time, it may be more suitable to perform time-based splitting. For example, criminals often change tactics which means that patterns of fraud can change over time. In these situations, the oldest data is typically selected for training and the most recent data for testing. In this way, the performance estimates will best represent the performance in production.</p>
-<p>In scikit-learn, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="(in scikit-learn v1.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split()</span></code></a> to split the data set.</p>
+<p>In scikit-learn, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split()</span></code></a> to split the data set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
@@ -611,7 +609,7 @@ title="Print to PDF"
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
   <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="c1"># print </span>
+<span class="c1"># print</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train set shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation set shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_val</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test set shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
@@ -627,17 +625,19 @@ test set shape: (20, 20)
 </div>
 </div>
 <p>In the example above, the training set consists of 60 instances, the validation set of 20 instances, and the test set of 20 instances.</p>
-</div>
-<div class="section" id="cross-validation">
+</section>
+<section id="cross-validation">
 <h3>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">#</a></h3>
-<p>A disadvantage of splitting data is that you reduce the number of instances that can be used to train the model. Moreover, it may be the case that we are unlucky and, due to randomness, choose a validation set with relatively uncommon patterns. This can result in misleading performance estimates. A solution to this problem is cross-validation. In a <a class="reference internal" href="../../misc/glossary.html#term-k-fold-cross-validation"><span class="xref std std-term">k-fold cross-validation</span></a> procedure, the data set is split into <span class="math notranslate nohighlight">\(k\)</span> folds (see <a class="reference internal" href="#fig-kfold"><span class="std std-numref">Fig. 2</span></a>). For each fold, a machine learning algorithm is tested on the current fold and trained on the remaining <span class="math notranslate nohighlight">\(k-1\)</span> folds. The overall performance of the algorithm is then estimated based on the performance on all <span class="math notranslate nohighlight">\(k\)</span> folds.</p>
-<div class="figure align-default" id="fig-kfold">
+<p>A disadvantage of splitting data is that you reduce the number of instances that can be used to train the model. Moreover, it may be the case that we are unlucky and, due to randomness, choose a validation set with relatively uncommon patterns. This can result in misleading performance estimates. A solution to this problem is cross-validation. In a k-fold cross-validation procedure, the data set is split into <span class="math notranslate nohighlight">\(k\)</span> folds (see <a class="reference internal" href="#fig-kfold"><span class="std std-numref">Fig. 2</span></a>). For each fold, a machine learning algorithm is tested on the current fold and trained on the remaining <span class="math notranslate nohighlight">\(k-1\)</span> folds. The overall performance of the algorithm is then estimated based on the performance on all <span class="math notranslate nohighlight">\(k\)</span> folds.</p>
+<figure class="align-default" id="fig-kfold">
 <div class="cell_output docutils container">
 <img alt="../../_images/modelselection_0_2.png" src="../../_images/modelselection_0_2.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">A 3-fold cross validation. In each iteration, one of the three splits acts as the test set and the remaining splits act as the training set.<a class="footnote-reference brackets" href="#mglearn" id="id3">1</a></span><a class="headerlink" href="#fig-kfold" title="Permalink to this image">#</a></p>
-</div>
-<p>In scikit-learn, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html#sklearn.model_selection.KFold" title="(in scikit-learn v1.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.KFold</span></code></a> to define a cross validation procedure and we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score" title="(in scikit-learn v1.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score()</span></code></a> to compute a metric output for each fold.</p>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">A 3-fold cross validation. In each iteration, one of the three splits acts as the test set and the remaining splits act as the training set.<a class="footnote-reference brackets" href="#mglearn" id="id3">1</a></span><a class="headerlink" href="#fig-kfold" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In scikit-learn, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html#sklearn.model_selection.KFold" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.KFold</span></code></a> to define a cross validation procedure and we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_val_score()</span></code></a> to compute a metric output for each fold.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
@@ -666,20 +666,22 @@ test set shape: (20, 20)
 </div>
 </div>
 <p>From this exapmle, we can immediately see the value of the cross-validation procedure over merely splitting the data: the observed accuracy of the model varies a lot, depending on which fold is evaluated.</p>
-<p>A cross-validation procedure can be repeated multiple times, in which the data is shuffled differently each time. This is referred to as <a class="reference internal" href="../../misc/glossary.html#term-repeated-cross-validation"><span class="xref std std-term">repeated cross-validation</span></a> and is implemented in scikit-learn as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RepeatedKFold.html#sklearn.model_selection.RepeatedKFold" title="(in scikit-learn v1.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.RepeatedKFold</span></code></a>. It is also possible to use cross-validation for both the train-test split and the train-validation split. In this case, you require a <a class="reference internal" href="../../misc/glossary.html#term-nested-cross-validation"><span class="xref std std-term">nested cross-validation</span></a>. In the outer loop, the data set is split into folds used to determine the training/validation and test set. In the inner loop, the training/validation set of each test fold of the outer loop is further split into folds used for training and validation.</p>
-</div>
-</div>
-<div class="section" id="hyperparameter-tuning">
+<p>A cross-validation procedure can be repeated multiple times, in which the data is shuffled differently each time. This is referred to as repeated cross-validation and is implemented in scikit-learn as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RepeatedKFold.html#sklearn.model_selection.RepeatedKFold" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.RepeatedKFold</span></code></a>. It is also possible to use cross-validation for both the train-test split and the train-validation split. In this case, you require a nested cross-validation`. In the outer loop, the data set is split into folds used to determine the training/validation and test set. In the inner loop, the training/validation set of each test fold of the outer loop is further split into folds used for training and validation.</p>
+</section>
+</section>
+<section id="hyperparameter-tuning">
 <h2>Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">#</a></h2>
-<p>During model selection, you may want to evaluate different machine learning algorithms. In addition, most modern machine learning algorithms have <a class="reference internal" href="../../misc/glossary.html#term-hyperparameter"><span class="xref std std-term">hyperparameter</span></a>s: parameters that control the learning process in some way. In many cases, the performance of a machine learning algorithm on a given learning task depends on these settings. The process of identifying the best settings for your learning task is referred to as <a class="reference internal" href="../../misc/glossary.html#term-hyperparameter-tuning"><span class="xref std std-term">hyperparameter tuning</span></a>.</p>
-<p>Two common approaches for tuning hyperparameters are <a class="reference internal" href="../../misc/glossary.html#term-grid-search"><span class="xref std std-term">grid search</span></a> and <a class="reference internal" href="../../misc/glossary.html#term-random-search"><span class="xref std std-term">random search</span></a>. For both approaches, the first step is to define the search space, i.e., the range of hyperparameter settings you would like to explore. Grid search consists of an exhaustive search over all hyperparameter settings in the search space. In a random search, on the other hand, hyperparameters are randomly sampled from the search space. A random search procedure is particularly useful when hyperparameters can take continuous values, such as the cost parameter of a support vector machine. In these cases, a random search procedure is known to outperform grid search (at least in theory).</p>
-<div class="figure align-default" id="fig-gsoverview">
+<p>During model selection, you may want to evaluate different machine learning algorithms. In addition, most modern machine learning algorithms have hyperparameters: parameters that control the learning process in some way. In many cases, the performance of a machine learning algorithm on a given learning task depends on these settings. The process of identifying the best settings for your learning task is referred to as hyperparameter tuning.</p>
+<p>Two common approaches for tuning hyperparameters are grid search and random search. For both approaches, the first step is to define the search space, i.e., the range of hyperparameter settings you would like to explore. Grid search consists of an exhaustive search over all hyperparameter settings in the search space. In a random search, on the other hand, hyperparameters are randomly sampled from the search space. A random search procedure is particularly useful when hyperparameters can take continuous values, such as the cost parameter of a support vector machine. In these cases, a random search procedure is known to outperform grid search (at least in theory).</p>
+<figure class="align-default" id="fig-gsoverview">
 <div class="cell_output docutils container">
 <img alt="../../_images/modelselection_0_4.png" src="../../_images/modelselection_0_4.png" />
 </div>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">An overview of the required components and steps of a grid search procedure.<a class="footnote-reference brackets" href="#mglearn" id="id4">1</a></span><a class="headerlink" href="#fig-gsoverview" title="Permalink to this image">#</a></p>
-</div>
-<p>In scikit-learn, grid search and random search are implemented in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="(in scikit-learn v1.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.GridSearchCV</span></code></a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html#sklearn.model_selection.RandomizedSearchCV" title="(in scikit-learn v1.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.RandomizedSearchCV</span></code></a> respectively. Below you can find an example of a grid search over several values of the regularization parameter <code class="docutils literal notranslate"><span class="pre">C</span></code> of logistic regression, using a 3-fold cross validation.</p>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">An overview of the required components and steps of a grid search procedure.<a class="footnote-reference brackets" href="#mglearn" id="id4">1</a></span><a class="headerlink" href="#fig-gsoverview" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In scikit-learn, grid search and random search are implemented in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.GridSearchCV</span></code></a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html#sklearn.model_selection.RandomizedSearchCV" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.RandomizedSearchCV</span></code></a> respectively. Below you can find an example of a grid search over several values of the regularization parameter <code class="docutils literal notranslate"><span class="pre">C</span></code> of logistic regression, using a 3-fold cross validation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
@@ -691,7 +693,7 @@ test set shape: (20, 20)
 <span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1"># define grid search</span>
-<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span> 
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
   <span class="n">estimator</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span>
   <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span>
   <span class="n">scoring</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># use default scorer of LR (accuracy)</span>
@@ -774,8 +776,8 @@ test set accuracy: 0.75
 <dd><p>These figures were generated using the <a class="reference external" href="https://github.com/amueller/mglearn"><code class="docutils literal notranslate"><span class="pre">mglearn</span></code></a> package.</p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -827,7 +829,7 @@ test set accuracy: 0.75
   
     By Hilde Weerts<br/>
   
-      &copy; Copyright 2023.<br/>
+      &copy; Copyright 2024.<br/>
 </p>
         </footer>
     </div>

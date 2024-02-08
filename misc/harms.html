@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>List of Harms &#8212; An Introduction to Responsible Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -51,7 +52,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Glossary" href="glossary.html" />
     <link rel="prev" title="Partial Dependence Plots" href="../explainability/globalposthoc/pdp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -267,11 +267,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    List of Harms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="glossary.html">
-   Glossary
   </a>
  </li>
 </ul>
@@ -580,14 +575,14 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="list-of-harms">
+  <section class="tex2jax_ignore mathjax_ignore" id="list-of-harms">
 <span id="hazards"></span><h1>List of Harms<a class="headerlink" href="#list-of-harms" title="Permalink to this headline">#</a></h1>
 <p>There are many ways in which machine learning systems can be harmful. This page contains a (non-exhaustive) list of hazards and harms, organized by the moral value the harm threatens.</p>
 <div class="admonition-attribution admonition">
 <p class="admonition-title">Attribution</p>
 <p>This list was inspired by and adapted from Microsoft’s <a class="reference external" href="https://learn.microsoft.com/en-us/azure/architecture/guide/responsible-innovation/harms-modeling/type-of-harm">harms modeling framework</a>.</p>
 </div>
-<div class="section" id="safety">
+<section id="safety">
 <h2>Safety<a class="headerlink" href="#safety" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -616,8 +611,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="fairness">
+</section>
+<section id="fairness">
 <h2>Fairness<a class="headerlink" href="#fairness" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -631,42 +626,42 @@ title="Print to PDF"
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Social bias</p></td>
-<td><p><span class="xref std std-term">Allocation harm</span></p></td>
+<td><p>Allocation harm</p></td>
 <td><p>The system results in unfair allocation of opportunities, resources, or information and amplification of power inequality.</p></td>
 <td><p>Are some groups allocated fewer opportunities than others?</p></td>
 <td><p>A resume screening application consistently ranks male candidates higher than female candidates.</p></td>
 <td><p><a class="reference internal" href="../fairness/introduction.html#intro-fairness"><span class="std std-ref">Algorithmic Fairness</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Social bias</p></td>
-<td><p><span class="xref std std-term">Quality-of-service harm</span></p></td>
+<td><p>Quality-of-service harm</p></td>
 <td><p>The system disproportionately fails for certain groups of people.</p></td>
 <td><p>Does the system work equally well for different demographics, particularly those defined by sensitive characterises?</p></td>
 <td><p>A facial recognition system disproportionately misidentifies faces of black women compared to white men <a class="footnote-reference brackets" href="#footcite-buolamwini2018" id="id3">2</a></p></td>
 <td><p><a class="reference internal" href="../fairness/introduction.html#intro-fairness"><span class="std std-ref">Algorithmic Fairness</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p>Social bias</p></td>
-<td><p><span class="xref std std-term">Stereotyping harm</span></p></td>
+<td><p>Stereotyping harm</p></td>
 <td><p>The system reinforces negative societal stereotypes.</p></td>
 <td><p>Does the system return output that reinforces undesirable stereotypes?</p></td>
 <td><p>A search engine returns only pictures of men when prompted with “CEO”, reinforcing stereotypes.</p></td>
 <td><p><a class="reference internal" href="../fairness/introduction.html#intro-fairness"><span class="std std-ref">Algorithmic Fairness</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Social bias</p></td>
-<td><p><span class="xref std std-term">Denigration harm</span></p></td>
+<td><p>Denigration harm</p></td>
 <td><p>The system is actively derogatory or offensive.</p></td>
 <td><p>In what ways could the system output be considered offensive for stakeholders?</p></td>
 <td><p>An image tagging system tags a photo of black people as an animal.</p></td>
 <td><p><a class="reference internal" href="../fairness/introduction.html#intro-fairness"><span class="std std-ref">Algorithmic Fairness</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p>Social bias</p></td>
-<td><p><span class="xref std std-term">Representation harm</span></p></td>
+<td><p>Representation harm</p></td>
 <td><p>The development or usage of the system over- or under-represents certain groups of people.</p></td>
 <td><p>Are some groups overburdened compared to others, even if they do not benefit from the system?</p></td>
 <td><p>Residents of an indigenous reservation have been subject to intense biomedical data collection, but this has not yielded any significant improvements in health outcomes amongst community members <a class="footnote-reference brackets" href="#footcite-paullada2020data" id="id4">3</a></p></td>
 <td><p><a class="reference internal" href="../fairness/introduction.html#intro-fairness"><span class="std std-ref">Algorithmic Fairness</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Feature Selection and Opaque Decision-Making</p></td>
-<td><p><span class="xref std std-term">Procedural harm</span></p></td>
+<td><p>Procedural harm</p></td>
 <td><p>The system uses features that are arbitrary or otherwise violate social norms.</p></td>
 <td><p>Are the features relevant to the problem at hand? Are they used in fair ways?</p></td>
 <td><p>An arbitrary feature is included in a resume selection application.</p></td>
@@ -674,8 +669,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="transparency">
+</section>
+<section id="transparency">
 <h2>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -704,8 +699,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="accountability">
+</section>
+<section id="accountability">
 <h2>Accountability<a class="headerlink" href="#accountability" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -741,8 +736,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="privacy">
+</section>
+<section id="privacy">
 <h2>Privacy<a class="headerlink" href="#privacy" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -792,8 +787,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="liberty">
+</section>
+<section id="liberty">
 <h2>Liberty<a class="headerlink" href="#liberty" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -829,8 +824,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="sustainability">
+</section>
+<section id="sustainability">
 <h2>Sustainability<a class="headerlink" href="#sustainability" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -859,8 +854,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="autonomy">
+</section>
+<section id="autonomy">
 <h2>Autonomy<a class="headerlink" href="#autonomy" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -903,8 +898,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="economic-well-being">
+</section>
+<section id="economic-well-being">
 <h2>Economic Well-Being<a class="headerlink" href="#economic-well-being" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -933,8 +928,8 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="dignity">
+</section>
+<section id="dignity">
 <h2>Dignity<a class="headerlink" href="#dignity" title="Permalink to this headline">#</a></h2>
 <table class="colwidths-auto table">
 <thead>
@@ -989,8 +984,8 @@ title="Print to PDF"
 </dl>
 </div>
 <hr class="footnotes docutils" />
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1026,13 +1021,6 @@ title="Print to PDF"
             <p class="prev-next-title">Partial Dependence Plots</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="glossary.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Glossary</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
@@ -1042,7 +1030,7 @@ title="Print to PDF"
   
     By Hilde Weerts<br/>
   
-      &copy; Copyright 2023.<br/>
+      &copy; Copyright 2024.<br/>
 </p>
         </footer>
     </div>

@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Responsible Machine Learning &#8212; An Introduction to Responsible Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -267,11 +268,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../misc/harms.html">
    List of Harms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../misc/glossary.html">
-   Glossary
   </a>
  </li>
 </ul>
@@ -562,45 +558,45 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="responsible-machine-learning">
+  <section class="tex2jax_ignore mathjax_ignore" id="responsible-machine-learning">
 <span id="introduction"></span><h1>Responsible Machine Learning<a class="headerlink" href="#responsible-machine-learning" title="Permalink to this headline">#</a></h1>
-<p>With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of <a class="reference internal" href="../misc/glossary.html#term-machine-learning"><span class="xref std std-term">machine learning</span></a> algorithms: algorithms that build mathematical models by ‘learning’ from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.</p>
+<p>With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of machine learning algorithms: algorithms that build mathematical models by ‘learning’ from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.</p>
 <p>A responsible data scientist understands how machine learning models might be harmful and how the risks can be mitigated. This online book provides a practical introduction to the nascent field of responsible machine learning.</p>
-<div class="section" id="what-do-i-mean-by-responsible-machine-learning">
+<section id="what-do-i-mean-by-responsible-machine-learning">
 <h2>What do I mean by <em>Responsible Machine Learning</em>?<a class="headerlink" href="#what-do-i-mean-by-responsible-machine-learning" title="Permalink to this headline">#</a></h2>
 <p>So what is a ‘responsible’ approach? Generally speaking, responsibility is a <em>‘duty or obligation to take care of something’</em>. Taking responsibility involves actively avoiding that something ‘bad; happens or increasing the probability that something ‘good’ happens. What can be considered ‘right’ or ‘wrong’ is the central question of ethics and has occupied philosophers for many centuries.</p>
 <p>As machine learning systems are increasingly deployed in all kinds of applications, several incidents have shown in what ways machine learning systems can have negative consequences. Machine learning models can inherit existing prejudices embedded in society, which can result in discrimination. The increasing complexity of machine learning systems can lead to opaque decision-making systems.</p>
 <!-- And the increasing power of the organizations who deploy these systems raises questions about accountability. -->
 <p>I have organized these lecture notes along two key moral values: fairness and transparency. Although there exists some overlap, each theme emphasizes a different aspect of a responsible approach to machine learning.</p>
-<div class="section" id="fairness">
+<section id="fairness">
 <h3>Fairness<a class="headerlink" href="#fairness" title="Permalink to this headline">#</a></h3>
-<p><a class="reference internal" href="../misc/glossary.html#term-fairness"><span class="xref std std-term">Fairness</span></a> is a moral value that concerns treatment of behavior that is <em>just</em> and <em>free from discrimination</em>. Machine learning models, particularly classifiers, are specifically designed to discriminate between cases. As with any decision-making process, these distinctions can be undesirable from an ethical perspective or unlawful if they disproportionately affect people on the basis of sensitive characteristics such as gender, race, religion, age, and sexual orientation.</p>
+<p>Fairness is a moral value that concerns treatment of behavior that is <em>just</em> and <em>free from discrimination</em>. Machine learning models, particularly classifiers, are specifically designed to discriminate between cases. As with any decision-making process, these distinctions can be undesirable from an ethical perspective or unlawful if they disproportionately affect people on the basis of sensitive characteristics such as gender, race, religion, age, and sexual orientation.</p>
 <p>In recent years, several incidents have shown that machine learning systems can inherit and amplify social biases embedded in society. In 2016, investigative journalists from Propublica found that COMPAS, a decision support tool for assessing the likelihood of a defendant becoming a recidivist, wrongly labeled African-American defendants as recidivists at much higher rates than white Americans <a class="footnote-reference brackets" href="#footcite-compas2017" id="id1">1</a>. Although concerns regarding the fairness of algorithmic decision-making systems is not new, Propublica’s article sparked an increased interest in the field.</p>
 <p>Although math and numbers may seem objective, machine learning models are not value neutral. They are the result of many design choices that embed the values of their developers: which data is collected, what metrics are used to evaluate our models, and which problems do we decide to tackle in the first place? The risk of unfairness is not limited to adversarial actors - even a well-intentioned data scientist has their blind spots.</p>
-</div>
-<div class="section" id="transparency">
+</section>
+<section id="transparency">
 <h3>Transparency<a class="headerlink" href="#transparency" title="Permalink to this headline">#</a></h3>
-<p>As a moral value, <a class="reference internal" href="../misc/glossary.html#term-transparency"><span class="xref std std-term">transparency</span></a> can be defined as the <em>degree of openness that allows others to understand what actions are performed</em>. In the context of machine learning, an important dimension of transparency is the extent to which we can understand a model’s prediction-generating process. This is known as <a class="reference internal" href="../misc/glossary.html#term-interpretable-machine-learning"><span class="xref std std-term">interpretable machine learning</span></a> or <a class="reference internal" href="../misc/glossary.html#term-explainable-machine-learning"><span class="xref std std-term">explainable machine learning</span></a>.</p>
+<p>As a moral value, transparency can be defined as the <em>degree of openness that allows others to understand what actions are performed</em>. In the context of machine learning, an important dimension of transparency is the extent to which we can understand a model’s prediction-generating process. This is known as interpretable machine learning or explainable machine learning.</p>
 <p>In some cases, the best performing models are complex models such as ensembles or deep neural networks. As the complexity of models increases, it generally becomes more difficult for humans to understand their behavior. In many contexts, it can be valuable or even imperative to understand why a machine learning model makes certain predictions. For example, machine learning practitioners might use explanations to understand where the model fails and how it might be improved.</p>
 <!-- ### Accountability
 
-Previously, I have defined responsibility as a duty to take care of something. Responsibility can also be defined as being *accountable* for something. {term}`Accountability` considers being held responsible for one’s actions, typically after something 'bad' has happened. Due to the apparent complexity of algorithmic systems, organizations may try to divert blame to the algorithm: *“oh, it’s just the algorithm.”* Algorithmic accountability is the idea that an institution should be held accountable for the use, design, and decisions of an algorithmic system. It involves taking adequate measures to comply with ethical principles or legal regulations, including detailed documentation and clear procedures for appealing decisions.
+Previously, I have defined responsibility as a duty to take care of something. Responsibility can also be defined as being *accountable* for something. Accountability considers being held responsible for one’s actions, typically after something 'bad' has happened. Due to the apparent complexity of algorithmic systems, organizations may try to divert blame to the algorithm: *“oh, it’s just the algorithm.”* Algorithmic accountability is the idea that an institution should be held accountable for the use, design, and decisions of an algorithmic system. It involves taking adequate measures to comply with ethical principles or legal regulations, including detailed documentation and clear procedures for appealing decisions.
 
 An important tool for fostering accountability is auditing, in which the development process, usage, and impact of an algorithmic system are closely inspected - either through internal procedures or by an external third party. -->
-</div>
-</div>
-<div class="section" id="for-who-is-this-book">
+</section>
+</section>
+<section id="for-who-is-this-book">
 <h2>For who is this book?<a class="headerlink" href="#for-who-is-this-book" title="Permalink to this headline">#</a></h2>
 <p>The intended audience of this book are (undergraduate) computer science students, practitioners, and researchers interested in responsible machine learning. It is expected that you are familiar with machine learning in general and supervised machine learning in particular. This includes the high-level workings of basic classification algorithms, model selection approaches, and evaluation metrics. To get you up to speed, I will go over some of the basic concepts in the chapter <a class="reference internal" href="machinelearning/introduction.html#ml-preliminaries"><span class="std std-ref">Machine Learning Preliminaries</span></a>.</p>
-</div>
-<div class="section" id="what-is-covered-in-this-book">
+</section>
+<section id="what-is-covered-in-this-book">
 <h2>What is covered in this book?<a class="headerlink" href="#what-is-covered-in-this-book" title="Permalink to this headline">#</a></h2>
 <p>With the increasing usage of machine learning in real-world applications, we have also seen more examples of how machine learning can go wrong. As a result, the interest in a more responsible approach to computer science has surged. At one end of the spectrum, the field has been productive in generating principles, guidelines, and frameworks for more ‘ethical’ artificial intelligence. However, many of these principles are too broad to guide the daily practice of a data scientist or machine learning engineer. At the other end of the spectrum, many technical solutions have been proposed, which can forego the real-world context of machine learning applications.</p>
 <p>In this book, I have tried to balance these extremes by setting out a practical approach that acknowledges the sociotechnical context in which machine learning applications are used.</p>
 <p>The techniques, challenges, and considerations discussed in these lecture notes mostly involve applications based on supervised learning. Nonetheless, the sociotechnical approach that is encouraged throughout the lecture notes can be applied to any analytics project.</p>
 <p>Of course, there is much more to cover than what reasonably fits into one book. In addition to the values of fairness and explainability, other important requirements are, for example, technical safety, privacy, sustainability. Additionally, there are many adjacent topics such as moral philosophy, accessible product design, and organizational best practices. Although organizational structures, including efforts such as ethics committees and programs for diversity and inclusion, are crucial for operationalizing responsible machine learning these are not the main focus of these lecture notes.</p>
-</div>
-<div class="section" id="navigating-this-book">
+</section>
+<section id="navigating-this-book">
 <h2>Navigating this book<a class="headerlink" href="#navigating-this-book" title="Permalink to this headline">#</a></h2>
 <p>The rest of this book is organized as follows:</p>
 <ul class="simple">
@@ -613,8 +609,8 @@ An important tool for fostering accountability is auditing, in which the develop
 <p>Developing machine learning applications is subjective: it will require you to make many decisions, which often involves making trade-offs between competing criteria. I believe that taking responsibility requires one to make these decisions explicit. Given the great variety of norms and values that exist in the world, I would like to acknowledge that some of the ideas discussed in this book may reflect perspectives you do not agree with. The goal of this book is not to enforce a particular moral framework or political point-of-view. Instead, I aim to provide you with the knowledge and tools to identify trade-offs and make substantiated decisions.</p>
 <p>This book summarizes many of the things I have learned so far on my journey in the field of responsible machine learning. Nevertheless, I am but a person with my own limited perspective. In particular, I would like to acknowledge that as an able-bodied white women that was born and raised in the Netherlands, I lack lived experience that is the daily reality of many people in marginalized communities. My background is primarily technical and I am still learning from all great scholars in this interdisciplinary field. I hope you will too.</p>
 </div>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id2">
 <dl class="footnote brackets">
@@ -624,8 +620,8 @@ An important tool for fostering accountability is auditing, in which the develop
 </dl>
 </div>
 <hr class="footnotes docutils" />
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -677,7 +673,7 @@ An important tool for fostering accountability is auditing, in which the develop
   
     By Hilde Weerts<br/>
   
-      &copy; Copyright 2023.<br/>
+      &copy; Copyright 2024.<br/>
 </p>
         </footer>
     </div>

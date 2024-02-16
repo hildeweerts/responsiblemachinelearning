@@ -23,6 +23,9 @@ parts:
         sections:
           - file: fairness/interdisciplinary/sociotechnical
           - file: fairness/interdisciplinary/ethics
+      - file: fairness/tutorials/introduction
+        sections:
+          - file: fairness/tutorials/measuringgroupfairness
   - caption: Explainability
     chapters:
       - file: explainability/introduction

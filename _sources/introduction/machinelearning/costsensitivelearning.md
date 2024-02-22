@@ -80,7 +80,7 @@ The Python library *scikit-lego* provides a useful wrapper class, {py:class}`skl
 
 ## Cost-Sensitive Learning Algorithms
 
-It is often also possible to directly take into account misclassification cost during learning. In particular, it may be possible to weigh instances of a particular class differently in the algorithm's loss function. For example, {py:class}`sklearn.linear_model.LogisticRegression` has a `class_weight` parameter that allows to adjust the weight for each class.
+It is often also possible to directly take into account misclassification costs during learning. In particular, it may be possible to weigh instances of a particular class differently in the algorithm's loss function. For example, {py:class}`sklearn.linear_model.LogisticRegression` has a `class_weight` parameter that allows to adjust the weight for each class.
 
 ```{code-cell} ipython3
 ---
@@ -98,9 +98,9 @@ for class_weight in [{0:10, 1:1}, {0:1, 1:10}, {0:1, 1:1}]:
 
 ## Sampling Approaches
 
-Similar to cost-sensitive learning, oversampling and undersampling techniques serve to emphasize one class over another. Oversampling techniques increase the number of samples in the data set of the minority class, whereas undersampling techniques decrease the number of samples in the majority calss.
+Similar to cost-sensitive learning, oversampling and undersampling techniques serve to emphasize one class over another. Oversampling techniques increase the number of samples in the data set of the minority class, whereas undersampling techniques decrease the number of samples in the majority class.
 
-The most naive sampling approaches use _random resampling_, in which instances in the original training data set are randomly selected. In case of random oversampling, instances of the minority class are randomly selected and duplicated. _Random undersampling_, on the other hand, randomly deletes instances of the majority class from the data set. More sophisticasted approaches, such as SMOTE or prototypes, generate synthetic examples to achieve a more 'balanced' data set.
+The most naive sampling approaches use _random resampling_, in which instances in the original training data set are randomly selected. In the case of random oversampling, instances of the minority class are randomly selected and duplicated. _Random undersampling_, on the other hand, randomly deletes instances of the majority class from the data set. More sophisticated approaches, such as SMOTE or prototypes, generate synthetic examples to achieve a more 'balanced' data set.
 
 ```{note}
 :class: seealso

@@ -176,8 +176,18 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/fairml/groupspecificthresholds.html">
-     Group-Specific Decision Thresholds
+    <a class="reference internal" href="../../fairness/fairml/preprocessing.html">
+     Pre-processing Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/fairml/constrainedlearning.html">
+     Constrained Learning Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/fairml/postprocessing.html">
+     Post-processing Algorithms
     </a>
    </li>
   </ul>
@@ -204,6 +214,23 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../fairness/tutorials/introduction.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/tutorials/measuringgroupfairness.html">
+     Measuring Group Fairness in Pre-Trial Risk Assessment
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -220,8 +247,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
    Local Post-Hoc Explanations
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -247,8 +274,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
    Global Post-Hoc Explanations
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -528,8 +555,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#performance-metrics-based-on-model-s-predicted-score">
-   Performance metrics based on model’s predicted score
+  <a class="reference internal nav-link" href="#performance-metrics-based-on-the-predicted-scores">
+   Performance metrics based on the predicted scores
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -601,8 +628,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#performance-metrics-based-on-model-s-predicted-score">
-   Performance metrics based on model’s predicted score
+  <a class="reference internal nav-link" href="#performance-metrics-based-on-the-predicted-scores">
+   Performance metrics based on the predicted scores
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -708,7 +735,7 @@ title="Print to PDF"
 </section>
 <section id="performance-metrics-based-on-the-predicted-class">
 <span id="model-evaluation-classification-metrics"></span><h2>Performance metrics based on the predicted class<a class="headerlink" href="#performance-metrics-based-on-the-predicted-class" title="Permalink to this headline">#</a></h2>
-<p>The confusion matrix is a basic tool that indicates how well a classification model performs for different classes. One axis displays the true labels and the other axis the predicted labels. Each cell <span class="math notranslate nohighlight">\(C_{i,j}\)</span> shows the number of instances in some class <span class="math notranslate nohighlight">\(i\)</span> that were predicted to be class <span class="math notranslate nohighlight">\(j\)</span>. Despite its name, this matrix is not supposed to confuse you, but visualizes whether the classifier is confusing particular classes (i.e., misclassifying one as another). In a binary classification problem, the confusion matrix contains the number of true positives (tp), false positives (fp), true negatives (tn), and false negatives (fn).</p>
+<p>The confusion matrix is a basic tool that indicates how well a classification model performs for different classes. One axis displays the true labels and the other axis the predicted labels. Each cell <span class="math notranslate nohighlight">\(C_{i,j}\)</span> shows the number of instances in some class <span class="math notranslate nohighlight">\(i\)</span> that were predicted to be class <span class="math notranslate nohighlight">\(j\)</span>. Despite its name, this matrix is not supposed to confuse you. It visualizes whether the classifier is confusing particular classes (i.e., misclassifying one as another). In a binary classification problem, the confusion matrix contains the number of true positives (tp), false positives (fp), true negatives (tn), and false negatives (fn).</p>
 <table class="table" id="confusionmatrix">
 <caption><span class="caption-number">Table 2 </span><span class="caption-text">The structure of a confusion matrix of a binary classification problem. In practice, the cells will contain the number of observations of each type.</span><a class="headerlink" href="#confusionmatrix" title="Permalink to this table">#</a></caption>
 <colgroup>
@@ -793,9 +820,9 @@ title="Print to PDF"
 <p>Many popular predictive performance metrics for binary classification problems can be directly derived from the confusion matrix.</p>
 <section id="accuracy">
 <h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">#</a></h3>
-<p>Accuracy is one of the simplest measures for predictive performance. It can be defined as the fraction of predictions the model predicted correctly (see <a class="reference internal" href="#metrics"><span class="std std-numref">Table 1</span></a>).</p>
+<p>Accuracy is one of the simplest measures of predictive performance. It can be defined as the fraction of predictions the model predicted correctly (see <a class="reference internal" href="#metrics"><span class="std std-numref">Table 1</span></a>).</p>
 <p>Note that accuracy does not differentiate between mistakes made for one class versus mistakes made for another class. As a result, <strong>accuracy can be a misleading metric when we are dealing with imbalanced data</strong>, which occurs when the number of instances per class differs greatly across classes.</p>
-<p>For example, consider fraud detection in bank transactions. The number of legal transactions typically greatly outnumbers the number of illegal transactions. Let’s say that for every 99999 transactions there is 1 illegal transaction. In this scenario, a model that predicts every transaction to be legitimate will receive an incredibly high accuracy score: 0.99999. Of course, the practical utility of this model is very low.</p>
+<p>For example, consider fraud detection in bank transactions. The number of legal transactions typically greatly outnumbers the number of illegal transactions. Let’s say that for every 99999 transactions, there is 1 illegal transaction. In this scenario, a model that predicts every transaction to be legitimate will receive an incredibly high accuracy score: 0.99999. Of course, the practical utility of this model is very low.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
@@ -852,7 +879,7 @@ tpr: 0.83
 <section id="precision-recall-and-f1-score">
 <h3>Precision, Recall, and F1-score<a class="headerlink" href="#precision-recall-and-f1-score" title="Permalink to this headline">#</a></h3>
 <p>Precision, recall, and the F1-score were originally introduced in the context of information retrieval, a domain concerned with retrieving information (text, audio, images, data, etc.) based on a query. An example of an information retrieval system is a search engine. Developers of information retrieval systems are often concerned with the <em>relevance</em> of the retrieved results, which can be quantified using precision and recall.</p>
-<p>Precision is the defined as the fraction of retrieved documents that were actually relevant (i.e., how precise is the retrieved result?). In a general classification problem, the metric is defined as the fraction of positive instances among the predicted positive instances. Recall, on the other hand, is defined as the fraction of all relevant documents that were successfully retrieved (i.e., how many of the relevant documents are recalled?). In a classification setting, recall refers to the amount of positive instances the model classified as such from all positive instances in the data set, which is equivalent to the true positive rate.</p>
+<p>Precision is defined as the fraction of retrieved documents that were actually relevant (i.e., how precise is the retrieved result?). In a general classification problem, the metric is defined as the fraction of positive instances among the predicted positive instances. Recall, on the other hand, is defined as the fraction of all relevant documents that were successfully retrieved (i.e., how many of the relevant documents are recalled?). In a classification setting, recall refers to the number of positive instances the model classified as such from all positive instances in the data set, which is equivalent to the true positive rate.</p>
 <p>Often, there is an inverse relationship between precision and recall, which is referred to as the precision-recall trade-off. In practice, we might find both precision and recall important. This is where the f1-score comes in, which is defined as the harmonic mean of precision and recall. The f1-score is just one way to aggregate precision and recall. Importantly, this makes the score only relevant in scenarios where we believe precision and recall are equally important. There also exists a more general <span class="math notranslate nohighlight">\(F_{\beta}\)</span>-score, where <span class="math notranslate nohighlight">\(\beta\)</span> is chosen such that recall is considered <span class="math notranslate nohighlight">\(\beta\)</span> times as important as precision.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -912,8 +939,8 @@ npv: 0.86
 </div>
 </section>
 </section>
-<section id="performance-metrics-based-on-model-s-predicted-score">
-<span id="performancemetricsscore"></span><h2>Performance metrics based on model’s predicted score<a class="headerlink" href="#performance-metrics-based-on-model-s-predicted-score" title="Permalink to this headline">#</a></h2>
+<section id="performance-metrics-based-on-the-predicted-scores">
+<span id="performancemetricsscore"></span><h2>Performance metrics based on the predicted scores<a class="headerlink" href="#performance-metrics-based-on-the-predicted-scores" title="Permalink to this headline">#</a></h2>
 <p>The evaluation metrics discussed so far are only defined for predicted classes. However, many machine learning algorithms do not directly output a class, but a confidence score which indicates the confidence of the model that an instance belongs to a certain class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -970,7 +997,7 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 </div>
 <div class="tip admonition note">
 <p class="admonition-title">Note</p>
-<p>In scikit-learn, <code class="docutils literal notranslate"><span class="pre">predict_proba()</span></code> returns an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_classes)</span></code>. To get the confidence scores for the positive class, we need to select the part of the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> that corresponds to the positive predictions. In the binary classification scenario with class <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, this corresponds to the second value for each sample, i.e., <code class="docutils literal notranslate"><span class="pre">[:,</span> <span class="pre">1]]</span></code>).</p>
+<p>In scikit-learn, <code class="docutils literal notranslate"><span class="pre">predict_proba()</span></code> returns an array of shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_classes)</span></code>. To get the confidence scores for the positive class, we need to select the part of the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> that corresponds to the positive predictions. In the binary classification scenario with class <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, this corresponds to the second value for each sample, i.e., <code class="docutils literal notranslate"><span class="pre">[:,</span> <span class="pre">1]]</span></code>.</p>
 </div>
 <p>Based on the confidence score, we can decide how to classify an instance. In a binary classification scenario, this is typically done using a decision threshold: the cut-off value of the model’s confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives (see also <a class="reference internal" href="costsensitivelearning.html#cost-sensitive-learning"><span class="std std-ref">Cost-Sensitive Learning</span></a>).</p>
 <section id="roc-curve">
@@ -1000,12 +1027,12 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 <img alt="../../_images/modelevaluation_15_1.png" src="../../_images/modelevaluation_15_1.png" />
 </div>
 </div>
-<p>To quantify the aggregate classification performance of the machine learning model, the ROC curve can be summarized as the Area Under the ROC curve (AUC). For a binary classification problem, an AUC of 0.5 is equal to a classifier that makes random predictions. An AUC of 1 corresponds to perfect separation between the positive and negative class.</p>
-<p>AUC can be useful to compare the aggregate predictive performance of different models during model selection. However, <strong>AUC summarizes the performance of the model across all possible decision thresholds. To actually use the model for classifying intances, you still need to choose a decision threshold.</strong> As such, unlike confusion-based metrics, AUC typically does not directly correspond to real-world constraints or objectives. For example, in fraud detection, we may want to limit the expected number of false positives such that it is still humanly possible for fraud analysts to process all fraud alerts. Similarly, there may be different costs associated with false positives and false negatives making specific subspaces of the ROC curve more attractive than others.</p>
+<p>To quantify the aggregate classification performance of the machine learning model, the ROC curve can be summarized as the Area Under the ROC curve (AUC). For a binary classification problem, an AUC of 0.5 is equal to a classifier that makes random predictions. An AUC of 1 corresponds to perfect separation between the positive and negative classes.</p>
+<p>AUC can be useful to compare the aggregate predictive performance of different models during model selection. However, <strong>AUC summarizes the performance of the model across all possible decision thresholds. To actually use the model for classifying instances, you still need to choose a decision threshold.</strong> As such, unlike confusion-based metrics, AUC typically does not directly correspond to real-world constraints or objectives. For example, in fraud detection, we may want to limit the expected number of false positives such that it is still humanly possible for fraud analysts to process all fraud alerts. Similarly, there may be different costs associated with false positives and false negatives making specific subspaces of the ROC curve more attractive than others.</p>
 </section>
 <section id="precision-recall-curve">
 <span id="id2"></span><h3>Precision-Recall Curve<a class="headerlink" href="#precision-recall-curve" title="Permalink to this headline">#</a></h3>
-<p>In some problems it may be valuable to evaluate the precision-recall trade-off across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall, but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a precision-recall curve can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using average precision, which is the average precision score over all recall values.</p>
+<p>In some problems, it may be valuable to evaluate the precision-recall trade-off across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a precision-recall curve can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using average precision, which is the average precision score computed over all recall values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">average_precision_score</span><span class="p">,</span> <span class="n">PrecisionRecallDisplay</span>
@@ -1032,7 +1059,7 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 </section>
 <section id="model-calibration">
 <span id="id3"></span><h2>Model Calibration<a class="headerlink" href="#model-calibration" title="Permalink to this headline">#</a></h2>
-<p>The confidence score is sometimes referred to as the predicted probability. However, <strong>the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities</strong>. Calibration is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that actually belongs to the positive class is also 0.7. Calibration can be an important characteristic when confidence scores are used for decision-making by domain experts. In particular, a decision threshold for calibrated scores can be directly interpreted in term of different misclassification costs. For example, if a calibrated confidence score is used for suggesting a specific treatment in clinical decision-making, a decision threshold of 0.1 means that we accept up to 9 false positives (i.e., unnecessary treatments) for each true positive. Such a direct connection between misclassification rates and a particular decision threshold cannot be made for uncalibrated scores - although we can still, of course, compute precision to draw similar conclusions.</p>
+<p>The confidence score is sometimes referred to as the predicted probability. However, <strong>the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities</strong>. Calibration is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that belong to the positive class is also 0.7. Calibration can be an important characteristic when confidence scores are used for decision-making by domain experts. In particular, a decision threshold for calibrated scores can be directly interpreted in terms of different misclassification costs. For example, if a calibrated confidence score is used for suggesting a specific treatment in clinical decision-making, a decision threshold of 0.1 means that we accept up to 9 false positives (i.e., unnecessary treatments) for each true positive. Such a direct connection between misclassification rates and a particular decision threshold cannot be made for uncalibrated scores - although we can still, of course, compute precision to draw similar conclusions.</p>
 <p>You can assess how well a model is calibrated using a calibration curve, which sets out the mean predicted probability against the fraction of positives.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1061,7 +1088,7 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 <img alt="../../_images/modelevaluation_21_0.png" src="../../_images/modelevaluation_21_0.png" />
 </div>
 </div>
-<p>The calibration ‘curve’ of discrete predictions is closely related to the positive and negative predictive value. The fraction of positives at mean predicted value of <code class="docutils literal notranslate"><span class="pre">1</span></code> corresponds to the number of true positives out of all predicted positives, which is exactly the definition of the positive predictive value. The fraction of positives for the mean predicted value of <code class="docutils literal notranslate"><span class="pre">0</span></code> is equal to the fraction of false negetatives out of all predicted negatives, which is exactly <span class="math notranslate nohighlight">\(1-npv\)</span>. As such, we can summarize the calibration of binary predictions using the predictive values.</p>
+<p>The calibration ‘curve’ of discrete predictions is closely related to the positive and negative predictive value. The fraction of positives with an average predicted value of <code class="docutils literal notranslate"><span class="pre">1</span></code> corresponds to the number of true positives out of all predicted positives, which is exactly the definition of the positive predictive value. The fraction of positives for the mean predicted value of <code class="docutils literal notranslate"><span class="pre">0</span></code> is equal to the fraction of false negatives out of all predicted negatives, which is exactly <span class="math notranslate nohighlight">\(1-npv\)</span>. As such, we can summarize the calibration of binary predictions using the predictive values.</p>
 <p>There exist techniques to post-process confidence scores such that they are better calibrated. A discussion of these techniques is outside of the scope of this book. We refer interested readers to the <a class="reference external" href="https://scikit-learn.org/stable/modules/calibration.html#calibrating-a-classifier">user guide of scikit-learn</a>, which provides a useful introduction to the topic.</p>
 </section>
 </section>

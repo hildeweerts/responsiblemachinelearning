@@ -176,8 +176,18 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="fairml/groupspecificthresholds.html">
-     Group-Specific Decision Thresholds
+    <a class="reference internal" href="fairml/preprocessing.html">
+     Pre-processing Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fairml/constrainedlearning.html">
+     Constrained Learning Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fairml/postprocessing.html">
+     Post-processing Algorithms
     </a>
    </li>
   </ul>
@@ -204,6 +214,23 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="tutorials/introduction.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorials/measuringgroupfairness.html">
+     Measuring Group Fairness in Pre-Trial Risk Assessment
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -220,8 +247,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../explainability/localposthoc/introduction.html">
    Local Post-Hoc Explanations
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -247,8 +274,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../explainability/globalposthoc/introduction.html">
    Global Post-Hoc Explanations
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -729,7 +756,7 @@ title="Print to PDF"
 <section id="running-example">
 <h2>Running Example<a class="headerlink" href="#running-example" title="Permalink to this headline">#</a></h2>
 <p>As a running example, we train a logistic regression model on a synthetic hiring data set.</p>
-<p>The data set has a few features that can be used for predictions, including <code class="docutils literal notranslate"><span class="pre">years_of_experience</span></code>, the <code class="docutils literal notranslate"><span class="pre">test_score</span></code> of an applicant on a job-related test, the <code class="docutils literal notranslate"><span class="pre">interview_score</span></code> that is provided by person who interviewed the candidate, the <code class="docutils literal notranslate"><span class="pre">average_grade</span></code> the applicant achieved in their highest degree, and finally the applicant’s <code class="docutils literal notranslate"><span class="pre">gender</span></code>. The target variable is <code class="docutils literal notranslate"><span class="pre">hired</span></code>.</p>
+<p>The data set has a few features that can be used for predictions, including <code class="docutils literal notranslate"><span class="pre">years_of_experience</span></code>, the <code class="docutils literal notranslate"><span class="pre">test_score</span></code> of an applicant on a job-related test, the <code class="docutils literal notranslate"><span class="pre">interview_score</span></code> that is provided by the person who interviewed the candidate, the <code class="docutils literal notranslate"><span class="pre">average_grade</span></code> the applicant achieved in their highest degree, and finally the applicant’s <code class="docutils literal notranslate"><span class="pre">gender</span></code>. The target variable is <code class="docutils literal notranslate"><span class="pre">hired</span></code>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -844,8 +871,8 @@ title="Print to PDF"
 <span id="independence-metrics"></span><h2>Independence<a class="headerlink" href="#independence" title="Permalink to this headline">#</a></h2>
 <p>When we think of discrimination, an intuitive notion of fairness is independence: whether an individual receives a particular output, should not depend on sensitive group membership. For example, in our hiring scenario, one may argue that whether an applicant is hired should not depend on their gender.</p>
 <section id="demographic-parity">
-<h3>Demographic parity<a class="headerlink" href="#demographic-parity" title="Permalink to this headline">#</a></h3>
-<p>The first criterion that we will discuss is <em>demographic parity</em>. In a classification scenario, demographic parity requires that, for all values of <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(a\)</span>:</p>
+<span id="id2"></span><h3>Demographic parity<a class="headerlink" href="#demographic-parity" title="Permalink to this headline">#</a></h3>
+<p>The first criterion that we will discuss is <em>demographic parity</em>. In a classification scenario, demographic parity requires that for all values of <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(a\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[P(\hat{Y} = y \mid A = a) = P(\hat{Y} = y \mid A = a')\]</div>
 <p>In other words, the probability of receiving a particular prediction should be <strong>independent</strong> of sensitive group membership. In a binary classification scenario, this criterion can be checked by comparing selection rates, i.e., the proportion of predicted positives, across groups. When positive predictions correspond to a resource that is distributed between people, demographic parity can be interpreted as a measure of potential allocation harm.</p>
@@ -943,7 +970,7 @@ demographic parity ratio: 0.48
 </section>
 <section id="conditional-demographic-parity">
 <h3>Conditional Demographic Parity<a class="headerlink" href="#conditional-demographic-parity" title="Permalink to this headline">#</a></h3>
-<p>Apart from employment, there may be characteristics that, either from a legal or ethical perspective, legitimize differences between groups. Loosely inspired by these legal imperatives, Kamiran <em>et al.</em><a class="footnote-reference brackets" href="#footcite-kamiran2013" id="id2">1</a> put forward a notion of fairness that we will refer to as conditional demographic parity. This is a variant of demographic parity that allows for differences between groups, if these differences are justified, from a legal or ethical point of view, by a control feature.</p>
+<p>Apart from employment, there may be characteristics that, either from a legal or ethical perspective, legitimize differences between groups. Loosely inspired by these legal imperatives, Kamiran <em>et al.</em><a class="footnote-reference brackets" href="#footcite-kamiran2013" id="id3">1</a> put forward a notion of fairness that we will refer to as conditional demographic parity. This is a variant of demographic parity that allows for differences between groups, if these differences are justified, from a legal or ethical point of view, by a control feature.</p>
 <p>Conditional group fairness is best illustrated by an example. Imagine a scenario in which women have a lower income, on average, than men. This may imply that women are treated unfairly. However, what if many women work fewer hours than men? In this case, the observed disparity can be (at least partly) explained by the lower number of working hours. Consequently, equalizing income between men and women would mean that women are paid more per hour than men. If we believe unequal hourly wages to be unfair, we can instead equalize income only between women and men who work similar hours. In other words, we minimize the difference that is still present <em>after</em> controlling for working hours.</p>
 <p>Formally, let <span class="math notranslate nohighlight">\(W\)</span> be a control feature. Then, conditional demographic parity holds if, for all values of <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and <span class="math notranslate nohighlight">\(w\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -1119,8 +1146,8 @@ demographic parity ratio: 0.48
 <span id="misclassification-metrics"></span><h2>Misclassification Rates<a class="headerlink" href="#misclassification-rates" title="Permalink to this headline">#</a></h2>
 <p>The second set of fairness metrics that we will consider are related to misclassification rates.</p>
 <section id="equalized-odds">
-<h3>Equalized Odds<a class="headerlink" href="#equalized-odds" title="Permalink to this headline">#</a></h3>
-<p>Equalized odds <a class="footnote-reference brackets" href="#footcite-hardt2016equality" id="id3">2</a> is one of the most commonly studied fairness metrics. It requires an equal distribution of classification errors across sensitive groups for all classes. Formally, equalized odds is satisfied if for all values of <span class="math notranslate nohighlight">\(y \in Y\)</span> and <span class="math notranslate nohighlight">\(a, a' \in A\)</span>,</p>
+<span id="id4"></span><h3>Equalized Odds<a class="headerlink" href="#equalized-odds" title="Permalink to this headline">#</a></h3>
+<p>Equalized odds <a class="footnote-reference brackets" href="#footcite-hardt2016equality" id="id5">2</a> is one of the most commonly studied fairness metrics. It requires an equal distribution of classification errors across sensitive groups for all classes. Formally, equalized odds is satisfied if for all values of <span class="math notranslate nohighlight">\(y \in Y\)</span> and <span class="math notranslate nohighlight">\(a, a' \in A\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[P(\hat{Y} = y \mid A = a, Y = y) = P(\hat{Y} = y \mid A = a', Y = y)\]</div>
 <p>In a binary classification scenario, satisfying equalized odds boils down to equal group-specific false positive rates and false negative rates (or, equivalently, equal true negative rates and true positive rates). Essenstially, equalized odds requires that, given a particular ‘ground-truth’ label, the probability of receiving a predicted label is independent of sensitive group membership. For example, in our hiring scenario, a classifier that satisfies equalized odds is neither more likely to falsely <em>reject</em> suitable <code class="docutils literal notranslate"><span class="pre">male</span></code> candidates compared <code class="docutils literal notranslate"><span class="pre">non_binary</span></code> or <code class="docutils literal notranslate"><span class="pre">female</span></code> candidates, nor is it more likely to falsely accept unsuitable candidates for some genders. As such, we can interpret equalized odds as one way to measure the risk of allocation harm or quality-of-service harm.</p>
@@ -1359,7 +1386,7 @@ dtype: float64
 </section>
 <section id="the-impossibility-theorem">
 <h2>The Impossibility Theorem<a class="headerlink" href="#the-impossibility-theorem" title="Permalink to this headline">#</a></h2>
-<p>At first glance, each of the fairness criteria discussed above seems desirable. As such, we might want to attempt to satisfy all criteria. In many cases it is impossible for demographic parity, equalized odds, and equal calibration to hold simultaneously <a class="footnote-reference brackets" href="#footcite-kleinberg2016inherent" id="id4">3</a><a class="footnote-reference brackets" href="#footcite-chouldechova2017fair" id="id5">4</a>.</p>
+<p>At first glance, each of the fairness criteria discussed above seems desirable. As such, we might want to attempt to satisfy all criteria. In many cases it is impossible for demographic parity, equalized odds, and equal calibration to hold simultaneously <a class="footnote-reference brackets" href="#footcite-kleinberg2016inherent" id="id6">3</a><a class="footnote-reference brackets" href="#footcite-chouldechova2017fair" id="id7">4</a>.</p>
 <p>In particular, when a classifer is not perfectly accurate, it is often impossible to satisfy two of the three criteria at the same time. More specifically:</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are not independent, demographic parity and equal calibration cannot hold simultaneously.</p></li>
@@ -1372,7 +1399,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 <section id="demographic-parity-and-equal-calibration">
 <h3>Demographic Parity and Equal Calibration<a class="headerlink" href="#demographic-parity-and-equal-calibration" title="Permalink to this headline">#</a></h3>
 <p>If base rates differ across groups (i.e., <span class="math notranslate nohighlight">\(p_a \neq p_b\)</span>), it is impossible for demographic parity and equal calibration to hold at the same time.</p>
-<p>This statement is easy to prove when we consider probablistic interpretations of the fairness criteria <a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id6">5</a>.</p>
+<p>This statement is easy to prove when we consider probablistic interpretations of the fairness criteria <a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id8">5</a>.</p>
 <div class="admonition-proof admonition">
 <p class="admonition-title">Proof</p>
 <p>A probabilistic interpretation of demographic parity requires that the model’s predictions are independent of sensitive group membership, i.e., <span class="math notranslate nohighlight">\(A \perp\!\!\!\perp \hat{Y}\)</span>. Equal calibration, on the other hand, requires that, conditional on the model’s predictions, the ground truth labels are independent of sensitive group membership, i.e., <span class="math notranslate nohighlight">\(A \perp\!\!\!\perp Y \mid \hat{Y}\)</span>.</p>
@@ -1385,7 +1412,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 </section>
 <section id="demographic-parity-and-equalized-odds">
 <h3>Demographic Parity and Equalized Odds<a class="headerlink" href="#demographic-parity-and-equalized-odds" title="Permalink to this headline">#</a></h3>
-<p>If base rates differ across groups (i.e., <span class="math notranslate nohighlight">\(p_a \neq p_b\)</span>) and risk scores <span class="math notranslate nohighlight">\(R\)</span> are not independent of target variable <span class="math notranslate nohighlight">\(Y\)</span>, it is impossible for demographic parity and equalized odds to hold at the same time. Lets again consider the probabilistic interpretations of fairness criteria. <a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id7">5</a></p>
+<p>If base rates differ across groups (i.e., <span class="math notranslate nohighlight">\(p_a \neq p_b\)</span>) and risk scores <span class="math notranslate nohighlight">\(R\)</span> are not independent of target variable <span class="math notranslate nohighlight">\(Y\)</span>, it is impossible for demographic parity and equalized odds to hold at the same time. Lets again consider the probabilistic interpretations of fairness criteria. <a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id9">5</a></p>
 <div class="admonition-proof admonition">
 <p class="admonition-title">Proof</p>
 <p>Equalized odds requires that, conditional on the ground truth labels, the model’s predictions are independent of sensitive group membership, i.e., <span class="math notranslate nohighlight">\(\hat{Y} \perp\!\!\!\perp A \mid Y \)</span>.</p>
@@ -1407,7 +1434,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 </section>
 <section id="equal-calibration-and-equalized-odds">
 <h3>Equal Calibration and Equalized Odds<a class="headerlink" href="#equal-calibration-and-equalized-odds" title="Permalink to this headline">#</a></h3>
-<p>When a classifier does not have perfect accuracy and base rates differ across sensitive groups, it is impossible to satisfy equal calibration and equalized odds simultaneously. Again, we can prove this using the probabilistic interpretations of the fairness criteria<a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id8">5</a>.</p>
+<p>When a classifier does not have perfect accuracy and base rates differ across sensitive groups, it is impossible to satisfy equal calibration and equalized odds simultaneously. Again, we can prove this using the probabilistic interpretations of the fairness criteria<a class="footnote-reference brackets" href="#footcite-fairmlbook" id="id10">5</a>.</p>
 <div class="admonition-proof admonition">
 <p class="admonition-title">Proof</p>
 <p>Assuming equalized odds and equal calibration hold, conditional independence gives us:</p>
@@ -1418,7 +1445,7 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 \[A  \perp\!\!\!\perp (\hat{Y}, Y) \Rightarrow A  \perp\!\!\!\perp \hat{Y} \quad and \quad A \perp\!\!\!\perp Y\]</div>
 <p>However, when base rates are unequal, <span class="math notranslate nohighlight">\(A\)</span> is not independent of <span class="math notranslate nohighlight">\(Y\)</span>. As such, equalized odds and equal calibration cannot hold simultaneously when <span class="math notranslate nohighlight">\(p_a \neq p_b\)</span>. Taking the contrapositive completes the proof.</p>
 </div>
-<p>In the binary classification scenario, an alternative proof of this phenomenon follows from the <a class="reference internal" href="../introduction/machinelearning/modelevaluation.html#precision-recall-curve"><span class="std std-ref">precision-recall trade-off</span></a> <a class="footnote-reference brackets" href="#footcite-chouldechova2017fair" id="id9">4</a>.</p>
+<p>In the binary classification scenario, an alternative proof of this phenomenon follows from the <a class="reference internal" href="../introduction/machinelearning/modelevaluation.html#precision-recall-curve"><span class="std std-ref">precision-recall trade-off</span></a> <a class="footnote-reference brackets" href="#footcite-chouldechova2017fair" id="id11">4</a>.</p>
 <div class="admonition-alternative-proof admonition">
 <p class="admonition-title">Alternative proof</p>
 <p>Formally, let <span class="math notranslate nohighlight">\(\text{tp}\)</span>, <span class="math notranslate nohighlight">\(\text{tn}\)</span>, <span class="math notranslate nohighlight">\(\text{fp}\)</span>, <span class="math notranslate nohighlight">\(\text{fn}\)</span> refer to the number of true positives, true negatives, false positives, and false negatives respectively. Moreover, let <span class="math notranslate nohighlight">\(N\)</span> denote the total number of instances (i.e., <span class="math notranslate nohighlight">\(N = \text{tp} + \text{tn} + \text{fp} + \text{fn}\)</span>). Additionally, let <span class="math notranslate nohighlight">\(p = \frac{\text{tp} + \text{fn}}{\text{fp} + \text{tn} + \text{fn} + \text{tp}}\)</span> denote the prevalence of the positive class (i.e., the base rate).</p>
@@ -1447,33 +1474,33 @@ Finally, for a predictor to be useful, the scores <span class="math notranslate 
 <section id="which-groups">
 <h3>Which groups?<a class="headerlink" href="#which-groups" title="Permalink to this headline">#</a></h3>
 <p>Another important component of a disaggregated analysis concern the groups that should be included in the analysis. Or, put differently, which groups are at the greatest risk of harm. Considering potential discrimination, focus is often put on characteristics protected by law, such as race, gender, sexual orientation, disability, and religion. However, it is not always obvious in advance which groups are at risk in a particular use case or deployment context, which is further complicated by intersectional concerns. For example, intersectional groups defined by multiple characteristics (e.g., subgroups defined by both race and gender) may be at the greatest risk of harm. Additionally, privacy regulations do not always allow organizations to collect sensitive data. For example, the European Union General Data Protection Regulation (GDPR) puts strict restrictions on the collection of personal data, including those protected by law.</p>
-<p>Even if an organization is allowed to process or collect sensitive data (e.g., via explicit permission of users), the question remains what exactly should be collected. While personal characteristics such as age can be relatively straightforward to quantify, operationalizing social constructs such as gender and race is less straightforward.<a class="footnote-reference brackets" href="#footcite-hanna2020towards" id="id10">6</a> For instance, while self-identified race is a known risk factor in first-episode psychosis, measuring race as phenotypical presentation does not capture the individual discrimination experience that appears to be at the root of the issue. Performing a fairness assessment on a clinical risk prediction model for psychosis based on phenotype rather than self-identified race threatens the validity of the analysis.<a class="footnote-reference brackets" href="#footcite-wojcik2023assessing" id="id11">7</a></p>
+<p>Even if an organization is allowed to process or collect sensitive data (e.g., via explicit permission of users), the question remains what exactly should be collected. While personal characteristics such as age can be relatively straightforward to quantify, operationalizing social constructs such as gender and race is less straightforward.<a class="footnote-reference brackets" href="#footcite-hanna2020towards" id="id12">6</a> For instance, while self-identified race is a known risk factor in first-episode psychosis, measuring race as phenotypical presentation does not capture the individual discrimination experience that appears to be at the root of the issue. Performing a fairness assessment on a clinical risk prediction model for psychosis based on phenotype rather than self-identified race threatens the validity of the analysis.<a class="footnote-reference brackets" href="#footcite-wojcik2023assessing" id="id13">7</a></p>
 <p>There are no easy answers to these questions. Performing a meaningful fairness assessment requires not just technical understanding of machine learning, but also an understanding of the interplay between the sociotechnical context of an application, various ethical frameworks, empirical assumptions, and legal constraints. In later chapters, we will dive deeper into interdisciplinary perspectives that can help to find answers to some of these questions.</p>
 </section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<div class="docutils container" id="id12">
+<div class="docutils container" id="id14">
 <dl class="footnote brackets">
-<dt class="label" id="footcite-kamiran2013"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="label" id="footcite-kamiran2013"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
 <dd><p>Faisal Kamiran, Indrė Žliobaitė, and Toon Calders. Quantifying explainable discrimination and removing illegal discrimination in automated decision making. <em>Knowledge and Information Systems</em>, 35(3):613–644, 2013. <a class="reference external" href="https://doi.org/10.1007/s10115-012-0584-8">doi:10.1007/s10115-012-0584-8</a>.</p>
 </dd>
-<dt class="label" id="footcite-hardt2016equality"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dt class="label" id="footcite-hardt2016equality"><span class="brackets"><a class="fn-backref" href="#id5">2</a></span></dt>
 <dd><p>Moritz Hardt, Eric Price, and Nati Srebro. Equality of opportunity in supervised learning. <em>Advances in neural information processing systems</em>, 2016.</p>
 </dd>
-<dt class="label" id="footcite-kleinberg2016inherent"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dt class="label" id="footcite-kleinberg2016inherent"><span class="brackets"><a class="fn-backref" href="#id6">3</a></span></dt>
 <dd><p>Jon Kleinberg, Sendhil Mullainathan, and Manish Raghavan. Inherent trade-offs in the fair determination of risk scores. 2016. URL: <a class="reference external" href="https://arxiv.org/abs/1609.05807">https://arxiv.org/abs/1609.05807</a>, <a class="reference external" href="https://doi.org/10.48550/ARXIV.1609.05807">doi:10.48550/ARXIV.1609.05807</a>.</p>
 </dd>
-<dt class="label" id="footcite-chouldechova2017fair"><span class="brackets">4</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id9">2</a>)</span></dt>
+<dt class="label" id="footcite-chouldechova2017fair"><span class="brackets">4</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id11">2</a>)</span></dt>
 <dd><p>Alexandra Chouldechova. Fair prediction with disparate impact: a study of bias in recidivism prediction instruments. <em>Big data</em>, 5(2):153–163, 2017.</p>
 </dd>
-<dt class="label" id="footcite-fairmlbook"><span class="brackets">5</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id7">2</a>,<a href="#id8">3</a>)</span></dt>
+<dt class="label" id="footcite-fairmlbook"><span class="brackets">5</span><span class="fn-backref">(<a href="#id8">1</a>,<a href="#id9">2</a>,<a href="#id10">3</a>)</span></dt>
 <dd><p>Solon Barocas, Moritz Hardt, and Menaka Narayanan. Fairness and machine learning: limitations and opportunities. 2022. Retrieved from <a class="reference external" href="https://fairmlbook.org">https://fairmlbook.org</a>.</p>
 </dd>
-<dt class="label" id="footcite-hanna2020towards"><span class="brackets"><a class="fn-backref" href="#id10">6</a></span></dt>
+<dt class="label" id="footcite-hanna2020towards"><span class="brackets"><a class="fn-backref" href="#id12">6</a></span></dt>
 <dd><p>Alex Hanna, Emily Denton, Andrew Smart, and Jamila Smith-Loud. Towards a critical race methodology in algorithmic fairness. In <em>Proceedings of the 2020 conference on fairness, accountability, and transparency</em>, 501–512. 2020.</p>
 </dd>
-<dt class="label" id="footcite-wojcik2023assessing"><span class="brackets"><a class="fn-backref" href="#id11">7</a></span></dt>
+<dt class="label" id="footcite-wojcik2023assessing"><span class="brackets"><a class="fn-backref" href="#id13">7</a></span></dt>
 <dd><p>Malwina Anna Wójcik. Assessing the legality of using the category of race and ethnicity in clinical algorithms - the eu anti-discrimination law perspective. In <em>EWAF’23: European Workshop on Algorithmic Fairness</em>. 2023.</p>
 </dd>
 </dl>

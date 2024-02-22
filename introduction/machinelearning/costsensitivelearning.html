@@ -176,8 +176,18 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/fairml/groupspecificthresholds.html">
-     Group-Specific Decision Thresholds
+    <a class="reference internal" href="../../fairness/fairml/preprocessing.html">
+     Pre-processing Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/fairml/constrainedlearning.html">
+     Constrained Learning Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/fairml/postprocessing.html">
+     Post-processing Algorithms
     </a>
    </li>
   </ul>
@@ -204,6 +214,23 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../fairness/tutorials/introduction.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/tutorials/measuringgroupfairness.html">
+     Measuring Group Fairness in Pre-Trial Risk Assessment
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -220,8 +247,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
    Local Post-Hoc Explanations
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -247,8 +274,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
    Global Post-Hoc Explanations
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -618,7 +645,7 @@ title="Print to PDF"
 </section>
 <section id="cost-sensitive-learning-algorithms">
 <h2>Cost-Sensitive Learning Algorithms<a class="headerlink" href="#cost-sensitive-learning-algorithms" title="Permalink to this headline">#</a></h2>
-<p>It is often also possible to directly take into account misclassification cost during learning. In particular, it may be possible to weigh instances of a particular class differently in the algorithm’s loss function. For example, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegression</span></code></a> has a <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> parameter that allows to adjust the weight for each class.</p>
+<p>It is often also possible to directly take into account misclassification costs during learning. In particular, it may be possible to weigh instances of a particular class differently in the algorithm’s loss function. For example, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegression</span></code></a> has a <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> parameter that allows to adjust the weight for each class.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">class_weight</span> <span class="ow">in</span> <span class="p">[{</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">}]:</span>
@@ -648,8 +675,8 @@ class_weight {0: 1, 1: 1}
 </section>
 <section id="sampling-approaches">
 <h2>Sampling Approaches<a class="headerlink" href="#sampling-approaches" title="Permalink to this headline">#</a></h2>
-<p>Similar to cost-sensitive learning, oversampling and undersampling techniques serve to emphasize one class over another. Oversampling techniques increase the number of samples in the data set of the minority class, whereas undersampling techniques decrease the number of samples in the majority calss.</p>
-<p>The most naive sampling approaches use <em>random resampling</em>, in which instances in the original training data set are randomly selected. In case of random oversampling, instances of the minority class are randomly selected and duplicated. <em>Random undersampling</em>, on the other hand, randomly deletes instances of the majority class from the data set. More sophisticasted approaches, such as SMOTE or prototypes, generate synthetic examples to achieve a more ‘balanced’ data set.</p>
+<p>Similar to cost-sensitive learning, oversampling and undersampling techniques serve to emphasize one class over another. Oversampling techniques increase the number of samples in the data set of the minority class, whereas undersampling techniques decrease the number of samples in the majority class.</p>
+<p>The most naive sampling approaches use <em>random resampling</em>, in which instances in the original training data set are randomly selected. In the case of random oversampling, instances of the minority class are randomly selected and duplicated. <em>Random undersampling</em>, on the other hand, randomly deletes instances of the majority class from the data set. More sophisticated approaches, such as SMOTE or prototypes, generate synthetic examples to achieve a more ‘balanced’ data set.</p>
 <div class="seealso admonition note">
 <p class="admonition-title">Note</p>
 <p>The Python library <a class="reference external" href="https://imbalanced-learn.org/stable/"><code class="docutils literal notranslate"><span class="pre">imbalanced-learn</span></code></a> implements various oversampling and undersampling approaches.</p>

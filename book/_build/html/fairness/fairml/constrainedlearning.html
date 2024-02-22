@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Constrained Learning Algorithms &#8212; An Introduction to Responsible Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Post-processing Algorithms" href="postprocessing.html" />
+    <link rel="prev" title="Pre-processing Algorithms" href="preprocessing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../introduction/introduction.html">
+   Responsible Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../introduction/machinelearning/introduction.html">
+   Machine Learning Preliminaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/modelevaluation.html">
+     Model Evaluation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/modelselection.html">
+     Model Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/costsensitivelearning.html">
+     Cost-Sensitive Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fairness
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Algorithmic Fairness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupfairnessmetrics.html">
+   Group Fairness Metrics
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="introduction.html">
+   Fairness-Aware Machine Learning
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing.html">
+     Pre-processing Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Constrained Learning Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="postprocessing.html">
+     Post-processing Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../interdisciplinary/introduction.html">
+   Interdisciplinary Insights
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interdisciplinary/sociotechnical.html">
+     Socio-technical Systems: Abstraction Traps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interdisciplinary/ethics.html">
+     Moral Philosophy: Choosing the “Right” Fairness Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorials/introduction.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorials/measuringgroupfairness.html">
+     Measuring Group Fairness in Pre-Trial Risk Assessment
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../explainability/introduction.html">
+   Explainable Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
+   Local Post-Hoc Explanations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/lime.html">
+     LIME
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/shap.html">
+     SHAP
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/discussion.html">
+     Feature importance
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
+   Global Post-Hoc Explanations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/globalposthoc/pdp.html">
+     Partial Dependence Plots
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/harms.html">
+   List of Harms
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Ffairness/fairml/constrainedlearning.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/fairness/fairml/constrainedlearning.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reweighing">
+   Reweighing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regularization">
+   Regularization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decoupled-classification">
+   Decoupled Classification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adversarial-learning">
+   Adversarial Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Constrained Learning Algorithms</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reweighing">
+   Reweighing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regularization">
+   Regularization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decoupled-classification">
+   Decoupled Classification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adversarial-learning">
+   Adversarial Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="constrained-learning-algorithms">
+<span id="fairml-constrained-learning"></span><h1>Constrained Learning Algorithms<a class="headerlink" href="#constrained-learning-algorithms" title="Permalink to this headline">#</a></h1>
+<p>Constrained learning techniques directly incorporate a fairness constraint during the training of a machine learning model. Most techniques achieve this by adjusting an existing machine learning paradigm to incorporate a fairness constraint directly into the objective function of the machine learning algorithm. This typically involves the adjustment of the loss function to penalize unfair outcomes, according to the fairness metric of choice. Other techniques impose a fairness constraint through meta-estimators: a wrapper around a regular machine learning algorithm, typically resulting in an ensemble of classifiers. In this section, we will discuss four constrained learning approaches: <a class="reference internal" href="#reweighing"><span class="std std-ref">reweighing</span></a>, <a class="reference internal" href="#regularization"><span class="std std-ref">regularization</span></a>, <a class="reference internal" href="#decoupled-classification"><span class="std std-ref">decoupled classification</span></a>, and <a class="reference internal" href="#adversarial-learning"><span class="std std-ref">adversarial learning</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The goal of this section is <strong>not</strong> to present a comprehensive overview of the fairness-aware machine learning techniques proposed in the algorithmic fairness literature. Instead, these examples allow you to develop an intuition of the workings, (dis)advantages, and limitations of the fairness-aware machine learning paradigm.</p>
+</div>
+<section id="reweighing">
+<span id="id1"></span><h2>Reweighing<a class="headerlink" href="#reweighing" title="Permalink to this headline">#</a></h2>
+<p><a class="reference internal" href="../../introduction/machinelearning/costsensitivelearning.html#cost-sensitive-learning"><span class="std std-ref">Cost-sensitive learning</span></a> is a set of learning techniques commonly used to explicitly take into consideration different costs of misclassification during model training and selection. In particular, many machine learning algorithms allow assigning different weights to instances in the algorithm’s loss function, such that the learning algorithm is penalized more for misclassifying an instance with a high weight compared to an instance with a low weight.</p>
+<p>Kamiran and Calders<a class="footnote-reference brackets" href="#footcite-kamiran2012data" id="id2">1</a> leverage cost-sensitive learning by reweighing instances in the data set in such a way that it reduces the association between a sensitive feature and the target variable. Instead of assigning general class weights, as is common in cost-sensitive learning for imbalanced classification problems, the reweighing technique introduces a weighting scheme that discourages an association between sensitive feature <span class="math notranslate nohighlight">\(A\)</span> and the classifier’s predictions <span class="math notranslate nohighlight">\(\hat{Y}\)</span>.</p>
+<p>The intuition behind the reweighing scheme is as follows. In a dataset unaffected by <a class="reference internal" href="../introduction.html#historical-bias"><span class="std std-ref">historical bias</span></a>, sensitive feature <span class="math notranslate nohighlight">\(A\)</span> and target variable <span class="math notranslate nohighlight">\(Y\)</span> are statistically independent. As such, the expected probability of an instance belonging to sensitive group <span class="math notranslate nohighlight">\(A=a\)</span> and the positive class <span class="math notranslate nohighlight">\(Y=1\)</span> can be determined by multiplying the probabilities of sensitive group membership and belonging to the positive class: <span class="math notranslate nohighlight">\(P_{exp}(Y=1 \wedge A=a) = P(Y=1) \times P(A=a)\)</span>. In a dataset affected by historical bias, the observed probability <span class="math notranslate nohighlight">\(P_{obs}(Y=1 \wedge A=a)\)</span> will not be equal to <span class="math notranslate nohighlight">\(P_{exp}\)</span>. To compensate for this, the reweighing technique assigns weights to instances according to the observed and expected probabilities. Subgroups with a lower probability than expected in the absence of historical bias will be assigned a high weight, while subgroups with a higher probability than expected will be assigned a lower weight.</p>
+<div class="admonition-reweighing admonition">
+<p class="admonition-title">Reweighing</p>
+<p>Kamiran and Calders<a class="footnote-reference brackets" href="#footcite-kamiran2012data" id="id3">1</a> restrict the approach to a single binary sensitive attribute <span class="math notranslate nohighlight">\(A\)</span> and a binary classification problem with target variable <span class="math notranslate nohighlight">\(Y\)</span>, where a positive prediction (<span class="math notranslate nohighlight">\(\hat{Y}=1\)</span>) corresponds to the desirable output for data subjects, i.e., receiving a benefit or avoiding a burden.</p>
+<p>The input of the algorithm is labeled dataset <span class="math notranslate nohighlight">\(D = \{X, Y, A\}\)</span>. Let <span class="math notranslate nohighlight">\(x(A)\)</span> be a function that retrieves the value of <span class="math notranslate nohighlight">\(A\)</span> for instance <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<ol class="simple">
+<li><p>Assuming <span class="math notranslate nohighlight">\(A\)</span> can take the values <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(a'\)</span>, and <span class="math notranslate nohighlight">\(Y\)</span> is either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, we partition the training data into four subgroups:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(D_{a, 1} := \{(x,y) \in D \mid x(A) = a \wedge x(Y) = 1 \}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{a, 0} := \{(x,y) \in D \mid x(A) = a \wedge x(Y) = 0 \}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{a', 1} := \{(x,y) \in D \mid x(A) = a' \wedge x(Y) = 1 \}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D_{a', 0} :=  \{(x,y) \in D \mid x(A) = a' \wedge x(Y) = 0 \}\)</span></p></li>
+</ul>
+</li>
+<li><p>Compute weights for each subgroup: <span class="math notranslate nohighlight">\(W_{a,y} = \frac{P_{{a,y}}^{exp}}{P_{{a,y}}^{obs}}\)</span>. Let <span class="math notranslate nohighlight">\(N := |D|\)</span> (i.e., be the total number of instances in the training data). Then, for each subgroup <span class="math notranslate nohighlight">\(D_{a,y}\)</span>, we have:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_{a,y}^{exp} = P(A=a) \times P(Y=y) = \frac{|\{ x \ in D \mid x(A) = a \}|}{N} \times \frac{|\{ x \ in D \mid x(Y) = y \}|}{N}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{{a,y}}^{obs} = P(A=a \wedge Y=y) = \frac{|\{ x \ in D \mid x(A) = a, x(Y) =y \}|}{N} = \frac{|D_{a,y}|}{N}\)</span></p></li>
+</ul>
+</li>
+<li><p>Learn a classifier, taking into consideration the subgroup weights <span class="math notranslate nohighlight">\(W_{a,y}\)</span> for all values of <span class="math notranslate nohighlight">\(a \in A\)</span> and <span class="math notranslate nohighlight">\(y \in Y\)</span>.</p></li>
+</ol>
+</div>
+<p>We can illustrate the reweighing technique with an example. Consider the toy data set displayed in <a class="reference internal" href="#toydatasetreweighing"><span class="std std-numref">Table 4</span></a>. Assuming <code class="docutils literal notranslate"><span class="pre">nationality</span></code> is considered a sensitive feature and a positive prediction (i.e., <span class="math notranslate nohighlight">\(\hat{Y}=1\)</span>) corresponds to a benefit, we can determine subgroup weights as follows.</p>
+<table class="colwidths-auto table" id="toydatasetreweighing">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Toy dataset to exemplify the reweighing technique.</span><a class="headerlink" href="#toydatasetreweighing" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Nationality</p></th>
+<th class="head"><p>Highest Degree</p></th>
+<th class="head"><p>Job Type</p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(Y\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>citizen</p></td>
+<td><p>university</p></td>
+<td><p>board</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>citizen</p></td>
+<td><p>high school</p></td>
+<td><p>board</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>citizen</p></td>
+<td><p>university</p></td>
+<td><p>education</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>noncitizen</p></td>
+<td><p>university</p></td>
+<td><p>healthcare</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>noncitizen</p></td>
+<td><p>none</p></td>
+<td><p>healthcare</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>noncitizen</p></td>
+<td><p>high school</p></td>
+<td><p>board</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>citizen</p></td>
+<td><p>university</p></td>
+<td><p>education</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>citizen</p></td>
+<td><p>none</p></td>
+<td><p>healthcare</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>noncitizen</p></td>
+<td><p>high school</p></td>
+<td><p>education</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>citizen</p></td>
+<td><p>university</p></td>
+<td><p>board</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>During training, each instance will be weighted by a weight determined via subgroup membership defined by the sensitive group and target variable. For example, consider instance 4. This instance is registered as <code class="docutils literal notranslate"><span class="pre">Nationality=noncitizen</span></code> and <span class="math notranslate nohighlight">\(Y=1\)</span>. To determine its weight, we need to consider the expected and observed probability of the subgroup it belongs to.</p>
+<p>Out of all 10 instances, instance 4 is the only instance corresponding to this combination of sensitive group membership and class. Therefore, the observed probability <span class="math notranslate nohighlight">\(P_{noncitizen, 1}^{obs} = 1/10\)</span>. The expected probability that would have occurred in the absence of an association between the sensitive feature and target variable can be computed by considering the probabilities of <code class="docutils literal notranslate"><span class="pre">Nationality=noncitizen</span></code> and <span class="math notranslate nohighlight">\(Y=1\)</span> in the full data set: <span class="math notranslate nohighlight">\(P_{noncitizen, 1}^{exp} = (4/10) \times (6/10) = 0.24\)</span>. Finally, the weight for instance 4 is equal to <span class="math notranslate nohighlight">\(W_{noncitizen, 1} = \frac{0.24}{0.1} = 2.4\)</span>.</p>
+</section>
+<section id="regularization">
+<span id="id4"></span><h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">#</a></h2>
+<p>Regularization is a common approach in machine learning to avoid the problem of <a class="reference internal" href="../../introduction/machinelearning/modelselection.html#model-selection"><span class="std std-ref">overfitting</span></a>. A regularization term is added to the loss function of the algorithm to penalize more complex solutions. In the case of logistic regression, the complexity is quantified in terms of the magnitude of the learned coefficients <span class="math notranslate nohighlight">\(\beta_j \in \Theta\)</span>, with <span class="math notranslate nohighlight">\(j \in \{1 ..., k\}\)</span>. In <span class="math notranslate nohighlight">\(L_1\)</span> regularization, also known as lasso regression, the absolute value of the magnitude of the coefficients is penalized: <span class="math notranslate nohighlight">\(\sum_{j=1}^k |\beta_{j}|\)</span>. In this way, the algorithm is encouraged to reduce coefficients to zero, resulting in a sparser model and (implicit) feature selection. In <span class="math notranslate nohighlight">\(L_2\)</span> regularization, also known as ridge regression, the algorithm is encouraged to shrink coefficients to zero - but not to entirely reduce them. This is achieved via a penalty term that considers the squared magnitude of the coefficients: <span class="math notranslate nohighlight">\(\sum_{j=1}^k \beta_{j}^2\)</span>.</p>
+<p>Several researchers have proposed to add another type of regularization to the loss function of the machine learning objective that is designed to penalize solutions that deviate from a fairness constraint. For example, Kamishima <em>et al.</em><a class="footnote-reference brackets" href="#footcite-kamishima2012fairness" id="id5">2</a> propose a logistic regression algorithm that employs a fairness regularizer designed to minimize the demographic parity difference.</p>
+<p>Specifically, given a training dataset <span class="math notranslate nohighlight">\(D = (X,A,Y)\)</span> and regression coefficients <span class="math notranslate nohighlight">\(\Theta\)</span>, the authors propose to use the following loss function:</p>
+<div class="math notranslate nohighlight">
+\[-L(D, \Theta) + \frac{\lambda}{2} |\Theta|_2^2 + \eta R(D, \Theta)\]</div>
+<p>The first term, <span class="math notranslate nohighlight">\(-L(D, \Theta)\)</span> corresponds to the (negative) maximum log-likelihood, which is the standard optimization objective of a logistic regression classifier. The second term, <span class="math notranslate nohighlight">\(\frac{\lambda}{2} |\Theta|_2^2\)</span> corresponds to the standard <span class="math notranslate nohighlight">\(L_2\)</span> regularization term to avoid overfitting, accompanied by hyperparameter <span class="math notranslate nohighlight">\(\lambda\)</span> which controls the amount of regularization. The third term, <span class="math notranslate nohighlight">\(\eta R(D, \Theta)\)</span>, introduces the fairness regularizer:</p>
+<div class="math notranslate nohighlight">
+\[ R(D, \Theta) = \sum*{(x, a) \in D} \sum*{y \in \{0, 1 \}} M[y \mid x, a, \Theta] \ln \frac{\hat{P}(y \mid a)}{\hat{P}(y)} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{P}(y)\)</span> and <span class="math notranslate nohighlight">\(\hat{P}(y \mid a)\)</span> correspond to approximations of the probability an instance belongs to class <span class="math notranslate nohighlight">\(y\)</span> and the probability an instance belongs to class <span class="math notranslate nohighlight">\(y\)</span> given sensitive group membership <span class="math notranslate nohighlight">\(a\)</span> respectively, and <span class="math notranslate nohighlight">\(M[y \mid x, a, \Theta]\)</span> corresponds to the conditional probability of a class given the features, sensitive features, and model parameters.</p>
+<p>It suffices to know that <span class="math notranslate nohighlight">\(R(D, \Theta)\)</span> becomes large when the approximate mutual information - a measure of association - between the predictions of the classifier and the sensitive feature is high. Similar to standard <span class="math notranslate nohighlight">\(l_2\)</span> regularization, the fairness regularizer is accompanied by a hyperparameter <span class="math notranslate nohighlight">\(\eta\)</span> that controls the amount of regularization. Larger values of <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\eta\)</span> correspond to higher amounts of regularization, and vice versa.</p>
+</section>
+<section id="decoupled-classification">
+<span id="id6"></span><h2>Decoupled Classification<a class="headerlink" href="#decoupled-classification" title="Permalink to this headline">#</a></h2>
+<p>The regularization approach described above is designed specifically for logistic regression models. In some cases, it might be difficult to fit a single model that performs well for all sensitive groups. To overcome this problem, researchers have proposed various meta-estimators: a wrapper around a standard machine learning algorithm, where fairness constraints are imposed through careful selection of an ensemble of classifiers.</p>
+<p>Dwork <em>et al.</em><a class="footnote-reference brackets" href="#footcite-dwork2018decoupled" id="id7">3</a> propose a decoupled classification system that acts as such a meta-estimator. The main procedure consists of two steps: (1) learn a set of classifiers for each sensitive group with varying selection rates, (2) from the set of learned classifiers, select one classifier for each group, such that the joint loss, a loss function designed to include both overall predictive performance and a fairness constraint, is minimized.</p>
+<p>The input of decoupled classification is a <span class="math notranslate nohighlight">\(C\)</span>-learning algorithm <span class="math notranslate nohighlight">\(M:(\mathcal{X},\mathcal{Y}) \rightarrow 2^C\)</span>, which returns one or more classifiers from a learning algorithm <span class="math notranslate nohighlight">\(C\)</span> with differing numbers of positive classifications on the training data. Note that it is possible to output a classifier with a varying number of positive classifications via <a class="reference internal" href="../../introduction/machinelearning/costsensitivelearning.html#cost-sensitive-learning"><span class="std std-ref">cost-sensitive learning</span></a> approaches such as decision threshold selection, reweighing, and sampling.</p>
+<p>From the set of classifiers generated in this step, exactly one classifier is selected for each sensitive group, resulting in ensemble <span class="math notranslate nohighlight">\(\gamma(C) = \{C_1, C_2, ..., C_k\}\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the number of sensitive groups. The ensemble is selected to minimize the joint loss. Provided the joint loss function satisfies a weak form of monotonicity, the decoupled classification approach can identify a decoupled solution that minimizes the joint loss for any off-the-shelf learning algorithm. Various notions of fairness, including <a class="reference internal" href="../groupfairnessmetrics.html#demographic-parity"><span class="std std-ref">demographic parity</span></a> and <a class="reference internal" href="../groupfairnessmetrics.html#equalized-odds"><span class="std std-ref">equalized odds</span></a>, can be represented in such a joint loss function.</p>
+<p>For example, let <span class="math notranslate nohighlight">\(L\)</span> correspond to the overall loss and <span class="math notranslate nohighlight">\(p_a\)</span> to the faction of positively classified examples among instances of group <span class="math notranslate nohighlight">\(a\)</span>. Then, the joint loss related to demographic parity can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\lambda L + (1-\lambda) \sum_{k=1}^K \mid p_k - \frac{1}{K} \sum_{k'=1}^K p_{k'} \mid \]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> represents a hyperparameter that controls the relative importance of demographic parity over the overall loss.</p>
+<div class="admonition-decoupled-classification admonition">
+<p class="admonition-title">Decoupled Classification</p>
+<p>The decoupled classification algorithm takes as input a <span class="math notranslate nohighlight">\(C\)</span>-learning algorithm <span class="math notranslate nohighlight">\(M\)</span> and a dataset <span class="math notranslate nohighlight">\(D={X,Y,A}\)</span>, where <span class="math notranslate nohighlight">\(X\)</span> corresponds to features, <span class="math notranslate nohighlight">\(Y\)</span> the target variable, and <span class="math notranslate nohighlight">\(A\)</span> a sensitive feature. Let <span class="math notranslate nohighlight">\(x(A)\)</span> be a function that retrieves the value of <span class="math notranslate nohighlight">\(A\)</span> for instance <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<ol class="simple">
+<li><p>Partition the data by sensitive group and run the learning algorithm on each group: for all <span class="math notranslate nohighlight">\(a \in A\)</span>, learn a classifier <span class="math notranslate nohighlight">\(C_a = M(\{(x,y) \in D \mid x(A)=a\})\)</span>. Within each group, the learner outputs one or more classiffers of differing numbers of positives.</p></li>
+<li><p>Return <span class="math notranslate nohighlight">\(\gamma(C)\)</span>, a set of classifiers selected from the classifiers generated in the previous step, such that the joint loss is minimized.</p></li>
+</ol>
+</div>
+<p>A potential problem is that the number of instances that belong to a particular sensitive group may be insufficient to learn an accurate classifier for that group. In addition to the simple procedure described above, the authors therefore also introduce a simple transfer learning algorithm that allows taking into consideration out-group instances, down-weighted compared to in-group instances.</p>
+</section>
+<section id="adversarial-learning">
+<span id="id8"></span><h2>Adversarial Learning<a class="headerlink" href="#adversarial-learning" title="Permalink to this headline">#</a></h2>
+<p>Another approach that can be used to introduce fairness constraints during training is adversarial learning. Adversarial learning was first introduced in the context of Generative Adversarial Networks (GAN) for image generation <a class="footnote-reference brackets" href="#footcite-goodfellow2014generative" id="id9">4</a>.
+A detailed description of GANs is outside of the scope of these lecture notes. It suffices to know that GANs are a set of deep learning frameworks consisting of two neural networks that compete in a zero-sum game. In image generation, for example, one model learns to generate new data, while the other network predicts whether the generated data belongs to the original data set or not. The first network is penalized if the second network can accurately discern whether the image was generated by the first network or was sampled from the original data distribution.</p>
+<p>Zhang <em>et al.</em><a class="footnote-reference brackets" href="#footcite-zhang2018mitigating" id="id10">5</a> introduce a fairness-aware machine learning approach that leverages an adversarial learning framework to enforce a fairness constraint. The framework consists of two neural networks: a predictor model, which is designed to accurately predict the target variable, and an adversarial model, which is designed to predict the violation of a fairness constraint (<a class="reference internal" href="#adversariallearning"><span class="std std-numref">Fig. 6</span></a>). The loss of the adversarial model <span class="math notranslate nohighlight">\(L_{adv}(\hat{a},a)\)</span> is used to penalize the loss of the predictor model, <span class="math notranslate nohighlight">\(L_{pred}(\hat{y},y)\)</span>, such that the predictor is encouraged to ensure the adversarial model performs poorly.</p>
+<figure class="align-center" id="adversariallearning">
+<a class="reference external image-reference" href="none"><img alt="../../_images/adversariallearning.svg" src="../../_images/adversariallearning.svg" width="500px" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">The adversarial learning technique consists of two neural networks: a predictor model, which is designed to minimize the standard loss <span class="math notranslate nohighlight">\(L_{pred}(\hat{Y},Y)\)</span> and an adversarial model, which is designed to minimize a loss function related to violation of a fairness constraint, <span class="math notranslate nohighlight">\(L_{adv}(\hat{a},a)\)</span>.</span><a class="headerlink" href="#adversariallearning" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The authors introduce two variations of the framework, that optimize for either <a class="reference internal" href="../groupfairnessmetrics.html#demographic-parity"><span class="std std-ref">demographic parity</span></a> or <a class="reference internal" href="../groupfairnessmetrics.html#equalized-odds"><span class="std std-ref">equalized odds</span></a>. When the goal is to achieve demographic parity, the adversary is designed to predict sensitive feature <span class="math notranslate nohighlight">\(A\)</span> based on the predicted probabilities <span class="math notranslate nohighlight">\(\hat{Y}\)</span> of the predictor model. When the goal is to achieve equalized odds, the adversary must predict the sensitive feature <span class="math notranslate nohighlight">\(A\)</span>, taking as input both the predicted probabilities <span class="math notranslate nohighlight">\(\hat{Y}\)</span> and the ground-truth variable <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id11">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-kamiran2012data"><span class="brackets">1</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>)</span></dt>
+<dd><p>Faisal Kamiran and Toon Calders. Data preprocessing techniques for classification without discrimination. <em>Knowledge and information systems</em>, 33(1):1–33, 2012.</p>
+</dd>
+<dt class="label" id="footcite-kamishima2012fairness"><span class="brackets"><a class="fn-backref" href="#id5">2</a></span></dt>
+<dd><p>Toshihiro Kamishima, Shotaro Akaho, Hideki Asoh, and Jun Sakuma. Fairness-aware classifier with prejudice remover regularizer. In <em>Machine Learning and Knowledge Discovery in Databases: European Conference, ECML PKDD 2012, Bristol, UK, September 24-28, 2012. Proceedings, Part II 23</em>, 35–50. Springer, 2012.</p>
+</dd>
+<dt class="label" id="footcite-dwork2018decoupled"><span class="brackets"><a class="fn-backref" href="#id7">3</a></span></dt>
+<dd><p>Cynthia Dwork, Nicole Immorlica, Adam Tauman Kalai, and Max Leiserson. Decoupled classifiers for group-fair and efficient machine learning. In <em>Conference on fairness, accountability and transparency</em>, 119–133. PMLR, 2018.</p>
+</dd>
+<dt class="label" id="footcite-goodfellow2014generative"><span class="brackets"><a class="fn-backref" href="#id9">4</a></span></dt>
+<dd><p>Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio. Generative adversarial nets. <em>Advances in neural information processing systems</em>, 2014.</p>
+</dd>
+<dt class="label" id="footcite-zhang2018mitigating"><span class="brackets"><a class="fn-backref" href="#id10">5</a></span></dt>
+<dd><p>Brian Hu Zhang, Blake Lemoine, and Margaret Mitchell. Mitigating unwanted biases with adversarial learning. In <em>Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society</em>, 335–340. 2018.</p>
+</dd>
+</dl>
+</div>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<hr class="footnotes docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fairness/fairml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="preprocessing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Pre-processing Algorithms</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="postprocessing.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Post-processing Algorithms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2024.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

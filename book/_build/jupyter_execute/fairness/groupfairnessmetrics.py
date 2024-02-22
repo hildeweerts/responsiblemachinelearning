@@ -22,7 +22,7 @@
 # 
 # As a running example, we train a logistic regression model on a synthetic hiring data set.
 # 
-# The data set has a few features that can be used for predictions, including `years_of_experience`, the `test_score` of an applicant on a job-related test, the `interview_score` that is provided by person who interviewed the candidate, the `average_grade` the applicant achieved in their highest degree, and finally the applicant's `gender`. The target variable is `hired`.
+# The data set has a few features that can be used for predictions, including `years_of_experience`, the `test_score` of an applicant on a job-related test, the `interview_score` that is provided by the person who interviewed the candidate, the `average_grade` the applicant achieved in their highest degree, and finally the applicant's `gender`. The target variable is `hired`.
 
 # In[1]:
 
@@ -64,9 +64,11 @@ lr.fit(X_train, y_train)
 # 
 # When we think of discrimination, an intuitive notion of fairness is independence: whether an individual receives a particular output, should not depend on sensitive group membership. For example, in our hiring scenario, one may argue that whether an applicant is hired should not depend on their gender.
 # 
+# (demographic_parity)=
+# 
 # ### Demographic parity
 # 
-# The first criterion that we will discuss is _demographic parity_. In a classification scenario, demographic parity requires that, for all values of $y$ and $a$:
+# The first criterion that we will discuss is _demographic parity_. In a classification scenario, demographic parity requires that for all values of $y$ and $a$:
 # 
 # $$P(\hat{Y} = y \mid A = a) = P(\hat{Y} = y \mid A = a')$$
 # 
@@ -182,6 +184,8 @@ display(mf.difference())
 # ## Misclassification Rates
 # 
 # The second set of fairness metrics that we will consider are related to misclassification rates.
+# 
+# (equalized_odds)=
 # 
 # ### Equalized Odds
 # 

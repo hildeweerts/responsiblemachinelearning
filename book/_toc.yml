@@ -18,7 +18,9 @@ parts:
       - file: fairness/groupfairnessmetrics
       - file: fairness/fairml/introduction
         sections:
-          - file: fairness/fairml/groupspecificthresholds
+          - file: fairness/fairml/preprocessing
+          - file: fairness/fairml/constrainedlearning
+          - file: fairness/fairml/postprocessing
       - file: fairness/interdisciplinary/introduction
         sections:
           - file: fairness/interdisciplinary/sociotechnical

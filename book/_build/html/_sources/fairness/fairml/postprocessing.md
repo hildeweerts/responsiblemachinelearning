@@ -1,18 +1,18 @@
-(group_specific_thresholds)=
+(fairml_post_processing)=
 
-# Group-Specific Decision Thresholds
+# Post-processing Algorithms
 
 ```{warning}
 This section is still under construction.
 ```
 
-<!-- ## Decision Thresholds
-
 ## Reject-Option Classification
 
 ## Randomized Decision Thresholds
 
-## References -->
+## Leaf Relabelling
+
+## References
 
 ```{footbibliography}
 

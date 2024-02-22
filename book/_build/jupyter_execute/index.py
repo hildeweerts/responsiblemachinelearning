@@ -21,7 +21,7 @@ glue("today", date.today().strftime('%Y-%m-%d'))
 # 
 # ---
 # 
-# With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of machine learning algorithms: algorithms that build mathematical models by 'learning' from data. Nowadays, machine learning models are integrated in many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits, but are not without risks.
+# With the advent of large-scale data collection, the toolkit of a data scientist has proven to be a powerful way to make products and processes faster, cheaper, and better. Many data science applications make use of machine learning algorithms: algorithms that build mathematical models by 'learning' from data. Nowadays, machine learning models are integrated into many computer systems: from music recommendations to automated fraud detection, facial recognition systems, and personalized medicine assistants. These systems can provide benefits but are not without risks.
 # 
 # A responsible data scientist understands the potential harm of machine learning models and how to mitigate the risks. This online book provides a practical introduction to the nascent field of responsible machine learning. The goal of this book is to provide a practical approach, building a bridge between philosophical, social, and technical perspectives.
 # 

@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Group-Specific Decision Thresholds" href="groupspecificthresholds.html" />
+    <link rel="next" title="Pre-processing Algorithms" href="preprocessing.html" />
     <link rel="prev" title="Group Fairness Metrics" href="../groupfairnessmetrics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -174,8 +174,18 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="groupspecificthresholds.html">
-     Group-Specific Decision Thresholds
+    <a class="reference internal" href="preprocessing.html">
+     Pre-processing Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="constrainedlearning.html">
+     Constrained Learning Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="postprocessing.html">
+     Post-processing Algorithms
     </a>
    </li>
   </ul>
@@ -470,18 +480,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pre-processing">
-   Pre-Processing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#constrained-learning">
-   Constrained Learning
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#post-processing">
-   Post-Processing
+  <a class="reference internal nav-link" href="#fairness-aware-machine-learning-algorithms">
+   Fairness-aware Machine Learning Algorithms
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -514,18 +514,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pre-processing">
-   Pre-Processing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#constrained-learning">
-   Constrained Learning
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#post-processing">
-   Post-Processing
+  <a class="reference internal nav-link" href="#fairness-aware-machine-learning-algorithms">
+   Fairness-aware Machine Learning Algorithms
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -545,33 +535,63 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="fairness-aware-machine-learning">
 <span id="fairml"></span><h1>Fairness-Aware Machine Learning<a class="headerlink" href="#fairness-aware-machine-learning" title="Permalink to this headline">#</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This chapter is still under construction.</p>
-</div>
-<p>Fairness-aware machine learning algorithms are algorithmic interventions aimed at mitigating unfairness. A typical approach is to formulate unfairness mitigation as an optimization task, with the goal to achieve high predictive performance whilst satisfying a fairness constraint.</p>
+<p>So far, we have covered various ways in which machine learning systems can result in unfair outcomes, several biases that lie at the root of fairness-related harm, and a set of metrics that can be used to measure harm. A natural question, then, is: how can we ensure that our machine learning model adheres to a certain fairness constraint? Over the past few years, computer scientists have been productive in developing various algorithms aimed at mitigating unfairness.</p>
 <section id="no-fairness-through-unawareness">
 <h2>No Fairness Through Unawareness<a class="headerlink" href="#no-fairness-through-unawareness" title="Permalink to this headline">#</a></h2>
-<p>Now, you may wonder: if we want to avoid fairness-related harm, why don’t we just remove the sensitive feature, i.e., the feature that represents a sensitive characteristic in our data set? Unfortunately, it is not that simple.</p>
-<p>While removing a sensitive feature ensures the model cannot explicitly use a sensitive feature as input to a prediction, machine learning models will often still be able to replicate the association between a sensitive feature and the target variable. In its simplest form, one of the remaining features in the data set may act as a proxyvariable for a sensitive feature. The use of proxy variables is common in cases of (subconscious and conscious) discrimination by human actors. A classical example is redlining, a practice in the United States where people were systematically denied services based on their postal code. Neighborhoods that were deemed “too risky” were outlined on the map in the color red. Although postal code may appear to be a neutral feature, it was highly correlated with race. As services were mostly denied in predominantly African-American neighborhoods, African-Americans were indirectly discriminated against. Another example can be found in loan applications. Imagine we want to avoid allocation harm across genders. We decide to exclude the feature that represents gender from our data set, to avoid any direct discrimination. However, if we do include occupation, an attribute which is highly gendered in many societies, the model can still identify historical patterns of gender bias. Here, occupation acts as a proxyvariable for gender: occupation is highly associated with gender.</p>
-<p>This is not just a hypothetical problem. <strong>Machine learning algorithms are specifically designed to identify relationships between features in a data set. If undesirable patterns exist within the data, it is very likely that a machine learning model will replicate it.</strong> Removing all possible proxy variables is usually not a viable approach. First of all, it is not always possible to anticipate the patterns through which the sensitive feature can be approximated by the model. Several features that are slightly predictive of the sensitive feature might, taken together, be an accurate predictor of the sensitive feature. Second, apart from their relation with the sensitive feature, proxy variables may provide information that is predictive of the target feature. Removing all features that are slightly related to the sensitive feature could therefore substantially reduce the predictive performance of the model.</p>
-<p>Clearly, removing sensitive feature is unlikely to prevent allocation harm, which can still occur in the form of indirect effects. Similarly, patterns of stereotyping and denigration can be deeply embedded in (unstructured) data such as text. Quality-of-service harm, representation harm, and denigration harm can be caused by a lack of informativeness of the data that is available for these groups, which is not solved by removing the sensitive feature either. <strong>To conclude, removing sensitive features is only helpful in achieving a very narrow definition of fairness.</strong> The practical consequence is that it is unlikely that this approach will prevent real-world harm.</p>
+<p>Now, you may wonder: if we wish to avoid fairness-related harm, why don’t we just remove the sensitive feature from our data set? Unfortunately, it is not that simple.</p>
+<p>While removing a sensitive feature ensures the model cannot explicitly use a sensitive feature as input to a prediction, machine learning models will often still be able to replicate the association between a sensitive feature and the target variable. In its simplest form, one of the remaining features in the data set may act as a proxy variable for a sensitive feature. The use of proxy variables is common in cases of (subconscious and conscious) discrimination by human actors. A classical example is redlining, a practice in the United States where people were systematically denied services based on their postal code. Neighborhoods that were deemed “too risky” were outlined on the map in the color red. Although postal code may appear to be a neutral feature, it was highly correlated with race. As services were mostly denied in predominantly African-American neighborhoods, African Americans were disproportionately affected by this practice. Another example can be found in loan applications. Imagine we want to avoid allocation harm across genders. We can decide to exclude the feature that represents gender from our data set, to avoid any direct discrimination. However, if we do include occupation, an attribute that is highly gendered in many societies, the model can still identify historical patterns of gender bias. Here, occupation can unintentionally act as a proxy variable for gender.</p>
+<p>As an increasing number of empirical evidence highlights, this is not just a hypothetical problem <a class="footnote-reference brackets" href="#footcite-kamiran2012data" id="id1">1</a> <a class="footnote-reference brackets" href="#footcite-kamishima2012fairness" id="id2">2</a>. Machine learning algorithms are specifically designed to identify relationships between features in a data set. If undesirable patterns exist within the data, a machine learning model will likely replicate it. Removing all possible proxy variables is usually not a viable approach. First of all, it is not always possible to anticipate the patterns through which the sensitive feature can be approximated by the model. Several features that are slightly predictive of the sensitive feature might, taken together, accurately predict a sensitive feature. Second, apart from their relation with the sensitive feature, proxy variables may provide information that is predictive of the target feature. Removing all features that are slightly related to the sensitive feature could therefore substantially reduce the predictive performance of the model.</p>
+<p>Removing sensitive features is unlikely to prevent allocation harm, which can still occur in the form of indirect effects. Similarly, patterns of stereotyping and denigration can be deeply embedded in (unstructured) data such as text. Quality-of-service harm, representation harm, and denigration harm can be caused by a lack of informativeness of the data that is available for these groups, which is not solved by removing the sensitive feature either. To conclude, removing sensitive features is only helpful in achieving an extremely narrow notion of fairness. The practical consequence is that it is unlikely that this approach will prevent real-world harm.</p>
 </section>
-<section id="pre-processing">
-<h2>Pre-Processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="constrained-learning">
-<h2>Constrained Learning<a class="headerlink" href="#constrained-learning" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="post-processing">
-<h2>Post-Processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">#</a></h2>
+<section id="fairness-aware-machine-learning-algorithms">
+<h2>Fairness-aware Machine Learning Algorithms<a class="headerlink" href="#fairness-aware-machine-learning-algorithms" title="Permalink to this headline">#</a></h2>
+<p>A common approach in computer science literature on algorithmic fairness is to formulate unfairness mitigation as an optimization task, to achieve high predictive performance whilst satisfying a fairness constraint. Generally speaking, we can distinguish three types of approaches that intervene in different parts of the machine learning process.</p>
+<ul class="simple">
+<li><p><strong>Pre-processing algorithms.</strong> Pre-processing algorithms make adjustments to the data to mitigate the unfairness of the downstream machine learning model.
+Most pre-processing algorithms are designed to obscure undesirable associations between one or more sensitive features and the target variable of the model.</p></li>
+<li><p><strong>Constrained learning algorithms.</strong> Constrained learning techniques directly incorporate a fairness constraint in the learning algorithm, typically by adjusting existing learning paradigms. For example, a typical constrained learning approach adjusts the loss function of an existing machine learning algorithm to penalize unfair predictions. This category also includes wrapper methods, which enforce fairness constraints via optimization external to the machine learning algorithm itself, such as hyperparameter optimization or ensemble learning.</p></li>
+<li><p><strong>Post-processing algorithms.</strong> Post-processing approaches adjust an existing model, either through post-processing predictions (e.g., by shifting the decision thresholds) or by adjusting the learned model parameters directly (e.g., the coefficients of a linear regression model or the labels assigned to the leaves of a decision tree.)</p></li>
+</ul>
+<p>The dividing line between different approaches is not always clear-cut. For example, data resampling straddles between pre-processing and constrained learning approaches, while decision threshold optimization can be implemented as a metric-agnostic hyperparameter search or a post-processing approach that takes into consideration the nature of the fairness constraint that is to be enforced.</p>
+<p>In the remainder of this chapter, we will discuss several simple fairness-aware machine learning algorithms. The goal is not to present a comprehensive overview of all the different techniques that have been proposed in the algorithmic fairness literature. Instead, these examples allow you to develop an intuition of the advantages, disadvantages, and limitations of the fairness-aware machine learning paradigm.</p>
 <div class="tip admonition">
-<p class="admonition-title">Summary</p>
-<p>…</p>
+<p class="admonition-title">Chapter Summary</p>
+<p><a class="reference internal" href="preprocessing.html#fairml-pre-processing"><span class="std std-ref"><strong>Pre-processing Algorithms</strong></span></a></p>
+<p>Pre-processing algorithms make adjustments to the data to mitigate the unfairness of the downstream machine learning model. In this section, we will discuss the following approaches:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="preprocessing.html#relabeling"><span class="std std-ref">Relabelling</span></a></p></li>
+<li><p><a class="reference internal" href="preprocessing.html#representation-learning"><span class="std std-ref">Representation learning</span></a></p></li>
+</ul>
+<p><a class="reference internal" href="constrainedlearning.html#fairml-constrained-learning"><span class="std std-ref"><strong>Constrained Learning Algorithms</strong></span></a></p>
+<p>Constrained learning techniques directly incorporate a fairness constraint in the learning algorithm, typically by adjusting existing learning paradigms. In this section, we will discuss the following approaches:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="constrainedlearning.html#reweighing"><span class="std std-ref">Reweighing</span></a></p></li>
+<li><p><a class="reference internal" href="constrainedlearning.html#regularization"><span class="std std-ref">Regularization</span></a></p></li>
+<li><p><a class="reference internal" href="constrainedlearning.html#decoupled-classification"><span class="std std-ref">Decoupled Classification</span></a></p></li>
+<li><p><a class="reference internal" href="constrainedlearning.html#adversarial-learning"><span class="std std-ref">Adversarial Learning</span></a></p></li>
+</ul>
+<p><a class="reference internal" href="postprocessing.html#fairml-post-processing"><span class="std std-ref"><strong>Post-processing Algorithms</strong></span></a></p>
+<p>Post-processing approaches adjust an existing model, either through post-processing predictions or by adjusting the learned model parameters directly. In this section, we will discuss the following approaches:</p>
+<ul class="simple">
+<li><p>Reject-Option Classification</p></li>
+<li><p>Randomized Decision Thresholds</p></li>
+<li><p>Leaf Relabelling</p></li>
+</ul>
 </div>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id3">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-kamiran2012data"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Faisal Kamiran and Toon Calders. Data preprocessing techniques for classification without discrimination. <em>Knowledge and information systems</em>, 33(1):1–33, 2012.</p>
+</dd>
+<dt class="label" id="footcite-kamishima2012fairness"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Toshihiro Kamishima, Shotaro Akaho, Hideki Asoh, and Jun Sakuma. Fairness-aware classifier with prejudice remover regularizer. In <em>Machine Learning and Knowledge Discovery in Databases: European Conference, ECML PKDD 2012, Bristol, UK, September 24-28, 2012. Proceedings, Part II 23</em>, 35–50. Springer, 2012.</p>
+</dd>
+</dl>
+</div>
+<hr class="footnotes docutils" />
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -611,10 +631,10 @@ title="Print to PDF"
             <p class="prev-next-title">Group Fairness Metrics</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="groupspecificthresholds.html" title="next page">
+    <a class='right-next' id="next-link" href="preprocessing.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Group-Specific Decision Thresholds</p>
+        <p class="prev-next-title">Pre-processing Algorithms</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

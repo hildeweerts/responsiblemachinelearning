@@ -72,7 +72,7 @@ How can we evaluate the predictive performance of our model and ensure we select
 
 ## Performance metrics based on the predicted class
 
-The confusion matrix is a basic tool that indicates how well a classification model performs for different classes. One axis displays the true labels and the other axis the predicted labels. Each cell $C_{i,j}$ shows the number of instances in some class $i$ that were predicted to be class $j$. Despite its name, this matrix is not supposed to confuse you, but visualizes whether the classifier is confusing particular classes (i.e., misclassifying one as another). In a binary classification problem, the confusion matrix contains the number of true positives (tp), false positives (fp), true negatives (tn), and false negatives (fn).
+The confusion matrix is a basic tool that indicates how well a classification model performs for different classes. One axis displays the true labels and the other axis the predicted labels. Each cell $C_{i,j}$ shows the number of instances in some class $i$ that were predicted to be class $j$. Despite its name, this matrix is not supposed to confuse you. It visualizes whether the classifier is confusing particular classes (i.e., misclassifying one as another). In a binary classification problem, the confusion matrix contains the number of true positives (tp), false positives (fp), true negatives (tn), and false negatives (fn).
 
 ```{list-table} The structure of a confusion matrix of a binary classification problem. In practice, the cells will contain the number of observations of each type.
 :header-rows: 1
@@ -140,11 +140,11 @@ Many popular predictive performance metrics for binary classification problems c
 
 ### Accuracy
 
-Accuracy is one of the simplest measures for predictive performance. It can be defined as the fraction of predictions the model predicted correctly (see {numref}`metrics`).
+Accuracy is one of the simplest measures of predictive performance. It can be defined as the fraction of predictions the model predicted correctly (see {numref}`metrics`).
 
 Note that accuracy does not differentiate between mistakes made for one class versus mistakes made for another class. As a result, **accuracy can be a misleading metric when we are dealing with imbalanced data**, which occurs when the number of instances per class differs greatly across classes.
 
-For example, consider fraud detection in bank transactions. The number of legal transactions typically greatly outnumbers the number of illegal transactions. Let's say that for every 99999 transactions there is 1 illegal transaction. In this scenario, a model that predicts every transaction to be legitimate will receive an incredibly high accuracy score: 0.99999. Of course, the practical utility of this model is very low.
+For example, consider fraud detection in bank transactions. The number of legal transactions typically greatly outnumbers the number of illegal transactions. Let's say that for every 99999 transactions, there is 1 illegal transaction. In this scenario, a model that predicts every transaction to be legitimate will receive an incredibly high accuracy score: 0.99999. Of course, the practical utility of this model is very low.
 
 ```{code-cell} ipython3
 from sklearn.metrics import accuracy_score
@@ -186,7 +186,7 @@ Compared to the accuracy score we computed earlier, misclassification rates give
 
 Precision, recall, and the F1-score were originally introduced in the context of information retrieval, a domain concerned with retrieving information (text, audio, images, data, etc.) based on a query. An example of an information retrieval system is a search engine. Developers of information retrieval systems are often concerned with the _relevance_ of the retrieved results, which can be quantified using precision and recall.
 
-Precision is the defined as the fraction of retrieved documents that were actually relevant (i.e., how precise is the retrieved result?). In a general classification problem, the metric is defined as the fraction of positive instances among the predicted positive instances. Recall, on the other hand, is defined as the fraction of all relevant documents that were successfully retrieved (i.e., how many of the relevant documents are recalled?). In a classification setting, recall refers to the amount of positive instances the model classified as such from all positive instances in the data set, which is equivalent to the true positive rate.
+Precision is defined as the fraction of retrieved documents that were actually relevant (i.e., how precise is the retrieved result?). In a general classification problem, the metric is defined as the fraction of positive instances among the predicted positive instances. Recall, on the other hand, is defined as the fraction of all relevant documents that were successfully retrieved (i.e., how many of the relevant documents are recalled?). In a classification setting, recall refers to the number of positive instances the model classified as such from all positive instances in the data set, which is equivalent to the true positive rate.
 
 Often, there is an inverse relationship between precision and recall, which is referred to as the precision-recall trade-off. In practice, we might find both precision and recall important. This is where the f1-score comes in, which is defined as the harmonic mean of precision and recall. The f1-score is just one way to aggregate precision and recall. Importantly, this makes the score only relevant in scenarios where we believe precision and recall are equally important. There also exists a more general $F_{\beta}$-score, where $\beta$ is chosen such that recall is considered $\beta$ times as important as precision.
 
@@ -229,7 +229,7 @@ npv: {:.2f}
 
 (performancemetricsscore)=
 
-## Performance metrics based on model's predicted score
+## Performance metrics based on the predicted scores
 
 The evaluation metrics discussed so far are only defined for predicted classes. However, many machine learning algorithms do not directly output a class, but a confidence score which indicates the confidence of the model that an instance belongs to a certain class.
 
@@ -251,7 +251,7 @@ print('confidence scores positive class: {}'.format(y_score))
 ```{note}
 :class: tip
 
-In scikit-learn, `predict_proba()` returns an array of shape `(n_samples, n_classes)`. To get the confidence scores for the positive class, we need to select the part of the `numpy.ndarray` that corresponds to the positive predictions. In the binary classification scenario with class $0$ and $1$, this corresponds to the second value for each sample, i.e., `[:, 1]]`).
+In scikit-learn, `predict_proba()` returns an array of shape `(n_samples, n_classes)`. To get the confidence scores for the positive class, we need to select the part of the `numpy.ndarray` that corresponds to the positive predictions. In the binary classification scenario with class $0$ and $1$, this corresponds to the second value for each sample, i.e., `[:, 1]]`.
 ```
 
 Based on the confidence score, we can decide how to classify an instance. In a binary classification scenario, this is typically done using a decision threshold: the cut-off value of the model's confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives (see also {ref}`cost_sensitive_learning`).
@@ -276,15 +276,15 @@ plt.legend()
 plt.show()
 ```
 
-To quantify the aggregate classification performance of the machine learning model, the ROC curve can be summarized as the Area Under the ROC curve (AUC). For a binary classification problem, an AUC of 0.5 is equal to a classifier that makes random predictions. An AUC of 1 corresponds to perfect separation between the positive and negative class.
+To quantify the aggregate classification performance of the machine learning model, the ROC curve can be summarized as the Area Under the ROC curve (AUC). For a binary classification problem, an AUC of 0.5 is equal to a classifier that makes random predictions. An AUC of 1 corresponds to perfect separation between the positive and negative classes.
 
-AUC can be useful to compare the aggregate predictive performance of different models during model selection. However, **AUC summarizes the performance of the model across all possible decision thresholds. To actually use the model for classifying intances, you still need to choose a decision threshold.** As such, unlike confusion-based metrics, AUC typically does not directly correspond to real-world constraints or objectives. For example, in fraud detection, we may want to limit the expected number of false positives such that it is still humanly possible for fraud analysts to process all fraud alerts. Similarly, there may be different costs associated with false positives and false negatives making specific subspaces of the ROC curve more attractive than others.
+AUC can be useful to compare the aggregate predictive performance of different models during model selection. However, **AUC summarizes the performance of the model across all possible decision thresholds. To actually use the model for classifying instances, you still need to choose a decision threshold.** As such, unlike confusion-based metrics, AUC typically does not directly correspond to real-world constraints or objectives. For example, in fraud detection, we may want to limit the expected number of false positives such that it is still humanly possible for fraud analysts to process all fraud alerts. Similarly, there may be different costs associated with false positives and false negatives making specific subspaces of the ROC curve more attractive than others.
 
 (precision_recall_curve)=
 
 ### Precision-Recall Curve
 
-In some problems it may be valuable to evaluate the precision-recall trade-off across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall, but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a precision-recall curve can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using average precision, which is the average precision score over all recall values.
+In some problems, it may be valuable to evaluate the precision-recall trade-off across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a precision-recall curve can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using average precision, which is the average precision score computed over all recall values.
 
 ```{code-cell} ipython3
 from sklearn.metrics import average_precision_score, PrecisionRecallDisplay
@@ -303,7 +303,7 @@ plt.show()
 
 ## Model Calibration
 
-The confidence score is sometimes referred to as the predicted probability. However, **the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities**. Calibration is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that actually belongs to the positive class is also 0.7. Calibration can be an important characteristic when confidence scores are used for decision-making by domain experts. In particular, a decision threshold for calibrated scores can be directly interpreted in term of different misclassification costs. For example, if a calibrated confidence score is used for suggesting a specific treatment in clinical decision-making, a decision threshold of 0.1 means that we accept up to 9 false positives (i.e., unnecessary treatments) for each true positive. Such a direct connection between misclassification rates and a particular decision threshold cannot be made for uncalibrated scores - although we can still, of course, compute precision to draw similar conclusions.
+The confidence score is sometimes referred to as the predicted probability. However, **the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities**. Calibration is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that belong to the positive class is also 0.7. Calibration can be an important characteristic when confidence scores are used for decision-making by domain experts. In particular, a decision threshold for calibrated scores can be directly interpreted in terms of different misclassification costs. For example, if a calibrated confidence score is used for suggesting a specific treatment in clinical decision-making, a decision threshold of 0.1 means that we accept up to 9 false positives (i.e., unnecessary treatments) for each true positive. Such a direct connection between misclassification rates and a particular decision threshold cannot be made for uncalibrated scores - although we can still, of course, compute precision to draw similar conclusions.
 
 You can assess how well a model is calibrated using a calibration curve, which sets out the mean predicted probability against the fraction of positives.
 
@@ -323,6 +323,6 @@ disp = CalibrationDisplay.from_predictions(y_true=y_test, y_prob=y_pred)
 plt.show()
 ```
 
-The calibration 'curve' of discrete predictions is closely related to the positive and negative predictive value. The fraction of positives at mean predicted value of `1` corresponds to the number of true positives out of all predicted positives, which is exactly the definition of the positive predictive value. The fraction of positives for the mean predicted value of `0` is equal to the fraction of false negetatives out of all predicted negatives, which is exactly $1-npv$. As such, we can summarize the calibration of binary predictions using the predictive values.
+The calibration 'curve' of discrete predictions is closely related to the positive and negative predictive value. The fraction of positives with an average predicted value of `1` corresponds to the number of true positives out of all predicted positives, which is exactly the definition of the positive predictive value. The fraction of positives for the mean predicted value of `0` is equal to the fraction of false negatives out of all predicted negatives, which is exactly $1-npv$. As such, we can summarize the calibration of binary predictions using the predictive values.
 
 There exist techniques to post-process confidence scores such that they are better calibrated. A discussion of these techniques is outside of the scope of this book. We refer interested readers to the [user guide of scikit-learn](https://scikit-learn.org/stable/modules/calibration.html#calibrating-a-classifier), which provides a useful introduction to the topic.

@@ -194,7 +194,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../fairness/interdisciplinary/introduction.html">
-   Interdisciplinary Insights
+   Interdisciplinary Perspectives on Fair-ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -203,13 +203,18 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/interdisciplinary/sociotechnical.html">
-     Socio-technical Systems: Abstraction Traps
+    <a class="reference internal" href="../../fairness/interdisciplinary/ethics.html">
+     Moral Philosophy: Choosing the “Right” Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../fairness/interdisciplinary/ethics.html">
-     Moral Philosophy: Choosing the “Right” Fairness Metrics
+    <a class="reference internal" href="../../fairness/interdisciplinary/law.html">
+     Law: Fairness and Discrimination
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/interdisciplinary/sociotechnical.html">
+     Socio-technical Systems: Abstraction Traps
     </a>
    </li>
   </ul>
@@ -226,7 +231,12 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../fairness/tutorials/measuringgroupfairness.html">
-     Measuring Group Fairness in Pre-Trial Risk Assessment
+     Measuring Group Fairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../fairness/tutorials/fairnessawareclassification.html">
+     Fairness-Aware Classification
     </a>
    </li>
   </ul>
@@ -1001,7 +1011,7 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 </div>
 <p>Based on the confidence score, we can decide how to classify an instance. In a binary classification scenario, this is typically done using a decision threshold: the cut-off value of the model’s confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives (see also <a class="reference internal" href="costsensitivelearning.html#cost-sensitive-learning"><span class="std std-ref">Cost-Sensitive Learning</span></a>).</p>
 <section id="roc-curve">
-<h3>ROC curve<a class="headerlink" href="#roc-curve" title="Permalink to this headline">#</a></h3>
+<span id="id2"></span><h3>ROC curve<a class="headerlink" href="#roc-curve" title="Permalink to this headline">#</a></h3>
 <p>A popular tool for investigating the trade-off between false positives and false negatives is the Receiver Operating Characteristic curve (ROC curve`). <strong>The ROC curve plots the true positive rate against the false positive rate. Each point on the curve corresponds to a different decision threshold.</strong></p>
 <p>We can compute the false positive rate and true positive rates at different thresholds using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html#sklearn.metrics.roc_curve" title="(in scikit-learn v1.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.metrics.roc_curve()</span></code></a>, but to save ourselves some lines of code we use the plotting functionality of <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.RocCurveDisplay.html#sklearn.metrics.RocCurveDisplay" title="(in scikit-learn v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.metrics.RocCurveDisplay</span></code></a>.</p>
 <div class="cell docutils container">
@@ -1031,7 +1041,7 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 <p>AUC can be useful to compare the aggregate predictive performance of different models during model selection. However, <strong>AUC summarizes the performance of the model across all possible decision thresholds. To actually use the model for classifying instances, you still need to choose a decision threshold.</strong> As such, unlike confusion-based metrics, AUC typically does not directly correspond to real-world constraints or objectives. For example, in fraud detection, we may want to limit the expected number of false positives such that it is still humanly possible for fraud analysts to process all fraud alerts. Similarly, there may be different costs associated with false positives and false negatives making specific subspaces of the ROC curve more attractive than others.</p>
 </section>
 <section id="precision-recall-curve">
-<span id="id2"></span><h3>Precision-Recall Curve<a class="headerlink" href="#precision-recall-curve" title="Permalink to this headline">#</a></h3>
+<span id="id3"></span><h3>Precision-Recall Curve<a class="headerlink" href="#precision-recall-curve" title="Permalink to this headline">#</a></h3>
 <p>In some problems, it may be valuable to evaluate the precision-recall trade-off across varying decision thresholds. Lowering the decision threshold effectively means that instances the model was not as confident about will be classified as positive. This can increase recall but may come at the cost of precision, as more negative (i.e., irrelevant) instances are classified as positive as well. Similar to the ROC curve, a precision-recall curve can be used to decide on the right threshold for your use case. The precision-recall curve can be summarized using average precision, which is the average precision score computed over all recall values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1058,7 +1068,7 @@ confidence scores positive class: [0.04681727 0.00382841 0.97882365 0.02416943 0
 </section>
 </section>
 <section id="model-calibration">
-<span id="id3"></span><h2>Model Calibration<a class="headerlink" href="#model-calibration" title="Permalink to this headline">#</a></h2>
+<span id="id4"></span><h2>Model Calibration<a class="headerlink" href="#model-calibration" title="Permalink to this headline">#</a></h2>
 <p>The confidence score is sometimes referred to as the predicted probability. However, <strong>the predicted values of many machine learning algorithms cannot be directly interpreted as probabilities</strong>. Calibration is the extent to which the predicted value corresponds to an actual probability. For example, a model is well-calibrated if out of all instances that receive a confidence score of 0.7, the fraction of instances that belong to the positive class is also 0.7. Calibration can be an important characteristic when confidence scores are used for decision-making by domain experts. In particular, a decision threshold for calibrated scores can be directly interpreted in terms of different misclassification costs. For example, if a calibrated confidence score is used for suggesting a specific treatment in clinical decision-making, a decision threshold of 0.1 means that we accept up to 9 false positives (i.e., unnecessary treatments) for each true positive. Such a direct connection between misclassification rates and a particular decision threshold cannot be made for uncalibrated scores - although we can still, of course, compute precision to draw similar conclusions.</p>
 <p>You can assess how well a model is calibrated using a calibration curve, which sets out the mean predicted probability against the fraction of positives.</p>
 <div class="cell docutils container">

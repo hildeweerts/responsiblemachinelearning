@@ -1,10 +1,13 @@
 (intro_interdisciplinary)=
-# Interdisciplinary Insights
+
+# Interdisciplinary Perspectives on Fair-ML
 
 ```{warning}
 This chapter is still under construction.
 ```
 
 ## References
+
 ```{footbibliography}
+
 ```

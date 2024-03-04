@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Measuring Group Fairness in Pre-Trial Risk Assessment &#8212; An Introduction to Responsible Machine Learning</title>
+    <title>Measuring Group Fairness &#8212; An Introduction to Responsible Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Explainable Machine Learning" href="../../explainability/introduction.html" />
+    <link rel="next" title="Fairness-Aware Classification" href="fairnessawareclassification.html" />
     <link rel="prev" title="Tutorials" href="introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -194,7 +194,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../interdisciplinary/introduction.html">
-   Interdisciplinary Insights
+   Interdisciplinary Perspectives on Fair-ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -203,13 +203,18 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../interdisciplinary/sociotechnical.html">
-     Socio-technical Systems: Abstraction Traps
+    <a class="reference internal" href="../interdisciplinary/ethics.html">
+     Moral Philosophy: Choosing the “Right” Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../interdisciplinary/ethics.html">
-     Moral Philosophy: Choosing the “Right” Fairness Metrics
+    <a class="reference internal" href="../interdisciplinary/law.html">
+     Law: Fairness and Discrimination
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interdisciplinary/sociotechnical.html">
+     Socio-technical Systems: Abstraction Traps
     </a>
    </li>
   </ul>
@@ -226,7 +231,12 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Measuring Group Fairness in Pre-Trial Risk Assessment
+     Measuring Group Fairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fairnessawareclassification.html">
+     Fairness-Aware Classification
     </a>
    </li>
   </ul>
@@ -507,7 +517,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Measuring Group Fairness in Pre-Trial Risk Assessment
+   Measuring Group Fairness
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -618,7 +628,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Measuring Group Fairness in Pre-Trial Risk Assessment</h1>
+                <h1>Measuring Group Fairness</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -630,7 +640,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Measuring Group Fairness in Pre-Trial Risk Assessment
+   Measuring Group Fairness
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -742,8 +752,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="measuring-group-fairness-in-pre-trial-risk-assessment">
-<span id="tutorial-measuringfairness"></span><h1>Measuring Group Fairness in Pre-Trial Risk Assessment<a class="headerlink" href="#measuring-group-fairness-in-pre-trial-risk-assessment" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="measuring-group-fairness">
+<span id="tutorial-measuringfairness"></span><h1>Measuring Group Fairness<a class="headerlink" href="#measuring-group-fairness" title="Permalink to this headline">#</a></h1>
 <p>In this tutorial we will explore how we can measure notions of group fairness via a disaggregated analysis in Python using Fairlearn. As a running example, we consider pre-trial risk assessment scores produced by the COMPAS recidivism risk assessment tool.</p>
 <hr class="docutils" />
 <p><strong>Learning Objectives</strong>. After this tutorial you are able to:</p>
@@ -782,18 +792,18 @@ title="Print to PDF"
 
 <span class="c1"># this tutorial has been tested with the following versions</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pandas        Tested version: 2.0.3   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numpy         Tested version: 1.24.5  Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;matplotlib    Tested version: 3.5.3   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;scikit-learn  Tested version: 1.3.2   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numpy         Tested version: 1.24.4  Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;matplotlib    Tested version: 3.8.3   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;scikit-learn  Tested version: 1.2.1   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fairlearn     Tested version: 0.10.0  Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">fairlearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas        Tested version: 2.0.3   Your version: 2.0.3
-numpy         Tested version: 1.24.5  Your version: 1.24.4
-matplotlib    Tested version: 3.5.3   Your version: 3.5.1
-scikit-learn  Tested version: 1.3.2   Your version: 1.2.1
+numpy         Tested version: 1.24.4  Your version: 1.24.4
+matplotlib    Tested version: 3.8.3   Your version: 3.8.3
+scikit-learn  Tested version: 1.2.1   Your version: 1.2.1
 fairlearn     Tested version: 0.10.0  Your version: 0.10.0
 </pre></div>
 </div>
@@ -1715,10 +1725,10 @@ npv diff: 0.06
             <p class="prev-next-title">Tutorials</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../../explainability/introduction.html" title="next page">
+    <a class='right-next' id="next-link" href="fairnessawareclassification.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Explainable Machine Learning</p>
+        <p class="prev-next-title">Fairness-Aware Classification</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

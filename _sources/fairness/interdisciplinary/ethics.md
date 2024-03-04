@@ -1,13 +1,15 @@
 (normative_underpinnings)=
+
 # Moral Philosophy: Choosing the "Right" Fairness Metrics
 
 ```{warning}
 This section is still under construction.
 ```
+
 <!--
 
 ### Types of harm
-Several types of [fairness-related harm](types_of_harm), such as {term}`allocation harm` and {term}`quality-of-service harm`, revolve around the extent to which some groups of individuals are worse-off, on average, compared to others.  More specifically, {term}`group fairness metric`s  
+Several types of [fairness-related harm](types_of_harm), such as {term}`allocation harm` and {term}`quality-of-service harm`, revolve around the extent to which some groups of individuals are worse-off, on average, compared to others.  More specifically, {term}`group fairness metric`s
 
 If the output of the model corresponds to some kind of resource (e.g., a job or a loan) and selection rates differ across groups, there is a risk of {term}`allocation harm`. For example, in our hiring example, the selection rate of applicants who identify as men may be higher compared to other applicants, i.e., relatively more men are classified as positive compared to women or non-binary applications.
 
@@ -25,7 +27,7 @@ The [underlying assumption about fairness of demographic parity](https://arxiv.o
 1. *Everybody **is** equal*. For example, we may believe that traits relevant for a job are independent of somebody's gender. However, due to social biases in historical hiring decisions, this may not be represented as such in the data.
 2. *Everybody **should be** equal*. For example, we may believe that different genders are not equally suitable for the job, but this is due to factors outside of the individual's control, such as lacking opportunities due to social gender norms.
 
-Enforcing demographic parity might lead to differences in treatment across sensitive groups, causing otherwise similar people to be treated differently. For example, two people with the exact same features, apart from race, would get a different score prediction. This can be seen a form of *procedural harm*. Consequently, demographic parity is only a suitable metric if one of the two underlying assumptions (everybody *is* or *should be* equal) holds. A limitation of demographic parity is that it does not put any constraints on the scores. For example, to fulfill demographic parity, you do not have to select the most risky people from different racial groups as long as you pick the same proportion for each group. 
+Enforcing demographic parity might lead to differences in treatment across sensitive groups, causing otherwise similar people to be treated differently. For example, two people with the exact same features, apart from race, would get a different score prediction. This can be seen a form of *procedural harm*. Consequently, demographic parity is only a suitable metric if one of the two underlying assumptions (everybody *is* or *should be* equal) holds. A limitation of demographic parity is that it does not put any constraints on the scores. For example, to fulfill demographic parity, you do not have to select the most risky people from different racial groups as long as you pick the same proportion for each group.
 
 #### When should we use equalized odds as a fairness metric?
 If error rates differ across groups, there is a risk of **quality-of-service harm**.
@@ -60,5 +62,7 @@ During the evaluation stage, the final model is scrutinized in more detail. {ter
 -->
 
 ## References
+
 ```{footbibliography}
+
 ```

@@ -23,11 +23,13 @@ parts:
           - file: fairness/fairml/postprocessing
       - file: fairness/interdisciplinary/introduction
         sections:
-          - file: fairness/interdisciplinary/sociotechnical
           - file: fairness/interdisciplinary/ethics
+          - file: fairness/interdisciplinary/law
+          - file: fairness/interdisciplinary/sociotechnical
       - file: fairness/tutorials/introduction
         sections:
           - file: fairness/tutorials/measuringgroupfairness
+          - file: fairness/tutorials/fairnessawareclassification
   - caption: Explainability
     chapters:
       - file: explainability/introduction

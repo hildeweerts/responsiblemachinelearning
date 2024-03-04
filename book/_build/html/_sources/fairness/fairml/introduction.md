@@ -50,9 +50,9 @@ Constrained learning techniques directly incorporate a fairness constraint in th
 
 Post-processing approaches adjust an existing model, either through post-processing predictions or by adjusting the learned model parameters directly. In this section, we will discuss the following approaches:
 
-* Reject-Option Classification
-* Randomized Decision Thresholds
-* Leaf Relabelling
+* [Reject-Option Classification](reject_option_classification)
+* [Randomized Group-Specific Decision Thresholds](randomized_thresholds)
+* [Leaf Relabelling](leaf_relabeling)
 
 ```
 

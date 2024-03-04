@@ -3,7 +3,7 @@
 
 # (tutorial_measuringfairness)=
 # 
-# # Measuring Group Fairness in Pre-Trial Risk Assessment
+# # Measuring Group Fairness
 # 
 # In this tutorial we will explore how we can measure notions of group fairness via a disaggregated analysis in Python using Fairlearn. As a running example, we consider pre-trial risk assessment scores produced by the COMPAS recidivism risk assessment tool.
 # 
@@ -48,9 +48,9 @@ import fairlearn
 
 # this tutorial has been tested with the following versions
 print("pandas        Tested version: 2.0.3   Your version: %s" % pd.__version__)
-print("numpy         Tested version: 1.24.5  Your version: %s" % np.__version__)
-print("matplotlib    Tested version: 3.5.3   Your version: %s" % matplotlib.__version__)
-print("scikit-learn  Tested version: 1.3.2   Your version: %s" % sklearn.__version__)
+print("numpy         Tested version: 1.24.4  Your version: %s" % np.__version__)
+print("matplotlib    Tested version: 3.8.3   Your version: %s" % matplotlib.__version__)
+print("scikit-learn  Tested version: 1.2.1   Your version: %s" % sklearn.__version__)
 print("fairlearn     Tested version: 0.10.0  Your version: %s" % fairlearn.__version__)
 
 

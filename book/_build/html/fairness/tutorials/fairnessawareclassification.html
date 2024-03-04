@@ -1,0 +1,1707 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Fairness-Aware Classification &#8212; An Introduction to Responsible Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Explainable Machine Learning" href="../../explainability/introduction.html" />
+    <link rel="prev" title="Measuring Group Fairness" href="measuringgroupfairness.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../introduction/introduction.html">
+   Responsible Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../introduction/machinelearning/introduction.html">
+   Machine Learning Preliminaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/modelevaluation.html">
+     Model Evaluation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/modelselection.html">
+     Model Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/costsensitivelearning.html">
+     Cost-Sensitive Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fairness
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Algorithmic Fairness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupfairnessmetrics.html">
+   Group Fairness Metrics
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../fairml/introduction.html">
+   Fairness-Aware Machine Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/preprocessing.html">
+     Pre-processing Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/constrainedlearning.html">
+     Constrained Learning Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/postprocessing.html">
+     Post-processing Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../interdisciplinary/introduction.html">
+   Interdisciplinary Perspectives on Fair-ML
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interdisciplinary/ethics.html">
+     Moral Philosophy: Choosing the “Right” Fairness Metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interdisciplinary/law.html">
+     Law: Fairness and Discrimination
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interdisciplinary/sociotechnical.html">
+     Socio-technical Systems: Abstraction Traps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="introduction.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="measuringgroupfairness.html">
+     Measuring Group Fairness
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Fairness-Aware Classification
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Explainability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../explainability/introduction.html">
+   Explainable Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../explainability/localposthoc/introduction.html">
+   Local Post-Hoc Explanations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/lime.html">
+     LIME
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/shap.html">
+     SHAP
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/localposthoc/discussion.html">
+     Feature importance
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../explainability/globalposthoc/introduction.html">
+   Global Post-Hoc Explanations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../explainability/globalposthoc/pdp.html">
+     Partial Dependence Plots
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/harms.html">
+   List of Harms
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/hildeweerts/responsiblemachinelearning/master?urlpath=tree/fairness/tutorials/fairnessawareclassification.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Ffairness/tutorials/fairnessawareclassification.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/fairness/tutorials/fairnessawareclassification.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compas-a-pre-trial-risk-assessment-tool">
+   COMPAS: A Pre-Trial Risk Assessment Tool
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#propublica-s-analysis-of-compas">
+     Propublica’s Analysis of COMPAS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-pre-process-data">
+   Load and Pre-Process Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equalized-odds">
+     Equalized Odds
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-without-fairness-constraints">
+   Classification without Fairness Constraints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fairness-aware-machine-learning">
+   Fairness-Aware Machine Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manually-post-processing-the-decision-threshold">
+   Manually Post-Processing the Decision Threshold
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#randomized-decision-thresholds-using-thresholdoptimizer">
+   Randomized Decision Thresholds Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ThresholdOptimizer
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adversarial-learning-using-adversarialfairnessclassifier">
+   Adversarial Learning using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AdversarialFairnessClassifier
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concluding-remarks">
+   Concluding Remarks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-points">
+     Discussion Points
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connection-to-fairness-metrics">
+       Connection to fairness metrics
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-justification-of-fair-ml">
+       The justification of fair-ml
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beyond-fair-ml">
+       Beyond fair-ml
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Fairness-Aware Classification</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compas-a-pre-trial-risk-assessment-tool">
+   COMPAS: A Pre-Trial Risk Assessment Tool
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#propublica-s-analysis-of-compas">
+     Propublica’s Analysis of COMPAS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-and-pre-process-data">
+   Load and Pre-Process Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equalized-odds">
+     Equalized Odds
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-without-fairness-constraints">
+   Classification without Fairness Constraints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fairness-aware-machine-learning">
+   Fairness-Aware Machine Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manually-post-processing-the-decision-threshold">
+   Manually Post-Processing the Decision Threshold
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#randomized-decision-thresholds-using-thresholdoptimizer">
+   Randomized Decision Thresholds Using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ThresholdOptimizer
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adversarial-learning-using-adversarialfairnessclassifier">
+   Adversarial Learning using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AdversarialFairnessClassifier
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concluding-remarks">
+   Concluding Remarks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-points">
+     Discussion Points
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connection-to-fairness-metrics">
+       Connection to fairness metrics
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-justification-of-fair-ml">
+       The justification of fair-ml
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beyond-fair-ml">
+       Beyond fair-ml
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="fairness-aware-classification">
+<span id="tutorial-fairml"></span><h1>Fairness-Aware Classification<a class="headerlink" href="#fairness-aware-classification" title="Permalink to this headline">#</a></h1>
+<p>In this tutorial we will explore several fairness-aware machine learning techniques that can be used to enforce fairness constraints of a machine learning model.</p>
+<hr class="docutils" />
+<p><strong>Learning Objectives</strong>. After this tutorial you will be able to:</p>
+<ul class="simple">
+<li><p>apply techniques for fairness-aware classification in Python;</p></li>
+<li><p>examine strengths and limitations of fairness-aware classification techniques;</p></li>
+</ul>
+<hr class="docutils" />
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Although the goal of this tutorial is to showcase fair-ml approaches, <strong>a data scientist’s first actions should always include scrutinizing the need for machine learning, the machine learning task formulation, and data collection practices.</strong>  Especially in a sensitive application such as pre-trial risk assesment. Often, enforcing fairness constraints via fairness-aware machine learning does not lead to meaningful mitigation of fairness-related harm.</p>
+</div>
+<hr class="docutils" />
+<section id="compas-a-pre-trial-risk-assessment-tool">
+<h2>COMPAS: A Pre-Trial Risk Assessment Tool<a class="headerlink" href="#compas-a-pre-trial-risk-assessment-tool" title="Permalink to this headline">#</a></h2>
+<p>COMPAS is a decision support tool used by courts in the United States to assess the likelihood of a defendant becoming a recidivist; i.e., relapses into criminal behavior. In particular, COMPAS risk scores are used in <strong>pre-trial risk assessment</strong>.</p>
+<div class="admonition-what-is-pre-trial-risk-assessment-in-the-us-judicial-system admonition">
+<p class="admonition-title">What is pre-trial risk assessment in the US judicial system?</p>
+<p>After somebody has been arrested, it will take some time before they go to trial. The primary goal of pre-trial risk assessment is to determine the likelihood that the defendant will re-appear in court at their trial. Based on the assessment, a judge decides whether a defendent will be detained or released while awaiting trial. In case of release, the judge also decides whether bail is set and for which amount. Bail usually takes the form of either a cash payment or a bond. If the defendant can’t afford to pay the bail amount in cash - which can be as high as $50,000 - they can contract a bondsmen. For a fee, typically around 10% of the bail, the bondsmen will post the defendant’s bail.</p>
+<p>If the defendant can afford neither bail nor a bail bond, they have to prepare for their trial while in jail. <a class="reference external" href="https://eu.clarionledger.com/story/opinion/columnists/2020/05/28/cant-afford-bail-woman-describes-experience-mississippi-bail-fund-collective/5257295002/">This</a> <a class="reference external" href="https://medium.com/dose/bail-is-so-expensive-it-forces-innocent-people-to-plead-guilty-72a3097a2ebe">is</a> <a class="reference external" href="https://facctconference.org/2018/livestream_vh210.html">difficult</a>. The time between getting arrested and a bail hearing can take days, weeks, months, or even years. In some cases, the decision is between pleading guilty and going home. Consequently, people who cannot afford bail are much more likely to plead guilty to a crime they did not commit. Clearly, a (false) positive decision of the judge will have a big impact on the defendant’s prospects.</p>
+<p>On the other extreme, false negatives could mean that dangerous individuals are released into society and do not show up for their trial.</p>
+</div>
+<p>Proponents of risk assessment tools argue that they can lead to more efficient, less biased, and more consistent decisions compared to human decision makers. However, concerns have been raised that the scores can replicate historical inequalities.</p>
+<section id="propublica-s-analysis-of-compas">
+<h3>Propublica’s Analysis of COMPAS<a class="headerlink" href="#propublica-s-analysis-of-compas" title="Permalink to this headline">#</a></h3>
+<p>In May 2016, investigative journalists of Propublica released a critical analysis of COMPAS. <strong>Propublica’s assessment: COMPAS wrongly labeled black defendants as future criminals at almost twice the rate as white defendants</strong>, while white defendants were mislabeled as low risk more often than black defendants (<a class="reference external" href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">Propublica, 2016</a>).</p>
+<p>The analysis of COMPAS is likely one of the most well-known examples of algorithmic bias assessments. Within the machine learning research community, the incident sparked a renewed interest in fairness of machine learning models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data wrangling</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># visualization</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="c1"># other</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">fairlearn</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># this tutorial has been tested with the following versions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pandas        Tested version: 2.0.3   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numpy         Tested version: 1.24.4  Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;matplotlib    Tested version: 3.8.3   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;scikit-learn  Tested version: 1.2.1   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fairlearn     Tested version: 0.10.0  Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">fairlearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;torch         Tested version: 2.2.1   Your version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas        Tested version: 2.0.3   Your version: 2.0.3
+numpy         Tested version: 1.24.4  Your version: 1.24.4
+matplotlib    Tested version: 3.8.3   Your version: 3.8.3
+scikit-learn  Tested version: 1.2.1   Your version: 1.2.1
+fairlearn     Tested version: 0.10.0  Your version: 0.10.0
+torch         Tested version: 2.2.1   Your version: 2.2.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data wrangling</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># visualization</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># scikit-learn</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">RocCurveDisplay</span>
+
+<span class="c1"># fairlearn</span>
+<span class="kn">from</span> <span class="nn">fairlearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">false_positive_rate</span><span class="p">,</span>
+    <span class="n">false_negative_rate</span><span class="p">,</span>
+    <span class="n">true_positive_rate</span><span class="p">,</span>
+    <span class="n">MetricFrame</span><span class="p">,</span>
+    <span class="n">equalized_odds_difference</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">fairlearn.postprocessing</span> <span class="kn">import</span> <span class="n">ThresholdOptimizer</span><span class="p">,</span> <span class="n">plot_threshold_optimizer</span>
+<span class="kn">from</span> <span class="nn">fairlearn.adversarial</span> <span class="kn">import</span> <span class="n">AdversarialFairnessClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="load-and-pre-process-data">
+<h2>Load and Pre-Process Data<a class="headerlink" href="#load-and-pre-process-data" title="Permalink to this headline">#</a></h2>
+<p>You can download the data set collected by ProPublica <a class="reference external" href="https://github.com/propublica/compas-analysis/blob/master/compas-scores-two-years.csv">here</a>. As in the previous tutorial, we pre-process the data similar to ProPublica and select all instances related to Caucasian and African-American defendants. As we intend to train a new classifier, we split the data into a training and test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;compas-scores-two-years.csv&quot;</span><span class="p">)</span>
+<span class="c1"># filter similar to propublica</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;days_b_screening_arrest&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;is_recid&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;c_charge_degree&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;O&quot;</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;score_text&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="c1"># select two largest groups</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;African-American&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;race&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Caucasian&quot;</span><span class="p">)]</span>
+<span class="c1"># select columns</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;age&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;race&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;priors_count&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;juv_fel_count&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;juv_misd_count&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;juv_other_count&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;two_year_recid&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+<span class="c1"># convert categorical variables to numerical to make suitable for ML model</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># define X and y</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;two_year_recid&quot;</span><span class="p">]</span>
+
+<span class="c1"># split the data in train-validation-test sets; use random_state for reproducibility of the results</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+<span class="n">X_val</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># save sensitive features and drop from X</span>
+<span class="n">sensitive_features_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="s2">&quot;race_Caucasian&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">sensitive_features_val</span> <span class="o">=</span> <span class="n">X_val</span><span class="p">[</span><span class="s2">&quot;race_Caucasian&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">sensitive_features_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="s2">&quot;race_Caucasian&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;race_Caucasian&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_val</span> <span class="o">=</span> <span class="n">X_val</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;race_Caucasian&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;race_Caucasian&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># inspect dataset</span>
+<span class="n">display</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># proportion of positives</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;proportion of positives (train): </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">y_train</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>priors_count</th>
+      <th>juv_fel_count</th>
+      <th>juv_misd_count</th>
+      <th>juv_other_count</th>
+      <th>sex_Male</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1054</th>
+      <td>53</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>731</th>
+      <td>36</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5827</th>
+      <td>56</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>29</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4475</th>
+      <td>27</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>proportion of positives (train): 0.47
+</pre></div>
+</div>
+</div>
+</div>
+<p>The data now contains the following features:</p>
+<ul class="simple">
+<li><p><em>age</em>. The defendant’s age on the COMPAS screening date.</p></li>
+<li><p><em>priors_count</em>. The number of prior charges up to but not including the current offense.</p></li>
+<li><p><em>juv_fel_count</em>. The number of prior charges for juvenile fellonies up to but not including the current offense.</p></li>
+<li><p><em>juv_misd_count</em>. The number of prior charges for juvenile misdemeanors up to but not including the current offense.</p></li>
+<li><p><em>juv_other_count</em>. The number of prior charges for other juvenile offenses up to but not including the current offense.</p></li>
+<li><p><em>sex_Male</em>. The defendant’s sex, measured as US census sex categories (either 1 for <em>Male</em> or 0 for <em>Female</em>).</p></li>
+</ul>
+<p>The proportion of positives in the data set is almost 0.5, which means that the dataset is balanced in terms of positives/negatives. This makes <strong>accuracy</strong> a (somewhat) suitable metric for measuring the overall predictive performance of our models.</p>
+<section id="equalized-odds">
+<h3>Equalized Odds<a class="headerlink" href="#equalized-odds" title="Permalink to this headline">#</a></h3>
+<p>In this tutorial, we will attempt to train a <strong>new classifier</strong> for predicting recidivism with similar error rates across racial groups.</p>
+<div class="admonition-equalized-odds admonition">
+<p class="admonition-title">Equalized Odds</p>
+<p><strong>Equalized Odds</strong> holds if, for all values of <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(a\)</span>, $<span class="math notranslate nohighlight">\(P(\hat{Y} = y | A = a, Y = y) = P(\hat{Y} = y | A = a', Y = y)\)</span><span class="math notranslate nohighlight">\( where \)</span>\hat{Y}<span class="math notranslate nohighlight">\( is the output of our model, \)</span>Y<span class="math notranslate nohighlight">\( the observed outcome, and \)</span>A$ the set of sensitive characteristics.</p>
+</div>
+<p>In other words, the <strong>false positive rate</strong> and <strong>false negative rate</strong> should be equal across groups. As explained before, a false positive prediction in pre-trial risk assessment can have large consequences for the involved defendant, as they may have to await trial in jail. This may even result in the defendant pleading guilty to a crime they did not commit. On the other extreme, false negatives could mean that dangerous individuals are released into society.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">score</span><span class="p">(</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">y_train_pred</span><span class="p">,</span>
+    <span class="n">y_val</span><span class="p">,</span>
+    <span class="n">y_val_pred</span><span class="p">,</span>
+    <span class="n">sensitive_features_train</span><span class="p">,</span>
+    <span class="n">sensitive_features_val</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="s2">&quot;fpr&quot;</span><span class="p">:</span> <span class="n">false_positive_rate</span><span class="p">,</span> <span class="s2">&quot;fnr&quot;</span><span class="p">:</span> <span class="n">false_negative_rate</span><span class="p">,},</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function to evaluate classifiers without too much repetition of code.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># training set</span>
+    <span class="n">mf_train</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+        <span class="n">y_pred</span><span class="o">=</span><span class="n">y_train_pred</span><span class="p">,</span>
+        <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sensitive_features_train</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># validation set</span>
+    <span class="n">mf_val</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">,</span>
+        <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_pred</span><span class="p">,</span>
+        <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sensitive_features_val</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># display results</span>
+    <span class="n">display</span><span class="p">(</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">mf_train</span><span class="o">.</span><span class="n">by_group</span><span class="p">,</span> <span class="n">mf_val</span><span class="o">.</span><span class="n">by_group</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># compute metrics</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;equalized odds difference (validation): </span><span class="si">%.2f</span><span class="s2">&quot;</span>
+        <span class="o">%</span> <span class="n">equalized_odds_difference</span><span class="p">(</span>
+            <span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">,</span>
+            <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_pred</span><span class="p">,</span>
+            <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sensitive_features_val</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy (validation): </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_pred</span><span class="p">))</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="classification-without-fairness-constraints">
+<h2>Classification without Fairness Constraints<a class="headerlink" href="#classification-without-fairness-constraints" title="Permalink to this headline">#</a></h2>
+<p>First, let’s train a simple logistic regression classifier on the data and see how it performs on the validation set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train simple logistic regression model</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># score</span>
+<span class="n">score</span><span class="p">(</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span>
+    <span class="n">y_val</span><span class="p">,</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">),</span>
+    <span class="n">sensitive_features_train</span><span class="p">,</span>
+    <span class="n">sensitive_features_val</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">accuracy</th>
+      <th colspan="2" halign="left">fpr</th>
+      <th colspan="2" halign="left">fnr</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>train</th>
+      <th>validation</th>
+      <th>train</th>
+      <th>validation</th>
+      <th>train</th>
+      <th>validation</th>
+    </tr>
+    <tr>
+      <th>race_Caucasian</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>False</th>
+      <td>0.682209</td>
+      <td>0.659878</td>
+      <td>0.288462</td>
+      <td>0.275000</td>
+      <td>0.343884</td>
+      <td>0.402390</td>
+    </tr>
+    <tr>
+      <th>True</th>
+      <td>0.670707</td>
+      <td>0.644518</td>
+      <td>0.151214</td>
+      <td>0.151163</td>
+      <td>0.607945</td>
+      <td>0.627907</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equalized odds difference (validation): 0.23
+accuracy (validation): 0.65
+</pre></div>
+</div>
+</div>
+</div>
+<p>The validation set accuracy of our classifier is approximately the same for African-Americans (0.66) and Caucasians (0.64). However, the FNR and FPR differ substantially, indicating that African-Americans are more often falsely predicted to recidivise, whereas Caucasians are more often falsely predicted to <em>not</em> recidivise. This disparity is reflected in the computed equalized odds difference (0.23).</p>
+</section>
+<section id="fairness-aware-machine-learning">
+<h2>Fairness-Aware Machine Learning<a class="headerlink" href="#fairness-aware-machine-learning" title="Permalink to this headline">#</a></h2>
+<p>There exist several technical approaches to explicitly incorporate fairness constraints in a machine learning model. We can roughly distinguish three types of approaches:</p>
+<ul class="simple">
+<li><p><strong>Pre-processing</strong> algorithms adjust training data directly to mitigate downstream model unfairness.</p></li>
+<li><p><strong>Constrained learning</strong> approaches incorporate fairness constraints into the machine learning process, either by directly incorporating a constraint in the loss function or by learning an ensemble of predictors.</p></li>
+<li><p><strong>Post-processing</strong> techniques make adjustments to existing machine learning models to satisfy fairness constraints, either by adjusting the parameters of a trained model directly or by post-processing the predictions of the model.</p></li>
+</ul>
+</section>
+<section id="manually-post-processing-the-decision-threshold">
+<h2>Manually Post-Processing the Decision Threshold<a class="headerlink" href="#manually-post-processing-the-decision-threshold" title="Permalink to this headline">#</a></h2>
+<p>In our previous model, we have simply applied the default decision threshold of 0.5 for both African-Americans and Caucasians. One way to account for differences in FPR and FNR is to <strong>choose a separate threshold for each sensitive group</strong>. Note that this implies that <strong>different groups are held to a different standard</strong>.</p>
+<p>We will now choose a new decision threshold for African-Americans to ensure that the FPR of African-Americans is equal to the FPR of Caucasians. In our previous model, the FPR in the training set is approximately 0.15 for Caucasians. We use this as our target FPR for African-American defendants.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make scoring predictions</span>
+<span class="n">y_train_score_lr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">y_val_score_lr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_val</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_val</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># get indices for grouping</span>
+<span class="n">idx_AA_train</span> <span class="o">=</span> <span class="n">sensitive_features_train</span><span class="p">[</span><span class="n">sensitive_features_train</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+
+<span class="c1"># get new thresholds based on ROC curve for AA</span>
+<span class="n">fpr_AA_train</span><span class="p">,</span> <span class="n">tpr_AA_train</span><span class="p">,</span> <span class="n">thresholds_AA_train</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="o">=</span><span class="n">y_train</span><span class="p">[</span><span class="n">idx_AA_train</span><span class="p">],</span> <span class="n">y_score</span><span class="o">=</span><span class="n">y_train_score_lr</span><span class="p">[</span><span class="n">idx_AA_train</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">new_thr</span> <span class="o">=</span> <span class="n">thresholds_AA_train</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fpr_AA_train</span> <span class="o">-</span> <span class="mf">0.15</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New decision threshold for African-Americans: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">new_thr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New decision threshold for African-Americans: 0.59
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on the validation data, we have computed that a decision threshold of 0.59 would lead to a FPR of approximately 0.15.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get remaining indices for grouping</span>
+<span class="n">idx_AA_val</span> <span class="o">=</span> <span class="n">sensitive_features_val</span><span class="p">[</span><span class="n">sensitive_features_val</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">idx_C_val</span> <span class="o">=</span> <span class="n">sensitive_features_val</span><span class="p">[</span><span class="n">sensitive_features_val</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">idx_C_train</span> <span class="o">=</span> <span class="n">sensitive_features_train</span><span class="p">[</span><span class="n">sensitive_features_train</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+
+<span class="c1"># plot ROC curves</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
+    <span class="n">lr</span><span class="p">,</span>
+    <span class="n">X_val</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">,</span> <span class="p">:],</span>
+    <span class="n">y_val</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">],</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;African-Americans&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
+    <span class="n">lr</span><span class="p">,</span>
+    <span class="n">X_val</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_C_val</span><span class="p">,</span> <span class="p">:],</span>
+    <span class="n">y_val</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx_C_val</span><span class="p">],</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Caucasian&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># add thresholds</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">false_positive_rate</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_score_lr</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.5</span>
+    <span class="p">),</span>
+    <span class="n">true_positive_rate</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_score_lr</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.5</span>
+    <span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Threshold 0.50 (African-American)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">false_positive_rate</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">[</span><span class="n">idx_C_val</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_score_lr</span><span class="p">[</span><span class="n">idx_C_val</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.5</span>
+    <span class="p">),</span>
+    <span class="n">true_positive_rate</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">[</span><span class="n">idx_C_val</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_score_lr</span><span class="p">[</span><span class="n">idx_C_val</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.5</span>
+    <span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Threshold 0.50 (Caucasian)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">false_positive_rate</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_score_lr</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">new_thr</span>
+    <span class="p">),</span>
+    <span class="n">true_positive_rate</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="o">=</span><span class="n">y_val</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_val_score_lr</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">new_thr</span>
+    <span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Threshold </span><span class="si">%.2f</span><span class="s2"> (African-American)&quot;</span> <span class="o">%</span> <span class="n">new_thr</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fairnessawareclassification_15_0.png" src="../../_images/fairnessawareclassification_15_0.png" />
+</div>
+</div>
+<p>This plot visualizes the results of our manual selection approach on the test data. We have plotted the ROC curve for each racial group separately. The original decision threshold of 0.5 resulted in higher TPR and FPR for African-Americans. By choosing a different threshold for this group, we end up on a point on the ROC curve that is much closer to the FPR and TPR of Caucasians.</p>
+<p>Now let’s evaluate the performance of the new group-specific decision thresholds on the validation set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make new predictions at two separate decision thresholds</span>
+<span class="n">y_train_pred_lr_m</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">y_train_score_lr</span><span class="p">[</span><span class="n">idx_AA_train</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">new_thr</span><span class="p">,</span> <span class="n">y_train_score_lr</span><span class="p">[</span><span class="n">idx_C_train</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">y_val_pred_lr_m</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">y_val_score_lr</span><span class="p">[</span><span class="n">idx_AA_val</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">new_thr</span><span class="p">,</span> <span class="n">y_val_score_lr</span><span class="p">[</span><span class="n">idx_C_val</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">X_val</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># score</span>
+<span class="n">score</span><span class="p">(</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">y_train_pred_lr_m</span><span class="p">,</span>
+    <span class="n">y_val</span><span class="p">,</span>
+    <span class="n">y_val_pred_lr_m</span><span class="p">,</span>
+    <span class="n">sensitive_features_train</span><span class="p">,</span>
+    <span class="n">sensitive_features_val</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">accuracy</th>
+      <th colspan="2" halign="left">fpr</th>
+      <th colspan="2" halign="left">fnr</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>train</th>
+      <th>validation</th>
+      <th>train</th>
+      <th>validation</th>
+      <th>train</th>
+      <th>validation</th>
+    </tr>
+    <tr>
+      <th>race_Caucasian</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>False</th>
+      <td>0.639203</td>
+      <td>0.625255</td>
+      <td>0.149038</td>
+      <td>0.137500</td>
+      <td>0.549187</td>
+      <td>0.601594</td>
+    </tr>
+    <tr>
+      <th>True</th>
+      <td>0.670707</td>
+      <td>0.644518</td>
+      <td>0.151214</td>
+      <td>0.151163</td>
+      <td>0.607945</td>
+      <td>0.627907</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equalized odds difference (validation): 0.03
+accuracy (validation): 0.63
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen from this table, we have been able to substantially reduce equalized odds difference (decreased from 0.23 to 0.03), with similar overall accuracy (decreased from 0.65 to 0.63).</p>
+</section>
+<section id="randomized-decision-thresholds-using-thresholdoptimizer">
+<h2>Randomized Decision Thresholds Using <code class="docutils literal notranslate"><span class="pre">ThresholdOptimizer</span></code><a class="headerlink" href="#randomized-decision-thresholds-using-thresholdoptimizer" title="Permalink to this headline">#</a></h2>
+<p>In addition to manual optimization, it is also possible to automatically determine group-specific decision thresholds. The class <code class="docutils literal notranslate"><span class="pre">fairlearn.postprocessing.ThresholdOptimizer</span></code> is based on the algorithm introduced by <a class="reference external" href="https://papers.nips.cc/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html">Hardt. et al (2016)</a>.</p>
+<div class="admonition-group-specific-randomized-thresholds admonition">
+<p class="admonition-title">Group-Specific Randomized Thresholds</p>
+<p>Equalized odds requires us to set the false positive rate and true positive rate equal across groups. Through group-specific decision thresholds, we can take any point on the group-specific ROC curve, which increases allows us to get a more similar FPR and FNR for both groups. However, group-specific thresholds still limit us to the (FPR, TPR) combinations that lie on the intersection of the group-specific ROC curves. In some cases, the group-specific ROC curves may not intersect or represent a poor trade-off between false positives and false negatives. To further increase the solution space, the <code class="docutils literal notranslate"><span class="pre">ThresholdOptimizer</span></code> allows the group-specific decision thresholds to be <strong>randomized</strong>: we randomly pick between two distinct thresholds.</p>
+<p>The probability <span class="math notranslate nohighlight">\(p_a\)</span> with which we choose one threshold over the other determines which (fpr,tpr) combination in the ROC space we end up with. By carefully selecting the decision thresholds and probabilities <span class="math notranslate nohighlight">\(p_a\)</span>, we can end up with a combination that is also on the group-specific ROC-curve of the worst-off group, satisfying equalized odds. The point on the ROC curve at which randomization is aimed, is optimized such that the disparity is the smallest, while predictive performance is the highest.</p>
+<p>Note that using this algorithm has the following implications:</p>
+<ul class="simple">
+<li><p>The predictive performance for each group is decreased until it is equal to that of the worst-off group.</p></li>
+<li><p>Due to randomization, two individuals with the exact same characteristics may receive a different classification.</p></li>
+</ul>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ThresholdOptimizer</span></code> class has the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">estimator</span></code>: the (fitted) classifier</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">constraints</span></code> : the fairness constraint for which we want to optimize, we can choose between <code class="docutils literal notranslate"><span class="pre">'demographic_parity'</span></code>, <code class="docutils literal notranslate"><span class="pre">'equalized</span> <span class="pre">odds'</span></code>, <code class="docutils literal notranslate"><span class="pre">'false_positive_rate_parity'</span></code> <code class="docutils literal notranslate"><span class="pre">'false_negative_rate_parity'</span></code>, <code class="docutils literal notranslate"><span class="pre">'true_positive_parity'</span></code> and <code class="docutils literal notranslate"><span class="pre">'true_negative_parity'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objective</span></code> : the predictive performance objective under which threshold optimization is performed. Not all objectives are allowed for all types of constraints. Possible inputs are: <code class="docutils literal notranslate"><span class="pre">'accuracy_score'</span></code>, <code class="docutils literal notranslate"><span class="pre">'balanced_accuracy_score'</span></code> (for all constraint types) and <code class="docutils literal notranslate"><span class="pre">'selection_rate'</span></code>, <code class="docutils literal notranslate"><span class="pre">'true_positive_rate'</span></code>, <code class="docutils literal notranslate"><span class="pre">'true_negative_rate'</span></code> (for all constraint types except <code class="docutils literal notranslate"><span class="pre">'equalized</span> <span class="pre">odds'</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grid_size</span></code> : the values of the constraint metric are discretized according to the grid of the specified size over the interval [0,1]. The optimization is performed with respect to the constraints achieving those values. In case of <code class="docutils literal notranslate"><span class="pre">'equalized_odds'</span></code> the constraint metric is the false positive rate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prefit</span></code> : if <code class="docutils literal notranslate"><span class="pre">True</span></code>, avoid refitting the given estimator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">predict_method</span></code> : defines which method of the estimator is used to get the output values.</p></li>
+</ul>
+<p>The methods of the <code class="docutils literal notranslate"><span class="pre">ThresholdOptimizer</span></code> are similar to the familiar scikit-learn API, with the addition of <code class="docutils literal notranslate"><span class="pre">sensitive_features</span></code>. This must be is a list-like object (e.g., a numpy array or pandas series) that represents sensitive group-membership.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fit(X,</span> <span class="pre">y,</span> <span class="pre">*,</span> <span class="pre">sensitive_features,</span> <span class="pre">**kwargs)</span></code> (any <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> will be passed to the <code class="docutils literal notranslate"><span class="pre">fit()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">estimator</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">predict(X,</span> <span class="pre">*,</span> <span class="pre">sensitive_features,</span> <span class="pre">random_state=None)</span></code> (<code class="docutils literal notranslate"><span class="pre">random_state</span></code> can be used to get reproducible results).</p></li>
+</ul>
+<p>Let’s see how this algorithm does on our existing logistic regression classifier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># train thresholdoptimizer</span>
+<span class="n">to</span> <span class="o">=</span> <span class="n">ThresholdOptimizer</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span>
+    <span class="n">constraints</span><span class="o">=</span><span class="s1">&#39;equalized_odds&#39;</span><span class="p">,</span>
+    <span class="n">predict_method</span><span class="o">=</span><span class="s1">&#39;predict_proba&#39;</span><span class="p">,</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s1">&#39;accuracy_score&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">to</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sensitive_features_train</span><span class="p">)</span>
+
+<span class="c1"># score</span>
+<span class="n">score</span><span class="p">(</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">to</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sensitive_features_train</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">y_val</span><span class="p">,</span>
+    <span class="n">to</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sensitive_features_val</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">sensitive_features_train</span><span class="p">,</span>
+    <span class="n">sensitive_features_val</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">accuracy</th>
+      <th colspan="2" halign="left">fpr</th>
+      <th colspan="2" halign="left">fnr</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>train</th>
+      <th>validation</th>
+      <th>train</th>
+      <th>validation</th>
+      <th>train</th>
+      <th>validation</th>
+    </tr>
+    <tr>
+      <th>race_Caucasian</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>False</th>
+      <td>0.626528</td>
+      <td>0.596741</td>
+      <td>0.167308</td>
+      <td>0.162500</td>
+      <td>0.556886</td>
+      <td>0.633466</td>
+    </tr>
+    <tr>
+      <th>True</th>
+      <td>0.678788</td>
+      <td>0.664452</td>
+      <td>0.174393</td>
+      <td>0.174419</td>
+      <td>0.550950</td>
+      <td>0.550388</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equalized odds difference (validation): 0.08
+accuracy (validation): 0.62
+</pre></div>
+</div>
+</div>
+</div>
+<p>While the ThresholdOptimizer works better on the training data compared to manual selection, it performs worse on the validation set. We end up roughly at the same spot on the ROC-curve. The FPR is slightly higher compared to our nanual optimization.</p>
+<p>To better understand the results of the <code class="docutils literal notranslate"><span class="pre">ThresholdOptimizer</span></code>, we can visualize the solution using <code class="docutils literal notranslate"><span class="pre">fairlearn.postprocessing.plot_threshold_optimizer()</span></code>. The plot shows the group-specific ROC curves and visualizes their overlap. As we’ve seen before, the group-specific ROC curves hardly interesect, apart from trivial end-points. The solution found in the optimization is slightly different from our manual group-specific threshold.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print solution</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">to</span><span class="o">.</span><span class="n">interpolated_thresholder_</span><span class="p">)</span>
+
+<span class="c1"># plot solution</span>
+<span class="n">plot_threshold_optimizer</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>InterpolatedThresholder(estimator=LogisticRegression(),
+                        interpolation_dict={False: {&#39;operation0&#39;: [&gt;0.5855255254759701],
+                                                    &#39;operation1&#39;: [&gt;0.5318328255966378],
+                                                    &#39;p0&#39;: 0.6666666666666665,
+                                                    &#39;p1&#39;: 0.3333333333333335,
+                                                    &#39;p_ignore&#39;: 0.16258623097366856,
+                                                    &#39;prediction_constant&#39;: 0.17500000000000002},
+                                            True: {&#39;operation0&#39;: [&gt;0.48339732595857243],
+                                                   &#39;operation1&#39;: [&gt;0.454107836792059],
+                                                   &#39;p0&#39;: 0.9915384615384614,
+                                                   &#39;p1&#39;: 0.008461538461538631,
+                                                   &#39;p_ignore&#39;: 0.0,
+                                                   &#39;prediction_constant&#39;: 0.17500000000000002}},
+                        predict_method=&#39;predict_proba&#39;, prefit=True)
+</pre></div>
+</div>
+<img alt="../../_images/fairnessawareclassification_22_1.png" src="../../_images/fairnessawareclassification_22_1.png" />
+</div>
+</div>
+<p>For African-American defendants the decision threshold is randomized between approximately 0.58 (<span class="math notranslate nohighlight">\(p=0.66\)</span>) and 0.53 (<span class="math notranslate nohighlight">\(p=0.33\)</span>). For Caucasian defendants the <code class="docutils literal notranslate"><span class="pre">ThresholdOptimizer</span></code> randomizes between a decision threshold of 0.48 (<span class="math notranslate nohighlight">\(p=0.991\)</span>) and 0.45 (<span class="math notranslate nohighlight">\(p=0.008\)</span>).</p>
+</section>
+<section id="adversarial-learning-using-adversarialfairnessclassifier">
+<h2>Adversarial Learning using <code class="docutils literal notranslate"><span class="pre">AdversarialFairnessClassifier</span></code><a class="headerlink" href="#adversarial-learning-using-adversarialfairnessclassifier" title="Permalink to this headline">#</a></h2>
+<p>Another technique to enforce fairness constraints is adversarial learning. The class <code class="docutils literal notranslate"><span class="pre">AdversarialFairnessClassifier</span></code> is based on the algorithm introduced by <a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3278721.3278779">Zhang et al. (2018)</a>.</p>
+<div class="admonition-fairness-aware-adversarial-learning admonition">
+<p class="admonition-title">Fairness-aware Adversarial Learning</p>
+<p><code class="docutils literal notranslate"><span class="pre">AdversarialFairnessClassifier</span></code> leverages an adversarial learning framework to enforce a fairness constraint. The framework consists of two neural networks: a predictor model, which is designed to accurately predict the target variable, and an adversarial model, which is designed to predict the violation of a fairness constraint. The loss of the predictor model is penalized if the adversarial model performs well.</p>
+<p>The authors introduce two variations of the framework, that optimize for either demographic parity or equalized odds. When the goal is to achieve demographic parity, the adversary is designed to predict sensitive feature  based on the predicted probabilities of the predictor model. When the goal is to achieve equalized odds, the adversary must predict the sensitive feature,taking as input both the predicted probabilities and the ground-truth variable.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">AdvesarialFairnessClassifier</span></code> has various parameters, including:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">backend</span></code>: the deep learning library of choice, either pytorch or tensorflow.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">predictor_model</span></code>: the definition of the predictor model, either a predefined neural network model object or a list in which each value indicates the number of nodes or an activation function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">adversarial_model</span></code>: the definition of the adversarial model, defined in the same way as the predictor_model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">constraints</span></code>: the fairness constraint of choice, either <code class="docutils literal notranslate"><span class="pre">'equalized_odds'</span></code> or <code class="docutils literal notranslate"><span class="pre">'demographic_parity'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code>: the batch size is the number of samples that will be passed through to the network at each training step</p></li>
+</ul>
+<p>The class has several more parameters that control training. The methods of the <code class="docutils literal notranslate"><span class="pre">AdvesarialFairnessClassifier</span></code> are similar to the familiar scikit-learn API - this time no sensitive features are required at prediction time!</p>
+<p>Let’s try a simple adversarial network on the COMPAS dataset. We use a simple predictor model with one hidden layer of 50 nodes and a leaky ReLu activation function. The adversary model has 3 nodes and also uses the leaky ReLu activation function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># train adversarial fairness classifier</span>
+<span class="n">afc</span> <span class="o">=</span> <span class="n">AdversarialFairnessClassifier</span><span class="p">(</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span>
+    <span class="n">predictor_model</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="s2">&quot;leaky_relu&quot;</span><span class="p">],</span>
+    <span class="n">adversary_model</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;leaky_relu&quot;</span><span class="p">],</span>
+    <span class="n">constraints</span><span class="o">=</span><span class="s1">&#39;equalized_odds&#39;</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+<span class="n">afc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">sensitive_features_train</span><span class="p">)</span>
+
+<span class="c1"># score</span>
+<span class="n">score</span><span class="p">(</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">afc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span>
+    <span class="n">y_val</span><span class="p">,</span>
+    <span class="n">afc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">),</span>
+    <span class="n">sensitive_features_train</span><span class="p">,</span>
+    <span class="n">sensitive_features_val</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">accuracy</th>
+      <th colspan="2" halign="left">fpr</th>
+      <th colspan="2" halign="left">fnr</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>train</th>
+      <th>validation</th>
+      <th>train</th>
+      <th>validation</th>
+      <th>train</th>
+      <th>validation</th>
+    </tr>
+    <tr>
+      <th>race_Caucasian</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>False</th>
+      <td>0.664554</td>
+      <td>0.619145</td>
+      <td>0.390385</td>
+      <td>0.395833</td>
+      <td>0.286570</td>
+      <td>0.366534</td>
+    </tr>
+    <tr>
+      <th>True</th>
+      <td>0.668687</td>
+      <td>0.637874</td>
+      <td>0.249448</td>
+      <td>0.250000</td>
+      <td>0.459413</td>
+      <td>0.511628</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equalized odds difference (validation): 0.15
+accuracy (validation): 0.63
+</pre></div>
+</div>
+</div>
+</div>
+<p>The adversarial classifier performs better in terms of equalized odds compared to the unconstrained logistic regression classifier. However, the drop in equalized odds is not comparable to decision threshold selection and remains very high - with similar accuracy to the decision thresholds.</p>
+<p>However, we did not perform any hyperparameter tuning - there might be another configuration that performs better on this data set. Deep learning models are very flexible. For example, we could try more (or less!) complex predictor and adversary models and adjust other hyperparameters such as the learning rate and batch size.</p>
+</section>
+<section id="concluding-remarks">
+<h2>Concluding Remarks<a class="headerlink" href="#concluding-remarks" title="Permalink to this headline">#</a></h2>
+<p>In this tutorial we have showcased two ways in which we can use fairness-aware machine learning algorithms to post-process a machine learning model. In particular, we considered:</p>
+<ul class="simple">
+<li><p>post-processing predictions through manually identifying a group-specific decision threshold</p></li>
+<li><p>post-processing predictions through automatically identifying the optimal randomized group-specific decision thresholds using <code class="docutils literal notranslate"><span class="pre">ThresholdOptimizer</span></code></p></li>
+</ul>
+<section id="discussion-points">
+<h3>Discussion Points<a class="headerlink" href="#discussion-points" title="Permalink to this headline">#</a></h3>
+<section id="connection-to-fairness-metrics">
+<h4>Connection to fairness metrics<a class="headerlink" href="#connection-to-fairness-metrics" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Fairness-aware pre-processing algorithms typically optimize for demographic parity, not for equalized odds or equal calibration. Can you explain why?</p></li>
+<li><p>How does post-processing for equalized odds affects other notions of fairness, such as equal calibration and demographic parity? As an exercise, compute fairness metrics that represent alternative notions of (group) fairness. Can you explain the results?</p></li>
+</ul>
+</section>
+<section id="the-justification-of-fair-ml">
+<h4>The justification of fair-ml<a class="headerlink" href="#the-justification-of-fair-ml" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Our manual choice of the decision threshold uses a different decision threshold for African-Americans than for Caucasians. Under which circumstances would you deem such a policy fair, if any? Why?</p></li>
+<li><p>The post-processing algorithm implemented in <code class="docutils literal notranslate"><span class="pre">ThresholdOptimizer</span></code> uses randomization in order to achieve equalized odds. Consequently, individuals with the exact same characteristics may receive a different prediction. Under which circumstances would you deem such a policy fair, if any? Why?</p></li>
+</ul>
+</section>
+<section id="beyond-fair-ml">
+<h4>Beyond fair-ml<a class="headerlink" href="#beyond-fair-ml" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>In this tutorial, we have focussed on technical approaches to optimize for equalized odds. Can you think of other actions in the machine learning development process that could be used to enhance the predictive performance across groups or mitigate historical bias, e.g., during problem formulation and data collection?</p></li>
+<li><p>In the United States, pretrial risk assessment tools are not used for automated decision-making. Instead, they are used as decision support for judges. Does this influence the way in which you would evaluate the fairness of a model in practice? Why (not)?</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fairness/tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="measuringgroupfairness.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Measuring Group Fairness</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../explainability/introduction.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Explainable Machine Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2024.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

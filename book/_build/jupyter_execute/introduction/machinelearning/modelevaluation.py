@@ -261,6 +261,8 @@ print('confidence scores positive class: {}'.format(y_score))
 # 
 # Based on the confidence score, we can decide how to classify an instance. In a binary classification scenario, this is typically done using a decision threshold: the cut-off value of the model's confidence score at which an instance is classified as positive. The choice of decision threshold can be an important tool to control the trade-off between false positives and false negatives (see also {ref}`cost_sensitive_learning`).
 # 
+# (roc_curve)=
+# 
 # ### ROC curve
 # 
 # A popular tool for investigating the trade-off between false positives and false negatives is the Receiver Operating Characteristic curve (ROC curve`). **The ROC curve plots the true positive rate against the false positive rate. Each point on the curve corresponds to a different decision threshold.**

@@ -192,7 +192,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../interdisciplinary/introduction.html">
-   Interdisciplinary Insights
+   Interdisciplinary Perspectives on Fair-ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -201,13 +201,18 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../interdisciplinary/sociotechnical.html">
-     Socio-technical Systems: Abstraction Traps
+    <a class="reference internal" href="../interdisciplinary/ethics.html">
+     Moral Philosophy: Choosing the “Right” Fairness Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../interdisciplinary/ethics.html">
-     Moral Philosophy: Choosing the “Right” Fairness Metrics
+    <a class="reference internal" href="../interdisciplinary/law.html">
+     Law: Fairness and Discrimination
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interdisciplinary/sociotechnical.html">
+     Socio-technical Systems: Abstraction Traps
     </a>
    </li>
   </ul>
@@ -224,7 +229,12 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../tutorials/measuringgroupfairness.html">
-     Measuring Group Fairness in Pre-Trial Risk Assessment
+     Measuring Group Fairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorials/fairnessawareclassification.html">
+     Fairness-Aware Classification
     </a>
    </li>
   </ul>
@@ -573,9 +583,9 @@ Most pre-processing algorithms are designed to obscure undesirable associations 
 <p><a class="reference internal" href="postprocessing.html#fairml-post-processing"><span class="std std-ref"><strong>Post-processing Algorithms</strong></span></a></p>
 <p>Post-processing approaches adjust an existing model, either through post-processing predictions or by adjusting the learned model parameters directly. In this section, we will discuss the following approaches:</p>
 <ul class="simple">
-<li><p>Reject-Option Classification</p></li>
-<li><p>Randomized Decision Thresholds</p></li>
-<li><p>Leaf Relabelling</p></li>
+<li><p><a class="reference internal" href="postprocessing.html#reject-option-classification"><span class="std std-ref">Reject-Option Classification</span></a></p></li>
+<li><p><a class="reference internal" href="postprocessing.html#randomized-thresholds"><span class="std std-ref">Randomized Group-Specific Decision Thresholds</span></a></p></li>
+<li><p><a class="reference internal" href="postprocessing.html#leaf-relabeling"><span class="std std-ref">Leaf Relabelling</span></a></p></li>
 </ul>
 </div>
 </section>
@@ -591,7 +601,6 @@ Most pre-processing algorithms are designed to obscure undesirable associations 
 </dd>
 </dl>
 </div>
-<hr class="footnotes docutils" />
 </section>
 <div class="toctree-wrapper compound">
 </div>

@@ -15,5 +15,6 @@ mglearn
 numpy==1.24.4
 pandas==2.0.3
 scikit-learn==1.2.1
-matplotlib==3.5.1
+matplotlib==3.8.3
 fairlearn==0.10.0
+torch==2.2.1

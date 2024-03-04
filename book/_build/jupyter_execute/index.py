@@ -59,16 +59,26 @@ glue("today", date.today().strftime('%Y-%m-%d'))
 # 
 # **Code examples**
 # 
-# The code examples in this book are generated with the following package versions:
-# 
-# ```{code-block}
-# numpy==1.24.4
-# pandas==2.0.3
-# scikit-learn==1.2.1
-# matplotlib==3.5.1
-# fairlearn==0.10.0
-# ```
-# 
+# The code examples in this book are generated with the following package versions.
+
+# In[2]:
+
+
+import numpy
+import pandas
+import sklearn
+import matplotlib
+import fairlearn
+import torch
+
+print("numpy==%s" % numpy.__version__)
+print("pandas==%s" % pandas.__version__)
+print("sklearn==%s" % sklearn.__version__)
+print("matplotlib==%s" % matplotlib.__version__)
+print("fairlearn==%s" % fairlearn.__version__)
+print("torch==%s" % torch.__version__)
+
+
 # ---
 # 
 # **Citing this book**

@@ -46,3 +46,6 @@ sphinx:
       scikit-lego:
         - "https://scikit-lego.netlify.app/"
         - null
+    suppress_warnings:
+      - "myst.footnote" # suppress footnote warnings
+    myst_footnote_transition: False # suppress "Document may not end with a transition" error

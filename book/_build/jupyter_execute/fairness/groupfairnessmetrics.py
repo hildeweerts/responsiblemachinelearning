@@ -240,6 +240,8 @@ print("equalized odds difference: %.2f" % eod)
 
 # From these results we can conclude that the group-specific false negative rates differ a lot, while the false positive rates are relatively similar. This implies that the model more often falsely predicts `female` and especially `non_binary` applicants to be rejected compared to `male` applicants.
 # 
+# (equal_opportunity)=
+# 
 # ### Equal Opportunity
 # 
 # Equal opportunity is a relaxation of equalized odds that only requires the true positive rate (or, equivalently, false negative rate) to be equal across groups. Formally, for all values of $a, a' \in A$:
@@ -248,7 +250,7 @@ print("equalized odds difference: %.2f" % eod)
 # 
 # ```{tip}
 # 
-# Equal opportunity as a fairness metric is *very loosely* inspired by the egalitarian concept of equality of opportunity, which we will discuss in more detail in [Choosing the "right" fairness metric](normative_underpinnings).
+# Equal opportunity as a fairness metric is *very loosely* inspired by the egalitarian concept of equality of opportunity, which we will discuss in more detail in [a later chapter](philosophy_egalitarianism).
 # 
 # ```
 # 
@@ -265,6 +267,8 @@ print("equalized odds difference: %.2f" % eod)
 # You can find a refresher on calibration of machine learning models in the machine learning preliminaries section on [model calibration](model_calibration).
 # 
 # ```
+# 
+# (equal_calibration)=
 # 
 # ### Equal calibration
 # 
@@ -336,6 +340,8 @@ display(mf.by_group)
 # ```{tip}
 # In `fairlearn` we can define a custom fairness metric for NPV using {py:func}`fairlearn.metrics.make_derived_metric`. This function takes as parameters `metric` (a callable metric such as {py:func}`sklearn.metrics.recall_score` or {py:func}`fairlearn.metrics.false_positive_rate`) and `transform` (a string indicating the type of transformation, e.g., `difference` or `group_min`). The function returns a function with the same signature as the supplied metric, but with additional `sensitive_features=` and `method=` arguments.
 # ```
+# 
+# (impossibility_theorem)=
 # 
 # ## The Impossibility Theorem
 # 
@@ -432,6 +438,8 @@ display(mf.by_group)
 # 
 # Given this observation, if base rates differ across groups (i.e., $p_a \neq p_b$) an imperfect classifier (i.e., $FPR > 0$ and/or $FNR > 0$) that satisfies equal calibration (i.e.,  $PPV_a = PPV_b$) cannot have **both** $FPR_a = FPR_b$ and $FNR_a = FNR_b$.
 # ```
+# 
+# (fairness_mission_impossible)=
 # 
 # ## Fairness: Mission Impossible?
 # 

@@ -23,24 +23,19 @@ parts:
           - file: fairness/fairml/postprocessing
       - file: fairness/interdisciplinary/introduction
         sections:
-          - file: fairness/interdisciplinary/ethics
+          - file: fairness/interdisciplinary/philosophy
           - file: fairness/interdisciplinary/law
-          - file: fairness/interdisciplinary/sociotechnical
+          - file: fairness/interdisciplinary/sts
       - file: fairness/tutorials/introduction
         sections:
           - file: fairness/tutorials/measuringgroupfairness
           - file: fairness/tutorials/fairnessawareclassification
-  - caption: Explainability
-    chapters:
-      - file: explainability/introduction
-      - file: explainability/localposthoc/introduction
-        sections:
-          - file: explainability/localposthoc/lime
-          - file: explainability/localposthoc/shap
-          - file: explainability/localposthoc/discussion
-      - file: explainability/globalposthoc/introduction
-        sections:
-          - file: explainability/globalposthoc/pdp
+  # - caption: Explainability
+  #   chapters:
+  #     - file: explainability/introduction
+  #     - file: explainability/globalposthoc
+  #     - file: explainability/localposthoc
+  #     - file: explainability/evaluatingxai
   - caption: Misc
     chapters:
       - file: misc/harms

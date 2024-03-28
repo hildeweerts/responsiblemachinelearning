@@ -200,8 +200,8 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="fairness/interdisciplinary/ethics.html">
-     Moral Philosophy: Choosing the “Right” Fairness Metrics
+    <a class="reference internal" href="fairness/interdisciplinary/philosophy.html">
+     Philosophy: What is “Fair”?
     </a>
    </li>
    <li class="toctree-l2">
@@ -210,8 +210,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="fairness/interdisciplinary/sociotechnical.html">
-     Socio-technical Systems: Abstraction Traps
+    <a class="reference internal" href="fairness/interdisciplinary/sts.html">
+     Science and Technology Studies: Abstraction Traps
     </a>
    </li>
   </ul>
@@ -234,62 +234,6 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="fairness/tutorials/fairnessawareclassification.html">
      Fairness-Aware Classification
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Explainability
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="explainability/introduction.html">
-   Explainable Machine Learning
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="explainability/localposthoc/introduction.html">
-   Local Post-Hoc Explanations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="explainability/localposthoc/lime.html">
-     LIME
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="explainability/localposthoc/shap.html">
-     SHAP
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="explainability/localposthoc/discussion.html">
-     Feature importance
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="explainability/globalposthoc/introduction.html">
-   Global Post-Hoc Explanations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="explainability/globalposthoc/pdp.html">
-     Partial Dependence Plots
     </a>
    </li>
   </ul>
@@ -534,7 +478,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-responsible-machine-learning">
 <h1>An Introduction to Responsible Machine Learning<a class="headerlink" href="#an-introduction-to-responsible-machine-learning" title="Permalink to this headline">#</a></h1>
 <p>by <em>Hilde Weerts</em></p>
-<p>Last updated: <span class="pasted-text">2024-03-04</span></p>
+<p>Last updated: <span class="pasted-text">2024-03-28</span></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This book is still very much a work in progress. If you have suggestions, questions, or comments, please feel free to open an issue on the <a class="reference external" href="https://github.com/hildeweerts/responsiblemachinelearning">Github repository</a>.</p>
@@ -554,16 +498,20 @@ Fairness</div>
 </div>
 </div>
 </div>
-<div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Transparency</div>
-<p class="sd-card-text">As the complexity of machine learning models increase, it becomes more difficult for humans to understand, assess, and justify their behavior.</p>
-<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary reference internal" href="explainability/introduction.html#intro-xai"><span class="std std-ref">learn more</span></a></span></p>
-</div>
-</div>
-</div>
+<!--
+````{grid-item-card} Transparency
+As the complexity of machine learning models increase, it becomes more difficult for humans to understand, assess, and justify their behavior.
+
+```{button-ref} intro_xai
+:expand:
+:color: primary
+:outline:
+
+learn more
+```
+
+````
+-->
 </div>
 </div>
 <hr class="docutils" />
@@ -596,8 +544,6 @@ torch==2.2.1
 <p>This work is licensed under a
 <a class="reference external" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>
 <p><a class="reference external" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="CC BY-NC 4.0" src="https://licensebuttons.net/l/by-nc/4.0/88x31.png" /></a></p>
-<div class="toctree-wrapper compound">
-</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">

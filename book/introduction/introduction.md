@@ -14,7 +14,9 @@ As machine learning systems are increasingly deployed in all kinds of applicatio
 
 <!-- And the increasing power of the organizations who deploy these systems raises questions about accountability. -->
 
-I have organized these lecture notes along two key moral values: fairness and transparency. Although there exists some overlap, each theme emphasizes a different aspect of a responsible approach to machine learning.
+The current version of this book is limited to the moral value of fairness.
+
+<!-- Although there exists some overlap, each theme emphasizes a different aspect of a responsible approach to machine learning. -->
 
 ### Fairness
 
@@ -24,11 +26,11 @@ In recent years, several incidents have shown that machine learning systems can 
 
 Although math and numbers may seem objective, machine learning models are not value neutral. They are the result of many design choices that embed the values of their developers: which data is collected, what metrics are used to evaluate our models, and which problems do we decide to tackle in the first place? The risk of unfairness is not limited to adversarial actors - even a well-intentioned data scientist has their blind spots.
 
-### Transparency
+<!-- ### Transparency
 
 As a moral value, transparency can be defined as the _degree of openness that allows others to understand what actions are performed_. In the context of machine learning, an important dimension of transparency is the extent to which we can understand a model’s prediction-generating process. This is known as interpretable machine learning or explainable machine learning.
 
-In some cases, the best performing models are complex models such as ensembles or deep neural networks. As the complexity of models increases, it generally becomes more difficult for humans to understand their behavior. In many contexts, it can be valuable or even imperative to understand why a machine learning model makes certain predictions. For example, machine learning practitioners might use explanations to understand where the model fails and how it might be improved.
+In some cases, the best performing models are complex models such as ensembles or deep neural networks. As the complexity of models increases, it generally becomes more difficult for humans to understand their behavior. In many contexts, it can be valuable or even imperative to understand why a machine learning model makes certain predictions. For example, machine learning practitioners might use explanations to understand where the model fails and how it might be improved. -->
 
 <!-- ### Accountability
 
@@ -48,7 +50,7 @@ In this book, I have tried to balance these extremes by setting out a practical 
 
 The techniques, challenges, and considerations discussed in these lecture notes mostly involve applications based on supervised learning. Nonetheless, the sociotechnical approach that is encouraged throughout the lecture notes can be applied to any analytics project.
 
-Of course, there is much more to cover than what reasonably fits into one book. In addition to the values of fairness and explainability, other important requirements are, for example, technical safety, privacy, sustainability. Additionally, there are many adjacent topics such as moral philosophy, accessible product design, and organizational best practices. Although organizational structures, including efforts such as ethics committees and programs for diversity and inclusion, are crucial for operationalizing responsible machine learning these are not the main focus of these lecture notes.
+Of course, there is much more to cover than what reasonably fits into one book. In addition to fairness, other important requirements are, for example, transparency, technical safety, privacy, sustainability. Additionally, there are many adjacent topics such as moral philosophy, accessible product design, and organizational best practices. Although organizational structures, including efforts such as ethics committees and programs for diversity and inclusion, are crucial for operationalizing responsible machine learning these are not the main focus of these lecture notes.
 
 ## Navigating this book
 
@@ -56,7 +58,7 @@ The rest of this book is organized as follows:
 
 - [Machine Learning](ml_preliminaries) contains a quick recap of relevant machine learning concepts.
 - [Fairness](intro_fairness) dives into the topic of algorithmic fairness, including techniques to discover and mitigate undesirable discrimination that have been proposed in the compute science literature.
-- [Explainable Artificial Intelligence](intro_xai) covers several techniques for creating interpretable models and explaining black-box machine learning models.
+<!-- - [Explainable Artificial Intelligence](intro_xai) covers several techniques for creating interpretable models and explaining black-box machine learning models. -->
 
 ```{note}
 

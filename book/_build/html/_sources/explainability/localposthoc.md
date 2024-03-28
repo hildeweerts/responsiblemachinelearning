@@ -1,0 +1,163 @@
+(local_posthoc_explanations)=
+
+# Local Post-Hoc Explanations
+
+```{warning}
+This chapter is still under construction.
+```
+
+<!--
+
+Shapley Additive Explanations (SHAP) is a explanation method for computing **feature value contributions** of (individual) instances. {term}`Feature contribution`s quantify the *marginal contribution* of a feature value to the model output. That is, on average, how would the output of the model change, had the feature value been different?
+
+The intuition is as follows: by comparing the model output of the original instance to the model output of an instance with a different feature value, we can estimate how much the . with an instance where the feature value we try to estimate how much an instance's feature value contribute to the model's output, by comparing the model output .
+
+
+The goal of SHAP values is to answer the question: how much does an instance's feature value contribute to the model's output?
+
+That is, if the instance's feature value would have been different, what would the
+
+The basic idea is simple: if one of the instance's feature values would *not* have been this value, how would that change the model output?
+
+As SHAP does not rely on the internal structure of the model that is being explained, SHAP is {term}`model-agnostic`, i.e., it can be applied to any black-box model.
+
+## Marginal Feature Value Contribution
+
+
+
+## Shapley Additive Explanations
+<!-- Shapley-value based approaches {footcite:p}`strumbelj2009explaining` {footcite:p}`lundberg2017unified` pose the distribution of feature importance as a cooperative game, where each feature value is a player. In order to capture the influence of interactions between features, Shapley-value based approaches consider how the model prediction changes for each subset, or coalition, in the power set of features. Next, Shapley-value based approaches compute the change in prediction, or `value' of each subset by averaging across all possible feature values of the features that are not part of the subset under consideration.
+
+```{admonition} The Shapley value
+A cooperative game is a game in which groups of players form coalitions in which they work together and obtain a certain profit. As each player can have a different contribution to the profit, one might be interested in the most appealing division of profits. The Shapley value, introduced by {footcite:t}`shapley1953`, is an allocation rule that assigns a unique distribution of the profit among the players in the coalition. The Shapley value is known to be the only unique solution adhering to several, often desirable, properties.
+
+The idea of the Shapley value is to consider all possible orderings in which players can enter the game. For each ordering, the value of the game before and after a player entered is compared. The value that is added by a player is known as the player's \textit{marginal contribution}. The Shapley value is the vector of the average marginal contribution over all possible orderings for each of the players. This can be formalized as follows.
+
+Let $M$ be a set of $m$ players and $v(S)$ a value function that determines the profit of the game in which a subset of players $S \subseteq M$ entered the game. Furthermore, let $\sigma$ depict an ordering of players and let $\sigma(j) = l$ denote that player $j$ is in position $l$. The set of players that precede player $j \in M$ can be described by:
+
+$$ P(\sigma, j) = \{k \in M \mid \sigma(k) < \sigma(j)\} $$
+
+Let $\pi(M)$ be the set of all orderings of player set $M$. Then, the value allocated to player $j$ is equal to the average marginal contribution of player $j$ over all possible orderings:
+
+$$ \phi_j(v) = \frac{1}{m!} \sum_{\sigma \in \pi(M)} v(P(\sigma, j) \cup \{j\}) - v(P(\sigma, j)) $$
+
+Finally, the Shapley value is equal to:
+
+$$\Phi(M,v) = (\phi_1(v), ..., \phi_m(v))$$
+```
+
+So how does the Shapley value relate to local feature contributions? The idea behind Shapley Additive Explanations (SHAP) is to pose the explanation problem as a cooperative game. The players of this game are the feature values of the instance we are trying to explain. The value function of the game is the difference between average prediction of the classification model and the prediction for the instance under consideration.
+
+A connection between the Shapley value and feature contributions was
+
+### A brief history of SHAP
+To the best of our knowledge, computing the Shapley value to determine feature contributions was first suggested by {footcite:t}`lipovetsky2001analysis`. In their work, the authors demonstrate how the Shapley value can be used to determine the importance of features in a linear regression model in the presence of multi-collinearity. Later, {footcite:t}`strumbelj2009explaining` revisited the idea in a classification setting and show how Shapley values can be approximated in this setting. More recently, {footcite:t}`lundberg2017unified` noted that many local explanation methods consider an explanation in the form of a linear function of features. The authors call this class of explanation methods additive feature attribution methods. In their work, the authors show that the Shapley value is the single unique solution in this explanation class that adheres to three properties derived from the properties of the Shapley value.
+
+An advantage of SHAP explanations over earlier perturbation-based methods {footcite:p}`robnik-sikonja2008explaining` is that SHAP values also take into account interactions between different features. For example, two features $a$ and $b$ might have a disjunctive relationship with the target variable, i.e. $(x_{ia} = 1 \vee x_{ib} = 1) \rightarrow (y = 1)$. In this situation, keeping feature $a$ fixed to 1 will always result in $y = 1$, regardless of the value of $b$, and vice versa. Therefore, an approach in which only one feature is varied at the time will indicate that $x_{ia} = 1$ and $x_{ib} = 1$ do not contribute to the prediction, even though they clearly have a strong relationship with the target variable. In a SHAP explanation, such interaction effects will be divided among the participating features.
+
+There also exist several challenges when utilizing the Shapley value for computing feature contributions. Recall that in order to compute the Shapley value, we need to be able to determine the value of a situation where only a subset of players, i.e. a subset of feature values of the instance, has entered the game. However, most machine learning algorithms cannot deal with empty feature values. This is dealt with by letting features that are not part of the game take on their expected value in the feature space. We will elaborate on this in the next section, in which we provide a formal definition of SHAP values. As we will see, computing exact SHAP values is computationally expensive. To tackle this issue, several model-agnostic and model-specific approximation algorithms have been proposed to approximate SHAP values, which we will discuss in Section~\ref{sec:shapappr}.
+
+
+Let $x_i = (x_{i1}, x_{i2}, x_{im}) \in \chi^m$ be an instance from the feature space and $f$ the classifier. Additionally, let $M = \{1, 2, ..., m\}$ be the set of features. The goal of a SHAP explanation is to explain how a feature value $x_{ij}$ contributes to the \textit{prediction difference} between the classifier's prediction for the instance, $f(x_i)$, and the expected prediction if none of the feature values is known, $\mathbb{E}[f]$. The contribution of a feature value to the final prediction is known as the \textit{SHAP value}. Posing this problem as a cooperative game (see Appendix~\ref{app:shapderivation}), we can define the \textit{SHAP value} as follows.
+
+Let $f_S(x_i) = \mathbb{E}[f|X_{ij} = x_{ij}, \forall j \in S]$ denote the expected value of $f$ when only a subset of $S \subseteq M$ of the feature values is known. Then, the contribution of a subset of feature values is equal to  $\Delta_S(x_i) = f_S(x_{i}) - f_{\{\}}(x_i)$. Following Equation~\ref{eq:shapley}, using $v(S) = \Delta_S(x_i)$, the \textit{SHAP value} of feature value $j$ of instance $i$ is defined as:
+
+$$ \phi_{ij} = \frac{1}{m!} \sum_{\sigma \in \pi(M)} \left( \Delta_{P(\sigma, j) \cup \{j\}}(x_i) - \Delta_{P(\sigma, j)}(x_i) \right)$$
+
+Where like before $\sigma$ depicts an ordering of features in $M$ and $P(\sigma, j)$ the subset of features that precede feature $j$ in ordering $\sigma$.  Finally, we define the SHAP values of instance $x_i$ as follows:
+
+$$ \Phi_i = (\phi_{i1}, \phi_{i2}, ..., \phi_{im})$$
+
+which is equivalent to the Shapley value.
+
+## Axioms
+In their work, {footcite:t}`lundberg2017unified` introduce the notion of additive feature contribution methods. This is a class of local explanations that take the form of a linear function of feature contributions. This class includes a.o. LIME and SHAP. Because SHAP explanations are equivalent to the Shapley value, the properties of the Shapley value can be translated to the feature contribution context.
+
+### Pay-off efficiency
+Because of the pay-off efficiency property of the Shapley value, SHAP values are implicitly normalized {footcite:p}`strumbelj2014explaining`. That is, the sum of the contributions of SHAP values of an instance will always be exactly equal to the prediction difference.
+
+$$ \sum_{j=1}^m \phi_{ij} = \Delta_M(x_i) = f_M(x_i) - f_{\{\}}(x_i) = f(x_i) - \mathbb{E}[f]$$
+
+This property is referred to as \textit{local accuracy} by {footcite:t}`lundberg2017unified`. Note that local surrogate models that are not based on the Shapley value will not adhere to this property.
+
+### Symmetry
+The symmetry property asserts that if two players have a symmetrical contribution, they will be assigned the same SHAP value.
+
+$$ \forall S \in M \setminus \{j, k\} : \Delta_{S \cup \{j\}}(x_i) = \Delta_{S \cup \{k\}}(x_i) \Rightarrow \phi_{ij} = \phi_{ik} $$
+
+### Additive
+Because of the additivity property, SHAP values are additive across different instances.
+
+$$ \forall j \in M : \Delta_M(x_k) + \Delta_M(x_l)  = \phi_{kj} + \phi_{lj}$$
+
+### Null player
+Given the null player property, we can see that feature values that do not affect the prediction will be assigned zero contribution.
+
+$$ \forall S \in M \setminus \{j\} : \Delta_{S \cup \{j\}}(x_i) = \Delta_S(x_i) \Rightarrow \phi_{ij} = 0$$
+
+The SHAP explanation is the unique solution that adheres to all of these properties at the same time\footnote{{footcite:t}`lundberg2017unified` note that the additivity and null-player axioms can be replaced by the \textit{consistency} property, which also implies symmetry. The property states that if a model $f$ changes such that the contribution of a feature value stays the same or increases, regardless of other feature values, that the feature value's contribution should not decrease.}.
+
+## Approximation algorithms
+As stated before, the SHAP value is very expensive to compute. First of all, we need to iterate over all possible permutations, which is factorial in the number of features. Unfortunately, it gets even worse. In order to compute $\Delta_S(x_i)$, we need the conditional expectation of the prediction given that the feature values of features in $S$ are known, for which the computational complexity is exponential in $m$.
+
+To deal with the computational complexity, several approximation algorithms have been proposed by {footcite:t}`strumbelj2014explaining` and {footcite:t}`lundberg2017unified`. Additionally, {footcite:t}`lundberg2017unified` introduce \textit{Tree-SHAP}, an exact (model-specific) algorithm to compute SHAP values for tree-based models. In the remainder of this section we will discuss the proposed model-agnostic approximation algorithms and briefly discuss the Tree-SHAP algorithm.
+
+### Shapley sampling
+The Shapley sampling approximation algorithm introduced by {footcite:t}`strumbelj2014explaining` is a Monte Carlo style algorithm, in which a SHAP value is computed as the average of $K$ samples. Each sample $k$ is defined by an ordering $\sigma_k$ sampled from $\pi(M)$ and an instance $w_k$ sampled from the feature space $\chi^m$. When sampling from the feature space, each possible combination of feature values could be seen equiprobable {footcite:p}`strumbelj2014explaining`. Alternatively, samples can be taken from the training dataset
+{footcite:p}`strumbelj2009explaining`
+
+The contribution of a feature $j$ for the $k^{th}$ sample is computed as the difference in prediction between two constructed instances, $b_1^k$ and $b_2^k$:
+\begin{equation}
+    \label{eq:ci1}
+    b_1^k = (b_{11}^k, b_{12}^k, ..., b_{1m}^k), \text{where } b_{1l} =
+    \begin{cases}
+    x_{il} & \text{if } l \in P(\sigma_k, j) \cup \{j\} \\
+    w_{kl} & \text{if } l \in M \setminus (P(\sigma_k, j) \cup \{j\})
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \label{eq:ci2}
+    b_2^k = (b_{21}^k, b_{22}^k, ..., b_{2m}^k), \text{where } b_{2l} =
+    \begin{cases}
+    x_{il} & \text{if } l \in P(\sigma_k, j) \\
+    w_{kl} & \text{if } l \in M \setminus P(\sigma_k, j)
+    \end{cases}
+\end{equation}
+
+Note that the difference between the constructed instances is that $b_1^k$ includes $x_{ij}$ whereas $b_2^k$ includes $w_{kj}$. Then the contribution for the $k^{th}$ sample is computed as:
+\begin{equation}
+    \phi_{ij}^k = f(b_1^k) - f(b_2^k)
+\end{equation}
+
+And the SHAP value is approximated as:
+\begin{equation}
+    \phi_{ij} = \frac{1}{K} \sum_{k = 1}^K \phi_{ij}^k
+\end{equation}
+
+By sampling $w_k$ directly from the feature space, the authors assume feature independence in order to approximate the conditional expectation. That is, $w_k$ is sampled without taking into account the feature values of $x_i$ for features that precede $j$ in ordering $\sigma_k$. Hence, if there exists a high association between a feature value of some feature $i$ and a feature value of another feature $j$, this will not be taken into account during sampling. Under the independence assumption, the authors show that the algorithm provides an unbiased estimate of $\Phi_i$.
+
+### Adaptive sampling
+{footcite:t}`strumbelj2014explaining` also propose a second algorithm that further minimizes the approximation error for a given number of samples. Because the sampling approach is Monte Carlo style, the approximation error depends on the population variance. However, the variance may not be the same for all features. For example, a feature value that does not contribute to the prediction will contribute zero in every sample, which results in zero variance. The adapted sampling approaches leverages this by distributing the total number of among individual features based on their sample variance. After a predefined number of samples is taken for each feature, each new sample will be assigned to the feature with the highest sample variance. The sample variance is updated each time a new sample is taken.
+
+This procedure is very similar to the stratified sampling procedure for computing the Shapley value proposed by \citet{Castro2017}.
+It is important to note that in Monte Carlo style approximation schemes of the Shapley value, the resulting estimations cannot be guaranteed to satisfy pay-off efficiency when the set of sampled orderings is not the same for each feature \citep{Castro2017, VanCampen2016}. In other words, the adapted sampling approach will not be locally accurate, unless the estimation procedure is adapted to account for the efficiency gap \citep[see][]{Castro2017}.
+
+### Kernel SHAP
+{footcite:t}`lundberg2017unified` propose a model-agnostic approximation method which they refer to ass \textit{Kernel SHAP}. The method is a particular parameterization of linear LIME such that it recovers the SHAP explanation. That is, the authors show that with a particular loss function, weighting kernel, and regularization term, the SHAP explanation can be approximated. A key difference with Shapley sampling is that Kernel SHAP estimates all SHAP values at the same time using regression. As such, the authors claim that Kernel SHAP requires fewer samples to achieve similar approximation accuracy. In particular, they provide an example in which a model uses only a few features. In this scenario, Kernel SHAP requires much fewer samples than Shapley sampling. Although it is unclear from their paper, we suspect that {footcite:t}`lundberg2017unified` compared the Kernel SHAP method to the original Shapley sampling approach and not the adaptive sampling approach described in Section~\ref{sec:adaptiveshapleysampling}. We expect the difference in approximation error for sparse models to be much lower for the adaptive sampling approach, as the sample variance for features that are not used by the model will be zero.
+
+### Tree SHAP
+The \textit{Tree SHAP} algorithm is an exact method for computing SHAP explanations for tree-based learners in polynomial time {footcite:p}`lundberg2017unified`. As the algorithm is quite complex, we will not go into depth about the specifics. The intuition behind the algorithm is to leverage the tree-structure in order to compute the conditional expectation recursively, while keeping track of the proportion of all possible subsets of features relevant in that branch. The latter is necessary for computing the weights of the contribution of each subset. The Tree SHAP algorithm enables practitioners to efficiently compute exact SHAP explanations for tree-based models such as decision trees, random forests, and XGBoost.
+
+## Discussion
+Something interesting.
+
+## References
+
+-->
+
+## References
+
+```{footbibliography}
+
+```

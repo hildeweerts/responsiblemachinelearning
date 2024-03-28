@@ -51,6 +51,7 @@ learn more
 
 ````
 
+<!--
 ````{grid-item-card} Transparency
 As the complexity of machine learning models increase, it becomes more difficult for humans to understand, assess, and justify their behavior.
 
@@ -63,6 +64,8 @@ learn more
 ```
 
 ````
+-->
+
 `````
 
 ---

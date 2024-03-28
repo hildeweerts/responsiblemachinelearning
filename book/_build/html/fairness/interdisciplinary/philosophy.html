@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Philosophy: What is “Fair”? &#8212; An Introduction to Responsible Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Law: Fairness and Discrimination" href="law.html" />
+    <link rel="prev" title="Interdisciplinary Perspectives on Fair-ML" href="introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">An Introduction to Responsible Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    An Introduction to Responsible Machine Learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../introduction/introduction.html">
+   Responsible Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../introduction/machinelearning/introduction.html">
+   Machine Learning Preliminaries
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/modelevaluation.html">
+     Model Evaluation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/modelselection.html">
+     Model Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../introduction/machinelearning/costsensitivelearning.html">
+     Cost-Sensitive Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fairness
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction.html">
+   Algorithmic Fairness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupfairnessmetrics.html">
+   Group Fairness Metrics
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../fairml/introduction.html">
+   Fairness-Aware Machine Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/preprocessing.html">
+     Pre-processing Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/constrainedlearning.html">
+     Constrained Learning Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../fairml/postprocessing.html">
+     Post-processing Algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="introduction.html">
+   Interdisciplinary Perspectives on Fair-ML
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Philosophy: What is “Fair”?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="law.html">
+     Law: Fairness and Discrimination
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sts.html">
+     Science and Technology Studies: Abstraction Traps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorials/introduction.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorials/measuringgroupfairness.html">
+     Measuring Group Fairness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorials/fairnessawareclassification.html">
+     Fairness-Aware Classification
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Misc
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../misc/harms.html">
+   List of Harms
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/hildeweerts/responsiblemachinelearning/issues/new?title=Issue%20on%20page%20%2Ffairness/interdisciplinary/philosophy.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/fairness/interdisciplinary/philosophy.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#egalitarianism">
+   Egalitarianism
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fairness-metrics-as-egalitarian-goals">
+   Fairness Metrics as Egalitarian Goals
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demographic-parity">
+     Demographic Parity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equalized-odds">
+     Equalized Odds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equal-calibration">
+     Equal Calibration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enforcing-fairness-constraints">
+   Enforcing Fairness Constraints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concluding-remarks">
+   Concluding Remarks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Philosophy: What is “Fair”?</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#egalitarianism">
+   Egalitarianism
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fairness-metrics-as-egalitarian-goals">
+   Fairness Metrics as Egalitarian Goals
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demographic-parity">
+     Demographic Parity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equalized-odds">
+     Equalized Odds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equal-calibration">
+     Equal Calibration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enforcing-fairness-constraints">
+   Enforcing Fairness Constraints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concluding-remarks">
+   Concluding Remarks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="philosophy-what-is-fair">
+<span id="philosophy-egalitarianism"></span><h1>Philosophy: What is “Fair”?<a class="headerlink" href="#philosophy-what-is-fair" title="Permalink to this headline">#</a></h1>
+<p>What does it mean for a machine learning model to be “fair”, “non-discriminatory”, or “just”? Questions of what is right or wrong have long been studied by philosophers studying ethics. Formally, ethics is a branch of philosophy that considers a systematic reflection on <em>morality</em>: the totality of opinions, decisions, and actions with which people express, individually or collectively, what they think is good or right <a class="footnote-reference brackets" href="#footcite-poel2011" id="id1">1</a>.</p>
+<p>We can distinguish two major branches of ethics. <em>Descriptive</em> ethics considers describing existing morality. This branch of ethics involves describing and analyzing how people live to draw general conclusions about what they consider moral. <em>Normative</em> ethics, on the other hand, is a branch of ethics that involves formulating how to judge what is right and what is wrong. When we talk about ethics in the context of machine learning, we usually consider normative decision-making.</p>
+<p>At the basis of normative decision-making lie values. Values are beliefs about what is important (‘valuable’) in life. In the context of normative ethics, moral values refer to a person’s general beliefs about what is right and what is wrong. <a class="footnote-reference brackets" href="#footcite-poel2011" id="id2">1</a> define moral values as follows: convictions or matters that people feel should be strived for in general and not just for themselves to be able to lead a good life or to realize a just society. Examples of values are honesty, compassion, fairness, courage, and generosity. Within a society, shared values may be translated into a set of rules about how people ought to act. Such a rule, which prescribes what actions are required, permitted, or forbidden is often referred to as a moral <em>norm</em>.</p>
+<p>Considering concepts of fairness, justice, and discrimination, perhaps one of the most influential schools of thought in philosophy is <em>egalitarianism</em>. In this section, we consider algorithmic fairness metrics and mitigation algorithms through this lens.</p>
+<section id="egalitarianism">
+<span id="id3"></span><h2>Egalitarianism<a class="headerlink" href="#egalitarianism" title="Permalink to this headline">#</a></h2>
+<p>Group fairness metrics require some form of equality across groups. Given this characteristic, several scholars have suggested that the philosophical perspective of egalitarianism may provide an ethical framework to understand and justify group fairness metrics <a class="footnote-reference brackets" href="#footcite-binns2018fairness" id="id4">2</a><a class="footnote-reference brackets" href="#footcite-heidari2019moral" id="id5">3</a><a class="footnote-reference brackets" href="#footcite-hertweck2021moral" id="id6">4</a><a class="footnote-reference brackets" href="#footcite-weerts2022does" id="id7">5</a>. Egalitarianism is centered around distributive justice: the just allocation of benefits and burdens.</p>
+<p>Egalitarian theories are generally grounded in the idea that all people are equal and should be treated accordingly. An important concept within egalitarianism is <em>equality of opportunity</em>: the idea that (1) social positions should be open to all applicants who possess the relevant attributes, and (2) all applicants must be assessed only on relevant attributes <a class="footnote-reference brackets" href="#footcite-arneson2018four" id="id8">6</a>. There are two main interpretations of equality of opportunity.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While the <a class="reference internal" href="../groupfairnessmetrics.html#equal-opportunity"><span class="std std-ref">equal opportunity</span></a> fairness metric was inspired by a notion of equality of opportunity, the metric does not capture more nuanced philosophical notions of equality of opportunity.</p>
+</div>
+<p>A <em>formal</em> interpretation of equality of opportunity requires all people to formally get the opportunity to apply for a position. Applicants are to be assessed on their merits, i.e., according to appropriate criteria. In particular, (direct) discrimination based on arbitrary factors, particularly sensitive characteristics such as race or gender, is prohibited. Note that formal equality of opportunity does not require applicants of all sensitive groups to have a non-zero probability to be selected. In particular, formal equality of opportunity allows the use of criteria that are (highly) related to sensitive characteristics, provided these criteria are relevant for assessing merit.</p>
+<p>Substantive theories go further and pose that everyone should also get a substantive opportunity to <em>become</em> qualified. In particular, John Rawls’ theory of justice <a class="footnote-reference brackets" href="#footcite-rawls1971theory" id="id9">7</a> requires everyone with similar innate talent and ambition to have similar prospects for success, irrespective of their socio-economic background.</p>
+</section>
+<section id="fairness-metrics-as-egalitarian-goals">
+<h2>Fairness Metrics as Egalitarian Goals<a class="headerlink" href="#fairness-metrics-as-egalitarian-goals" title="Permalink to this headline">#</a></h2>
+<p>A central debate in egalitarian theories of justice is <em>what</em> should be equal <a class="footnote-reference brackets" href="#footcite-sen1979equality" id="id10">8</a>. When we consider fairness metrics through an egalitarian lens, we can see that each metric provides a different answer to this question.</p>
+<p>For example, measuring fairness as <a class="reference internal" href="../groupfairnessmetrics.html#demographic-parity"><span class="std std-ref">demographic parity</span></a> implies that each group of individuals is, on average, equally deserving of <span class="math notranslate nohighlight">\(\widehat{Y}\)</span>, regardless of their ground-truth class <span class="math notranslate nohighlight">\(Y\)</span>. For example, in recruitment, we may require that men and women are hired at equal rates. In clinical decision-making, we may require that different racial groups receive healthcare at equal rates. <a class="reference internal" href="../groupfairnessmetrics.html#equalized-odds"><span class="std std-ref">Equalized odds</span></a>, on the other hand, assumes that each group of individuals with the same ground-truth class <span class="math notranslate nohighlight">\(Y\)</span> are, on average, equally deserving of <span class="math notranslate nohighlight">\(\widehat{Y}\)</span>. For instance, we may require that <em>qualified</em> men and women are hired at equal rates (and vice versa) or that <em>sick</em> patients of different ethnicities receive healthcare at equal rates. <a class="reference internal" href="../groupfairnessmetrics.html#equal-calibration"><span class="std std-ref">Equal calibration</span></a>, finally, requires that predicted scores have similar meaning, irrespective of sensitive group membership. For example, equal calibration requires that a female patient who receives a mortality risk score of 0.4 has a similar probability of mortality as a male patient that receives a score of 0.4.</p>
+<p>A direct consequence of these different valuations of predicted outcomes is that under many circumstances, demographic parity, equalized odds, and equal calibration are <a class="reference internal" href="../groupfairnessmetrics.html#impossibility-theorem"><span class="std std-ref">mathematically incompatible</span></a> <a class="footnote-reference brackets" href="#footcite-kleinberg2016inherent" id="id11">9</a>.</p>
+<p>So how do we choose one over the other? For this, we need to unravel the normative and empirical assumptions that underly each of these fairness metrics.</p>
+<section id="demographic-parity">
+<h3>Demographic Parity<a class="headerlink" href="#demographic-parity" title="Permalink to this headline">#</a></h3>
+<p>Demographic parity does not take into account the true label <span class="math notranslate nohighlight">\(Y\)</span>. Consequently, if <span class="math notranslate nohighlight">\(P(Y=1|A=a) \neq P(Y=1)\)</span>, demographic parity rules out a perfect predictor. In other words, if base rates are different across groups, satisfying demographic parity requires one to make predictions that do not coincide with the observed outcomes. For this reason, <a class="footnote-reference brackets" href="#footcite-wachter2020bias" id="id12">10</a> refers to demographic parity as a bias-<em>transforming</em> metric: it requires us to change the status quo.</p>
+<p>Some scholars have argued that demographic parity may be justified as a measure of fairness if the data that was used to train the model is affected by <a class="reference internal" href="../introduction.html#historical-bias"><span class="std std-ref">historical bias</span></a>: social biases are explicitly encoded in the data in the form of an association between a sensitive feature and the target variable <a class="footnote-reference brackets" href="#footcite-hertweck2021moral" id="id13">4</a>.</p>
+<figure class="align-center" id="historicalbias">
+<a class="reference external image-reference" href="none"><img alt="A graphical representation of different types of historical bias. The picture contains three primary objects; 'potential - one's inate potential to become a data scientist', 'construct - employee quality', and 'measurement - hiring decisions'. An arrow is drawn between 'potential' and 'construct', which is annotated with '(un)just life bias, innate potential is not equal to employee quality'. A second arrow is drawn between 'construct' and 'measurement', which is annotated with 'measurement bias, employee quality is not equal to hiring decisions'." src="../../_images/historicalbias.svg" width="600px" /></a>
+</figure>
+<p>Under <em>measurement bias</em>, the data paints an incorrect or incomplete picture of the decision subject’s true qualities. For example, if a patient’s healthcare needs are measured as healthcare costs, the healthcare needs of patients who have poor healthcare insurance will be underestimated. From a moral perspective, it seems that decision subjects should not have to bear the harmful consequences of the incorrect beliefs decision-makers have about them. A decision-making policy that relies on such incorrect beliefs can be understood as a violation of formal equality: decision subjects are not assessed based on appropriate criteria but on irrelevant characteristics (insurance policy). Under the empirical assumption that the true distribution of positives and negatives is equal between groups, a fair distribution of positives and negatives would satisfy demographic parity.</p>
+<p>Under <em>life’s bias</em>, the data may accurately represent reality, but reality represents an unequal status quo. For example, we may assume empirically that on average, women have the same innate potential as men to become good data scientists. However, societal gender stereotypes may have affected study progress and career choices, resulting in an unequal distribution of qualified candidates across genders. From a moral perspective, we may assume that women should not have worse job prospects compared to men. This would clearly violate substantive equality: applicants with a similar innate potential do not have equal prospects. Again, under certain assumptions, a fair distribution of positives and negatives would satisfy demographic parity.</p>
+</section>
+<section id="equalized-odds">
+<h3>Equalized Odds<a class="headerlink" href="#equalized-odds" title="Permalink to this headline">#</a></h3>
+<p>Two distinct problems can lie at the root of unequal odds in machine learning. First, a model may be less able to accurately distinguish between positives and negatives for some group compared to another group (see <a class="reference internal" href="#nonoverlappingcurves"><span class="std std-numref">Fig. 11</span></a>). In this case, equalizing odds requires improving the predictive abiltiy of the model for the worst-off group or purposefully reducing the preditice ability for the best-off group.</p>
+<figure class="align-center" id="nonoverlappingcurves">
+<a class="reference external image-reference" href="none"><img alt="../../_images/nonoverlappingcurves.svg" src="../../_images/nonoverlappingcurves.svg" width="200px" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Two group-specific ROC curves which do not overlap. The model is less able to distinguish between positives and negatives for Group <span class="math notranslate nohighlight">\(A\)</span> (yellow) compared to Group <span class="math notranslate nohighlight">\(B\)</span> (purple). Apart from trivial endpoints, equalizing the odds requires either improving the predictive ability of the model for Group <span class="math notranslate nohighlight">\(A\)</span> or reducing predictive ability for Group <span class="math notranslate nohighlight">\(B\)</span>.</span><a class="headerlink" href="#nonoverlappingcurves" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>When base rates are equal between sensitive groups, a requirement of equal odds corresponds to a requirement of equal predictive ability. The underlying moral assumption of objecting unequal odds in this scenario is similar as measurement bias: decision subjects should not have to bear the harmful consequences of incorrect beliefs (i.e., predictions) decision-makers have about them. Consequently, one could argue that a fair distribution of false positives and false negatives satisfies equalized odds.</p>
+<p>A second cause of unequal odds is disparities in base rates, which can result in a different trade-off between false positives and false negatives between sensitive groups (see <a class="reference internal" href="#nonoverlappingcurves"><span class="std std-numref">Fig. 11</span></a>). In this case, equalizing odds corresponds to setting group-specific decision thresholds.</p>
+<figure class="align-center" id="disparatebaserates">
+<a class="reference external image-reference" href="none"><img alt="../../_images/disparatebaserates.svg" src="../../_images/disparatebaserates.svg" width="200px" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Two group-specific ROC curves that overlap exactly. If Group <span class="math notranslate nohighlight">\(A\)</span> (yellow) and Group <span class="math notranslate nohighlight">\(B\)</span> (purple) have different base rates, the same decision threshold ends up on a different spot on the group-specific ROC curve. Equalizing the odds corresponds to setting group-specific decision thresholds.</span><a class="headerlink" href="#disparatebaserates" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>If risk scores are well-calibrated, group-specific decision thresholds correspond to differences in group-specific misclassification cost: a false positive for one Group <span class="math notranslate nohighlight">\(A\)</span> is considered less costly than a false positive for Group <span class="math notranslate nohighlight">\(B\)</span>. Potential moral justifications relate to the cause of the disparity in base rates, i.e., measurement bias or (unjust) life’s bias. For example, one could argue that assigning different misclassification costs to a particular sensitive group is justified if, in a certain society, it is already disproportionately costly to belong to a marginalized group.</p>
+</section>
+<section id="equal-calibration">
+<h3>Equal Calibration<a class="headerlink" href="#equal-calibration" title="Permalink to this headline">#</a></h3>
+<p>Equal calibration quantifies an understanding of fairness that a score should have the same <em>meaning</em>, regardless of sensitive group membership. Similar to equalized odds, the underlying assumption is that the target variable is a reasonable representation of what reality looks or should look like. However, as opposed to equalized odds, equal calibration does not acknowledge that the relationship between features and the target variable may be different across groups.</p>
+<p>As opposed to demographic parity and equalized odds, requiring equal calibration usually does not require an active intervention. That is, we often get equal calibration “for free” when we use machine learning approaches. As such, learning without explicit fairness constraints often implicitly optimizes for equal calibration <a class="footnote-reference brackets" href="#footcite-liu2019implicit" id="id14">11</a>.</p>
+</section>
+</section>
+<section id="enforcing-fairness-constraints">
+<h2>Enforcing Fairness Constraints<a class="headerlink" href="#enforcing-fairness-constraints" title="Permalink to this headline">#</a></h2>
+<p>In some cases, a fair distribution of prediction corresponds to a specific fairness constraint. However, simply enforcing a fairness constraint through a fairness-aware machine learning technique does not always lead to a justifiable distribution of burdens and benefits and can have undesirable side effects.</p>
+<p>First of all, acknowledging that the target variable may be affected by measurement bias does not imply that <em>all</em> solutions that satisfy demographic parity are beneficial.</p>
+<div class="admonition-example-disease-detection-under-measurement-bias admonition">
+<p class="admonition-title">Example: Disease Detection under Measurement Bias</p>
+<p>Imagine we have a classifier that is the best way to diagnose a disease that predicts a positive if and only if receiving an invasive but preventative treatment is beneficial to the patient. Two sensitive groups, Group <span class="math notranslate nohighlight">\(A\)</span> and Group <span class="math notranslate nohighlight">\(B\)</span> can be distinguished in the patient population.</p>
+<p>Both patient populations are equally likely to be sick, with a true base rate of 0.5. Unfortunately, as it turns out, data collection is affected by measurement bias: individuals in group <span class="math notranslate nohighlight">\(B\)</span> are more often asymptomatic, making it harder to detect the disease in these patients compared to patients who belong to group <span class="math notranslate nohighlight">\(A\)</span>. As a result, the number of sick patients in group <span class="math notranslate nohighlight">\(B\)</span> are undercounted, resulting in a lower base rate (i.e., proportion of positives).</p>
+<figure class="align-center" id="diseasedetection">
+<a class="reference external image-reference" href="none"><img alt="../../_images/diseasedetection.svg" src="../../_images/diseasedetection.svg" width="250px" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Even if we acknowledge that the collected data is affected by measurement bias, we don’t know which instances in group <span class="math notranslate nohighlight">\(B\)</span> would benefit from the treatement.</span><a class="headerlink" href="#diseasedetection" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>As patients are equally likely to get sick, it seems a fair classifier would diagnose patients of group <span class="math notranslate nohighlight">\(A\)</span> and group <span class="math notranslate nohighlight">\(B\)</span> at equal rates, satisfying demographic parity. However, <em>enforcing</em> demographic parity algorithmically requires us to diagnose more patients in group <span class="math notranslate nohighlight">\(B\)</span> than suggested by the data. However, by stipulation, our classifier is the best way to diagnose patients. As such, without further information, we have no idea exactly which patients would benefit from the treatment.</p>
+<p>Randomly selecting more patients from group <span class="math notranslate nohighlight">\(B\)</span> in order to satisfy demographic parity is very likely to subject healthy patients to invasive treatment that does not benefit them.</p>
+<p>Put differently: even if a similar proportion of individuals would benefit from treatment in group <span class="math notranslate nohighlight">\(A\)</span> and group <span class="math notranslate nohighlight">\(B\)</span>, this does not imply we should enforce similar treatment at all costs.</p>
+</div>
+<p>The above example illustrates that even if the fair distribution of positives and negatives satisfies demographic parity, <em>enforcing</em> equal selection rates at all costs may not result in said fair distribution.</p>
+<p>Simply enforcing demographic parity may also be problematic when a target variable represents an unequal status quo. For example, it seems that a Rawlsian take on employment would require that men and women have equal job prospects. In particular, a situation in which women’s job prospects are affected by societal gender stereotypes, leading to an unequal distribution of qualifications across genders, does not satisfy substantive equality. One could naively interpret this as an argument to enforce demographic parity in a resume selection algorithm. However, is it beneficial for less qualified women to get a job they cannot adequately perform? At an individual level, such a policy could lead to low job satisfaction and stress. At a societal level, hiring less qualified women could reinforce existing gender stereotypes.</p>
+<p>Instead, true substantive equality requires providing everybody the opportunity to <em>become</em> qualified for a social position. This brings us to a thorny issue: it is often difficult if not impossible to meaningfully address social inequalities at the level of a single decision-making point. Instead, substantive equality would require such decisions to be accompanied by a broader set of additional interventions that ensure a hired candidate can be successful in their job, such as vocational training programs, additional resources for on-the-job learning, or mentoring programs.</p>
+<p>Naively enforcing group fairness constraints can also have other undesirable side effects. Most objections to egalitarianism revolve around the central egalitarian view that the presence or absence of inequality is what matters for justice. Alternative principles of distributive justice include, for example, <em>maximin</em>, which requires the expected welfare of the worst-off group to be maximized. In particular, anti-egalitarianist philosophers often invoke the <em>leveling down objection</em> <a class="footnote-reference brackets" href="#footcite-parfit1995equality" id="id15">12</a>, which points out that equality can be achieved through lowering the welfare of the better-off to the level of the worse-off, without making those worse-off any better-off in absolute terms. In machine learning, fairness constraints are often implemented as equality constraints, raising similar concerns. A concrete example is <a class="reference internal" href="../fairml/postprocessing.html#randomized-thresholds"><span class="std std-ref">randomized group-specific decision thresholds</span></a>. Specifically, if group-specific ROC curves do not intersect, the randomization of group-specific decision thresholds achieves equalized odds by <em>decreasing</em> the performance for the better-off group (<a class="reference internal" href="#levelingdown"><span class="std std-numref">Fig. 14</span></a>).</p>
+<figure class="align-center" id="levelingdown">
+<a class="reference external image-reference" href="none"><img alt="../../_images/randomizedthresholdsroc.svg" src="../../_images/randomizedthresholdsroc.svg" width="300px" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">In this case, the group-specific ROC curves do not intersect, so we cannot find non-randomized group-specific decision thresholds such that equalized odds is satisfied. Equalized odds is achieved because by realizing suboptimal performance for the better-off group (Group 1).</span><a class="headerlink" href="#levelingdown" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>These examples show that fairness constraints are very simplistic measurements of more nuanced notions of fairness. The complexity of fairness-aware machine learning algorithms can disguise the underspecification of fairness constraints. Simple algorithms, such as <a class="reference internal" href="../fairml/preprocessing.html#relabeling"><span class="std std-ref">relabeling</span></a> and <a class="reference internal" href="../fairml/postprocessing.html#reject-option-classification"><span class="std std-ref">reject option classification</span></a>, are easy to interpret as a decision-making policy. For example, consider the reject option classification algorithm. This algorithm assumes the availability of risk scores and reclassifies instances for which the classifier is the most uncertain, i.e., closest to the decision boundary to satisfy demographic parity. Implicitly, the reject option classification approach relies on the empirical assumption that the risk scores accurately capture uncertainty of belonging to the positive class. An accompanying normative assumption is that instances near the decision boundary are more deserving of a positive prediction than instances far away from the decision boundary. Of course, the suitability of reject option classification highly depends on whether these assumptions hold up in practice.</p>
+<p>Simple algorithms typically seem very intrusive: we actively adjust the training data or predictions in a specific way. At first glance, more complex algorithms, such as <a class="reference internal" href="../fairml/preprocessing.html#representation-learning"><span class="std std-ref">representation learning</span></a> and <a class="reference internal" href="../fairml/constrainedlearning.html#adversarial-learning"><span class="std std-ref">adversarial learning</span></a> appear more sophisticated. However, both simple and complex algorithms suffer from the same underspecification of fairness constraints and do not necessarily lead to better real-world outcomes. More complex fairness-aware machine learning algorithms make it difficult to discern the learned decision-making policy. In turn, this makes it hard to meaningfully discuss the underlying empirical and normative assumptions.</p>
+</section>
+<section id="concluding-remarks">
+<h2>Concluding Remarks<a class="headerlink" href="#concluding-remarks" title="Permalink to this headline">#</a></h2>
+<p>In this section, we have seen that philosophical theories can provide normative grounding for the choice of a fairness metric. We have also seen that mathematical fairness constraints are simplified notions of fairness. While under some circumstances, a fair classifier will satisfy certain fairness metrics, simply enforcing mathematical fairness constraints using a fair-ml technique may not result in a fair distribution of outcomes and can have several undesirable side effects.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parts of this section were adapted from Weerts <em>et al.</em><a class="footnote-reference brackets" href="#footcite-weerts2022does" id="id16">5</a> and Weerts <em>et al.</em><a class="footnote-reference brackets" href="#footcite-weerts2024can" id="id17">13</a>.</p>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id18">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-poel2011"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dd><p>Ibo Van de Poel and Lambér Royakkers. <em>Ethics, technology, and engineering: An introduction</em>. John Wiley &amp; Sons, 2011.</p>
+</dd>
+<dt class="label" id="footcite-binns2018fairness"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
+<dd><p>Reuben Binns. Fairness in machine learning: lessons from political philosophy. In <em>Conference on fairness, accountability and transparency</em>, 149–159. PMLR, 2018.</p>
+</dd>
+<dt class="label" id="footcite-heidari2019moral"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
+<dd><p>Hoda Heidari, Michele Loi, Krishna P Gummadi, and Andreas Krause. A moral framework for understanding fair ml through economic models of equality of opportunity. In <em>Proceedings of the conference on fairness, accountability, and transparency</em>, 181–190. 2019.</p>
+</dd>
+<dt class="label" id="footcite-hertweck2021moral"><span class="brackets">4</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id13">2</a>)</span></dt>
+<dd><p>Corinna Hertweck, Christoph Heitz, and Michele Loi. On the moral justification of statistical parity. In <em>Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency</em>, 747–757. 2021.</p>
+</dd>
+<dt class="label" id="footcite-weerts2022does"><span class="brackets">5</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id16">2</a>)</span></dt>
+<dd><p>Hilde Weerts, Lambèr Royakkers, and Mykola Pechenizkiy. Does the end justify the means? on the moral justification of fairness-aware machine learning. <em>arXiv preprint arXiv:2202.08536</em>, 2022.</p>
+</dd>
+<dt class="label" id="footcite-arneson2018four"><span class="brackets"><a class="fn-backref" href="#id8">6</a></span></dt>
+<dd><p>Richard Arneson. Four conceptions of equal opportunity. <em>The Economic Journal</em>, 128(612):F152–F173, 2018.</p>
+</dd>
+<dt class="label" id="footcite-rawls1971theory"><span class="brackets"><a class="fn-backref" href="#id9">7</a></span></dt>
+<dd><p>John Rawls. <em>A theory of justice</em>. Harvard University Press, 1971.</p>
+</dd>
+<dt class="label" id="footcite-sen1979equality"><span class="brackets"><a class="fn-backref" href="#id10">8</a></span></dt>
+<dd><p>Amartya Sen and others. <em>Equality of what?</em> Volume 1. na, 1979.</p>
+</dd>
+<dt class="label" id="footcite-kleinberg2016inherent"><span class="brackets"><a class="fn-backref" href="#id11">9</a></span></dt>
+<dd><p>Jon Kleinberg, Sendhil Mullainathan, and Manish Raghavan. Inherent trade-offs in the fair determination of risk scores. <em>arXiv preprint arXiv:1609.05807</em>, 2016.</p>
+</dd>
+<dt class="label" id="footcite-wachter2020bias"><span class="brackets"><a class="fn-backref" href="#id12">10</a></span></dt>
+<dd><p>Sandra Wachter, Brent Mittelstadt, and Chris Russell. Bias preservation in machine learning: the legality of fairness metrics under eu non-discrimination law. <em>W. Va. L. Rev.</em>, 123:735, 2020.</p>
+</dd>
+<dt class="label" id="footcite-liu2019implicit"><span class="brackets"><a class="fn-backref" href="#id14">11</a></span></dt>
+<dd><p>Lydia T Liu, Max Simchowitz, and Moritz Hardt. The implicit fairness criterion of unconstrained learning. In <em>International Conference on Machine Learning</em>, 4051–4060. PMLR, 2019.</p>
+</dd>
+<dt class="label" id="footcite-parfit1995equality"><span class="brackets"><a class="fn-backref" href="#id15">12</a></span></dt>
+<dd><p>Derek Parfit. <em>Equality or priority?</em> University of Kansas Kansas, 1995.</p>
+</dd>
+<dt class="label" id="footcite-weerts2024can"><span class="brackets"><a class="fn-backref" href="#id17">13</a></span></dt>
+<dd><p>Hilde Weerts, Florian Pfisterer, Matthias Feurer, Katharina Eggensperger, Edward Bergman, Noor Awad, Joaquin Vanschoren, Mykola Pechenizkiy, Bernd Bischl, and Frank Hutter. Can fairness be automated? guidelines and opportunities for fairness-aware automl. <em>Journal of Artificial Intelligence Research</em>, 79:639–677, 2024.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./fairness/interdisciplinary"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Interdisciplinary Perspectives on Fair-ML</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="law.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Law: Fairness and Discrimination</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Hilde Weerts<br/>
+  
+      &copy; Copyright 2024.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

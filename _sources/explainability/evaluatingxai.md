@@ -1,5 +1,6 @@
-(local_posthoc_explanations)=
-# Local Post-Hoc Explanations
+(evaluating_xai)=
+
+# Evaluating Explainable AI
 
 ```{warning}
 This chapter is still under construction.
@@ -8,4 +9,5 @@ This chapter is still under construction.
 ## References
 
 ```{footbibliography}
+
 ```

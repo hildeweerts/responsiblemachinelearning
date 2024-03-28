@@ -1,19 +1,21 @@
-(shap_chapter)=
-# SHAP
+(local_posthoc_explanations)=
+
+# Local Post-Hoc Explanations
 
 ```{warning}
-This section is still under construction.
+This chapter is still under construction.
 ```
+
 <!--
 
-Shapley Additive Explanations (SHAP) is a explanation method for computing **feature value contributions** of (individual) instances. {term}`Feature contribution`s quantify the *marginal contribution* of a feature value to the model output. That is, on average, how would the output of the model change, had the feature value been different? 
+Shapley Additive Explanations (SHAP) is a explanation method for computing **feature value contributions** of (individual) instances. {term}`Feature contribution`s quantify the *marginal contribution* of a feature value to the model output. That is, on average, how would the output of the model change, had the feature value been different?
 
 The intuition is as follows: by comparing the model output of the original instance to the model output of an instance with a different feature value, we can estimate how much the . with an instance where the feature value we try to estimate how much an instance's feature value contribute to the model's output, by comparing the model output .
 
 
-The goal of SHAP values is to answer the question: how much does an instance's feature value contribute to the model's output?  
+The goal of SHAP values is to answer the question: how much does an instance's feature value contribute to the model's output?
 
-That is, if the instance's feature value would have been different, what would the 
+That is, if the instance's feature value would have been different, what would the
 
 The basic idea is simple: if one of the instance's feature values would *not* have been this value, how would that change the model output?
 
@@ -24,7 +26,7 @@ As SHAP does not rely on the internal structure of the model that is being expla
 
 
 ## Shapley Additive Explanations
-<!-- Shapley-value based approaches {footcite:p}`strumbelj2009explaining` {footcite:p}`lundberg2017unified` pose the distribution of feature importance as a cooperative game, where each feature value is a player. In order to capture the influence of interactions between features, Shapley-value based approaches consider how the model prediction changes for each subset, or coalition, in the power set of features. Next, Shapley-value based approaches compute the change in prediction, or `value' of each subset by averaging across all possible feature values of the features that are not part of the subset under consideration. 
+<!-- Shapley-value based approaches {footcite:p}`strumbelj2009explaining` {footcite:p}`lundberg2017unified` pose the distribution of feature importance as a cooperative game, where each feature value is a player. In order to capture the influence of interactions between features, Shapley-value based approaches consider how the model prediction changes for each subset, or coalition, in the power set of features. Next, Shapley-value based approaches compute the change in prediction, or `value' of each subset by averaging across all possible feature values of the features that are not part of the subset under consideration.
 
 ```{admonition} The Shapley value
 A cooperative game is a game in which groups of players form coalitions in which they work together and obtain a certain profit. As each player can have a different contribution to the profit, one might be interested in the most appealing division of profits. The Shapley value, introduced by {footcite:t}`shapley1953`, is an allocation rule that assigns a unique distribution of the profit among the players in the coalition. The Shapley value is known to be the only unique solution adhering to several, often desirable, properties.
@@ -46,7 +48,7 @@ $$\Phi(M,v) = (\phi_1(v), ..., \phi_m(v))$$
 
 So how does the Shapley value relate to local feature contributions? The idea behind Shapley Additive Explanations (SHAP) is to pose the explanation problem as a cooperative game. The players of this game are the feature values of the instance we are trying to explain. The value function of the game is the difference between average prediction of the classification model and the prediction for the instance under consideration.
 
-A connection between the Shapley value and feature contributions was 
+A connection between the Shapley value and feature contributions was
 
 ### A brief history of SHAP
 To the best of our knowledge, computing the Shapley value to determine feature contributions was first suggested by {footcite:t}`lipovetsky2001analysis`. In their work, the authors demonstrate how the Shapley value can be used to determine the importance of features in a linear regression model in the presence of multi-collinearity. Later, {footcite:t}`strumbelj2009explaining` revisited the idea in a classification setting and show how Shapley values can be approximated in this setting. More recently, {footcite:t}`lundberg2017unified` noted that many local explanation methods consider an explanation in the form of a linear function of features. The authors call this class of explanation methods additive feature attribution methods. In their work, the authors show that the Shapley value is the single unique solution in this explanation class that adheres to three properties derived from the properties of the Shapley value.
@@ -66,7 +68,7 @@ Where like before $\sigma$ depicts an ordering of features in $M$ and $P(\sigma,
 
 $$ \Phi_i = (\phi_{i1}, \phi_{i2}, ..., \phi_{im})$$
 
-which is equivalent to the Shapley value. 
+which is equivalent to the Shapley value.
 
 ## Axioms
 In their work, {footcite:t}`lundberg2017unified` introduce the notion of additive feature contribution methods. This is a class of local explanations that take the form of a linear function of feature contributions. This class includes a.o. LIME and SHAP. Because SHAP explanations are equivalent to the Shapley value, the properties of the Shapley value can be translated to the feature contribution context.
@@ -107,7 +109,7 @@ The Shapley sampling approximation algorithm introduced by {footcite:t}`strumbel
 The contribution of a feature $j$ for the $k^{th}$ sample is computed as the difference in prediction between two constructed instances, $b_1^k$ and $b_2^k$:
 \begin{equation}
     \label{eq:ci1}
-    b_1^k = (b_{11}^k, b_{12}^k, ..., b_{1m}^k), \text{where } b_{1l} = 
+    b_1^k = (b_{11}^k, b_{12}^k, ..., b_{1m}^k), \text{where } b_{1l} =
     \begin{cases}
     x_{il} & \text{if } l \in P(\sigma_k, j) \cup \{j\} \\
     w_{kl} & \text{if } l \in M \setminus (P(\sigma_k, j) \cup \{j\})
@@ -116,7 +118,7 @@ The contribution of a feature $j$ for the $k^{th}$ sample is computed as the dif
 
 \begin{equation}
     \label{eq:ci2}
-    b_2^k = (b_{21}^k, b_{22}^k, ..., b_{2m}^k), \text{where } b_{2l} = 
+    b_2^k = (b_{21}^k, b_{22}^k, ..., b_{2m}^k), \text{where } b_{2l} =
     \begin{cases}
     x_{il} & \text{if } l \in P(\sigma_k, j) \\
     w_{kl} & \text{if } l \in M \setminus P(\sigma_k, j)
@@ -133,12 +135,12 @@ And the SHAP value is approximated as:
     \phi_{ij} = \frac{1}{K} \sum_{k = 1}^K \phi_{ij}^k
 \end{equation}
 
-By sampling $w_k$ directly from the feature space, the authors assume feature independence in order to approximate the conditional expectation. That is, $w_k$ is sampled without taking into account the feature values of $x_i$ for features that precede $j$ in ordering $\sigma_k$. Hence, if there exists a high association between a feature value of some feature $i$ and a feature value of another feature $j$, this will not be taken into account during sampling. Under the independence assumption, the authors show that the algorithm provides an unbiased estimate of $\Phi_i$. 
+By sampling $w_k$ directly from the feature space, the authors assume feature independence in order to approximate the conditional expectation. That is, $w_k$ is sampled without taking into account the feature values of $x_i$ for features that precede $j$ in ordering $\sigma_k$. Hence, if there exists a high association between a feature value of some feature $i$ and a feature value of another feature $j$, this will not be taken into account during sampling. Under the independence assumption, the authors show that the algorithm provides an unbiased estimate of $\Phi_i$.
 
 ### Adaptive sampling
-{footcite:t}`strumbelj2014explaining` also propose a second algorithm that further minimizes the approximation error for a given number of samples. Because the sampling approach is Monte Carlo style, the approximation error depends on the population variance. However, the variance may not be the same for all features. For example, a feature value that does not contribute to the prediction will contribute zero in every sample, which results in zero variance. The adapted sampling approaches leverages this by distributing the total number of among individual features based on their sample variance. After a predefined number of samples is taken for each feature, each new sample will be assigned to the feature with the highest sample variance. The sample variance is updated each time a new sample is taken. 
+{footcite:t}`strumbelj2014explaining` also propose a second algorithm that further minimizes the approximation error for a given number of samples. Because the sampling approach is Monte Carlo style, the approximation error depends on the population variance. However, the variance may not be the same for all features. For example, a feature value that does not contribute to the prediction will contribute zero in every sample, which results in zero variance. The adapted sampling approaches leverages this by distributing the total number of among individual features based on their sample variance. After a predefined number of samples is taken for each feature, each new sample will be assigned to the feature with the highest sample variance. The sample variance is updated each time a new sample is taken.
 
-This procedure is very similar to the stratified sampling procedure for computing the Shapley value proposed by \citet{Castro2017}. 
+This procedure is very similar to the stratified sampling procedure for computing the Shapley value proposed by \citet{Castro2017}.
 It is important to note that in Monte Carlo style approximation schemes of the Shapley value, the resulting estimations cannot be guaranteed to satisfy pay-off efficiency when the set of sampled orderings is not the same for each feature \citep{Castro2017, VanCampen2016}. In other words, the adapted sampling approach will not be locally accurate, unless the estimation procedure is adapted to account for the efficiency gap \citep[see][]{Castro2017}.
 
 ### Kernel SHAP
@@ -154,5 +156,8 @@ Something interesting.
 
 -->
 
+## References
+
 ```{footbibliography}
+
 ```

@@ -160,7 +160,7 @@ A decision tree trained on a data set containing two categorical features, featu
 
 ```
 
-First, we consider the change in accuracy. We have 20 instances. With the original label, leaf $l_3$ classifies 2 instances correctly as negative and 1 instance incorrectly as negative. If we were to change the label from negative to positive, we classify 2 positive instances incorrectly as negative and 1 negative instance correctly. The difference in accuracy between the original tree and a tree where leaf $l_3$ is relabeled is therefore: $\Delta acc_l = (1 - 2)/20 = -1/20$.
+First, we consider the change in accuracy. We have 20 instances. With the original label, leaf $l_3$ classifies 2 instances correctly as negative and 1 instance incorrectly as negative. If we were to change the label from negative to positive, we classify 2 negative instances incorrectly as positive and 1 positive instance correctly. The difference in accuracy between the original tree and a tree where leaf $l_3$ is relabeled is therefore: $\Delta acc_l = (1 - 2)/20 = -1/20$.
 
 Second, consider the change in demographic parity difference. Each sensitive group has 10 instances. After relabeling, 1 instance of group 0 will be classified as positive, rather than negative, increasing the selection rate by 1/10. At the same time, 2 instances of group 1 are reclassified from negative to positive, increasing the selection rate by 2/10. The change in demographic parity difference is,therefore, $\Delta dpd_l = 1/10 - 2/10 = -1/10$.
 

@@ -8,8 +8,8 @@ From a technical perspective, algorithm selection of fair-ml algorithms does not
 
 From a practical perspective, various characteristics could be relevant:
 
-- _Machine learning algorithm._ Some fair-ml algorithms are designed specifically for a particular machine learning algorithm, while others are model-agnostic. For example, [adversarial learning](adversarial_learning) and [leaf relabeling](leaf_relabeling) are designed for neural networks and decision trees respectively, while [relabeling](relabeling) and [rejectoptionclassification](reject_option_classification).
-- _Fairness constraints._ Is the algorithm designed with one or more particular fairness constraints in mind (e.g., [demographic parity](demographic_parity) or [`equalized odds`](equalized_odds)) or does it also allow custom constraints?
+- _Machine learning algorithm._ Some fair-ml algorithms are designed specifically for a particular machine learning algorithm, while others are model-agnostic. For example, [adversarial learning](adversarial_learning) and [leaf relabeling](leaf_relabeling) are designed for neural networks and decision trees respectively, while [relabeling](relabeling) and [reject option classification](reject_option_classification) can be used with any binary classification algorithm.
+- _Fairness constraints._ Is the algorithm designed with one or more particular fairness constraints in mind (e.g., [demographic parity](demographic_parity) or [equalized odds](equalized_odds)) or does it also allow custom constraints?
 - _Sensitive feature_. Some algorithms are designed specifically for binary sensitive features, while others take into consideration categorical and numerical sensitive features as well as intersectional groups.
 - _Access to sensitive features at prediction time._ Does the algorithm require access to sensitive features at prediction time or only during training?
 - _Computational complexity._ Is the algorithm computationally cheap or expensive?

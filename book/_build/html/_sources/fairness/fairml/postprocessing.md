@@ -137,7 +137,7 @@ The algorithm takes as input decision tree $T$.
 
 1. _Compute the influence of relabeling._ For each leaf in the tree $l \in T$
     * $\Delta acc_l$ : change in accuracy if leaf $l$ is relabeled.
-    * $\Delta dpd_l$ : change in demographci parity difference if leaf $l$ is relabeled.
+    * $\Delta dpd_l$ : change in demographic parity difference if leaf $l$ is relabeled.
 2. _Greedy relabeling._
     * Leaves to relabel: $L = \{ \}$.
     * $dpd_T$ : the demographic parity difference of the decision tree.

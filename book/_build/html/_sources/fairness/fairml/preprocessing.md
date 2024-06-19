@@ -62,7 +62,7 @@ Let's have a look at an example. Consider the toy data set displayed in {numref}
 
 ```
 
-First, we need to determine the base rates of sensitive groups. Considering the $Y$ column, 5 of the 6 `citizen` instances belong to class $Y=1$, while only 1 of the 4 `noncitizen` instances belong to class $Y=1$. Consequently, low-scoring positive instances of `citizen` are up for promotion, while high-scoring negative instances of `noncitizen` are up for demotion.
+First, we need to determine the base rates of sensitive groups. Considering the $Y$ column, 5 of the 6 `citizen` instances belong to class $Y=1$, while only 1 of the 4 `noncitizen` instances belong to class $Y=1$. Consequently, low-scoring positive instances of `citizen` are up for demotion, while high-scoring negative instances of `noncitizen` are up for promotion.
 
 Now we need to determine how many instances ought to be relabeled to achieve equal base rates. We have $P_a = 1/4$, $n_a = 4$, $P_{a'} = 5/6$, $n_{a'}=6$, and $N = 10$. As such, $M = (5/6 - 1/4)*4*6/10 = 1.4$ instances much be relabeled. Following the procedure as suggested by the authors, we round up to 2.
 

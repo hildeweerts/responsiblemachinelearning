@@ -954,7 +954,7 @@ fairlearn     Tested version: 0.10.0  Your version: 0.10.0
                  <span class="n">y_pred</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;decile_score_cutoff&#39;</span><span class="p">],</span> 
                  <span class="n">sensitive_features</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;race&#39;</span><span class="p">])</span>
 <span class="c1"># print results</span>
-<span class="n">display</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">by_group</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Overall SR: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mf</span><span class="o">.</span><span class="n">overall</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># summarize demographic parity as the max difference between groups</span>
@@ -970,59 +970,15 @@ fairlearn     Tested version: 0.10.0  Your version: 0.10.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>selection rate (COMPAS)</th>
-    </tr>
-    <tr>
-      <th>race</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>African-American</th>
-      <td>0.576063</td>
-    </tr>
-    <tr>
-      <th>Asian</th>
-      <td>0.225806</td>
-    </tr>
-    <tr>
-      <th>Caucasian</th>
-      <td>0.330956</td>
-    </tr>
-    <tr>
-      <th>Hispanic</th>
-      <td>0.277014</td>
-    </tr>
-    <tr>
-      <th>Native American</th>
-      <td>0.727273</td>
-    </tr>
-    <tr>
-      <th>Other</th>
-      <td>0.204082</td>
-    </tr>
-  </tbody>
-</table>
-</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overall SR: 0.45
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  selection rate (COMPAS)
+race                                     
+African-American                 0.576063
+Asian                            0.225806
+Caucasian                        0.330956
+Hispanic                         0.277014
+Native American                  0.727273
+Other                            0.204082
+Overall SR: 0.45
 demographic parity diff: 0.52
 demographic parity diff: 0.52
 </pre></div>

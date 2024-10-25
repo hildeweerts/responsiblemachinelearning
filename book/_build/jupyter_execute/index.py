@@ -92,7 +92,7 @@ print("torch==%s" % torch.__version__)
 # @book{weerts2024,
 #   title = {An Introduction to Responsible Machine Learning},
 #   author = {Hilde Weerts},
-#   year = {2024}
+#   year = {2024},
 #   url = {https://hildeweerts.github.io/responsiblemachinelearning/}
 # }
 # ```

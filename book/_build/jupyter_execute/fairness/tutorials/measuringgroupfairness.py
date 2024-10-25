@@ -170,7 +170,7 @@ mf = MetricFrame(metrics={'selection rate (COMPAS)' : selection_rate},
                  y_pred=data['decile_score_cutoff'], 
                  sensitive_features=data['race'])
 # print results
-display(mf.by_group)
+print(mf.by_group)
 print("Overall SR: %.2f" % mf.overall[0])
 
 # summarize demographic parity as the max difference between groups

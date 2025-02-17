@@ -21,7 +21,7 @@ Machine Learning is a subfield of the broader field of artificial intelligence. 
 
 We define predictive performance metrics based on the confusion matrix, which visualizes different types of classification errors. We explain several predictive performance metrics: accuracy, false positive rate, true negative rate, false negative rate, true positive rate, recall, precision, and F1-score.
 
-We discuss ways to evaluate predictive performance based on the model's conficence score. We introduce the ROC curve, which sets out the true positive rate against the false positive rate and can be summarized using AUC score. Additionally, we discuss the precision-recall curve, which sets out a model's precision against recall and can be summarized by computing the average precision.
+We discuss ways to evaluate predictive performance based on the model's confidence score. We introduce the ROC curve, which sets out the true positive rate against the false positive rate and can be summarized using AUC score. Additionally, we discuss the precision-recall curve, which sets out a model's precision against recall and can be summarized by computing the average precision.
 
 Model calibration refers to the extent to which the confidence scores correspond to actual probabilities.
 
